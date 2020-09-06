@@ -26,9 +26,9 @@ object Server {
     /**
      * The time stamp of when the server started running.
      */
-    LOL THIS IS GONNA BREAK THE BUILD
-    Rerun
-    another break
+    //LOL THIS IS GONNA BREAK THE BUILD
+    //Rerun
+    //another break
 	@JvmField
 	var startTime: Long = 0
 
