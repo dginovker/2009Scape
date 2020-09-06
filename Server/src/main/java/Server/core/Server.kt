@@ -26,6 +26,7 @@ object Server {
     /**
      * The time stamp of when the server started running.
      */
+    // Test a working build
 	@JvmField
 	var startTime: Long = 0
 
