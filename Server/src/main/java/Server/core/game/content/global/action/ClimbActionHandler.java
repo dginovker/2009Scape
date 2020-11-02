@@ -1,5 +1,8 @@
 package core.game.content.global.action;
 
+import core.game.container.impl.EquipmentContainer;
+import core.game.content.ItemNames;
+import core.game.node.entity.player.link.diary.DiaryType;
 import core.game.system.SystemLogger;
 import plugin.dialogue.DialoguePlugin;
 import core.game.node.entity.player.Player;
