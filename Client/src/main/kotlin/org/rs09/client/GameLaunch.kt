@@ -21,6 +21,7 @@ object GameLaunch {
             GameConfig.IP_MANAGEMENT = "play.2009scape.org"
             GameConfig.RCM_STYLE_PRESET = "classic"
             GameConfig.RCM_TITLE = "<col=5d5447>Choose Option</col>"
+            GameConfig.RENDER_DISTANCE_INCREASE = true
         }
         for (i in args.indices) {
             val cmd = args[i].split("=").toTypedArray()
