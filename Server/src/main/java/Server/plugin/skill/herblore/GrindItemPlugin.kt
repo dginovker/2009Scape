@@ -48,7 +48,7 @@ class GrindItemPlugin : UseWithHandler(233) {
                     }
 
                     override fun animate() {
-                        player.animator.animate(Animation(364))
+                        player.animator.animate(ANIMATION)
                     }
 
                     override fun reward(): Boolean {
