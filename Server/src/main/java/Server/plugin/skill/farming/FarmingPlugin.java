@@ -30,6 +30,8 @@ import core.tools.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static plugin.stringtools.StringToolsKt.colorize;
+
 /**
  * Represents the option plugin used to handle farming interactions.
  * @author 'Vexia
@@ -602,7 +604,7 @@ public final class FarmingPlugin extends OptionHandler {
 			if (player.getInventory().remove(sapling.getSeed(), event.getUsedItem())) {
 				player.getInventory().add(sapling.getSeedling());
 				player.getPacketDispatch().sendMessage("You sow " + (StringUtils.isPlusN(sapling.getSeed().getName()) ? "an" : "a") + " " + sapling.getSeed().getName().toLowerCase() + " in the plantpot.");
-				player.getPacketDispatch().sendMessage("It needs watering before it will grow.");
+				player.getPacketDispatch().sendMessage(colorize("%RIt needs watering before it will grow."));
 			}
 			return true;
 		}

@@ -411,6 +411,7 @@ class PlayerSaver (val player: Player){
                 bins.add(bin)
             }
             farming.put("bins",bins)
+            player.farmingManager.seedlingManager.save(farming)
         }
 
         if(player.farmingManager.patches.size != 0){

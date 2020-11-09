@@ -1,54 +1,34 @@
-package core.game.world.callback;
+package core.game.world.callback
 
-import plugin.ge.GEOfferDispatch;
-import core.game.content.holiday.HolidayEvent;
-import plugin.skill.farming.FarmingPulse;
-import plugin.skill.hunter.ImpetuousImpulses;
-import core.game.system.SystemLogger;
-import core.game.world.map.zone.ZoneBuilder;
-
-import java.util.ArrayList;
-import java.util.List;
+import core.game.system.SystemLogger.error
+import core.game.world.map.zone.ZoneBuilder
+import plugin.ge.GEOfferDispatch
+import plugin.skill.farming.FarmingPulse
+import plugin.skill.hunter.ImpetuousImpulses
+import core.game.world.GameWorld
+import plugin.skill.farming.pot.SeedlingPulse
+import java.util.ArrayList
 
 /**
- * Represents a crappy class by vexia.
- * @author 'Vexia
+ * Initializes a few world pulses that need to continuously run
+ * @author Vexia
  */
-public final class CallbackHub {
+object CallbackHub {
+    private var calls: MutableList<CallBack> = ArrayList()
 
-	/**
-	 * Represents the list of {@link CallBack} values.
-	 */
-	private static List<CallBack> calls = new ArrayList<>();
-
-	/**
-	 * Constructs a new {@code CallbackHub} {@code Object}.
-	 */
-	public CallbackHub() {
-		/***
-		 * empty.
-		 */
-	}
-
-	/**
-	 * Method used to initializes the call back hub.
-	 * @return the value {@code True} if {@link CallBack#call()} is
-	 * <code>True</code>.
-	 */
-	public static boolean call() {
-		calls.add(new ZoneBuilder());
-		calls.add(new GEOfferDispatch());
-		calls.add(new FarmingPulse());
-		calls.add(new ImpetuousImpulses());
-		for (CallBack call : calls) {
-			if (!call.call()) {
-				SystemLogger.error("A callback was stopped, callback=" + call.getClass().getSimpleName() + ".");
-				return false;
-			}
-		}
-		HolidayEvent.init();
-		calls.clear();
-		calls = null;
-		return true;
-	}
+    fun call(): Boolean {
+        calls.add(ZoneBuilder())
+        calls.add(GEOfferDispatch())
+        calls.add(FarmingPulse())
+        calls.add(ImpetuousImpulses())
+        GameWorld.Pulser.submit(SeedlingPulse())
+        for (call in calls) {
+            if (!call.call()) {
+                error("A callback was stopped, callback=" + call.javaClass.simpleName + ".")
+                return false
+            }
+        }
+        calls.clear()
+        return true
+    }
 }

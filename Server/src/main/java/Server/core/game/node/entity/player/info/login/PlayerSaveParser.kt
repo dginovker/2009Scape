@@ -258,6 +258,10 @@ class PlayerSaveParser(val player: Player) {
             val wrapperData: JSONArray? = farmingData.get("wrappers") as JSONArray
             player.farmingManager.parseWrappers(wrapperData)
         }
+        if(farmingData.containsKey("seedlings")){
+            val seedlingData = farmingData.get("seedlings") as JSONArray
+            player.farmingManager.seedlingManager.parse(seedlingData)
+        }
     }
 
     fun parseAutocastSpell() {
