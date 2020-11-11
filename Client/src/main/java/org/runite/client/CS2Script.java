@@ -2352,7 +2352,8 @@ final class CS2Script extends Linkable {
                                                                         if (Class3_Sub13_Sub10.aFrame3121 != null)
                                                                            GameObject.graphicsSettings(false, Unsorted.anInt2577, -1, -1);
                                                                         if (null == GameShell.frame)
-                                                                           Class99.method1596(RSInterface.method856(), (byte) 126, false);
+                                                                            System.exit(0);
+                                                                           //Class99.method1596(RSInterface.method856(), (byte) 126, false);
                                                                         else
                                                                            System.exit(0);
                                                                         continue;

@@ -626,6 +626,18 @@ final class ObjectDefinition {
          }
       }
 
+      if (GameConfig.CHRISTMAS_EVENT_ENABLED) {
+         //TODO: Add more christmas trees
+         if (objectId == 1278) {
+            this.models = new int[0];
+            this.models = new int[]{1681};
+         }
+         if (objectId == 1276) {
+            this.models = new int[0];
+            this.models = new int[]{1682};
+         }
+      }
+
       if (GameConfig.OBJECT_DEBUG_ENABLED) {
          if (options[0] == null && options[1] == null && options[2] == null && options[3] == null && options[4] == null) {
             options[0] = RSString.parse("Viewing object");
