@@ -360,7 +360,7 @@ public class Signlink implements Runnable {
 
     public void createLibs(int archive) throws Throwable {
         System.out.println("creating libs");
-        String joglDesktop = archive < 2 ? "jogl_desktop.dll" : archive < 4 ? "libnativewindow_macosx.jnilib" : "libnativewindow_x11.so";
+        String joglDesktop = archive < 2 ? "jogl_desktop.dll" : archive < 4 ? "libjogl_desktop.jnilib" : "libjogl_desktop.so";
         String gluegen = archive < 2 ? "gluegen-rt.dll" : archive < 4 ? "libgluegen-rt.jnilib" : "libgluegen-rt.so";
         String nativeWindow = archive < 2 ? "nativewindow_win32.dll" : archive < 4 ? "libnativewindow_macosx.jnilib" : "libnativewindow_x11.so";
         String nativeWindowAWT = archive < 2 ? "nativewindow_awt.dll" : archive < 4 ? "libnativewindow_awt.jnilib" : "libnativewindow_awt.so";
@@ -625,18 +625,18 @@ public class Signlink implements Runnable {
 
         try {
             if (applet == null) {
-                setTraversalKeysEnabled = Class.forName("java.awt.Component").getDeclaredMethod("setFocusTraversalKeysEnabled", new Class[]{Boolean.TYPE});
+                setTraversalKeysEnabled = Class.forName("java.awt.Component").getDeclaredMethod("setFocusTraversalKeysEnabled", Boolean.TYPE);
             } else {
-                setTraversalKeysEnabled = applet.getClass().getMethod("setFocusTraversalKeysEnabled", new Class[]{Boolean.TYPE});
+                setTraversalKeysEnabled = applet.getClass().getMethod("setFocusTraversalKeysEnabled", Boolean.TYPE);
             }
         } catch (Exception var11) {
         }
 
         try {
             if (applet == null) {
-                setFocusCycleRoot = Class.forName("java.awt.Container").getDeclaredMethod("setFocusCycleRoot", new Class[]{Boolean.TYPE});
+                setFocusCycleRoot = Class.forName("java.awt.Container").getDeclaredMethod("setFocusCycleRoot", Boolean.TYPE);
             } else {
-                setFocusCycleRoot = applet.getClass().getMethod("setFocusCycleRoot", new Class[]{Boolean.TYPE});
+                setFocusCycleRoot = applet.getClass().getMethod("setFocusCycleRoot", Boolean.TYPE);
             }
         } catch (Exception var10) {
         }
@@ -670,9 +670,9 @@ public class Signlink implements Runnable {
         Thread[] threads = new Thread[1000];
         threadGroup.enumerate(threads);
 
-        for (int i = 0; i < threads.length; ++i) {
-            if (threads[i] != null && threads[i].getName().startsWith("AWT")) {
-                threads[i].setPriority(1);
+        for (Thread value : threads) {
+            if (value != null && value.getName().startsWith("AWT")) {
+                value.setPriority(1);
             }
         }
 

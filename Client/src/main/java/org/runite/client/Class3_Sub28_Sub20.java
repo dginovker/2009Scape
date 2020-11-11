@@ -311,7 +311,7 @@ final class Class3_Sub28_Sub20 extends Node {
                   Unsorted.anIntArray686[var4] = -1000000;
                   Class129_Sub1.anIntArray2696[var4] = 1000000;
                   Class159.anIntArray2021[var4] = 0;
-                  AnimationDefinition.anIntArray1871[var4] = 1000000;
+                  SequenceDefinition.anIntArray1871[var4] = 1000000;
                   Player.anIntArray3959[var4] = 0;
                }
 

@@ -1240,7 +1240,7 @@ final class CS2Script extends Linkable {
                                                    if (3604 == opcode) {
                                                       int i50 = ItemDefinition.intsStack[--iStackCounter];
                                                       RSString class94_7 = ItemDefinition.stringsStack[--sStackCounter];
-                                                      Class100.method1605(class94_7, i50);
+                                                      PacketParser.method1605(class94_7, i50);
                                                       continue;
                                                    }
                                                    if (opcode == 3605) {

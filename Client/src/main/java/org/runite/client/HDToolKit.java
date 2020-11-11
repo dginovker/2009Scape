@@ -1,10 +1,16 @@
 package org.runite.client;
 
 import com.jogamp.nativewindow.awt.AWTGraphicsConfiguration;
+import com.jogamp.nativewindow.awt.AWTGraphicsScreen;
 import com.jogamp.nativewindow.awt.JAWTWindow;
+import com.jogamp.newt.awt.NewtCanvasAWT;
+import com.jogamp.newt.event.awt.AWTMouseAdapter;
 import com.jogamp.opengl.*;
+import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.gl2es1.GLUgl2es1;
+import jogamp.nativewindow.jawt.JAWTFactory;
 import jogamp.newt.awt.NewtFactoryAWT;
+import org.junit.Assert;
 import org.rs09.client.config.GameConfig;
 
 import java.awt.Canvas;
@@ -15,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 public final class HDToolKit {
 
    /**
-    * GL4bc related
+    * JOGL GL4bc related
     */
    public static GL4bc gl;
    private static GLContext glContext;
@@ -249,7 +255,7 @@ public final class HDToolKit {
          GLProfile profile = GLProfile.getDefault();
          AWTGraphicsConfiguration configuration = AWTGraphicsConfiguration.create(canvas.getGraphicsConfiguration(), null, null);
          JAWTWindow jawtWindow = NewtFactoryAWT.getNativeWindow(canvas, configuration);
-         GLDrawableFactory glDrawableFactory = GLDrawableFactory.getFactory(profile);
+         GLDrawableFactory glDrawableFactory = GLDrawableFactory.getDesktopFactory();
          GLDrawable glDrawable = glDrawableFactory.createGLDrawable(jawtWindow);
          glDrawable.setRealized(true);
          GLContext glContext = glDrawable.createContext(null);
@@ -587,9 +593,9 @@ public final class HDToolKit {
                glCapabilities.setNumSamples(SceneMSAASamples);
             }
 
-            AWTGraphicsConfiguration configuration = AWTGraphicsConfiguration.create(canvas.getGraphicsConfiguration(), glCapabilities, glCapabilities);
+            AWTGraphicsConfiguration configuration = AWTGraphicsConfiguration.create(canvas, glCapabilities, glCapabilities);
             JAWTWindow jawtWindow = NewtFactoryAWT.getNativeWindow(canvas, configuration);
-            GLDrawableFactory glDrawableFactory = GLDrawableFactory.getFactory(profile);
+            GLDrawableFactory glDrawableFactory = GLDrawableFactory.getDesktopFactory();
             glDrawable = glDrawableFactory.createGLDrawable(jawtWindow);
             glDrawable.setRealized(true);
             int var4 = 0;
@@ -613,6 +619,7 @@ public final class HDToolKit {
             }
 
             gl = (GL4bc) glContext.getGL();
+            gl.glEnable(GL4bc.GL_DEBUG_OUTPUT_SYNCHRONOUS);
             new GLUgl2es1();
             highDetail = true;
             viewWidth = canvas.getSize().width;
