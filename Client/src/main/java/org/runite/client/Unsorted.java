@@ -1656,6 +1656,7 @@ public class Unsorted {
                 }
 
                 if (0 == var1 && var3 > 0) {
+                    System.out.println("Trying to run method1834 for HD");
                     HDToolKit.method1834(GameShell.canvas);
                 }
 
