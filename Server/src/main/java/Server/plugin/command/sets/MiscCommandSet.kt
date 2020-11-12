@@ -191,7 +191,9 @@ class MiscCommandSet : CommandSet(Command.Privilege.ADMIN){
         define("max"){player,_ ->
             var index = 0
             Skills.SKILL_NAME.forEach {
-                player.skills.addExperience(index++,player.skills.getExperienceByLevel(99).toDouble())
+                player.skills.setStaticLevel(index,99)
+                player.skills.setLevel(index,99)
+                index++
             }
         }
 
@@ -200,8 +202,8 @@ class MiscCommandSet : CommandSet(Command.Privilege.ADMIN){
          */
         define("setlevel"){player,args ->
             if(args.size < 2) reject(player,"Usage: ::setlevel skillname level").also { return@define }
-            val skillname = args[0]
-            val desiredLevel: Int? = args[1].toIntOrNull()
+            val skillname = args[1]
+            val desiredLevel: Int? = args[2].toIntOrNull()
             if(desiredLevel == null){
                 reject(player, "Level must be an integer.")
                 return@define
@@ -211,8 +213,8 @@ class MiscCommandSet : CommandSet(Command.Privilege.ADMIN){
 
             if(skill < 0) reject(player, "Must use a valid skill name!").also { return@define }
 
-            val neededEXP = player.skills.getExperience(skill) - player.skills.getExperienceByLevel(desiredLevel)
-            player.skills.addExperience(skill,neededEXP)
+            player.skills.setStaticLevel(skill,desiredLevel)
+            player.skills.setLevel(skill,desiredLevel)
         }
 
     }
