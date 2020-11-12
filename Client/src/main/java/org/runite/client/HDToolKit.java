@@ -2,11 +2,16 @@ package org.runite.client;
 
 import com.jogamp.nativewindow.NativeSurface;
 import com.jogamp.nativewindow.NativeWindow;
+import com.jogamp.nativewindow.NativeWindowFactory;
 import com.jogamp.nativewindow.awt.AWTGraphicsConfiguration;
 import com.jogamp.nativewindow.awt.AWTGraphicsScreen;
 import com.jogamp.nativewindow.awt.JAWTWindow;
+import com.jogamp.newt.NewtFactory;
 import com.jogamp.newt.awt.NewtCanvasAWT;
+import com.jogamp.newt.event.awt.AWTAdapter;
+import com.jogamp.newt.event.awt.AWTKeyAdapter;
 import com.jogamp.newt.event.awt.AWTMouseAdapter;
+import com.jogamp.newt.opengl.GLWindow;
 import com.jogamp.opengl.*;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
@@ -22,7 +27,7 @@ import jogamp.opengl.GLDrawableFactoryImpl;
 import org.junit.Assert;
 import org.rs09.client.config.GameConfig;
 
-import java.awt.Canvas;
+import java.awt.*;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.nio.charset.StandardCharsets;
@@ -265,8 +270,11 @@ public final class HDToolKit {
             if (!canvas.isDisplayable()) {
                 return;
             }
-            GLDrawableFactory var1 = GLDrawableFactory.getDesktopFactory();
-            GLDrawable gldrawable = var1.createGLDrawable((NativeSurface) canvas);
+            GLCapabilities glCapabilities = new GLCapabilities(GLProfile.getDefault());
+            AWTGraphicsConfiguration configuration = AWTGraphicsConfiguration.create(canvas.getGraphicsConfiguration(), glCapabilities, glCapabilities);
+            NativeWindow nativeWindow = NativeWindowFactory.getNativeWindow(canvas, configuration);
+            GLDrawableFactory glDrawableFactory = GLDrawableFactory.getDesktopFactory();
+            GLDrawable gldrawable = glDrawableFactory.createGLDrawable(nativeWindow);
             gldrawable.setRealized(true);
             GLContext glcontext = gldrawable.createContext(null);
             glcontext.makeCurrent();
@@ -597,7 +605,7 @@ public final class HDToolKit {
 
         try {
             if (canvas.isDisplayable()) {
-                GLProfile.initSingleton();
+                //GLProfile.initSingleton();
                 GLCapabilities glCapabilities = new GLCapabilities(GLProfile.getDefault());
                 System.out.println("Scene MSAASamples = " + SceneMSAASamples);
                 if (SceneMSAASamples > 0) {
@@ -606,16 +614,11 @@ public final class HDToolKit {
                 }
 
 
-            AWTGraphicsConfiguration configuration = AWTGraphicsConfiguration.create(canvas, glCapabilities, glCapabilities);
-            NativeWindow nativeWindow = NativeWindowFactoryImpl.getNativeWindow(canvas,configuration);
-            GLDrawableFactory glDrawableFactory = GLDrawableFactory.getDesktopFactory();
-            glDrawable = glDrawableFactory.createGLDrawable(nativeWindow);
-            glDrawable.setRealized(true);
-
-
-//                GLDrawableFactory var3 = GLDrawableFactory.getDesktopFactory();
-//                glDrawable = var3.createGLDrawable((NativeSurface) canvas);
-//                glDrawable.setRealized(true);
+                AWTGraphicsConfiguration configuration = AWTGraphicsConfiguration.create(canvas.getGraphicsConfiguration(), glCapabilities, glCapabilities);
+                NativeWindow nativeWindow = NativeWindowFactory.getNativeWindow(canvas, configuration);
+                GLDrawableFactory glDrawableFactory = GLDrawableFactory.getDesktopFactory();
+                glDrawable = glDrawableFactory.createGLDrawable(nativeWindow);
+                glDrawable.setRealized(true);
 
                 int var4 = 0;
                 int var5;
@@ -637,7 +640,7 @@ public final class HDToolKit {
                     TimeUtils.sleep(1000L);
                 }
 
-                gl = (GL2) glContext.getGL();
+                gl = glContext.getGL().getGL2();
                 new GLUgl2();
                 highDetail = true;
                 System.out.println("Setting high detail to " + highDetail);

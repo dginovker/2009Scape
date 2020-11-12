@@ -1,5 +1,7 @@
 package org.runite.client;
 
+import jogamp.opengl.x11.glx.X11GLXDynamicLibraryBundleInfo;
+
 import java.applet.Applet;
 import java.awt.Component;
 import java.awt.EventQueue;
@@ -249,11 +251,12 @@ public class Signlink implements Runnable {
                             if (osName.startsWith("linux") || isSunOS) {
                                 createLibs(isSunOS ? (is64Bit ? 7 : 6) : (is64Bit ? 5 : 4));
 //                                var7.invoke(runtime, var1.anObject977, method1448(this.gameName, this.anInt1215, "libgluegen-rt.so").toString());
-//                                Class var8 = ((Class) var1.anObject977).getClassLoader().loadClass("com.sun.opengl.impl.x11.DRIHack");//TODO:
+//                                Class var8 = ((Class) var1.anObject977).getClassLoader().loadClass("DRIHack");//TODO:
 //                                var8.getMethod("begin", new Class[0]).invoke(null, new Object[0]);
 //                                var7.invoke(runtime, var1.anObject977, method1448(this.gameName, this.anInt1215, "libjogl_desktop.so").toString());
 //                                var8.getMethod("end", new Class[0]).invoke(null, new Object[0]);
 //                                var7.invoke(runtime, var1.anObject977, method1448(this.gameName, this.anInt1215, "libnativewindow_x11.so").toString());
+//                                var7.invoke(runtime, var1.anObject977, method1448(this.gameName, this.anInt1215, "libnativewindow_awt.so").toString());
 
 
                             } else if (osName.startsWith("mac")) {
