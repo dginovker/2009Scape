@@ -195,6 +195,7 @@ class MiscCommandSet : CommandSet(Command.Privilege.ADMIN){
                 player.skills.setLevel(index,99)
                 index++
             }
+            player.skills.updateCombatLevel()
         }
 
         /**
@@ -215,6 +216,7 @@ class MiscCommandSet : CommandSet(Command.Privilege.ADMIN){
 
             player.skills.setStaticLevel(skill,desiredLevel)
             player.skills.setLevel(skill,desiredLevel)
+            player.skills.updateCombatLevel()
         }
 
     }
