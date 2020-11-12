@@ -28,6 +28,7 @@ import core.plugin.PluginManager;
 import core.tools.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static plugin.stringtools.StringToolsKt.colorize;
@@ -250,6 +251,7 @@ public final class FarmingPlugin extends OptionHandler {
 			List<Integer> ids = new ArrayList<>();
 			ids.add(6032);// compost
 			ids.add(6034);// super compost
+			for(int ID : FarmingAmuletPlugin.getAmuletIDs()){ids.add(ID);} //Farming Amulets
 			for (PatchTool tool : PatchTool.values()) {
 				for (Item i : tool.getTools()) {
 					ids.add(i.getId());

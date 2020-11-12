@@ -25,6 +25,8 @@ public final class FarmingManager implements SavingModule {
 	 */
 	private final FarmingEquipment equipment = new FarmingEquipment();
 
+	public PatchWrapper amuletBoundWrapper = null;
+
 	/**
 	 * Represents the managing class of composts.
 	 */

@@ -1,33 +1,32 @@
-package plugin.interaction.item;
+package plugin.interaction.item
 
-import core.cache.def.impl.ItemDefinition;
-import core.game.interaction.OptionHandler;
-import core.game.node.Node;
-import core.game.node.entity.player.Player;
-import core.plugin.InitializablePlugin;
-import core.plugin.Plugin;
+import core.cache.def.impl.ItemDefinition
+import core.game.interaction.OptionHandler
+import core.game.node.Node
+import core.game.node.entity.player.Player
+import core.plugin.InitializablePlugin
+import core.plugin.Plugin
 
 /**
- * Handles the bracelet of clay item.
- * @author Vexia
+ * Handles the bracelet of clay operate option.
+ * @author Ceikry
  */
 @InitializablePlugin
-public final class BraceletOfClayPlugin extends OptionHandler {
+class BraceletOfClayPlugin : OptionHandler() {
 
-	@Override
-	public Plugin<Object> newInstance(Object arg) throws Throwable {
-		ItemDefinition.forId(11074).getHandlers().put("option:operate", this);
-		return this;
-	}
+    override fun newInstance(arg: Any?): Plugin<Any>? {
+        ItemDefinition.forId(11074).handlers["option:operate"] = this
+        return this
+    }
 
-	@Override
-	public boolean handle(Player player, Node node, String option) {
-		player.sendMessage("You have " + (28 - player.getSavedData().getGlobalData().getBraceletClayUses()) + " uses left.");
-		return true;
-	}
+    override fun handle(player: Player, node: Node, option: String): Boolean {
+        var charge = node.asItem().charge
+        if (charge > 28) charge = 28
+        player.sendMessage("You have $charge uses left.")
+        return true
+    }
 
-	@Override
-	public boolean isWalk() {
-		return false;
-	}
+    override fun isWalk(): Boolean {
+        return false
+    }
 }

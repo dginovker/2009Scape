@@ -1,137 +1,233 @@
-package plugin.activity.mta;
+package plugin.activity.mta
 
-import plugin.skill.magic.MagicSpell;
-import plugin.skill.magic.Runes;
-import core.game.node.Node;
-import core.game.node.entity.Entity;
-import core.game.node.entity.combat.equipment.SpellType;
-import core.game.node.entity.player.Player;
-import core.game.node.entity.player.link.SpellBookManager.SpellBook;
-import core.game.node.entity.player.link.audio.Audio;
-import core.game.node.item.Item;
-import core.game.world.update.flag.context.Animation;
-import core.game.world.update.flag.context.Graphics;
-import core.plugin.Plugin;
-
-import plugin.activity.mta.impl.EnchantingZone;
-import plugin.activity.mta.impl.EnchantingZone.Shapes;
+import core.game.content.ItemNames
+import core.game.node.Node
+import core.game.node.entity.Entity
+import core.game.node.entity.combat.equipment.SpellType
+import core.game.node.entity.player.Player
+import core.game.node.entity.player.link.SpellBookManager.SpellBook
+import core.game.node.entity.player.link.audio.Audio
+import core.game.node.item.Item
+import core.game.world.update.flag.context.Animation
+import core.game.world.update.flag.context.Graphics
+import core.plugin.Plugin
+import plugin.activity.mta.impl.EnchantingZone
+import plugin.activity.mta.impl.EnchantingZone.Shapes
+import plugin.skill.magic.MagicSpell
+import plugin.skill.magic.Runes
 
 /**
  * Represents the enchant spells.
- * @author Emperor
- * @author 'Vexia
- * @version 1.0
+ * @author Ceikry
  */
-public final class EnchantSpell extends MagicSpell {
+class EnchantSpell : MagicSpell {
+    /**
+     * The enchantable jewellery array.
+     */
+    private val jewellery: HashMap<Int,Item>?
 
-	/**
-	 * The animation.
-	 */
-	private static final Animation ANIMATION = Animation.create(712);
+    /**
+     * Constructs a new `EnchantSpell` `Object`.
+     */
+    constructor() {
+        jewellery = null
+    }
 
-	/**
-	 * The graphic.
-	 */
-	private static final Graphics GRAPHIC = new Graphics(114, 96);
+    /**
+     * Constructs a new `EnchantSpell` `Object`.
+     * @param level The level required.
+     * @param jewellery The jewellery this spell is able to echant.
+     * @param runes The runes required.
+     */
+    constructor(level: Int, experience: Double, jewellery: HashMap<Int,Item>, runes: Array<Item>?) : super(SpellBook.MODERN, level, experience, ANIMATION, GRAPHIC, Audio(115, 1, 0), runes) {
+        this.jewellery = jewellery
+    }
 
-	/**
-	 * The enchantable jewellery array.
-	 */
-	private final Item[][] jewellery;
+    override fun cast(entity: Entity, target: Node): Boolean {
+        if (target !is Item || entity !is Player) {
+            return false
+        }
+        entity.interfaceManager.setViewedTab(6)
+        val enchanted = jewellery?.getOrDefault(target.id,null)
 
-	/**
-	 * Constructs a new {@code EnchantSpell} {@code Object}.
-	 */
-	public EnchantSpell() {
-		this.jewellery = null;
-	}
+        if (enchanted == null) {
+            entity.packetDispatch.sendMessage("You can't use this spell on this item.")
+            return false
+        }
+        if (!meetsRequirements(entity, true, true)) {
+            return false
+        }
 
-	/**
-	 * Constructs a new {@code EnchantSpell} {@code Object}.
-	 * @param level The level required.
-	 * @param jewellery The jewellery this spell is able to echant.
-	 * @param runes The runes required.
-	 */
-	public EnchantSpell(int level, double experience, Item[][] jewellery, Item[] runes) {
-		super(SpellBook.MODERN, level, experience, ANIMATION, GRAPHIC, new Audio(115, 1, 0), runes);
-		this.jewellery = jewellery;
-	}
+        if (entity.inventory.remove(target)) {
+            visualize(entity, target)
+            entity.inventory.add(enchanted)
+        }
 
-	@Override
-	public boolean cast(Entity entity, Node target) {
-		if (!(target instanceof Item) || !(entity instanceof Player)) {
-			return false;
-		}
-		Player p = (Player) entity;
-		p.getInterfaceManager().setViewedTab(6);
-		Item item = (Item) target;
-		Item enchanted = null;
-		for (Item[] arr : jewellery) {
-			if (arr[0].getId() == item.getId()) {
-				enchanted = new Item(arr[1].getId());
-				break;
-			}
-		}
-		if (enchanted == null) {
-			p.getPacketDispatch().sendMessage("You can't use this spell on this item.");
-			return false;
-		}
-		if (!meetsRequirements(entity, true, true)) {
-			return false;
-		}
-		visualize(entity, target);
-		if (p.getInventory().remove(item)) {
-			p.getInventory().add(enchanted);
-		}
-		if (p.getZoneMonitor().isInZone("Enchantment Chamber")) {
-			p.graphics(Graphics.create(237, 110));
-			int pizazz = 0;
-			if (item.getId() == 6903) {
-				pizazz = (getSpellId() == 5 ? 1 : getSpellId() == 16 ? 2 : getSpellId() == 28 ? 3 : getSpellId() == 36 ? 4 : getSpellId() == 51 ? 5 : 6) * 2;
-			} else {
-				Shapes shape = Shapes.forItem(item);
-				if (shape != null) {
-					int convert = p.getAttribute("mta-convert", 0);
-					convert += 1;
-					if (convert >= 10) {
-						pizazz = (getSpellId() == 5 ? 1 : getSpellId() == 16 ? 2 : getSpellId() == 28 ? 3 : getSpellId() == 36 ? 4 : getSpellId() == 51 ? 5 : 6);
-						convert = 0;
-					}
-					p.setAttribute("mta-convert", convert);
-					if (shape == EnchantingZone.BONUS_SHAPE) {
-						pizazz += 1;
-						p.sendMessage("You get " + pizazz + " bonus point" + (pizazz != 1 ? "s" : "") + "!");
-					}
-				}
-			}
-			if (pizazz != 0) {
-				EnchantingZone.ZONE.incrementPoints(p, MTAType.ENCHANTERS.ordinal(), pizazz);
-			}
-		}
-		return true;
-	}
 
-	@Override
-	public int getDelay() {
-		return 1;
-	}
+        //MTA-Specific Code
+        if (entity.zoneMonitor.isInZone("Enchantment Chamber")) {
+            entity.graphics(Graphics.create(237, 110))
+            var pizazz = 0
+            if (target.id == 6903) {
+                pizazz = (if (getSpellId() == 5) 1 else if (getSpellId() == 16) 2 else if (getSpellId() == 28) 3 else if (getSpellId() == 36) 4 else if (getSpellId() == 51) 5 else 6) * 2
+            } else {
+                val shape = Shapes.forItem(target)
+                if (shape != null) {
+                    var convert = entity.getAttribute("mta-convert", 0)
+                    convert += 1
+                    if (convert >= 10) {
+                        pizazz = if (getSpellId() == 5) 1 else if (getSpellId() == 16) 2 else if (getSpellId() == 28) 3 else if (getSpellId() == 36) 4 else if (getSpellId() == 51) 5 else 6
+                        convert = 0
+                    }
+                    entity.setAttribute("mta-convert", convert)
+                    if (shape == EnchantingZone.BONUS_SHAPE) {
+                        pizazz += 1
+                        entity.sendMessage("You get " + pizazz + " bonus point" + (if (pizazz != 1) "s" else "") + "!")
+                    }
+                }
+            }
+            if (pizazz != 0) {
+                EnchantingZone.ZONE.incrementPoints(entity, MTAType.ENCHANTERS.ordinal, pizazz)
+            }
+        }
+        return true
+    }
 
-	@Override
-	public double getExperience(Player player) {
-		if (player.getZoneMonitor().isInZone("Enchantment Chamber")) {
-			return getExperience() - (getExperience() * 0.75);
-		}
-		return getExperience();
-	}
+    override fun getDelay(): Int {
+        return 1
+    }
 
-	@Override
-	public Plugin<SpellType> newInstance(SpellType arg) throws Throwable {
-		SpellBook.MODERN.register(5, new EnchantSpell(7, 17.5, new Item[][] { { new Item(1637), new Item(2550) }, { new Item(1656), new Item(3853) }, { new Item(1694), new Item(1727) }, { new Item(11072) }, { new Item(11074) }, { new Item(6899), new Item(6902) }, { new Item(6898), new Item(6902) }, { new Item(6900), new Item(6902) }, { new Item(6901), new Item(6902) }, { new Item(6903), new Item(6902) } }, new Item[] { new Item(Runes.COSMIC_RUNE.getId(), 1), new Item(Runes.WATER_RUNE.getId(), 1) }));
-		SpellBook.MODERN.register(16, new EnchantSpell(27, 37, new Item[][] { { new Item(1639), new Item(2552) }, { new Item(1658), new Item(5521) }, { new Item(1696), new Item(1729) }, { new Item(6899), new Item(6902) }, { new Item(6898), new Item(6902) }, { new Item(6900), new Item(6902) }, { new Item(6901), new Item(6902) }, { new Item(6903), new Item(6902) } }, new Item[] { new Item(Runes.COSMIC_RUNE.getId(), 1), new Item(Runes.AIR_RUNE.getId(), 3) }));
-		SpellBook.MODERN.register(28, new EnchantSpell(49, 59, new Item[][] { { new Item(1641), new Item(2568) }, { new Item(1660), new Item(11194) }, { new Item(1698), new Item(1725) }, { new Item(6899), new Item(6902) }, { new Item(6898), new Item(6902) }, { new Item(6900), new Item(6902) }, { new Item(6901), new Item(6902) }, { new Item(6903), new Item(6902) } }, new Item[] { new Item(Runes.COSMIC_RUNE.getId(), 1), new Item(Runes.FIRE_RUNE.getId(), 5) }));
-		SpellBook.MODERN.register(36, new EnchantSpell(57, 67, new Item[][] { { new Item(1643), new Item(2570) }, { new Item(1662), new Item(11090) }, { new Item(1700), new Item(1731) }, { new Item(6899), new Item(6902) }, { new Item(6898), new Item(6902) }, { new Item(6900), new Item(6902) }, { new Item(6901), new Item(6902) }, { new Item(6903), new Item(6902) } }, new Item[] { new Item(Runes.COSMIC_RUNE.getId(), 1), new Item(Runes.EARTH_RUNE.getId(), 10) }));
-		SpellBook.MODERN.register(51, new EnchantSpell(68, 78, new Item[][] { { new Item(1645), new Item(2572) }, { new Item(1664), new Item(11105) }, { new Item(1702), new Item(1712) }, { new Item(11115), new Item(11118) }, { new Item(6899), new Item(6902) }, { new Item(6898), new Item(6902) }, { new Item(6900), new Item(6902) }, { new Item(6901), new Item(6902) }, { new Item(6903), new Item(6902) } }, new Item[] { new Item(Runes.COSMIC_RUNE.getId(), 1), new Item(Runes.WATER_RUNE.getId(), 15), new Item(Runes.EARTH_RUNE.getId(), 15) }));
-		SpellBook.MODERN.register(61, new EnchantSpell(87, 97, new Item[][] { { new Item(6575), new Item(6583) }, { new Item(6577), new Item(11128) }, { new Item(11130), new Item(11133) }, { new Item(6581), new Item(6585) }, { new Item(6899), new Item(6902) }, { new Item(6898), new Item(6902) }, { new Item(6900), new Item(6902) }, { new Item(6901), new Item(6902) }, { new Item(6903), new Item(6902) } }, new Item[] { new Item(Runes.COSMIC_RUNE.getId(), 1), new Item(Runes.FIRE_RUNE.getId(), 20), new Item(Runes.EARTH_RUNE.getId(), 20) }));
-		return this;
-	}
+    override fun getExperience(player: Player): Double {
+        return if (player.zoneMonitor.isInZone("Enchantment Chamber")) {
+            experience - experience * 0.75
+        } else experience
+    }
+
+    override fun newInstance(arg: SpellType?): Plugin<SpellType>? {
+        /**
+         * Enchant Sapphire Jewelry (Lvl-1 Enchant)
+         */
+        SpellBook.MODERN.register(5, EnchantSpell(7, 17.5,
+                hashMapOf(
+                        //Begin Jewelry Enchantments
+                        ItemNames.SAPPHIRE_RING_1637 to Item(ItemNames.RING_OF_RECOIL_2550),
+                        ItemNames.SAPPHIRE_NECKLACE_1656 to Item(ItemNames.GAMES_NECKLACE8_3853),
+                        ItemNames.SAPPHIRE_AMULET_1694 to Item(ItemNames.AMULET_OF_MAGIC_1727),
+                        ItemNames.SAPPHIRE_BRACELET_11072 to Item(ItemNames.BRACELET_OF_CLAY_11074),
+                        //Begin MTA-specific enchantments
+                        ItemNames.CUBE_6899 to Item(ItemNames.ORB_6902),
+                        ItemNames.CYLINDER_6898 to Item(ItemNames.ORB_6902),
+                        ItemNames.ICOSAHEDRON_6900 to Item(ItemNames.ORB_6902),
+                        ItemNames.PENTAMID_6901 to Item(ItemNames.ORB_6902),
+                        ItemNames.DRAGONSTONE_6903 to Item(ItemNames.ORB_6902)
+                ),
+                arrayOf(Item(ItemNames.COSMIC_RUNE,1), Item(ItemNames.WATER_RUNE,1))))
+
+        /**
+         * Enchant Emerald Jewelry (Lvl-2 Enchant)
+         */
+        SpellBook.MODERN.register(16, EnchantSpell(27, 37.0,
+                hashMapOf(
+                        //Begin Jewelry Enchantments
+                        ItemNames.EMERALD_RING_1639 to Item(ItemNames.RING_OF_DUELING8_2552),
+                        ItemNames.EMERALD_NECKLACE_1658 to Item(ItemNames.BINDING_NECKLACE_5521),
+                        ItemNames.EMERALD_AMULET_1696 to Item(ItemNames.AMULET_OF_DEFENCE_1729),
+                        ItemNames.EMERALD_BRACELET_11076 to Item(ItemNames.CASTLE_WARS_BRACELET3_11079),
+                        //Begin MTA-Specific Enchantments
+                        ItemNames.CUBE_6899 to Item(ItemNames.ORB_6902),
+                        ItemNames.CYLINDER_6898 to Item(ItemNames.ORB_6902),
+                        ItemNames.ICOSAHEDRON_6900 to Item(ItemNames.ORB_6902),
+                        ItemNames.PENTAMID_6901 to Item(ItemNames.ORB_6902),
+                        ItemNames.DRAGONSTONE_6903 to Item(ItemNames.ORB_6902)
+                ),
+                arrayOf(Item(Runes.COSMIC_RUNE.id, 1), Item(Runes.AIR_RUNE.id, 3))))
+
+        /**
+         * Enchant Ruby Jewelry (Lvl-3 Enchant)
+         */
+        SpellBook.MODERN.register(28, EnchantSpell(49, 59.0,
+                hashMapOf(
+                        //Begin Jewelry Enchantments
+                        ItemNames.RUBY_RING_1641 to Item(ItemNames.RING_OF_FORGING_2568),
+                        ItemNames.RUBY_NECKLACE_1660 to Item(ItemNames.DIGSITE_PENDANT_5_11194),
+                        ItemNames.RUBY_AMULET_1698 to Item(ItemNames.AMULET_OF_STRENGTH_1725),
+                        ItemNames.RUBY_BRACELET_11085 to Item(ItemNames.INOCULATION_BRACELET_11088),
+                        //Begin MTA-Specific Enchantments
+                        ItemNames.CUBE_6899 to Item(ItemNames.ORB_6902),
+                        ItemNames.CYLINDER_6898 to Item(ItemNames.ORB_6902),
+                        ItemNames.ICOSAHEDRON_6900 to Item(ItemNames.ORB_6902),
+                        ItemNames.PENTAMID_6901 to Item(ItemNames.ORB_6902),
+                        ItemNames.DRAGONSTONE_6903 to Item(ItemNames.ORB_6902)
+                ),
+                arrayOf(Item(Runes.COSMIC_RUNE.id, 1), Item(Runes.FIRE_RUNE.id, 5))))
+
+        /**
+         * Enchant Diamond Jewelry (Lvl-4 Enchant)
+         */
+        SpellBook.MODERN.register(36, EnchantSpell(57, 67.0,
+                hashMapOf(
+                        ItemNames.DIAMOND_RING_1643 to Item(ItemNames.RING_OF_LIFE),
+                        ItemNames.DIAMOND_NECKLACE_1662 to Item(ItemNames.PHOENIX_NECKLACE_11090),
+                        ItemNames.DIAMOND_AMULET_1700 to Item(ItemNames.AMULET_OF_POWER),
+                        ItemNames.DIAMOND_BRACELET_11092 to Item(ItemNames.ABYSSAL_BRACELET1_11103),
+                        //Begin MTA-Specific Enchantments
+                        ItemNames.CUBE_6899 to Item(ItemNames.ORB_6902),
+                        ItemNames.CYLINDER_6898 to Item(ItemNames.ORB_6902),
+                        ItemNames.ICOSAHEDRON_6900 to Item(ItemNames.ORB_6902),
+                        ItemNames.PENTAMID_6901 to Item(ItemNames.ORB_6902),
+                        ItemNames.DRAGONSTONE_6903 to Item(ItemNames.ORB_6902)
+                ),
+                arrayOf(Item(Runes.COSMIC_RUNE.id, 1), Item(Runes.EARTH_RUNE.id, 10))))
+
+        /**
+         * Enchant Dragonstone Jewelry (Lvl-5 Enchant)
+         */
+        SpellBook.MODERN.register(51, EnchantSpell(68, 78.0,
+                hashMapOf(
+                        //Begin Jewelry Enchantment
+                        ItemNames.DRAGONSTONE_RING_1645 to Item(14646),
+                        ItemNames.DRAGONSTONE_NECKLACE_1664 to Item(ItemNames.SKILLS_NECKLACE6_11968),
+                        ItemNames.DRAGONSTONE_AMULET_1702 to Item(ItemNames.AMULET_OF_GLORY6_11978),
+                        ItemNames.DRAGONSTONE_BRACELET_11115 to Item(ItemNames.COMBAT_BRACELET6_11972),
+                        //Begin MTA-Specific Enchantments
+                        ItemNames.CUBE_6899 to Item(ItemNames.ORB_6902),
+                        ItemNames.CYLINDER_6898 to Item(ItemNames.ORB_6902),
+                        ItemNames.ICOSAHEDRON_6900 to Item(ItemNames.ORB_6902),
+                        ItemNames.PENTAMID_6901 to Item(ItemNames.ORB_6902),
+                        ItemNames.DRAGONSTONE_6903 to Item(ItemNames.ORB_6902)
+                ),
+                arrayOf(Item(Runes.COSMIC_RUNE.id, 1), Item(Runes.WATER_RUNE.id, 15), Item(Runes.EARTH_RUNE.id, 15))))
+
+        /**
+         * Enchant Onyx Jewelry (Lvl-6 Enchant)
+         */
+        SpellBook.MODERN.register(61, EnchantSpell(87, 97.0,
+                hashMapOf(
+                        //Begin Jewelry Enchantments
+                        ItemNames.ONYX_RING_6575 to Item(ItemNames.RING_OF_STONE_6583),
+                        ItemNames.ONYX_NECKLACE_6577 to Item(ItemNames.BERSERKER_NECKLACE_11128),
+                        ItemNames.ONYX_AMULET_6581 to Item(ItemNames.AMULET_OF_FURY_6585),
+                        ItemNames.ONYX_BRACELET_11130 to Item(ItemNames.REGEN_BRACELET_11133),
+                        //Begin MTA-Specific Enchantments
+                        ItemNames.CUBE_6899 to Item(ItemNames.ORB_6902),
+                        ItemNames.CYLINDER_6898 to Item(ItemNames.ORB_6902),
+                        ItemNames.ICOSAHEDRON_6900 to Item(ItemNames.ORB_6902),
+                        ItemNames.PENTAMID_6901 to Item(ItemNames.ORB_6902),
+                        ItemNames.DRAGONSTONE_6903 to Item(ItemNames.ORB_6902)
+                ),
+                arrayOf(Item(Runes.COSMIC_RUNE.id, 1), Item(Runes.FIRE_RUNE.id, 20), Item(Runes.EARTH_RUNE.id, 20))))
+        return this
+    }
+
+    companion object {
+        /**
+         * The animation.
+         */
+        private val ANIMATION = Animation.create(712)
+
+        /**
+         * The graphic.
+         */
+        private val GRAPHIC = Graphics(114, 96)
+    }
 }

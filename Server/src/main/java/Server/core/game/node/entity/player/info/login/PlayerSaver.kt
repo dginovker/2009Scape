@@ -419,6 +419,8 @@ class PlayerSaver (val player: Player){
             player.farmingManager.patches.map {
                 val wrapper = JSONObject()
                 wrapper.put("wrapperId",it.wrapperId.toString())
+                if(player.farmingManager.amuletBoundWrapper == player.farmingManager.getPatchWrapper(it.wrapperId))
+                    farming.put("farmingAmuletWrapperID",it.wrapperId)
                 val cycle = JSONObject()
                 cycle.put("compostThreshold",it.cycle.compostThreshold.toString())
                 cycle.put("growthTime",it.cycle.growthTime.toString())

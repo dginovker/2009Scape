@@ -151,6 +151,21 @@ class MiningSkillPulse(private val player: Player, private val node: Node) : Pul
                 val experience = resource!!.getExperience() * rewardAmount
                 player.skills.addExperience(Skills.MINING, experience, true)
 
+                //Handle bracelet of clay
+                if(reward == ItemNames.CLAY_434){
+                    val bracelet = player.equipment.get(EquipmentContainer.SLOT_HANDS)
+                    if(bracelet != null && bracelet.id == ItemNames.BRACELET_OF_CLAY_11074){
+                        if(bracelet.charge > 28) bracelet.charge = 28
+                        bracelet.charge--
+                        reward = ItemNames.SOFT_CLAY_1761
+                        player.sendMessage("Your bracelet of clay softens the clay for you.")
+                        if(bracelet.charge <= 0){
+                            player.sendMessage("Your bracelet of clay crumbles to dust.")
+                            player.equipment.remove(bracelet)
+                        }
+                    }
+                }
+
                 //send the message for the resource reward
                 if (isMiningGems) {
                     val gemName = ItemDefinition.forId(reward).name.toLowerCase()
@@ -265,18 +280,6 @@ class MiningSkillPulse(private val player: Player, private val node: Node) : Pul
             val value = RandomFunction.randomize(if (resource == MiningNode.GRANITE) 3 else 4)
             reward += value shl 1
             player.skills.addExperience(Skills.MINING, value * 10.toDouble(), true)
-        } else if (reward == SkillingResource.CLAY_0.reward) {
-            // Check if they have a bracelet of clay equiped
-            if (player.equipment.contains(11074, 1)) {
-                player.savedData.globalData.incrementBraceletOfClay()
-                if (player.savedData.globalData.braceletClayUses >= 28) {
-                    player.savedData.globalData.braceletClayUses = 0
-                    player.equipment.remove(Item(11074))
-                    player.sendMessage("Your bracelet of clay has disinegrated.")
-                }
-                // Give soft clay
-                reward = 1761
-            }
         } else if (isMiningEssence && player.skills.getLevel(Skills.MINING) >= 30) {
             reward = 7936
         } else if (isMiningGems) {
