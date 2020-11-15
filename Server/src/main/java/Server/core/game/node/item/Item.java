@@ -13,7 +13,7 @@ import core.game.node.entity.combat.equipment.DegradableEquipment;
  * Represents an item.
  * @author Emperor
  */
-public class Item extends Node implements Comparable<Item>{
+public class Item extends Node{
 
 	/**
 	 * The identification hash (itemId << 16 | charge)
@@ -250,23 +250,4 @@ public class Item extends Node implements Comparable<Item>{
 	public String toString() {
 		return "Item id=" + getId() + ", name=" + getName() + ", amount=" + amount;
 	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) return true;
-		if (!(obj instanceof Item)) return false;
-		Item that = (Item) obj;
-		return this.idHash == that.idHash && this.amount == that.amount;
-	}
-
-	@Override
-	public int hashCode() {
-		return idHash;
-	}
-
-	@Override
-	public int compareTo(Item that){
-		return ((Integer)this.idHash).compareTo((Integer)that.idHash);
-	}
-
 }
