@@ -29,6 +29,7 @@ import core.plugin.InitializablePlugin;
 import core.tools.StringUtils;
 import plugin.activity.pestcontrol.monsters.*;
 
+
 /**
  * Handles the Pest Control activity.
  * @author Emperor
@@ -119,7 +120,8 @@ public final class PestControlActivityPlugin extends ActivityPlugin {
 		for (final Player p : session.getRegion().getPlanes()[0].getPlayers()) {
 			p.getProperties().setTeleportLocation(getLeaveLocation());
 			if (!success) {
-				p.getDialogueInterpreter().open(3781, true, 0, true);// default,
+				p.getDialogueInterpreter().open(3781, true, 0, true);
+				// default,
 				// type,
 				// default
 			} else if (success && p.getAttribute("pc_zeal", 0) >= 50) {
@@ -340,7 +342,7 @@ public final class PestControlActivityPlugin extends ActivityPlugin {
 		 * Constructs a new {@code BoatType} {@code Object}.
 		 * @param requirement The combat level requirement.
 		 */
-		private BoatType(int requirement) {
+		BoatType(int requirement) {
 			this.requirement = requirement;
 		}
 

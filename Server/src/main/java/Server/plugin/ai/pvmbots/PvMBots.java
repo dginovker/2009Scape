@@ -110,10 +110,10 @@ public class PvMBots extends AIPlayer {
         }
 
         //Npc Combat
-		if (this.tick % 10 == 0) {
+		/*if (this.tick % 10 == 0) {
 			if (!this.inCombat())
 				AttackNpcsInRadius(this, 5);
-		}
+		}*/
 
 		if (this.tick == 100) this.tick = 0;
 
