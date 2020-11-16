@@ -13,7 +13,7 @@ class PortalChamberDialogue(player: Player? = null) : DialoguePlugin(player) {
                 1 -> directPortal("varrock")
                 2 -> directPortal("lumbridge")
                 3 -> directPortal("falador")
-                4 -> options("Camelot","Ardougne","Yanille","Kharyll").also { stage++ }
+                4 -> options("Camelot Portal","Ardougne Portal","Yanille Portal","Kharyll Portal").also { stage++ }
             }
             1 -> when(buttonId){
                 1 -> directPortal("camelot")
