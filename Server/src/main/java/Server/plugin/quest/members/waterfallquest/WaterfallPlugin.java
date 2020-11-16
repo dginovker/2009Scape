@@ -31,6 +31,9 @@ import core.plugin.PluginManager;
 
 /**
  * Master plugin file for the Waterfall quest.
+ *
+ * This is one of the most disgusting files I have ever seen. -Ceikry
+ *
  * @author Splinter
  * @version 1.0 - Feb 28th, 2015
  */
@@ -199,7 +202,6 @@ public final class WaterfallPlugin extends OptionHandler {
 			break;
 		case 33046:
 			ObjectBuilder.add(new GameObject(33047, Location.create(2530, 9844, 0), 10, 1));
-			player.getPacketDispatch().sendMessage("You open the chest.");
 			break;
 		case 42319:
 			if (node.getLocation().equals(new Location(2556, 9844))) {
