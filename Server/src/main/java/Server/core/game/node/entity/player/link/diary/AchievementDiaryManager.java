@@ -36,7 +36,7 @@ public class AchievementDiaryManager implements SavingModule {
 	private final Player player;
 
 	/**
-	 * Constructs a new {@Code AchievementDiary} {@Code Object}
+	 * Constructs a new
 	 * @param player the player.
 	 */
 	public AchievementDiaryManager(Player player) {

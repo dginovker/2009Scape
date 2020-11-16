@@ -219,5 +219,15 @@ class MiscCommandSet : CommandSet(Command.Privilege.ADMIN){
             player.skills.updateCombatLevel()
         }
 
+        define("completediaries"){player,_ ->
+            player.achievementDiaryManager.diarys.forEach {
+                for(level in it.taskCompleted.indices){
+                    for(task in it.taskCompleted[level].indices){
+                        it.finishTask(player,level,task)
+                    }
+                }
+            }
+        }
+
     }
 }
