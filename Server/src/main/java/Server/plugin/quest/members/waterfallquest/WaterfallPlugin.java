@@ -493,7 +493,7 @@ public final class WaterfallPlugin extends OptionHandler {
 				player.getPacketDispatch().sendMessage("But nothing happens.", 4);
 			}
 
-			if (useditem.getId() == AIR_RUNE.getId() || useditem.getId() == EARTH_RUNE.getId() || useditem.getId() == WATER_RUNE.getId() && object.getId() == 2004) {
+			if ((useditem.getId() == AIR_RUNE.getId() || useditem.getId() == EARTH_RUNE.getId() || useditem.getId() == WATER_RUNE.getId()) && object.getId() == 2004) {
 				if (player.getInventory().contains(555, 6) && player.getInventory().contains(556, 6) && player.getInventory().contains(557, 6)) {
 					if (player.getAttribute("waterfall_placed_runes") != null) {
 						player.getPacketDispatch().sendMessage("You have already placed the runes on the pillars.");
