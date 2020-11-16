@@ -4,6 +4,10 @@ import core.game.node.entity.player.Player
 import core.plugin.InitializablePlugin
 import plugin.dialogue.DialoguePlugin
 
+/**
+ * Portal Chamber Dialogue go brrrrrr
+ * @author Ceikry
+ */
 @InitializablePlugin
 class PortalChamberDialogue(player: Player? = null) : DialoguePlugin(player) {
     var portal = "none"
