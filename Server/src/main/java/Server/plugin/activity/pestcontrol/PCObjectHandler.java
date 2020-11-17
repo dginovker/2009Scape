@@ -104,7 +104,7 @@ public final class PCObjectHandler extends OptionHandler {
 				case 14315: // Novice
 					if (!GameWorld.getPCnBotsSpawned() && !player.isArtificial()) { //First person to join gets bots to play with
 						GameWorld.setPCnBotsSpawned(true);
-						for (pestBotsAmount = 0; pestBotsAmount <= 40; pestBotsAmount++) {
+						for (pestBotsAmount = 0; pestBotsAmount <= 35; pestBotsAmount++) {
 							PvMBotsBuilder.createPestControlTestBot(new Location(2657, 2640));
 						}
 					}
@@ -117,7 +117,7 @@ public final class PCObjectHandler extends OptionHandler {
 				case 25631: // Intermediate
 					if (!GameWorld.getPCiBotsSpawned() && !player.isArtificial()) { //First person to join gets bots to play with
 						GameWorld.setPCiBotsSpawned(true);
-						for (pestBots2Amount = 0; pestBots2Amount <= 40; pestBots2Amount++ ) {
+						for (pestBots2Amount = 0; pestBots2Amount <= 50; pestBots2Amount++ ) {
 							PvMBotsBuilder.createPestControlTestBot2(new Location(2644, 2644));
 						}
 					}

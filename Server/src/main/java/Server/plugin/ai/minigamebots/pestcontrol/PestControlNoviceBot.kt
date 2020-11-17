@@ -78,26 +78,17 @@ class PestControlTestBot(l: Location) : PvMBots(legitimizeLocation(l)){
              return State.GET_TO_PC
 
         }
-    //Saftey Idle Check if Needed
-     fun idlecheck() {
-        val test = getClosestNodeWithEntry(10, myBoat.ladderId)
-        if (PestControlHelper.outsideGangplankContainsLoc(getLocation())) {
-            test.interaction.handle(this, test.interaction[0])
-            State.OUTSIDE_GANGPLANK.also { println("Was stuck ${this.username}.") }
-        }
-    }
 
      fun attackNPCs() {
         if (PestControlHelper.outsideGangplankContainsLoc(getLocation())){
             PestControlActivityPlugin().leave(this,false)
             val test = getClosestNodeWithEntry(50, myBoat.ladderId)
-            test ?: println("OH FUCKIES THE GANGPLANK IS NULL REEEEEE")
-            test.interaction.handle(this, test.interaction[0]).also { println("Novice - We think we is in pest control ${this.username}.") }
+            test ?: println("PC: Gangplank Null")
+            test.interaction.handle(this, test.interaction[0])//.also { println("Novice - We think we is in pest control ${this.username}.") }
         }
         walkingQueue.isRunning = true
 
         if (getAttribute("pc_role","E") == "attack_portals") {
-            SystemLogger.log("PORTAL HEHEHEHEHEHHE")
             combathandler.goToPortals()
         } else {
             movetimer = RandomFunction.random(2,10)
@@ -113,6 +104,11 @@ class PestControlTestBot(l: Location) : PvMBots(legitimizeLocation(l)){
         if (!prayer.active.isEmpty()) {
             prayer.reset()
         }
+         if (PestControlHelper.outsideGangplankContainsLoc(getLocation())){
+             val test = getClosestNodeWithEntry(15, myBoat.ladderId)
+             test.interaction.handle(this,test.interaction[0])
+             enterBoat()//.also { println("We think we is in boat ${this.username}.") }
+         }
         if (Random().nextInt(100) < 40) {
             if (Random().nextInt(insideBoatWalks) <= 1) {
                 (insideBoatWalks * 1.5).toInt()
@@ -120,10 +116,7 @@ class PestControlTestBot(l: Location) : PvMBots(legitimizeLocation(l)){
                 if (Random().nextInt(4) == 1) {
                     this.walkingQueue.isRunning = !this.walkingQueue.isRunning
                 }
-                if (Random().nextInt(7) == 1) {
-                    this.walkToPosSmart(Location(2660, 2638))
-                }
-                else {
+                if (Random().nextInt(7) >= 4) {
                     this.walkToPosSmart(myBoat.boatBorder.randomLoc!!)
                 }
             }
@@ -134,30 +127,31 @@ class PestControlTestBot(l: Location) : PvMBots(legitimizeLocation(l)){
     }
 
      fun enterBoat() {
-        if (PestControlHelper.outsideGangplankContainsLoc(getLocation())){
-           // movetimer = Random().nextInt(10)
-            combathandler.randomWalkTo(PestControlHelper.PestControlLanderNovice, 1)
-        }
-        if (prayer.active.contains(PrayerType.PROTECT_FROM_MELEE)) {
-            prayer.toggle(PrayerType.PROTECT_FROM_MELEE)
+         if (PestControlHelper.outsideGangplankContainsLoc(getLocation())){
+             movetimer = Random().nextInt(10)
+             combathandler.randomWalkTo(PestControlHelper.PestControlLanderNovice, 1)
+         }
+         if (!prayer.active.isEmpty()) {
+             prayer.reset()
+         }
+        if (Random().nextInt(8) >= 4)
+        {
+            val pclocs = Location.create(2658,2659,0)
+            combathandler.randomWalkTo(pclocs,12)
+            movetimer = Random().nextInt(300) + 30
         }
         if (Random().nextInt(8) >= 2)
         {
-            val pclocs = Location.create(2658,2659,0)
-            combathandler.randomWalkTo(pclocs,15)
-         //   movetimer = Random().nextInt(10)
-        }
-        if (Random().nextInt(8) == 0)
-        {
-         //   movetimer = Random().nextInt(3)
+             randomWalk(3,3)
+             movetimer = Random().nextInt(10)
         }
         if (Random().nextInt(100) > 50)
         {
             if (Random().nextInt(10) <= 5) {
                 this.walkToPosSmart(myBoat.outsideBoatBorder.randomLoc)
-          //      movetimer += RandomFunction.normalPlusWeightRandDist(400, 200)
+                movetimer += RandomFunction.normalPlusWeightRandDist(400, 200)
             }
-          //  movetimer = RandomFunction.normalPlusWeightRandDist(100, 50);
+                movetimer = RandomFunction.normalPlusWeightRandDist(100, 50);
             return;
         }
         val test = getClosestNodeWithEntry(15, myBoat.ladderId)

@@ -186,9 +186,9 @@ class EnchantSpell : MagicSpell {
                 hashMapOf(
                         //Begin Jewelry Enchantment
                         ItemNames.DRAGONSTONE_RING_1645 to Item(14646),
-                        ItemNames.DRAGONSTONE_NECKLACE_1664 to Item(ItemNames.SKILLS_NECKLACE4_11105),
-                        ItemNames.DRAGONSTONE_AMULET_1702 to Item(ItemNames.AMULET_OF_GLORY4_1712),
-                        ItemNames.DRAGONSTONE_BRACELET_11115 to Item(ItemNames.COMBAT_BRACELET4_11118),
+                        ItemNames.DRAGONSTONE_NECKLACE_1664 to Item(ItemNames.SKILLS_NECKLACE6_11968),
+                        ItemNames.DRAGONSTONE_AMULET_1702 to Item(ItemNames.AMULET_OF_GLORY6_11978),
+                        ItemNames.DRAGONSTONE_BRACELET_11115 to Item(ItemNames.COMBAT_BRACELET6_11972),
                         //Begin MTA-Specific Enchantments
                         ItemNames.CUBE_6899 to Item(ItemNames.ORB_6902),
                         ItemNames.CYLINDER_6898 to Item(ItemNames.ORB_6902),

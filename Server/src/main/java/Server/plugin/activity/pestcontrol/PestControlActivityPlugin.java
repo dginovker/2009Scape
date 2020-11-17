@@ -2,7 +2,11 @@ package plugin.activity.pestcontrol;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import plugin.ai.AIPlayer;
+import plugin.ai.pvmbots.CombatBotAssembler;
+import plugin.ai.AIPlayer.*;
 import core.ServerConstants;
 import core.game.component.Component;
 import plugin.activity.ActivityManager;
@@ -28,6 +32,10 @@ import core.tools.RandomFunction;
 import core.plugin.InitializablePlugin;
 import core.tools.StringUtils;
 import plugin.activity.pestcontrol.monsters.*;
+import plugin.ai.minigamebots.pestcontrol.PestControlTestBot;
+import plugin.ai.minigamebots.pestcontrol.PestControlTestBot2;
+
+
 
 
 /**

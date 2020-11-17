@@ -101,12 +101,12 @@ public class PvMBots extends AIPlayer {
 		this.tick++;
 
         //Despawn
-        if (this.getSkills().getLifepoints() == 0){
+        if (this.getSkills().getLifepoints() <= 5){
             //TODO: Just respawn a new bot (not sure how you'd do that :L)
                 // Maybe make all PvMBots know what to do if they aren't in right area? I.e. pest control bots teleport to PC
             //this.teleport(new Location(500, 500));
             //Despawning not being delayed causes 3 errors in the console
-            AIPlayer.deregister(this.getUid());
+            this.getSkills().setLifepoints(20);
         }
 
         //Npc Combat

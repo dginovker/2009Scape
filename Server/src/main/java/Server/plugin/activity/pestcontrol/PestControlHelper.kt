@@ -65,7 +65,7 @@ object PestControlHelper {
         return p.getExtension(PestControlSession::class.java)
     }
 
-    fun getMyPestControlSession2(p: PestControlTestBot2): PestControlSession {
+    fun getMyPestControlSession2(p: PestControlTestBot2): PestControlSession? {
         return p.getExtension(PestControlSession::class.java)
     }
 

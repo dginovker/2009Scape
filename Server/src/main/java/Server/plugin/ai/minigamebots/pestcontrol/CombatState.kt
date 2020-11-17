@@ -20,7 +20,7 @@ import plugin.activity.pestcontrol.PestControlSession
 class CombatState(val bot: PestControlTestBot) {
     private val Random = Random()
     val randomtype = Random().nextInt(100)
-    //public CombatState2(PestControlTestBot2 pestControlTestBot2) =
+
     fun goToPortals() {
         bot.customState = "I'm at portals."
         val gate = bot.getClosestNodeWithEntry(75, GATE_ENTRIES)
@@ -62,7 +62,7 @@ class CombatState(val bot: PestControlTestBot) {
             return
         }
 
-        if (portal != null.also { println("Is there a portal?") }) {
+        if (portal != null) {
             if(bot.location.withinDistance(portal.location,10) && portal.isActive){
                 val spinners = ArrayList<NPC>()
                 RegionManager.getLocalNpcs(bot).forEach {
@@ -74,7 +74,7 @@ class CombatState(val bot: PestControlTestBot) {
                     bot.attack(portal)
                 }
             } else {
-                randomWalkTo(portal.location, 5).also { println("REEE ATTACK")}
+                randomWalkTo(portal.location, 5)
             }
             bot.movetimer = Random().nextInt(10) + 5
             return
