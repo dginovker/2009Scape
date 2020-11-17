@@ -105,7 +105,9 @@ public class AchievementDiaryManager implements SavingModule {
 	}
 
 	public void finishTask(Player player, DiaryType type, int level, int index) {
-		getDiary(type).finishTask(player, level, index);
+		if(!player.isArtificial()) {
+			getDiary(type).finishTask(player, level, index);
+		}
 	}
 
 	/**
