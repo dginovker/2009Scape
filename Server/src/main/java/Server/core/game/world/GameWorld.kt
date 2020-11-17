@@ -71,11 +71,6 @@ object GameWorld {
     @JvmStatic
     var Pulser = PulseRunner()
 
-    @JvmStatic
-    var PCiBotsSpawned = false
-    @JvmStatic
-    var PCnBotsSpawned = false
-
     /**
      * Submits a pulse.
      *
