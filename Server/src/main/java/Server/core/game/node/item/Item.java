@@ -250,4 +250,5 @@ public class Item extends Node{
 	public String toString() {
 		return "Item id=" + getId() + ", name=" + getName() + ", amount=" + amount;
 	}
+
 }
