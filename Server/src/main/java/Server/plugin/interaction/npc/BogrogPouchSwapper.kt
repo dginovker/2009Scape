@@ -10,6 +10,12 @@ import plugin.skill.summoning.SummoningPouch
 import plugin.skill.summoning.SummoningScroll
 import kotlin.math.ceil
 
+/**
+ * Handles swapping pouches/scrolls for shards.
+ * We decided to use the GE set exchange interface for this because it's the only one we could find
+ * that allowed us to do what we needed. Jagex did the same thing as far as we can tell.
+ * @author Ceikry
+ */
 object BogrogPouchSwapper {
     //Opcodes for item options
     const val OP_VALUE = 155
@@ -23,12 +29,6 @@ object BogrogPouchSwapper {
     //GE Zone borders because shitty hack lol
     val GEBorders = ZoneBorders(3151,3501,3175,3477)
 
-    /**
-     * Handles swapping pouches/scrolls for shards.
-     * We decided to use the GE set exchange interface for this because it's the only one we could find
-     * that allowed us to do what we needed. Jagex did the same thing as far as we can tell.
-     * @author Ceikry
-     */
     @JvmStatic
     fun handle(player: Player, opcode: Int, slot: Int, itemID: Int): Boolean{
         if(GEBorders.insideBorder(player)) return false
