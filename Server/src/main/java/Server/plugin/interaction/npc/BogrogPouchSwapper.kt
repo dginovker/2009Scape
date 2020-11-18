@@ -18,16 +18,16 @@ import kotlin.math.ceil
  */
 object BogrogPouchSwapper {
     //Opcodes for item options
-    const val OP_VALUE = 155
-    const val OP_SWAP_1 = 196
-    const val OP_SWAP_5 = 124
-    const val OP_SWAP_10 = 199
-    const val OP_SWAP_X = 234
+    private const val OP_VALUE = 155
+    private const val OP_SWAP_1 = 196
+    private const val OP_SWAP_5 = 124
+    private const val OP_SWAP_10 = 199
+    private const val OP_SWAP_X = 234
 
-    const val SPIRIT_SHARD = 12183
+    private const val SPIRIT_SHARD = 12183
 
     //GE Zone borders because shitty hack lol
-    val GEBorders = ZoneBorders(3151,3501,3175,3477)
+    private val GEBorders = ZoneBorders(3151,3501,3175,3477)
 
     @JvmStatic
     fun handle(player: Player, opcode: Int, slot: Int, itemID: Int): Boolean{
@@ -75,7 +75,7 @@ object BogrogPouchSwapper {
         return true
     }
 
-    fun getValue(itemID: Int): Int{
+    private fun getValue(itemID: Int): Int{
         SystemLogger.log("$itemID")
         var item = SummoningPouch.get(itemID)
         if(item == null) item = SummoningPouch.get(Item(itemID).noteChange)
