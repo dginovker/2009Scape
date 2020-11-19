@@ -229,5 +229,33 @@ class MiscCommandSet : CommandSet(Command.Privilege.ADMIN){
             }
         }
 
+        define("log"){player,_ ->
+            var log: ArrayList<String>? = player.getAttribute("loc-log")
+            log = log ?: ArrayList<String>()
+            val locString = "{${player.location.x},${player.location.y},${player.location.z},1,0}"
+            log.add(locString)
+            player.setAttribute("loc-log",log)
+        }
+
+        define("logdone"){player,_ ->
+            val log: ArrayList<String>? = player.getAttribute("loc-log")
+            log ?: return@define
+
+            val sb = StringBuilder()
+            var first = true
+            for(entry in log){
+                if(!first) sb.append("-")
+                sb.append(entry)
+                first = false
+            }
+
+            val stringSelection = StringSelection(sb.toString())
+            val clpbrd = Toolkit.getDefaultToolkit().systemClipboard
+            clpbrd.setContents(stringSelection, null)
+
+            log.clear()
+            player.setAttribute("loc-log",log)
+        }
+
     }
 }

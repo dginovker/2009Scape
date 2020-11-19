@@ -23,7 +23,7 @@ class PortalChamberDialogue(player: Player? = null) : DialoguePlugin(player) {
                 1 -> directPortal("camelot")
                 2 -> directPortal("ardougne")
                 3 -> directPortal("yanille")
-                4 -> directPortal("kharyll")
+                4 -> directPortal("kharyrll")
             }
         }
         return true

@@ -820,7 +820,7 @@
   },
   {
     "id": "92",
-    "title": "Gem Store (monkey Colony)",
+    "title": "Gem Store",
     "general_store": "0",
     "stock": "{1623,1}-{1621,1}-{1619,0}-{1617,0}",
     "npcs": "2157",
@@ -1470,7 +1470,7 @@
     "id": "164",
     "title": "Vigr's Warhammers",
     "general_store": "0",
-    "stock": "{1337,10}-{1335,10}-{139,10}-{1341,10}-{1343,10}",
+    "stock": "{1337,10}-{1335,10}-{1339,10}-{1341,10}-{1343,10}",
     "npcs": "2151",
     "currency": "995",
     "high_alch": "0"
@@ -1940,6 +1940,51 @@
     "general_store": "0",
     "stock": "{2283,10}",
     "npcs": "596",
+    "currency": "995",
+    "high_alch": "0"
+  },
+  {
+    "id": "218",
+    "title": "Silver Cog Silver Stall",
+    "general_store": "0",
+    "stock": "{1714,2}-{442,1}-{2355,1}",
+    "npcs": "2159",
+    "currency": "995",
+    "high_alch": "0"
+  },
+  {
+    "id": "219",
+    "title": "Carefree Crafting Stall",
+    "general_store": "0",
+    "stock": "{1755,2}-{1592,4}-{1597,2}-{1733,3}-{1734,100}-{1759,100}",
+    "npcs": "2158",
+    "currency": "995",
+    "high_alch": "0"
+  },
+  {
+    "id": "220",
+    "title": "Keldagrim's Best Bread",
+    "general_store": "0",
+    "stock": "{2309,10}-{1891,3}-{1901,8}",
+    "npcs": "2156",
+    "currency": "995",
+    "high_alch": "0"
+  },
+  {
+    "id": "221",
+    "title": "Quality Armour Shop",
+    "general_store": "0",
+    "stock": "{1105,3}-{1109,1}-{1107,1}-{1111,1}-{1141,3}-{1143,1}-{1145,1}-{1177,0}-{1195,0}",
+    "npcs": "2153",
+    "currency": "995",
+    "high_alch": "0"
+  },
+  {
+    "id": "222",
+    "title": "Ore Shop",
+    "general_store": "0",
+    "stock": "{436,100}-{438,100}-{440,100}-{442,100}-{444,100}-{447,100}-{453,100}",
+    "npcs": "2564",
     "currency": "995",
     "high_alch": "0"
   }
