@@ -203,6 +203,10 @@ public final class PacketDispatch {
 		PacketRepository.send(DisplayModel.class, new DisplayModelContext(player, npcId, interfaceId, childId));
 	}
 
+	public void sendModelOnInterface(int modelID, int interfaceId, int childId, int zoom){
+		PacketRepository.send(DisplayModel.class, new DisplayModelContext(player, ModelType.MODEL, modelID,zoom,interfaceId,childId,new Object()));
+	}
+
 	/**
 	 * Send the item on interface packet.
 	 * @param itemId The item id.
