@@ -12,6 +12,11 @@ import core.game.container.impl.BankContainer;
 import core.game.container.impl.EquipmentContainer;
 import core.game.container.impl.InventoryListener;
 import core.game.node.entity.combat.equipment.EquipmentDegrader;
+import core.game.system.SystemLogger;
+import core.game.system.task.Pulse;
+import core.game.world.update.flag.context.Animation;
+import core.game.world.update.flag.context.Graphics;
+import core.game.world.update.flag.player.GraphicFlag;
 import core.tools.TickUtilsKt;
 import plugin.ame.AntiMacroHandler;
 import plugin.dialogue.DialogueInterpreter;
@@ -115,6 +120,10 @@ public class Player extends Entity {
 	 * The details of the player.
 	 */
 	private PlayerDetails details;
+
+	public boolean inWardrobe = false;
+
+	private Graphics wardrobe_hold_graphics = new Graphics(1182,0,0);
 
 	public boolean newPlayer = getSkills().getTotalLevel() < 50;
 
@@ -426,6 +435,43 @@ public class Player extends Entity {
 		Repository.getDisconnectionQueue().add(this);
 	}
 
+	public void toggleWardrobe(boolean intoWardrobe){
+		class wardrobePulse extends Pulse{
+			final Player player;
+			boolean first = true;
+			wardrobePulse(Player player){
+				this.player = player;
+			}
+			@Override
+			public boolean pulse() {
+				if(first){
+					player.visualize(new Animation(1241), new Graphics(1181,0,0));
+					first = false;
+					return !player.inWardrobe;
+				}
+				if(player.inWardrobe) {
+					player.visualize(new Animation(1241),wardrobe_hold_graphics);
+				} else {
+					player.visualize(new Animation(1241), new Graphics(1183,0,0));
+					player.getPulseManager().run(new Pulse(1){
+						@Override
+						public boolean pulse() {
+							player.getAnimator().reset();
+							return true;
+						}
+					});
+				}
+				return !player.inWardrobe;
+			}
+		}
+		if(intoWardrobe){
+			GameWorld.getPulser().submit(new wardrobePulse(this));
+			inWardrobe = true;
+		} else {
+			inWardrobe = false;
+		}
+	}
+
 	@Override
 	public void tick() {
 		super.tick();
@@ -461,6 +507,12 @@ public class Player extends Entity {
 
 	@Override
 	public void update() {
+		if(this.inWardrobe) {
+			SystemLogger.log("SHOULD BE IN WARDROBE UAUSUAUSAUAS");
+			if(!getUpdateMasks().isUpdating()) {
+				getUpdateMasks().register(new GraphicFlag(wardrobe_hold_graphics));
+			}
+		}
 		super.update();
 		if (playerFlags.isUpdateSceneGraph()) {
 			updateSceneGraph(false);

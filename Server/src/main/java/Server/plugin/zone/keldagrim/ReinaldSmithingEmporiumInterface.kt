@@ -44,7 +44,9 @@ class ReinaldSmithingEmporiumInterface : ComponentPlugin(){
         super.open(player, component)
         //make sure the player can't just close the interface and get it for free (lol)
         player?.setAttribute("wrists-look",player.appearance.wrists.look)
+        player?.toggleWardrobe(true)
         component?.setCloseEvent(){pl,_ ->
+            player?.toggleWardrobe(false)
             val orindex = pl.getAttribute("wrists-look", if(pl.isMale) 34 else 68)
             val paid = pl.getAttribute("bracelet-paid",false)
             if(!paid) {
