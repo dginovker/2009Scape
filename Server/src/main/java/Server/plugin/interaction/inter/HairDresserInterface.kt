@@ -10,6 +10,10 @@ import core.plugin.InitializablePlugin
 import core.plugin.Plugin
 import plugin.dialogue.FacialExpression
 
+/**
+ * Handles the reworked hairdresser interface with full functionality
+ * @author Ceikry
+ */
 private const val HAIRDRESSER_MALE_COMPONENT_ID = 596
 private const val HAIRDRESSER_FEMALE_COMPONENT_ID = 592
 
@@ -126,6 +130,21 @@ class HairDresserInterface : ComponentPlugin(){
         player.setAttribute("original-hair",player.appearance.hair.look)
         player.setAttribute("original-beard",player.appearance.beard.look)
         player.setAttribute("original-color",player.appearance.hair.color)
+        val usedInterface = if(player.isMale) HAIRDRESSER_MALE_COMPONENT_ID else HAIRDRESSER_FEMALE_COMPONENT_ID
+        //17
+        val player_model_child = when(usedInterface){
+            HAIRDRESSER_FEMALE_COMPONENT_ID -> 17
+            HAIRDRESSER_MALE_COMPONENT_ID -> 62
+            else -> 0
+        }
+        val player_head_child = when(usedInterface){
+            HAIRDRESSER_FEMALE_COMPONENT_ID -> 146
+            HAIRDRESSER_MALE_COMPONENT_ID -> 61
+            else -> 0
+        }
+        player.packetDispatch.sendPlayerOnInterface(usedInterface,player_model_child)
+        player.packetDispatch.sendAnimationInterface(FacialExpression.HAPPY.animationId,usedInterface,player_head_child)
+        player.packetDispatch.sendPlayerOnInterface(usedInterface,player_head_child)
         player.toggleWardrobe(true)
 
         component?.setCloseEvent{pl,_ ->
@@ -139,8 +158,9 @@ class HairDresserInterface : ComponentPlugin(){
                 pl.appearance.hair.changeColor(original_color)
                 pl.appearance.beard.changeLook(original_beard)
                 pl.appearance.sync()
-                true
-            }else true
+            }
+            pl.removeAttribute("hairdresser-paid")
+            true
         }
         syncAppearance(player)
     }
@@ -250,21 +270,6 @@ class HairDresserInterface : ComponentPlugin(){
     }
 
     fun syncAppearance(player: Player){
-        val usedInterface = if(player.isMale) HAIRDRESSER_MALE_COMPONENT_ID else HAIRDRESSER_FEMALE_COMPONENT_ID
-        //17
-        val player_model_child = when(usedInterface){
-            HAIRDRESSER_FEMALE_COMPONENT_ID -> 17
-            HAIRDRESSER_MALE_COMPONENT_ID -> 62
-            else -> 0
-        }
-        val player_head_child = when(usedInterface){
-            HAIRDRESSER_FEMALE_COMPONENT_ID -> 146
-            HAIRDRESSER_MALE_COMPONENT_ID -> 61
-            else -> 0
-        }
         player.appearance.sync()
-        player.packetDispatch.sendPlayerOnInterface(usedInterface,player_model_child)
-        player.packetDispatch.sendAnimationInterface(FacialExpression.HAPPY.animationId,usedInterface,player_head_child)
-        player.packetDispatch.sendPlayerOnInterface(usedInterface,player_head_child)
     }
 }

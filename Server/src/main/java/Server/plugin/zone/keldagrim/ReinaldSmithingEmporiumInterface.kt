@@ -52,8 +52,9 @@ class ReinaldSmithingEmporiumInterface : ComponentPlugin(){
             if(!paid) {
                 pl.appearance.wrists.changeLook(orindex)
                 pl.appearance.sync()
-                true
-            } else true
+            }
+            pl.removeAttribute("bracelet-paid")
+            true
         }
     }
     override fun handle(player: Player?, component: Component?, opcode: Int, button: Int, slot: Int, itemId: Int): Boolean {
