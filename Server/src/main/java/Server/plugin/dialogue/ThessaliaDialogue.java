@@ -40,7 +40,7 @@ public final class ThessaliaDialogue extends DialoguePlugin {
 
 		//The trade argument is handled elsewhere
 		if (args.length == 3) { //Right-Click 'Change-Clothes' Option
-			if (player.getInventory().contains(995, 1000) && player.getEquipment().isEmpty()) {
+			if (player.getEquipment().isEmpty()) {
 				player.getAchievementDiaryManager().finishTask(player, DiaryType.VARROCK, 0, 0);
 				if (player.isMale()) {
 					end();
@@ -49,10 +49,6 @@ public final class ThessaliaDialogue extends DialoguePlugin {
 					end();
 					player.getInterfaceManager().open(new Component(594));
 				}
-			}
-			else if (!player.getInventory().contains(995, 1000)){ //Not enough money
-				interpreter.sendDialogues(player, FacialExpression.SAD, "I don't have 1000 gold coins on me...");
-				stage = 49;
 			}
 			else{ //Has some armour equipped
 				interpreter.sendDialogues(npc, FacialExpression.WORRIED, "You can't try them on while wearing armour. Take","it off and speak to me again.");
@@ -158,7 +154,7 @@ public final class ThessaliaDialogue extends DialoguePlugin {
 					break;
 				}
 			case 31://Player has money and is not wearing armour/weapons
-				if (player.getInventory().contains(995, 1000) && player.getEquipment().isEmpty()) {
+				if (player.getEquipment().isEmpty()) {
 					player.getAchievementDiaryManager().finishTask(player, DiaryType.VARROCK, 0, 0);
 					if (player.isMale()) {
 						end();
@@ -167,11 +163,6 @@ public final class ThessaliaDialogue extends DialoguePlugin {
 						end();
 						player.getInterfaceManager().open(new Component(594));
 					}
-				}
-				else{ //Not enough money
-					interpreter.sendDialogues(player, FacialExpression.SAD, "I don't have 1000 gold coins on me...");
-					stage = 49;
-					break;
 				}
 				break;
 

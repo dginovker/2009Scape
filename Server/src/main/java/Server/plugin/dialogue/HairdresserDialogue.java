@@ -1,4 +1,3 @@
-/*
 package plugin.dialogue;
 
 import core.game.component.Component;
@@ -7,34 +6,26 @@ import core.game.node.entity.npc.NPC;
 import core.game.node.entity.player.Player;
 import core.plugin.InitializablePlugin;
 
-*/
 /**
  * Represents the dialogue plugin used for the hairdresser.
- *//*
-
+ */
 @InitializablePlugin
 public final class HairdresserDialogue extends DialoguePlugin {
 
 
-	*/
-/**
+	/**
 	 * Constructs a new {@code HairdresserDialogue} {@code Object}.
-	 *//*
-
+	 */
 	public HairdresserDialogue() {
-		*/
-/**
+		/**
 		 * empty.
-		 *//*
-
+		 */
 	}
 
-	*/
-/**
+	/**
 	 * Constructs a new {@code HairdresserDialogue} {@code Object}.
 	 * @param player the player.
-	 *//*
-
+	 */
 	public HairdresserDialogue(Player player) {
 		super(player);
 	}
@@ -47,10 +38,12 @@ public final class HairdresserDialogue extends DialoguePlugin {
 	@Override
 	public boolean open(Object... args) {
 		final String gender = player.isMale() ? "sir" : "madam";
+		npc = (NPC) args[0];
+
 
 		//If the player right clicks the hairdresser and presses Hair-cut
 		if (args.length == 2) {
-			if (player.getInventory().contains(995, 2000) && player.getEquipment().get(EquipmentContainer.SLOT_HAT) == null &&
+			if (player.getEquipment().get(EquipmentContainer.SLOT_HAT) == null &&
 					player.getEquipment().get(EquipmentContainer.SLOT_WEAPON) == null && player.getEquipment().get(EquipmentContainer.SLOT_SHIELD) == null) {
 				if (player.isMale()) {
 					player.getInterfaceManager().open(new Component(596));
@@ -59,10 +52,8 @@ public final class HairdresserDialogue extends DialoguePlugin {
 				}
 			}
 			else if(player.getEquipment().get(EquipmentContainer.SLOT_HAT) != null || player.getEquipment().get(EquipmentContainer.SLOT_WEAPON) != null || player.getEquipment().get(EquipmentContainer.SLOT_SHIELD) != null ) {
-				*/
-/** NOT ACCURATE DIALOGUE **//*
-
-				npc(FacialExpression.SCARED, player.isMale() ? "Sir, " : "Madam, " + "I can't cut your hair with those things pointing","at me. Please take them off and speak to me again.");
+				/** NOT ACCURATE DIALOGUE **/
+				interpreter.sendDialogues(npc, FacialExpression.SCARED, (player.isMale() ? "Sir, " : "Madam, ") + "I can't cut your hair with those things pointing","at me. Please take them off and speak to me again.");
 				stage = 13;
 			}else{ //Not enough money
 				interpreter.sendDialogues(player, FacialExpression.SAD, "I don't have 2000 gold coins on me...");
@@ -72,7 +63,6 @@ public final class HairdresserDialogue extends DialoguePlugin {
 		}
 
 		//If the player talks with the hairdresser
-		npc = (NPC) args[0];
 		interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "Good afternoon " + gender + ". In need of a haircut are we?", player.isMale() ? "Perhaps a shave too?" : "");
 		stage = 1;
 		return true;
@@ -132,17 +122,15 @@ public final class HairdresserDialogue extends DialoguePlugin {
 				stage++;
 				break;
 			case 11:
-				if (player.getInventory().contains(995, 2000) && player.getEquipment().get(EquipmentContainer.SLOT_HAT) == null &&
+				if (player.getEquipment().get(EquipmentContainer.SLOT_HAT) == null &&
 						player.getEquipment().get(EquipmentContainer.SLOT_WEAPON) == null && player.getEquipment().get(EquipmentContainer.SLOT_SHIELD) == null) {
 					interpreter.sendDialogues(npc, FacialExpression.NEUTRAL, "Please select the hairstyle and colour you would like", "from this brochure.");
 					stage = 14;
 				}
 				//Has helmet or sword/shield
 				else if(player.getEquipment().get(EquipmentContainer.SLOT_HAT) != null || player.getEquipment().get(EquipmentContainer.SLOT_WEAPON) != null || player.getEquipment().get(EquipmentContainer.SLOT_SHIELD) != null ) {
-					*/
-/** NOT ACCURATE DIALOGUE **//*
-
-					interpreter.sendDialogues(npc, FacialExpression.SCARED, player.isMale() ? "Sir, " : "Madam, " + "I can't cut your hair with those things pointing","at me. Please take them off and speak to me again.");
+					/** NOT ACCURATE DIALOGUE **/
+					interpreter.sendDialogues(npc, FacialExpression.SCARED, (player.isMale() ? "Sir, " : "Madam, ") + "I can't cut your hair with those things pointing","at me. Please take them off and speak to me again.");
 					stage = 13;
 					break;
 				} else {
@@ -183,4 +171,3 @@ public final class HairdresserDialogue extends DialoguePlugin {
 		return new int[] { 598 };
 	}
 }
-*/

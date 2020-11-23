@@ -5,6 +5,7 @@ import core.game.component.ComponentDefinition
 import core.game.component.ComponentPlugin
 import core.game.node.entity.player.Player
 import core.game.node.item.Item
+import core.game.system.SystemLogger
 import core.plugin.InitializablePlugin
 import core.plugin.Plugin
 
@@ -17,7 +18,7 @@ private const val THESSALIA_MALE_COMPONENT = 591
 private const val THESSALIA_FEMALE_COMPONENT = 594
 private const val PLAYER_MODEL_CHILD_ID = 59
 
-private val legColors = intArrayOf(26, 24, 23, 3, 22, 13, 12, 7, 19, 5, 1, 10, 25, 14, 9, 0, 21, 8, 20, 15, 11, 28, 27, 4, 6, 18, 17, 2, 16)
+private val legColors =   intArrayOf(24, 23, 3, 22, 13, 12, 7, 19, 5, 1, 10, 14, 25, 9, 0, 26, 21, 8, 20, 15, 11, 28, 27, 4, 6, 18, 17, 2, 16)
 private val torsoColors = intArrayOf(24, 23, 2, 22, 12, 11, 6, 19, 4, 0, 9, 13, 25, 8, 15, 26, 21, 7, 20, 14, 10, 28, 27, 3, 5, 18, 17, 1, 16)
 
 private val maleTorsoButtonRange = (185..198)
@@ -232,9 +233,13 @@ class ThessaliaInterface : ComponentPlugin(){
 
     fun updateColor(player: Player, button: Int, male: Boolean, type: colorType){
         val subtractor = if(male) maleColorButtonRange.first else femaleColorButtonRange.first
+        SystemLogger.log("Male? " + male)
+        SystemLogger.log("Button: " + button)
+        SystemLogger.log("Index: " + (button - subtractor))
+        SystemLogger.log("ColorType: " + type.toString())
         when(type){
             colorType.ARMS -> player.appearance.torso.changeColor(torsoColors[button - subtractor])
-            colorType.LEGS -> player.appearance.legs.changeColor(legColors[button - subtractor])
+            colorType.LEGS -> player.appearance.legs.changeColor(legColors[button - subtractor].also { SystemLogger.log("$it") })
             colorType.TORSO -> player.appearance.torso.changeColor(torsoColors[button - subtractor])
         }
         player.appearance.sync()

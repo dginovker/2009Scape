@@ -457,6 +457,7 @@ public class Player extends Entity {
 						@Override
 						public boolean pulse() {
 							player.getAnimator().reset();
+							player.packetDispatch.sendInterfaceConfig(548,69,false);
 							return true;
 						}
 					});
@@ -465,6 +466,7 @@ public class Player extends Entity {
 			}
 		}
 		if(intoWardrobe){
+			packetDispatch.sendInterfaceConfig(548,69,true);
 			GameWorld.getPulser().submit(new wardrobePulse(this));
 			inWardrobe = true;
 		} else {
@@ -507,12 +509,6 @@ public class Player extends Entity {
 
 	@Override
 	public void update() {
-		if(this.inWardrobe) {
-			SystemLogger.log("SHOULD BE IN WARDROBE UAUSUAUSAUAS");
-			if(!getUpdateMasks().isUpdating()) {
-				getUpdateMasks().register(new GraphicFlag(wardrobe_hold_graphics));
-			}
-		}
 		super.update();
 		if (playerFlags.isUpdateSceneGraph()) {
 			updateSceneGraph(false);
