@@ -16,10 +16,13 @@ private const val MALE_CHILD_ID = 90
 private const val FEMALE_CHILD_ID = 92
 private const val TEXT_CHILD = 88
 
-//skin color array in the same order as the buttons on the interface
-private val skincolors = intArrayOf(0,1,2,3,4,5,6,7)
+//skin color buttons
 private val skincolorButtons = (93..100)
 
+/**
+ * Fully authentic and functional makeover interface
+ * @author Ceikry
+ */
 @InitializablePlugin
 class MakeOverInterface : ComponentPlugin(){
     override fun open(player: Player?, component: Component?) {

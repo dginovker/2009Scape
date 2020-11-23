@@ -77,6 +77,11 @@ private val ITEMS = arrayOf(
         null,null,null, SPOTTED_CAPE,null,null,null,null,null,null,null,null,
         null,null,null, SPOTTIER_CAPE,null)
 
+/**
+ * Interface for custom fur clothing that is a 1:1 matchup in functionality and appearance to OSRS's.
+ * It's got a fuckhuge hideous monolith and I'm okay with that, it seems to be AUTHENTIC.
+ * @author Ceikry
+ */
 @InitializablePlugin
 class FurClothingInterface : ComponentPlugin(){
     override fun open(player: Player?, component: Component?) {
@@ -86,6 +91,7 @@ class FurClothingInterface : ComponentPlugin(){
         InterfaceContainer.generateItems(player, ITEMS, OPTIONS, FUR_CLOTHING_COMPONENT_ID, 26,12,33,5000)
 
         //Highlight the names of groups that contain a craftable item
+        //Running in a crouton because why the hell not.
         GlobalScope.launch {
             val checkedFurs = arrayListOf<String>()
             for(CLOTHING in FUR_CLOTHING.values()){
@@ -136,11 +142,11 @@ class FurClothingInterface : ComponentPlugin(){
         return true
     }
 
-    fun value(player: Player, clothing: FUR_CLOTHING){
+    private fun value(player: Player, clothing: FUR_CLOTHING){
         player.sendMessage("${clothing.product.name} requires ${clothing.requiredFur.amount} ${clothing.requiredFur.name.toLowerCase()} and costs ${clothing.price} coins.")
     }
 
-    fun buy(player: Player, clothing: FUR_CLOTHING, amount: Int){
+    private fun buy(player: Player, clothing: FUR_CLOTHING, amount: Int){
         val coins = Item(995,clothing.price * amount)
         val amtFurRequired = clothing.requiredFur.amount * amount
         val requiredFur = Item(clothing.requiredFur.id,amtFurRequired)
@@ -167,7 +173,7 @@ class FurClothingInterface : ComponentPlugin(){
 
 
     //Enum for the various pieces, requirements, etc.
-    enum class FUR_CLOTHING(val requiredFur: Item, val price: Int, val product: Item, val textChildID: Int, val textContent: String){
+    internal enum class FUR_CLOTHING(val requiredFur: Item, val price: Int, val product: Item, val textChildID: Int, val textContent: String){
         POLAR_KEBBIT_TOP(Item(10117,2),20, POLAR_CAMO_TOP,18,"Polar kebbit"),
         POLAR_KEBBIT_BOT(Item(10117,2),20, POLAR_CAMO_LEGS,18,"Polar kebbit"),
         COMMON_KEBBIT_TOP(Item(10121,2),20, WOOD_CAMO_TOP,19,"Common kebbit"),
