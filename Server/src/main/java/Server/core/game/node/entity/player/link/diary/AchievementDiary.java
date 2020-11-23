@@ -247,17 +247,17 @@ public class AchievementDiary implements SavingModule {
 	public void finishTask(Player player, int level, int index) {
 		if (!this.isComplete(level, index)) {
 			this.updateTask(player, level, index, true);
-		}
-		boolean complete = true;
-		for(int i = 0; i < taskCompleted[level].length; i++){
-			if(!taskCompleted[level][i]) {
-				complete = false;
-				break;
+			boolean complete = true;
+			for(int i = 0; i < taskCompleted[level].length; i++){
+				if(!taskCompleted[level][i]) {
+					complete = false;
+					break;
+				}
 			}
+			if(complete){
+				completedLevels.add(level);
+			} else if(completedLevels.contains(level)) completedLevels.remove(level);
 		}
-		if(complete){
-			completedLevels.add(level);
-		} else if(completedLevels.contains(level)) completedLevels.remove(level);
 	}
 
 	/**
