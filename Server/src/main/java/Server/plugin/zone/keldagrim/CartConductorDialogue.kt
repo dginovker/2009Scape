@@ -41,8 +41,8 @@ class CartConductorDialogue(player: Player? = null) : DialoguePlugin(player) {
             301 -> options("Grand Exchange","White Wolf Mountain","Ice Mountain").also { stage++ }
             302 -> when(buttonId){
                 1 -> KeldagrimCartMethods.leaveKeldagrimTo(player, Location.create(3140, 3507, 0)).also{ end() }
-                2 -> KeldagrimCartMethods.leaveKeldagrimTo(player,Location.create(2997, 9837, 0)).also{ end() }
-                3 -> KeldagrimCartMethods.leaveKeldagrimTo(player,Location.create(2875, 9871, 0)).also{ end() }
+                2 -> KeldagrimCartMethods.leaveKeldagrimTo(player,Location.create(2875, 9871, 0)).also{ end() }
+                3 -> KeldagrimCartMethods.leaveKeldagrimTo(player,Location.create(2997, 9837, 0)).also{ end() }
             }
             1000 -> end()
         }
