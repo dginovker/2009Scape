@@ -468,7 +468,7 @@
 474 salamander attack options
 475 chins again
 476 salamanders again
-477 custom fur clothing
+477 custom fur clothingclothin
 478 imp release negotiation form
 479 weird tubes bro
 480	anma_rgb
