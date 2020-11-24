@@ -5,6 +5,7 @@ import core.game.component.ComponentDefinition
 import core.game.component.ComponentPlugin
 import core.game.node.entity.player.Player
 import core.game.node.entity.player.link.TeleportManager
+import core.game.system.SystemLogger
 import core.game.system.task.Pulse
 import core.game.world.GameWorld
 import core.game.world.map.Location
@@ -31,12 +32,12 @@ class FairyRingInterface : ComponentPlugin(){
             player.setAttribute("fr:ring2", 0)
             player.setAttribute("fr:ring3", 0)
             FairyRing.drawLog(player)
-            player.packetDispatch.sendInterfaceConfig(735,12,true) //Hiding this because we can't change varbits yet :DDD
 
             component.setCloseEvent { pl, _ ->
                 pl.removeAttribute("fr:ring1")
                 pl.removeAttribute("fr:ring2")
                 pl.removeAttribute("fr:ring3")
+                pl.configManager.forceSet(816,0,false)
                 pl.interfaceManager.closeSingleTab()
                 true
             }
@@ -59,9 +60,21 @@ class FairyRingInterface : ComponentPlugin(){
             26 -> decrement(player,2)
             28 -> decrement(player,3)
             21 -> confirm(player)
+            12 -> delayIncrementer += toggleSortOrder(player)
         }
         player.setAttribute("fr:time",System.currentTimeMillis() + delayIncrementer)
         return true
+    }
+
+    fun toggleSortOrder(player: Player): Long{
+        val ring1index = player.getAttribute("fr:ring1",0)
+        var toSet = player.getAttribute("fr:sortorder",true)
+        toSet = !toSet
+        SystemLogger.log("$toSet")
+        player.setAttribute("fr:sortorder",toSet)
+        if(toSet)
+        player.configManager.forceSet(816, ring1index,false)
+        return -1750L
     }
 
     fun increment(player: Player,ring: Int): Long{
@@ -139,7 +152,7 @@ enum class FairyRing(val tile: Location?, val tip: String = "", val childId: Int
     BIS(Location.create(2635, 3266, 0), "Kandarin: Ardougne Zoo unicorns", 33),
     BJR(null, "Other Realms: Realm of the Fisher King", 36),
     BKP(Location.create(2385, 3035, 0), "Feldip Hills: South of Castle Wars", 38),
-    BKQ(Location.create(3041, 4532, 0), "Other realms: Enchanted Valley", 39),
+    BKQ(null, "Other realms: Enchanted Valley", 39),//Location.create(3041, 4532, 0) MISSING XTEAS
     BKR(Location.create(3469, 3431, 0), "Morytania: Mort Myre, south of Canifis", 40),
     BLR(Location.create(2740, 3351, 0), "Kandarin: Legends' Guild", 44),
     CIP(Location.create(2513, 3884, 0), "Islands: Miscellania", 46),
