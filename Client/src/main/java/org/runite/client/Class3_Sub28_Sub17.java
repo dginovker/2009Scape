@@ -8,33 +8,33 @@ import java.util.Random;
 
 public abstract class Class3_Sub28_Sub17 extends Node {
 
-    private static RSString aClass94_3711 = RSString.parse("gt");
-    private static RSString aClass94_3712 = RSString.parse("lt");
-    private static RSString aClass94_3713 = RSString.parse("shad=");
-    private static RSString aClass94_3714 = RSString.parse("shy");
-    private static RSString aClass94_3715 = RSString.parse("trans=");
-    private static RSString aClass94_3716 = RSString.parse("u=");
-    private static RSString aClass94_3717 = RSString.parse("str=");
-    private static RSString aClass94_3718 = RSString.parse("euro");
-    private static RSString aClass94_3720 = RSString.parse(")4col");
-    private static RSString aClass94_3724 = RSString.parse(")4shad");
-    private static RSString aClass94_3725 = RSString.parse("col=");
-    private static RSString aClass94_3726 = RSString.parse("<gt>");
-    private static RSString aClass94_3728 = RSString.parse("u");
-    private static RSString aClass94_3729 = RSString.parse("times");
-    private static RSString aClass94_3731 = RSString.parse(")4trans");
-    private static RSString aClass94_3732 = RSString.parse("nbsp");
-    private static RSString aClass94_3734 = RSString.parse("<lt>");
-    private static RSString aClass94_3735 = RSString.parse(")4u");
-    private static RSString aClass94_3737 = RSString.parse("br");
-    private static RSString aClass94_3738 = RSString.parse("shad");
-    private static RSString aClass94_3739 = RSString.parse("img=");
-    private static RSString aClass94_3741 = RSString.parse("copy");
-    private static RSString aClass94_3742 = RSString.parse(")4str");
-    private static RSString aClass94_3743 = RSString.parse("reg");
-    private static RSString aClass94_3744 = RSString.parse("str");
-    private static RSString aClass94_3745 = Unsorted.emptyString(100);
-
+    private static final RSString aClass94_3711 = RSString.parse("gt");
+    private static final RSString aClass94_3712 = RSString.parse("lt");
+    private static final RSString aClass94_3713 = RSString.parse("shad=");
+    private static final RSString aClass94_3714 = RSString.parse("shy");
+    private static final RSString aClass94_3715 = RSString.parse("trans=");
+    private static final RSString aClass94_3716 = RSString.parse("u=");
+    private static final RSString aClass94_3717 = RSString.parse("str=");
+    private static final RSString aClass94_3718 = RSString.parse("euro");
+    private static final RSString aClass94_3720 = RSString.parse(")4col");
+    private static final RSString aClass94_3724 = RSString.parse(")4shad");
+    private static final RSString aClass94_3725 = RSString.parse("col=");
+    private static final RSString aClass94_3726 = RSString.parse("<gt>");
+    private static final RSString aClass94_3728 = RSString.parse("u");
+    private static final RSString aClass94_3729 = RSString.parse("times");
+    private static final RSString aClass94_3731 = RSString.parse(")4trans");
+    private static final RSString aClass94_3732 = RSString.parse("nbsp");
+    private static final RSString aClass94_3734 = RSString.parse("<lt>");
+    private static final RSString aClass94_3735 = RSString.parse(")4u");
+    private static final RSString aClass94_3737 = RSString.parse("br");
+    private static final RSString aClass94_3738 = RSString.parse("shad");
+    private static final RSString aClass94_3739 = RSString.parse("img=");
+    private static final RSString aClass94_3741 = RSString.parse("copy");
+    private static final RSString aClass94_3742 = RSString.parse(")4str");
+    private static final RSString aClass94_3743 = RSString.parse("reg");
+    private static final RSString aClass94_3744 = RSString.parse("str");
+    private static final RSString aClass94_3745 = Unsorted.emptyString(100);
+    private static final RSString[] aClass94Array3753 = new RSString[100];
     private static int anInt3746 = -1;
     private static int anInt3747 = -1;
     private static int anInt3748 = 0;
@@ -42,23 +42,112 @@ public abstract class Class3_Sub28_Sub17 extends Node {
     private static int anInt3750 = 256;
     private static int anInt3751 = 256;
     private static int anInt3752 = -1;
-    private static RSString[] aClass94Array3753 = new RSString[100];
     private static int anInt3754 = -1;
     private static int anInt3755 = 0;
     private static int anInt3756 = 0;
 
     int[] anIntArray3709;
+    int[] anIntArray3721;
+    int anInt3727 = 0;
     private int anInt3710;
     private int[] anIntArray3719;
-    int[] anIntArray3721;
     private int anInt3722;
     private int[] anIntArray3723;
-    int anInt3727 = 0;
     private int[] anIntArray3730;
     private byte[] aByteArray3733;
     private int[] anIntArray3736;
     private AbstractIndexedSprite[] aClass109Array3740;
 
+
+    Class3_Sub28_Sub17(byte[] var1, int[] var2, int[] var3, int[] var4, int[] var5) {
+        this.anIntArray3719 = var2;
+        this.anIntArray3730 = var3;
+        this.anIntArray3709 = var4;
+        this.anIntArray3721 = var5;
+        this.method700(var1);
+        int var6 = Integer.MAX_VALUE;
+        int var7 = Integer.MIN_VALUE;
+
+        for (int var8 = 0; var8 < 256; ++var8) {
+            if (this.anIntArray3730[var8] < var6 && this.anIntArray3721[var8] != 0) {
+                var6 = this.anIntArray3730[var8];
+            }
+
+            if (this.anIntArray3730[var8] + this.anIntArray3721[var8] > var7) {
+                var7 = this.anIntArray3730[var8] + this.anIntArray3721[var8];
+            }
+        }
+
+        this.anInt3722 = this.anInt3727 - var6;
+        this.anInt3710 = var7 - this.anInt3727;
+    }
+
+    Class3_Sub28_Sub17(byte[] var1) {
+        this.method700(var1);
+    }
+
+    static RSString method686(RSString var0) {
+        int var1 = var0.length();
+        int var2 = 0;
+
+        int var4;
+        for (int var3 = 0; var3 < var1; ++var3) {
+            var4 = var0.charAt(var3, (byte) 50);
+            if (var4 == 60 || var4 == 62) {
+                var2 += 3;
+            }
+        }
+
+        RSString var6 = Unsorted.emptyString(var1 + var2);
+
+        for (var4 = 0; var4 < var1; ++var4) {
+            int var5 = var0.charAt(var4, (byte) -101);
+            if (var5 == 60) {
+                Objects.requireNonNull(var6).append(aClass94_3734);
+            } else if (var5 == 62) {
+                Objects.requireNonNull(var6).append(aClass94_3726);
+            } else {
+                Objects.requireNonNull(var6).appendCharacter(var5);
+            }
+        }
+
+        return var6;
+    }
+
+    private static int method694(byte[][] var0, byte[][] var1, int[] var2, int[] var3, int[] var4, int var5, int var6) {
+        int var7 = var2[var5];
+        int var8 = var7 + var4[var5];
+        int var9 = var2[var6];
+        int var10 = var9 + var4[var6];
+        int var11 = var7;
+        if (var9 > var7) {
+            var11 = var9;
+        }
+
+        int var12 = var8;
+        if (var10 < var8) {
+            var12 = var10;
+        }
+
+        int var13 = var3[var5];
+        if (var3[var6] < var13) {
+            var13 = var3[var6];
+        }
+
+        byte[] var14 = var1[var5];
+        byte[] var15 = var0[var6];
+        int var16 = var11 - var7;
+        int var17 = var11 - var9;
+
+        for (int var18 = var11; var18 < var12; ++var18) {
+            int var19 = var14[var16++] + var15[var17++];
+            if (var19 < var13) {
+                var13 = var19;
+            }
+        }
+
+        return -var13;
+    }
 
     final void method676(RSString var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
         this.method693(var1, var2, var3, var4, var5, var6, var7, var8, var9, var10);
@@ -261,7 +350,7 @@ public abstract class Class3_Sub28_Sub17 extends Node {
         if (var1 == null) {
             return 0;
         } else {
-            var6.setSeed((long) var7);
+            var6.setSeed(var7);
             this.method701(16777215, 0, 192 + (var6.nextInt() & 31));
             int var8 = var1.length();
             int[] var9 = new int[var8];
@@ -274,7 +363,7 @@ public abstract class Class3_Sub28_Sub17 extends Node {
                 }
             }
 
-            this.method703(var1, var2, var3, var9, (int[]) null);
+            this.method703(var1, var2, var3, var9, null);
             return var10;
         }
     }
@@ -317,34 +406,6 @@ public abstract class Class3_Sub28_Sub17 extends Node {
         } catch (Exception var3) {
         }
 
-    }
-
-    static RSString method686(RSString var0) {
-        int var1 = var0.length();
-        int var2 = 0;
-
-        int var4;
-        for (int var3 = 0; var3 < var1; ++var3) {
-            var4 = var0.charAt(var3, (byte) 50);
-            if (var4 == 60 || var4 == 62) {
-                var2 += 3;
-            }
-        }
-
-        RSString var6 = Unsorted.emptyString(var1 + var2);
-
-        for (var4 = 0; var4 < var1; ++var4) {
-            int var5 = var0.charAt(var4, (byte) -101);
-            if (var5 == 60) {
-                Objects.requireNonNull(var6).append(aClass94_3734);
-            } else if (var5 == 62) {
-                Objects.requireNonNull(var6).append(aClass94_3726);
-            } else {
-                Objects.requireNonNull(var6).appendCharacter(var5);
-            }
-        }
-
-        return var6;
     }
 
     private int method687(int var1) {
@@ -558,7 +619,7 @@ public abstract class Class3_Sub28_Sub17 extends Node {
                 var11[var12] = (int) (Math.sin((double) var12 / 1.5D + (double) var6 / 1.0D) * var8);
             }
 
-            this.method703(var1, var2 - this.method682(var1) / 2, var3, (int[]) null, var11);
+            this.method703(var1, var2 - this.method682(var1) / 2, var3, null, var11);
         }
     }
 
@@ -621,41 +682,6 @@ public abstract class Class3_Sub28_Sub17 extends Node {
         }
     }
 
-    private static int method694(byte[][] var0, byte[][] var1, int[] var2, int[] var3, int[] var4, int var5, int var6) {
-        int var7 = var2[var5];
-        int var8 = var7 + var4[var5];
-        int var9 = var2[var6];
-        int var10 = var9 + var4[var6];
-        int var11 = var7;
-        if (var9 > var7) {
-            var11 = var9;
-        }
-
-        int var12 = var8;
-        if (var10 < var8) {
-            var12 = var10;
-        }
-
-        int var13 = var3[var5];
-        if (var3[var6] < var13) {
-            var13 = var3[var6];
-        }
-
-        byte[] var14 = var1[var5];
-        byte[] var15 = var0[var6];
-        int var16 = var11 - var7;
-        int var17 = var11 - var9;
-
-        for (int var18 = var11; var18 < var12; ++var18) {
-            int var19 = var14[var16++] + var15[var17++];
-            if (var19 < var13) {
-                var13 = var19;
-            }
-        }
-
-        return -var13;
-    }
-
     final void method695(RSString var1, int var2, int var3, int var4, int var6) {
         if (var1 != null) {
             this.method698(var4, 0);
@@ -682,7 +708,7 @@ public abstract class Class3_Sub28_Sub17 extends Node {
                 var8[var9] = (int) (Math.sin((double) var9 / 2.0D + (double) var6 / 5.0D) * 5.0D);
             }
 
-            this.method703(var1, var2 - this.method682(var1) / 2, var3, (int[]) null, var8);
+            this.method703(var1, var2 - this.method682(var1) / 2, var3, null, var8);
         }
     }
 
@@ -799,29 +825,6 @@ public abstract class Class3_Sub28_Sub17 extends Node {
         anInt3748 = 0;
     }
 
-    Class3_Sub28_Sub17(byte[] var1, int[] var2, int[] var3, int[] var4, int[] var5) {
-        this.anIntArray3719 = var2;
-        this.anIntArray3730 = var3;
-        this.anIntArray3709 = var4;
-        this.anIntArray3721 = var5;
-        this.method700(var1);
-        int var6 = Integer.MAX_VALUE;
-        int var7 = Integer.MIN_VALUE;
-
-        for (int var8 = 0; var8 < 256; ++var8) {
-            if (this.anIntArray3730[var8] < var6 && this.anIntArray3721[var8] != 0) {
-                var6 = this.anIntArray3730[var8];
-            }
-
-            if (this.anIntArray3730[var8] + this.anIntArray3721[var8] > var7) {
-                var7 = this.anIntArray3730[var8] + this.anIntArray3721[var8];
-            }
-        }
-
-        this.anInt3722 = this.anInt3727 - var6;
-        this.anInt3710 = var7 - this.anInt3727;
-    }
-
     final void method702(RSString var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, Random var10, int var11, int[] var12) {
         if (var1 == null) return;
 
@@ -856,7 +859,7 @@ public abstract class Class3_Sub28_Sub17 extends Node {
             var16 = var2 + (var4 - var18);
         }
 
-        this.method703(var1, var16, var17, var14, (int[]) null);
+        this.method703(var1, var16, var17, var14, null);
         if (var12 != null) {
             if (var18 == -1) {
                 var18 = this.method682(var1) + var15;
@@ -867,10 +870,6 @@ public abstract class Class3_Sub28_Sub17 extends Node {
             var12[2] = var18;
             var12[3] = this.anInt3722 + this.anInt3710;
         }
-    }
-
-    Class3_Sub28_Sub17(byte[] var1) {
-        this.method700(var1);
     }
 
     private void method703(RSString var1, int var2, int var3, int[] var4, int[] var5) {

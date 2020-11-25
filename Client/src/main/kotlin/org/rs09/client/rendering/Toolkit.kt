@@ -14,6 +14,7 @@ abstract class Toolkit {
     companion object {
         @JvmField
         val OPENGL_TOOLKIT = OpenGlToolkit()
+
         @JvmField
         val JAVA_TOOLKIT = JavaToolkit()
 
@@ -32,7 +33,6 @@ abstract class Toolkit {
     abstract fun drawRect(x: Int, y: Int, w: Int, h: Int, rgb: Int, alpha: Int)
 
     abstract fun method934(x: Int, y: Int, w: Int, h: Int, rgb: Int)
-
 
 
 }

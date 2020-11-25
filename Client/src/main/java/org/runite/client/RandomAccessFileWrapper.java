@@ -13,6 +13,28 @@ public final class RandomAccessFileWrapper {
     private long pos;
 
 
+    public RandomAccessFileWrapper(File path, String mode, long limit) throws IOException {
+        if (limit == -1) {
+            limit = Long.MAX_VALUE;
+        }
+
+        if (path.length() >= limit) {
+            path.delete();
+        }
+
+        this.raf = new RandomAccessFile(path, mode);
+        this.path = path;
+        this.limit = limit;
+        this.pos = 0L;
+        int var5 = this.raf.read();
+        if (var5 != -1 && !mode.equals("r")) {
+            this.raf.seek(0L);
+            this.raf.write(var5);
+        }
+
+        this.raf.seek(0L);
+    }
+
     public final void seek(long pos) throws IOException {
         this.raf.seek(pos);
         this.pos = pos;
@@ -58,27 +80,5 @@ public final class RandomAccessFileWrapper {
 
     public final File getPath() {
         return this.path;
-    }
-
-    public RandomAccessFileWrapper(File path, String mode, long limit) throws IOException {
-        if (limit == -1) {
-            limit = Long.MAX_VALUE;
-        }
-
-        if (path.length() >= limit) {
-            path.delete();
-        }
-
-        this.raf = new RandomAccessFile(path, mode);
-        this.path = path;
-        this.limit = limit;
-        this.pos = 0L;
-        int var5 = this.raf.read();
-        if (var5 != -1 && !mode.equals("r")) {
-            this.raf.seek(0L);
-            this.raf.write(var5);
-        }
-
-        this.raf.seek(0L);
     }
 }

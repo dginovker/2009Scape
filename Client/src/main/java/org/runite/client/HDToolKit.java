@@ -1,30 +1,10 @@
 package org.runite.client;
 
-import com.jogamp.nativewindow.NativeSurface;
 import com.jogamp.nativewindow.NativeWindow;
 import com.jogamp.nativewindow.NativeWindowFactory;
 import com.jogamp.nativewindow.awt.AWTGraphicsConfiguration;
-import com.jogamp.nativewindow.awt.AWTGraphicsScreen;
-import com.jogamp.nativewindow.awt.JAWTWindow;
-import com.jogamp.newt.NewtFactory;
-import com.jogamp.newt.awt.NewtCanvasAWT;
-import com.jogamp.newt.event.awt.AWTAdapter;
-import com.jogamp.newt.event.awt.AWTKeyAdapter;
-import com.jogamp.newt.event.awt.AWTMouseAdapter;
-import com.jogamp.newt.opengl.GLWindow;
 import com.jogamp.opengl.*;
-import com.jogamp.opengl.awt.GLCanvas;
-import com.jogamp.opengl.glu.GLU;
 import com.jogamp.opengl.glu.gl2.GLUgl2;
-import com.jogamp.opengl.glu.gl2es1.GLUgl2es1;
-import com.jogamp.opengl.util.GLDrawableUtil;
-import jogamp.nativewindow.NativeWindowFactoryImpl;
-import jogamp.nativewindow.jawt.JAWTFactory;
-import jogamp.newt.awt.NewtFactoryAWT;
-import jogamp.opengl.Debug;
-import jogamp.opengl.GLDebugMessageHandler;
-import jogamp.opengl.GLDrawableFactoryImpl;
-import org.junit.Assert;
 import org.rs09.client.config.GameConfig;
 
 import java.awt.*;
@@ -34,46 +14,43 @@ import java.nio.charset.StandardCharsets;
 
 public final class HDToolKit {
 
+    private static final float[] aFloatArray1808 = new float[16];
+    private static final RSString aClass94_1819 = RSString.parse("radeon");
     /**
      * JOGL GL4bc related
      */
     public static GL2 gl;
+    public static boolean highDetail = false;
+    public static int viewHeight;
+    public static int viewWidth;
+    static int maxTextureUnits;
+    static boolean aBoolean1790;
+    static int anInt1791 = 0;
+    static boolean aBoolean1798 = true;
+    static boolean allows3DTextureMapping;
+    static boolean supportMultisample;
+    static int anInt1810;
+    static boolean supportVertexBufferObject;
+    static boolean aBoolean1817;
+    static boolean supportVertexProgram;
+    static boolean supportTextureCubeMap;
     private static GLContext glContext;
     private static GLDrawable glDrawable;
-
-
     private static String vendor;
     private static String renderer;
     private static float aFloat1787;
     private static boolean aBoolean1788 = false;
-    static int maxTextureUnits;
-    static boolean aBoolean1790;
-    static int anInt1791 = 0;
     private static int anInt1792 = 0;
     private static int anInt1793 = 0;
     private static float aFloat1794 = 0.0F;
     private static float aFloat1795;
     private static boolean aBoolean1796 = true;
     private static float aFloat1797 = 0.0F;
-    static boolean aBoolean1798 = true;
     private static boolean viewportSetup = false;
-    static boolean allows3DTextureMapping;
     private static int anInt1803 = -1;
     private static boolean aBoolean1805 = true;
-    public static boolean highDetail = false;
-    private static final float[] aFloatArray1808 = new float[16];
-    static boolean supportMultisample;
-    static int anInt1810;
-    public static int viewHeight;
     private static int anInt1812;
-    static boolean supportVertexBufferObject;
     private static boolean aBoolean1816 = true;
-    static boolean aBoolean1817;
-    static boolean supportVertexProgram;
-    private static final RSString aClass94_1819 = RSString.parse("radeon");
-    public static int viewWidth;
-    static boolean supportTextureCubeMap;
-
 
     private static RSString method1820(String var0) {
         byte[] var1;

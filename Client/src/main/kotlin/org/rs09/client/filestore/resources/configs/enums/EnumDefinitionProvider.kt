@@ -1,8 +1,8 @@
 package org.rs09.client.filestore.resources.configs.enums
 
+import org.rs09.client.data.NodeCache
 import org.runite.client.CacheIndex
 import org.runite.client.DataBuffer
-import org.rs09.client.data.NodeCache
 
 object EnumDefinitionProvider {
     private val cache = NodeCache<EnumDefinition>(128)

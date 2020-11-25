@@ -22,10 +22,10 @@ object GameLaunch {
             }
         }
         try {
-            System.out.println("Trying to parse config at " + GameConfig.configLocation)
+            println("Trying to parse config at " + GameConfig.configLocation)
             GameConfig.parse(GameConfig.configLocation)
             GameConfig.implementHoliday()
-        } catch (e: Exception){
+        } catch (e: Exception) {
             GameConfig.IP_ADDRESS = "play.2009scape.org"
             GameConfig.IP_MANAGEMENT = "play.2009scape.org"
             GameConfig.RCM_STYLE_PRESET = "classic"

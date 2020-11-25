@@ -9,7 +9,7 @@ import org.runite.client.DataBuffer
 import org.runite.client.LinkableRSString
 import org.runite.client.RSString
 
-class StructDefinition: Node() {
+class StructDefinition : Node() {
     var values: HashTable<Linkable>? = null
 
     fun decode(buffer: DataBuffer) {

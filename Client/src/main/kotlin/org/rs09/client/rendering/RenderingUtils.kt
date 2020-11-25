@@ -37,7 +37,7 @@ object RenderingUtils {
 
     @JvmStatic
     fun drawVerticalLine(x: Int, y: Int, h: Int, rgb: Int) {
-        Toolkit.getActiveToolkit().drawVerticalLine(x,y,h,rgb)
+        Toolkit.getActiveToolkit().drawVerticalLine(x, y, h, rgb)
 //        if (hd) Class22.drawVerticalLine(x, y, h, rgb)
 //        else Class74.drawVerticalLine(x, y, h, rgb)
     }

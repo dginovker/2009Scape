@@ -21,15 +21,18 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
     static int anInt4033;
     static int anInt1737 = 1;
     static boolean aBoolean1784 = false;
-    private boolean aBoolean1 = false;
     static int anInt3 = 0;
     static Frame frame;
-
-
     static boolean aBoolean6 = false;
     static RSString aClass94_8 = RSString.parse("");
     static RSString aClass94_9 = RSString.parse(")3)3)3");
     static boolean aBoolean11 = false;
+    private boolean aBoolean1 = false;
+
+    public static void launchDesktop() {
+        //GameShell.setDesktop(true);
+        ClientLoader.create().launch();
+    }
 
     public final void focusLost(FocusEvent var1) {
         try {
@@ -55,16 +58,6 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
     public final void windowDeactivated(WindowEvent var1) {
     }
 
-    static RSString method27(RSString var0) {
-        try {
-
-            int var2 = Unsorted.method1602(var0);
-            return var2 != -1 ? Class119.aClass131_1624.aClass94Array1721[var2].method1560(TextCore.aClass94_3192, TextCore.aClass94_4066) : TextCore.aClass94_4049;
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "rc.V(" + (var0 != null ? "{...}" : "null") + ',' + true + ')');
-        }
-    }
-
     public final AppletContext getAppletContext() {
         try {
             return null != frame ? null : (Class38.aClass87_665 != null && this != Class38.aClass87_665.applet ? Class38.aClass87_665.applet.getAppletContext() : super.getAppletContext());
@@ -79,15 +72,6 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
             Class3_Sub13_Sub10.aBoolean3116 = true;
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "rc.focusGained(" + (var1 != null ? "{...}" : "null") + ')');
-        }
-    }
-
-    static void method28() {
-        try {
-            Class143.aReferenceCache_1874.clear();
-
-        } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "rc.Q(" + true + ')');
         }
     }
 
@@ -110,7 +94,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
                 var2 = frame;
             }
 
-            ((Container) var2).setLayout((LayoutManager) null);
+            ((Container) var2).setLayout(null);
             canvas = new ComponentWrappedCanvas(this);
             if (var1 >= 30) {
                 ((Container) var2).add(canvas);
@@ -200,26 +184,6 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
     public final void windowDeiconified(WindowEvent var1) {
     }
 
-    static void method34() {
-        try {
-            if (null != WorldListEntry.aClass155_2627) {
-                WorldListEntry.aClass155_2627.method2163();
-            }
-
-            if (Class3_Sub21.aClass155_2491 != null) {
-                Class3_Sub21.aClass155_2491.method2163();
-            }
-
-            Class140_Sub3.method1959(Class3_Sub13_Sub15.aBoolean3184);
-            WorldListEntry.aClass155_2627 = Class58.method1195(22050, Class38.aClass87_665, canvas, 0);
-            WorldListEntry.aClass155_2627.method2154(114, Client.aClass3_Sub24_Sub4_1193);
-            Class3_Sub21.aClass155_2491 = Class58.method1195(2048, Class38.aClass87_665, canvas, 1);
-            Class3_Sub21.aClass155_2491.method2154(-126, Class3_Sub26.aClass3_Sub24_Sub2_2563);
-        } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "rc.DA(" + -32589 + ')');
-        }
-    }
-
     private void method35(int var1, boolean var2) {
         try {
             synchronized (this) {
@@ -292,16 +256,6 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
         }
     }
 
-    public static void providesignlink(Signlink var0) {
-        try {
-            Class38.aClass87_665 = var0;
-            Class3_Sub13_Sub10.aClass87_3125 = var0;
-            Class3_Sub13_Sub1.method445();
-        } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "rc.providesignlink(" + (var0 != null ? "{...}" : "null") + ')');
-        }
-    }
-
     private void method37() {
         try {
             long var2 = TimeUtils.time();
@@ -338,13 +292,6 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
     public final URL getCodeBase() {
         return frame == null ? (null != Class38.aClass87_665 && this != Class38.aClass87_665.applet ? Class38.aClass87_665.applet.getCodeBase() : super.getCodeBase()) : null;
     }
-
-
-    public static void launchDesktop() {
-        //GameShell.setDesktop(true);
-        ClientLoader.create().launch();
-    }
-
 
     public final void run() {
         try {
@@ -390,7 +337,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
                     Method var8 = Signlink.setFocusCycleRoot;
                     if (null != var8) {
                         try {
-                            var8.invoke(Class38.aClass87_665.applet, new Object[]{Boolean.TRUE});
+                            var8.invoke(Class38.aClass87_665.applet, Boolean.TRUE);
                         } catch (Throwable var4) {
                         }
                     }
@@ -466,7 +413,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
                 frame.toFront();
                 Insets var9 = frame.getInsets();
                 frame.setSize(var9.left + Unsorted.anInt2334 + var9.right, var9.top + Class70.anInt1047 + var9.bottom);
-                Class3_Sub13_Sub10.aClass87_3125 = Class38.aClass87_665 = new Signlink((Applet) null, 32 - -Class3_Sub13_Sub13.anInt3148, "runescape", 29);
+                Class3_Sub13_Sub10.aClass87_3125 = Class38.aClass87_665 = new Signlink(null, 32 - -Class3_Sub13_Sub13.anInt3148, "runescape", 29);
                 Class64 var10 = Class38.aClass87_665.method1451(1, this);
 
                 while (0 == Objects.requireNonNull(var10).anInt978) {
@@ -476,7 +423,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
                 Class17.aThread409 = (Thread) var10.anObject974;
                 ClientLoader.create().launch();
             } catch (Exception var11) {
-                Class49.method1125((String) null, var11, (byte) 115);
+                Class49.method1125(null, var11, (byte) 115);
             }
 
         } catch (RuntimeException var12) {

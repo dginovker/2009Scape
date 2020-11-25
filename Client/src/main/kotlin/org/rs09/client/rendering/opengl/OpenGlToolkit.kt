@@ -4,7 +4,7 @@ import com.jogamp.opengl.GL
 import org.rs09.client.rendering.Toolkit
 import org.runite.client.HDToolKit
 
-class OpenGlToolkit: Toolkit() {
+class OpenGlToolkit : Toolkit() {
 
     override fun fillRect(x: Int, y: Int, w: Int, h: Int, rgb: Int, alpha: Int) {
         HDToolKit.method1835()

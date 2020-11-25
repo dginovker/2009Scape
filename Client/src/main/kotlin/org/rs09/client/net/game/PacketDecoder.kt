@@ -68,7 +68,7 @@ object PacketDecoder {
         AbstractSprite.anInt3699 = 0
 
         val decoder = decoders[Unsorted.incomingOpcode]
-        if (decoder == null) return PacketParser.parseIncomingPackets();
+        if (decoder == null) return PacketParser.parseIncomingPackets()
         else decoder.decode(GraphicDefinition.incomingBuffer)
 
         // TODO This should only happen after everything else.

@@ -2,7 +2,7 @@ package org.runite.client;
 
 final class WorldListCountry {
 
-   static int localPlane;
+    static int localPlane;
     int flagId;
-   RSString name;
+    RSString name;
 }
