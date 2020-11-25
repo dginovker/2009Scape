@@ -12,6 +12,7 @@ dependencies {
     implementation files('libs/lwjgl-glfw.jar')
     implementation files('libs/lwjgl-opengl.jar')
 
+    runtimeOnly files('libs/lwjgl-natives-linux.jar')
     runtimeOnly files('libs/lwjgl-opengl-natives-linux.jar')
     runtimeOnly files('libs/lwjgl-glfw-natives-linux.jar')
 
