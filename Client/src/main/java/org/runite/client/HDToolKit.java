@@ -1,6 +1,5 @@
 package org.runite.client;
 
-import org.lwjgl.opengl.ARBMultitexture;
 import org.rs09.client.config.GameConfig;
 
 import java.awt.*;
@@ -66,7 +65,7 @@ public final class HDToolKit {
         Class3_Sub28_Sub4.method551(0, 0);
         setupViewport();
         method1856(1);
-        method1847(1);
+        setTextureEnvironmentParameter(1);
         enableLighting(false);
         enableDepthTest(false);
         enableFog(false);
@@ -87,7 +86,7 @@ public final class HDToolKit {
         Class3_Sub28_Sub4.method551(0, 0);
         setupViewport();
         method1856(0);
-        method1847(0);
+        setTextureEnvironmentParameter(0);
         enableLighting(false);
         enableDepthTest(false);
         enableFog(false);
@@ -140,7 +139,7 @@ public final class HDToolKit {
         Class3_Sub28_Sub4.method551(0, 0);
         setupViewport();
         method1856(0);
-        method1847(0);
+        setTextureEnvironmentParameter(0);
         enableLighting(false);
         enableDepthTest(false);
         enableFog(false);
@@ -173,7 +172,7 @@ public final class HDToolKit {
         glShadeModel(GL_SMOOTH);
         glClearDepth(1.0D);
         glDepthFunc(GL_LEQUAL);
-        method1830();
+        enableDepthMask();
         glMatrixMode(GL_TEXTURE);
         glLoadIdentity();
         glPolygonMode(GL_FRONT, GL_FILL);
@@ -194,7 +193,7 @@ public final class HDToolKit {
         Class68.method1275();
     }
 
-    static void method1830() {
+    static void enableDepthMask() {
         glDepthMask(true);
     }
 
@@ -507,7 +506,7 @@ public final class HDToolKit {
         }
     }
 
-    static void method1847(int var0) {
+    static void setTextureEnvironmentParameter(int var0) {
         if (var0 != anInt1792) {
             //sets a texture environment parameter.
             //TEXTURE_ENV, COMBINE_ALPHA,
@@ -671,9 +670,9 @@ public final class HDToolKit {
         }
     }
 
-    static void method1854(int var0, int var1) {
-        viewWidth = var0;
-        viewHeight = var1;
+    static void method1854(int width, int height) {
+        viewWidth = width;
+        viewHeight = height;
         viewportSetup = false;
     }
 

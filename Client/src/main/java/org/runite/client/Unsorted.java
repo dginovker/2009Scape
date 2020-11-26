@@ -4671,7 +4671,7 @@ public class Unsorted {
                                                         }
 
                                                         if (var11.aBoolean309) {
-                                                            HDToolKit.method1830();
+                                                            HDToolKit.enableDepthMask();
                                                         }
                                                     } else {
                                                         Class51.method1145(var26, var47);

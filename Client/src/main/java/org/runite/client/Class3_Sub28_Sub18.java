@@ -1,7 +1,6 @@
 package org.runite.client;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 import org.rs09.client.Node;
 
@@ -109,7 +108,7 @@ final class Class3_Sub28_Sub18 extends Node {
             }
 
             if ((var2 & 4) == 0) {
-                HDToolKit.method1847(0);
+                HDToolKit.setTextureEnvironmentParameter(0);
             }
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "sd.E(" + (byte) 6 + ')');

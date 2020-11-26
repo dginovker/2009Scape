@@ -132,7 +132,7 @@ final class WaterMovementShader implements ShaderInterface {
 
     public final void method22() {
         HDToolKit.method1856(2);
-        HDToolKit.method1847(2);
+        HDToolKit.setTextureEnvironmentParameter(2);
         HDToolKit.method1823();
         glCallList(this.anInt2177);
         float var2 = 2662.4001F;

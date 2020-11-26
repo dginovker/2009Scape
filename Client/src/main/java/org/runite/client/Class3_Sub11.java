@@ -324,7 +324,7 @@ final class Class3_Sub11 extends Linkable {
                 HDToolKit.depthBufferWritingDisabled();
                 //Originally glDrawElements
                 glDrawRangeElements(GL_LINE_BIT, aClass3_Sub30_2362.index / 4, GL_UNSIGNED_INT, aByteBuffer2361);
-                HDToolKit.method1830();
+                HDToolKit.enableDepthMask();
             }
 
         }

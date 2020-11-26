@@ -168,7 +168,7 @@ final class Class3_Sub22 extends Linkable {
         HDToolKit.method1846();
         glEnable(GL_DEPTH_TEST);
         glPopAttrib();
-        HDToolKit.method1830();
+        HDToolKit.enableDepthMask();
     }
 
     static Class75_Sub4 method404(DataBuffer var1) {

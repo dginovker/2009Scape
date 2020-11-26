@@ -274,7 +274,7 @@ final class NPC extends Class140_Sub4 {
                             HDToolKit.depthBufferWritingDisabled();
                             HDToolKit.method1825(var18, -150.0F + var19);
                             var17.animate(0, var2, var3, var4, var5, var6, var7, var8, -1L, var11, this.aClass127_Sub1_2801);
-                            HDToolKit.method1830();
+                            HDToolKit.enableDepthMask();
                             HDToolKit.method1825(var18, var19);
                         } else {
                             var17.animate(0, var2, var3, var4, var5, var6, var7, var8, -1L, var11, this.aClass127_Sub1_2801);

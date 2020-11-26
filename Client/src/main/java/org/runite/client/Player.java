@@ -254,7 +254,7 @@ final class Player extends Class140_Sub4 {
                             HDToolKit.depthBufferWritingDisabled();
                             HDToolKit.method1825(var18, -150.0F + var19);
                             var23.animate(0, var2, var3, var4, var5, var6, var7, var8, -1L, var11, null);
-                            HDToolKit.method1830();
+                            HDToolKit.enableDepthMask();
                             HDToolKit.method1825(var18, var19);
                         } else {
                             var23.animate(0, var2, var3, var4, var5, var6, var7, var8, -1L, var11, null);
@@ -394,7 +394,7 @@ final class Player extends Class140_Sub4 {
                         HDToolKit.depthBufferWritingDisabled();
                         HDToolKit.method1825(var19, var20 - 150.0F);
                         var18.animate(0, var12, var14, var11, var10, var5, var15, var9, -1L, var6, var1);
-                        HDToolKit.method1830();
+                        HDToolKit.enableDepthMask();
                         HDToolKit.method1825(var19, var20);
                     } else {
                         var18.animate(0, var12, var14, var11, var10, var5, var15, var9, -1L, var6, var1);

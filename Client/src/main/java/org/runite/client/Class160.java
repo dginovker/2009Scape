@@ -133,7 +133,7 @@ final class Class160 implements ShaderInterface {
     }
 
     public final void method22() {
-        HDToolKit.method1847(1);
+        HDToolKit.setTextureEnvironmentParameter(1);
         if (Class106.aBoolean1441) {
             glCallList(this.anInt2187);
         } else {

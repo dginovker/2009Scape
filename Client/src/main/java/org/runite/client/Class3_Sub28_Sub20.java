@@ -347,7 +347,7 @@ final class Class3_Sub28_Sub20 extends Node {
                 }
 
                 if ((4 & var7) == 0) {
-                    HDToolKit.method1847(0);
+                    HDToolKit.setTextureEnvironmentParameter(0);
                 }
 
                 if ((var7 & 8) == 0) {

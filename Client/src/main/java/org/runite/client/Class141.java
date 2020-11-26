@@ -1,7 +1,6 @@
 package org.runite.client;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 
 
@@ -124,7 +123,7 @@ final class Class141 {
 
     static void method2038(int var0, int var1, int var2, boolean[][] var4) {
         HDToolKit.method1856(1);
-        HDToolKit.method1847(1);
+        HDToolKit.setTextureEnvironmentParameter(1);
         HDToolKit.method1823();
         HDToolKit.enableLighting(false);
         Class3_Sub28_Sub4.method551(0, 0);
