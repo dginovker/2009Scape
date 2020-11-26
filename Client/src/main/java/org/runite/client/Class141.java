@@ -1,6 +1,8 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 
 
 final class Class141 {
@@ -121,13 +123,12 @@ final class Class141 {
     }
 
     static void method2038(int var0, int var1, int var2, boolean[][] var4) {
-        GL2 var6 = HDToolKit.gl;
         HDToolKit.method1856(1);
         HDToolKit.method1847(1);
         HDToolKit.method1823();
-        HDToolKit.method1837(false);
+        HDToolKit.enableLighting(false);
         Class3_Sub28_Sub4.method551(0, 0);
-        var6.glDepthMask(false);
+        glDepthMask(false);
 
         for (int var7 = 0; var7 < anInt1844; ++var7) {
             int var8 = 0;
@@ -148,10 +149,10 @@ final class Class141 {
                                             var11.aBoolean2106 = false;
                                         }
 
-                                        var6.glPushMatrix();
-                                        var6.glTranslatef((float) (var7 * 1024), 0.0F, (float) (var8 * 1024));
+                                        glPushMatrix();
+                                        glTranslatef((float) (var7 * 1024), 0.0F, (float) (var8 * 1024));
                                         var11.method2284();
-                                        var6.glPopMatrix();
+                                        glPopMatrix();
                                         break label42;
                                     }
                                 }
@@ -168,8 +169,8 @@ final class Class141 {
             }
         }
 
-        var6.glEnableClientState('\u8076');
-        var6.glDepthMask(true);
+        glEnableClientState(GL_COLOR_ARRAY);
+        glDepthMask(true);
         HDToolKit.method1846();
     }
 

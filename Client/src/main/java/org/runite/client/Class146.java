@@ -1,6 +1,8 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 
 import java.awt.*;
 
@@ -98,9 +100,8 @@ abstract class Class146 {
 
         boolean var22 = Class44.anIntArrayArrayArray723 == Unsorted.anIntArrayArrayArray3605;
         if (HDToolKit.highDetail) {
-            GL2 var24 = HDToolKit.gl;
-            var24.glPushMatrix();
-            var24.glTranslatef((float) (-var0), (float) (-var1), (float) (-var2));
+            glPushMatrix();
+            glTranslatef((float) (-var0), (float) (-var1), (float) (-var2));
             if (var22) {
                 Class3_Sub22.method403();
                 Class3_Sub28_Sub4.method551(-1, 3);
@@ -143,7 +144,7 @@ abstract class Class146 {
                 Class68.method1277(Class75_Sub2.aClass3_Sub2ArrayArrayArray2638);
             }
 
-            var24.glPopMatrix();
+            glPopMatrix();
         }
 
         int var19;

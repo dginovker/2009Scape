@@ -1,7 +1,7 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
-
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
 
 final class Class68 {
 
@@ -296,8 +296,7 @@ final class Class68 {
         if (aBooleanArray1026[var0]) {
             aBooleanArray1026[var0] = false;
             int var1 = var0 + 16384 + 4;
-            GL2 var2 = HDToolKit.gl;
-            var2.glDisable(var1);
+            glDisable(var1);
         }
     }
 
@@ -345,14 +344,12 @@ final class Class68 {
     }
 
     static void method1275() {
-        GL2 var0 = HDToolKit.gl;
-
         int var1;
         for (var1 = 0; var1 < 4; ++var1) {
             int var2 = 16388 + var1;
-            var0.glLightfv(var2, 4608, new float[]{0.0F, 0.0F, 0.0F, 1.0F}, 0);
-            var0.glLightf(var2, 4616, 0.0F);
-            var0.glLightf(var2, 4615, 0.0F);
+            glLightfv(var2, GL_AMBIENT, new float[]{0.0F, 0.0F, 0.0F, 1.0F});
+            glLightf(var2, GL_LINEAR_ATTENUATION, 0.0F);
+            glLightf(var2, GL_CONSTANT_ATTENUATION, 0.0F);
         }
 
         for (var1 = 0; var1 < 4; ++var1) {
@@ -373,17 +370,16 @@ final class Class68 {
 
     static void method1277(Class3_Sub2[][][] var2) {
         if (Class106.aBoolean1441) {
-            GL2 var3 = HDToolKit.gl;
             Class3_Sub28_Sub4.method551(0, 0);
             HDToolKit.method1856(0);
             HDToolKit.method1823();
             HDToolKit.bindTexture2D(HDToolKit.anInt1810);
-            var3.glDepthMask(false);
-            HDToolKit.method1837(false);
-            var3.glBlendFunc(774, 1);
-            var3.glFogfv(2918, new float[]{0.0F, 0.0F, 0.0F, 0.0F}, 0);
-            var3.glTexEnvi(8960, '\u8580', '\u8576');
-            var3.glTexEnvi(8960, '\u8590', 770);
+            glDepthMask(false);
+            HDToolKit.enableLighting(false);
+            glBlendFunc(774, 1);
+            glFogfv(GL_FOG_COLOR, new float[]{0.0F, 0.0F, 0.0F, 0.0F});
+            glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_CONSTANT);
+            glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_ALPHA);
 
             label69:
             for (int var4 = 0; var4 < anInt1032; ++var4) {
@@ -435,7 +431,7 @@ final class Class68 {
                                 }
 
                                 HDToolKit.method1832(201.5F - (float) var5.anInt704 * 50.0F - 1.5F);
-                                var3.glTexEnvfv(8960, 8705, new float[]{0.0F, 0.0F, 0.0F, var5.aFloat707}, 0);
+                                glTexEnvfv(GL_TEXTURE_ENV, GL_TEXTURE_ENV_COLOR, new float[]{0.0F, 0.0F, 0.0F, var5.aFloat707});
                                 var5.aClass37_712.method1021();
                                 continue label69;
                             }
@@ -447,30 +443,29 @@ final class Class68 {
                 }
             }
 
-            var3.glTexEnvi(8960, '\u8580', 5890);
-            var3.glTexEnvi(8960, '\u8590', 768);
-            var3.glBlendFunc(770, 771);
-            var3.glDepthMask(true);
-            var3.glFogfv(2918, Class92.fogColor, 0);
-            var3.glEnableClientState('\u8078');
+            glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
+            glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_COLOR);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glDepthMask(true);
+            glFogfv(GL_FOG_COLOR, Class92.fogColor);
+            glEnableClientState(GL_TEXTURE_COORD_ARRAY);
             HDToolKit.method1846();
         }
     }
 
     private static void method1278(int var0, Class43 var1, int var2, int var3, int var4) {
         int var5 = var0 + 16384 + 4;
-        GL2 var6 = HDToolKit.gl;
         if (!aBooleanArray1026[var0]) {
-            var6.glEnable(var5);
+            glEnable(var5);
             aBooleanArray1026[var0] = true;
         }
 
-        var6.glLightf(var5, 4617, var1.aFloat710);
-        var6.glLightfv(var5, 4609, var1.aFloatArray717, 0);
+        glLightf(var5, GL_QUADRATIC_ATTENUATION, var1.aFloat710);
+        glLightfv(var5, GL_DIFFUSE, var1.aFloatArray717);
         aFloatArray1022[0] = (float) (var1.anInt703 - var2);
         aFloatArray1022[1] = (float) (var1.anInt697 - var3);
         aFloatArray1022[2] = (float) (var1.anInt708 - var4);
-        var6.glLightfv(var5, 4611, aFloatArray1022, 0);
+        glLightfv(var5, GL_POSITION, aFloatArray1022);
     }
 
     static void method1279() {

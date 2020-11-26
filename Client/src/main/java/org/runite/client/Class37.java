@@ -1,6 +1,8 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 import org.rs09.client.LinkableInt;
 import org.rs09.client.data.HashTable;
 
@@ -158,18 +160,16 @@ final class Class37 {
     }
 
     final void method1021() {
-        GL2 var1 = HDToolKit.gl;
         if (HDToolKit.supportVertexBufferObject) {
             this.aClass156_642.method2169();
-            var1.glInterleavedArrays(10787, 16, 0L);
-            HDToolKit.aBoolean1798 = false;
+            glInterleavedArrays(GL_C4UB_V3F, GL_POLYGON_STIPPLE_BIT, 0L);
+            HDToolKit.enableNormalArrayState = false;
             this.aClass156_646.method2171();
-            var1.glDrawElements(4, this.anInt655, 5125, 0L);
+            glDrawElements(GL_LINE_BIT, this.anInt655, GL_UNSIGNED_INT, 0L);
         } else {
-
-            var1.glInterleavedArrays(10787, 16, this.aByteBuffer647);
-            HDToolKit.aBoolean1798 = false;
-            var1.glDrawElements(4, this.anInt655, 5125, this.aByteBuffer652);
+            glInterleavedArrays(GL_C4UB_V3F, GL_POLYGON_STIPPLE_BIT, this.aByteBuffer647);
+            HDToolKit.enableNormalArrayState = false;
+            glDrawRangeElements(GL_LINE_BIT, this.anInt655, GL_UNSIGNED_INT, this.aByteBuffer652);
         }
 
     }

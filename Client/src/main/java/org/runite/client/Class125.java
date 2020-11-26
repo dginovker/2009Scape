@@ -1,10 +1,14 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+
+import static org.lwjgl.opengl.ARBFragmentProgram.GL_FRAGMENT_PROGRAM_ARB;
+import static org.lwjgl.opengl.ARBVertexProgram.*;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
 
 
 final class Class125 implements ShaderInterface {
@@ -19,8 +23,7 @@ final class Class125 implements ShaderInterface {
     public Class125() {
         if (HDToolKit.supportVertexProgram && HDToolKit.maxTextureUnits >= 2) {
             int[] var1 = new int[1];
-            GL2 var2 = HDToolKit.gl;
-            var2.glGenProgramsARB(1, var1, 0);
+            glGenProgramsARB(var1);//1, buffer, 0 OLD
             this.anInt2184 = var1[0];
             int[][] var3 = Class15.method895(0);
             int[][] var4 = Class15.method895(8);
@@ -57,8 +60,7 @@ final class Class125 implements ShaderInterface {
 
     public final void method21() {
         if (this.anInt2186 >= 0) {
-            GL2 var1 = HDToolKit.gl;
-            var1.glCallList(this.anInt2186 + 1);
+            glCallList(this.anInt2186 + 1);
         }
     }
 
@@ -68,33 +70,32 @@ final class Class125 implements ShaderInterface {
 
     public final void method22() {
         if (this.anInt2186 >= 0) {
-            GL2 var1 = HDToolKit.gl;
-            var1.glCallList(this.anInt2186);
-            var1.glActiveTexture('\u84c1');
-            var1.glMatrixMode(5890);
-            var1.glTranslatef((float) Unsorted.anInt144, (float) Unsorted.anInt3695, (float) LinkableRSString.anInt2587);
-            var1.glRotatef(-((float) Class3_Sub13_Sub8.anInt3103 * 360.0F) / 2048.0F, 0.0F, 1.0F, 0.0F);
-            var1.glRotatef(-((float) Class140_Sub7.anInt2938 * 360.0F) / 2048.0F, 1.0F, 0.0F, 0.0F);
-            var1.glRotatef(-180.0F, 1.0F, 0.0F, 0.0F);
-            var1.glMatrixMode(5888);
+            glCallList(this.anInt2186);
+            glActiveTexture(GL_TEXTURE1);
+            glMatrixMode(GL_TEXTURE);
+            glTranslatef((float) Unsorted.anInt144, (float) Unsorted.anInt3695, (float) LinkableRSString.anInt2587);
+            glRotatef(-((float) Class3_Sub13_Sub8.anInt3103 * 360.0F) / 2048.0F, 0.0F, 1.0F, 0.0F);
+            glRotatef(-((float) Class140_Sub7.anInt2938 * 360.0F) / 2048.0F, 1.0F, 0.0F, 0.0F);
+            glRotatef(-180.0F, 1.0F, 0.0F, 0.0F);
+            glMatrixMode(GL_MODELVIEW);
             if (!Class88.Texture3DEnabled) {
-                var1.glBindTexture(3553, Class88.anIntArray1224[(int) ((float) (HDToolKit.anInt1791 * 64) * 0.0050F) % 64]);
+                glBindTexture(GL_TEXTURE_2D, Class88.anIntArray1224[(int) ((float) (HDToolKit.anInt1791 * 64) * 0.0050F) % 64]);
             }
 
-            var1.glActiveTexture('\u84c0');
+            glActiveTexture(GL_TEXTURE0);
             if (this.anInt2182 != HDToolKit.anInt1791) {
                 int var2 = (HDToolKit.anInt1791 & 255) * 256;
 
                 for (int var3 = 0; var3 < 64; ++var3) {
                     this.aFloatBuffer2183.position(var2);
-                    var1.glProgramLocalParameter4fvARB('\u8620', var3, this.aFloatBuffer2183);
+                    glProgramLocalParameter4fvARB(GL_VERTEX_PROGRAM_ARB, var3, this.aFloatBuffer2183);
                     var2 += 4;
                 }
 
                 if (Class88.Texture3DEnabled) {
-                    var1.glProgramLocalParameter4fARB('\u8620', 65, (float) HDToolKit.anInt1791 * 0.0050F, 0.0F, 0.0F, 1.0F);
+                    glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, 65, (float) HDToolKit.anInt1791 * 0.0050F, 0.0F, 0.0F, 1.0F);
                 } else {
-                    var1.glProgramLocalParameter4fARB('\u8620', 65, 0.0F, 0.0F, 0.0F, 1.0F);
+                    glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, 65, 0.0F, 0.0F, 0.0F, 1.0F);
                 }
 
                 this.anInt2182 = HDToolKit.anInt1791;
@@ -104,44 +105,43 @@ final class Class125 implements ShaderInterface {
     }
 
     private void method1749() {
-        GL2 var1 = HDToolKit.gl;
-        this.anInt2186 = var1.glGenLists(2);
-        var1.glNewList(this.anInt2186, 4864);
-        var1.glActiveTexture('\u84c1');
+        this.anInt2186 = glGenLists(2);
+        glNewList(this.anInt2186, GL_COMPILE);
+        glActiveTexture(GL_TEXTURE1);
         if (Class88.Texture3DEnabled) {
-            var1.glBindTexture('\u806f', Class88.anInt1228);
+            glBindTexture(GL_TEXTURE_3D, Class88.anInt1228);
         }
-
-        var1.glTexEnvi(8960, '\u8571', 260);
-        var1.glTexEnvi(8960, '\u8572', 7681);
-        var1.glTexEnvi(8960, '\u8588', '\u8578');
-        var1.glActiveTexture('\u84c0');
-        var1.glBindProgramARB('\u8620', this.anInt2184);
-        var1.glEnable('\u8620');
-        var1.glEndList();
-        var1.glNewList(this.anInt2186 + 1, 4864);
-        var1.glActiveTexture('\u84c1');
-        var1.glMatrixMode(5890);
-        var1.glLoadIdentity();
-        var1.glMatrixMode(5888);
-        var1.glTexEnvi(8960, '\u8571', 8448);
-        var1.glTexEnvi(8960, '\u8572', 8448);
-        var1.glTexEnvi(8960, '\u8588', 5890);
-        var1.glDisable(Class88.Texture3DEnabled ? '\u806f' : 3553);
-        var1.glActiveTexture('\u84c0');
-        var1.glBindProgramARB('\u8620', 0);
-        var1.glDisable('\u8620');
-        var1.glDisable('\u8804');
-        var1.glEndList();
+        glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_ADD);
+        glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
+        glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_PREVIOUS);
+        glActiveTexture(GL_TEXTURE0);
+        glBindProgramARB(GL_VERTEX_PROGRAM_ARB, this.anInt2184);
+        glEnable(GL_VERTEX_PROGRAM_ARB);
+        glEndList();
+        glNewList(this.anInt2186 + 1, GL_COMPILE);
+        glActiveTexture(GL_TEXTURE1);
+        glMatrixMode(GL_TEXTURE);
+        glLoadIdentity();
+        glMatrixMode(GL_MODELVIEW);
+        glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+        glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_MODULATE);
+        glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA, GL_TEXTURE);
+        glDisable(Class88.Texture3DEnabled ? GL_TEXTURE_3D : GL_TEXTURE_2D);
+        glActiveTexture(GL_TEXTURE0);
+        glBindProgramARB(GL_VERTEX_PROGRAM_ARB, 0);
+        glDisable(GL_VERTEX_PROGRAM_ARB);
+        glDisable(GL_FRAGMENT_PROGRAM_ARB);
+        glEndList();
     }
 
     private void method1750() {
         if (this.anInt2186 >= 0) {
-            GL2 var1 = HDToolKit.gl;
             int[] var2 = new int[1];
-            var1.glBindProgramARB('\u8620', this.anInt2184);
-            var1.glProgramStringARB('\u8620', '\u8875', "!!ARBvp1.0\nATTRIB  iPos         = vertex.position;\nATTRIB  iColour      = vertex.color;\nOUTPUT  oPos         = result.position;\nOUTPUT  oColour      = result.color;\nOUTPUT  oTexCoord0   = result.texcoord[0];\nOUTPUT  oTexCoord1   = result.texcoord[1];\nOUTPUT  oFogCoord    = result.fogcoord;\nPARAM   time         = program.local[65];\nPARAM   turbulence   = program.local[64];\nPARAM   lightAmbient = program.local[66]; \nPARAM   pMatrix[4]   = { state.matrix.projection };\nPARAM   mvMatrix[4]  = { state.matrix.modelview };\nPARAM   ivMatrix[4]  = { state.matrix.texture[1] };\nPARAM   fNoise[64]   = { program.local[0..63] };\nTEMP    noise, clipPos, viewPos, worldPos;\nADDRESS noiseAddr;\nDP4   viewPos.x, mvMatrix[0], iPos;\nDP4   viewPos.y, mvMatrix[1], iPos;\nDP4   viewPos.z, mvMatrix[2], iPos;\nDP4   viewPos.w, mvMatrix[3], iPos;\nDP4   worldPos.x, ivMatrix[0], viewPos;\nDP4   worldPos.y, ivMatrix[1], viewPos;\nDP4   worldPos.z, ivMatrix[2], viewPos;\nDP4   worldPos.w, ivMatrix[3], viewPos;\nADD   noise.x, worldPos.x, worldPos.z;SUB   noise.y, worldPos.z, worldPos.x;MUL   noise, noise, 0.0001220703125;\nFRC   noise, noise;\nMUL   noise, noise, 64;\nARL   noiseAddr.x, noise.x;\nMOV   noise.x, fNoise[noiseAddr.x].x;\nARL   noiseAddr.x, noise.y;\nMOV   noise.y, fNoise[noiseAddr.x].y;\nMUL   noise, noise, turbulence.x;\nMAD   oTexCoord0, worldPos.xzww, 0.0078125, noise;\nMOV   oTexCoord0.w, 1;\nMUL   oTexCoord1.xy, worldPos.xzww, 0.0009765625;\nMOV   oTexCoord1.zw, time.xxxw;\nDP4   clipPos.x, pMatrix[0], viewPos;\nDP4   clipPos.y, pMatrix[1], viewPos;\nDP4   clipPos.z, pMatrix[2], viewPos;\nDP4   clipPos.w, pMatrix[3], viewPos;\nMUL   oColour.xyz, iColour, lightAmbient;\nMOV   oColour.w, 1;\nMOV   oFogCoord.x, clipPos.z;\nMOV   oPos, clipPos; \nEND".length(), "!!ARBvp1.0\nATTRIB  iPos         = vertex.position;\nATTRIB  iColour      = vertex.color;\nOUTPUT  oPos         = result.position;\nOUTPUT  oColour      = result.color;\nOUTPUT  oTexCoord0   = result.texcoord[0];\nOUTPUT  oTexCoord1   = result.texcoord[1];\nOUTPUT  oFogCoord    = result.fogcoord;\nPARAM   time         = program.local[65];\nPARAM   turbulence   = program.local[64];\nPARAM   lightAmbient = program.local[66]; \nPARAM   pMatrix[4]   = { state.matrix.projection };\nPARAM   mvMatrix[4]  = { state.matrix.modelview };\nPARAM   ivMatrix[4]  = { state.matrix.texture[1] };\nPARAM   fNoise[64]   = { program.local[0..63] };\nTEMP    noise, clipPos, viewPos, worldPos;\nADDRESS noiseAddr;\nDP4   viewPos.x, mvMatrix[0], iPos;\nDP4   viewPos.y, mvMatrix[1], iPos;\nDP4   viewPos.z, mvMatrix[2], iPos;\nDP4   viewPos.w, mvMatrix[3], iPos;\nDP4   worldPos.x, ivMatrix[0], viewPos;\nDP4   worldPos.y, ivMatrix[1], viewPos;\nDP4   worldPos.z, ivMatrix[2], viewPos;\nDP4   worldPos.w, ivMatrix[3], viewPos;\nADD   noise.x, worldPos.x, worldPos.z;SUB   noise.y, worldPos.z, worldPos.x;MUL   noise, noise, 0.0001220703125;\nFRC   noise, noise;\nMUL   noise, noise, 64;\nARL   noiseAddr.x, noise.x;\nMOV   noise.x, fNoise[noiseAddr.x].x;\nARL   noiseAddr.x, noise.y;\nMOV   noise.y, fNoise[noiseAddr.x].y;\nMUL   noise, noise, turbulence.x;\nMAD   oTexCoord0, worldPos.xzww, 0.0078125, noise;\nMOV   oTexCoord0.w, 1;\nMUL   oTexCoord1.xy, worldPos.xzww, 0.0009765625;\nMOV   oTexCoord1.zw, time.xxxw;\nDP4   clipPos.x, pMatrix[0], viewPos;\nDP4   clipPos.y, pMatrix[1], viewPos;\nDP4   clipPos.z, pMatrix[2], viewPos;\nDP4   clipPos.w, pMatrix[3], viewPos;\nMUL   oColour.xyz, iColour, lightAmbient;\nMOV   oColour.w, 1;\nMOV   oFogCoord.x, clipPos.z;\nMOV   oPos, clipPos; \nEND");
-            var1.glGetIntegerv('\u864b', var2, 0);
+            glBindProgramARB(GL_VERTEX_PROGRAM_ARB, this.anInt2184);
+            //TODO Wants Bytebufferstring, will have to look more into this
+            glProgramStringARB(GL_VERTEX_PROGRAM_ARB, GL_PROGRAM_FORMAT_ASCII_ARB,"!!ARBvp1.0\nATTRIB  iPos         = vertex.position;\nATTRIB  iColour      = vertex.color;\nOUTPUT  oPos         = result.position;\nOUTPUT  oColour      = result.color;\nOUTPUT  oTexCoord0   = result.texcoord[0];\nOUTPUT  oTexCoord1   = result.texcoord[1];\nOUTPUT  oFogCoord    = result.fogcoord;\nPARAM   time         = program.local[65];\nPARAM   turbulence   = program.local[64];\nPARAM   lightAmbient = program.local[66]; \nPARAM   pMatrix[4]   = { state.matrix.projection };\nPARAM   mvMatrix[4]  = { state.matrix.modelview };\nPARAM   ivMatrix[4]  = { state.matrix.texture[1] };\nPARAM   fNoise[64]   = { program.local[0..63] };\nTEMP    noise, clipPos, viewPos, worldPos;\nADDRESS noiseAddr;\nDP4   viewPos.x, mvMatrix[0], iPos;\nDP4   viewPos.y, mvMatrix[1], iPos;\nDP4   viewPos.z, mvMatrix[2], iPos;\nDP4   viewPos.w, mvMatrix[3], iPos;\nDP4   worldPos.x, ivMatrix[0], viewPos;\nDP4   worldPos.y, ivMatrix[1], viewPos;\nDP4   worldPos.z, ivMatrix[2], viewPos;\nDP4   worldPos.w, ivMatrix[3], viewPos;\nADD   noise.x, worldPos.x, worldPos.z;SUB   noise.y, worldPos.z, worldPos.x;MUL   noise, noise, 0.0001220703125;\nFRC   noise, noise;\nMUL   noise, noise, 64;\nARL   noiseAddr.x, noise.x;\nMOV   noise.x, fNoise[noiseAddr.x].x;\nARL   noiseAddr.x, noise.y;\nMOV   noise.y, fNoise[noiseAddr.x].y;\nMUL   noise, noise, turbulence.x;\nMAD   oTexCoord0, worldPos.xzww, 0.0078125, noise;\nMOV   oTexCoord0.w, 1;\nMUL   oTexCoord1.xy, worldPos.xzww, 0.0009765625;\nMOV   oTexCoord1.zw, time.xxxw;\nDP4   clipPos.x, pMatrix[0], viewPos;\nDP4   clipPos.y, pMatrix[1], viewPos;\nDP4   clipPos.z, pMatrix[2], viewPos;\nDP4   clipPos.w, pMatrix[3], viewPos;\nMUL   oColour.xyz, iColour, lightAmbient;\nMOV   oColour.w, 1;\nMOV   oFogCoord.x, clipPos.z;\nMOV   oPos, clipPos; \nEND");
+            //glProgramStringARB(GL_VERTEX_PROGRAM_ARB, GL_PROGRAM_FORMAT_ASCII_ARB, "!!ARBvp1.0\nATTRIB  iPos         = vertex.position;\nATTRIB  iColour      = vertex.color;\nOUTPUT  oPos         = result.position;\nOUTPUT  oColour      = result.color;\nOUTPUT  oTexCoord0   = result.texcoord[0];\nOUTPUT  oTexCoord1   = result.texcoord[1];\nOUTPUT  oFogCoord    = result.fogcoord;\nPARAM   time         = program.local[65];\nPARAM   turbulence   = program.local[64];\nPARAM   lightAmbient = program.local[66]; \nPARAM   pMatrix[4]   = { state.matrix.projection };\nPARAM   mvMatrix[4]  = { state.matrix.modelview };\nPARAM   ivMatrix[4]  = { state.matrix.texture[1] };\nPARAM   fNoise[64]   = { program.local[0..63] };\nTEMP    noise, clipPos, viewPos, worldPos;\nADDRESS noiseAddr;\nDP4   viewPos.x, mvMatrix[0], iPos;\nDP4   viewPos.y, mvMatrix[1], iPos;\nDP4   viewPos.z, mvMatrix[2], iPos;\nDP4   viewPos.w, mvMatrix[3], iPos;\nDP4   worldPos.x, ivMatrix[0], viewPos;\nDP4   worldPos.y, ivMatrix[1], viewPos;\nDP4   worldPos.z, ivMatrix[2], viewPos;\nDP4   worldPos.w, ivMatrix[3], viewPos;\nADD   noise.x, worldPos.x, worldPos.z;SUB   noise.y, worldPos.z, worldPos.x;MUL   noise, noise, 0.0001220703125;\nFRC   noise, noise;\nMUL   noise, noise, 64;\nARL   noiseAddr.x, noise.x;\nMOV   noise.x, fNoise[noiseAddr.x].x;\nARL   noiseAddr.x, noise.y;\nMOV   noise.y, fNoise[noiseAddr.x].y;\nMUL   noise, noise, turbulence.x;\nMAD   oTexCoord0, worldPos.xzww, 0.0078125, noise;\nMOV   oTexCoord0.w, 1;\nMUL   oTexCoord1.xy, worldPos.xzww, 0.0009765625;\nMOV   oTexCoord1.zw, time.xxxw;\nDP4   clipPos.x, pMatrix[0], viewPos;\nDP4   clipPos.y, pMatrix[1], viewPos;\nDP4   clipPos.z, pMatrix[2], viewPos;\nDP4   clipPos.w, pMatrix[3], viewPos;\nMUL   oColour.xyz, iColour, lightAmbient;\nMOV   oColour.w, 1;\nMOV   oFogCoord.x, clipPos.z;\nMOV   oPos, clipPos; \nEND".length(), "!!ARBvp1.0\nATTRIB  iPos         = vertex.position;\nATTRIB  iColour      = vertex.color;\nOUTPUT  oPos         = result.position;\nOUTPUT  oColour      = result.color;\nOUTPUT  oTexCoord0   = result.texcoord[0];\nOUTPUT  oTexCoord1   = result.texcoord[1];\nOUTPUT  oFogCoord    = result.fogcoord;\nPARAM   time         = program.local[65];\nPARAM   turbulence   = program.local[64];\nPARAM   lightAmbient = program.local[66]; \nPARAM   pMatrix[4]   = { state.matrix.projection };\nPARAM   mvMatrix[4]  = { state.matrix.modelview };\nPARAM   ivMatrix[4]  = { state.matrix.texture[1] };\nPARAM   fNoise[64]   = { program.local[0..63] };\nTEMP    noise, clipPos, viewPos, worldPos;\nADDRESS noiseAddr;\nDP4   viewPos.x, mvMatrix[0], iPos;\nDP4   viewPos.y, mvMatrix[1], iPos;\nDP4   viewPos.z, mvMatrix[2], iPos;\nDP4   viewPos.w, mvMatrix[3], iPos;\nDP4   worldPos.x, ivMatrix[0], viewPos;\nDP4   worldPos.y, ivMatrix[1], viewPos;\nDP4   worldPos.z, ivMatrix[2], viewPos;\nDP4   worldPos.w, ivMatrix[3], viewPos;\nADD   noise.x, worldPos.x, worldPos.z;SUB   noise.y, worldPos.z, worldPos.x;MUL   noise, noise, 0.0001220703125;\nFRC   noise, noise;\nMUL   noise, noise, 64;\nARL   noiseAddr.x, noise.x;\nMOV   noise.x, fNoise[noiseAddr.x].x;\nARL   noiseAddr.x, noise.y;\nMOV   noise.y, fNoise[noiseAddr.x].y;\nMUL   noise, noise, turbulence.x;\nMAD   oTexCoord0, worldPos.xzww, 0.0078125, noise;\nMOV   oTexCoord0.w, 1;\nMUL   oTexCoord1.xy, worldPos.xzww, 0.0009765625;\nMOV   oTexCoord1.zw, time.xxxw;\nDP4   clipPos.x, pMatrix[0], viewPos;\nDP4   clipPos.y, pMatrix[1], viewPos;\nDP4   clipPos.z, pMatrix[2], viewPos;\nDP4   clipPos.w, pMatrix[3], viewPos;\nMUL   oColour.xyz, iColour, lightAmbient;\nMOV   oColour.w, 1;\nMOV   oFogCoord.x, clipPos.z;\nMOV   oPos, clipPos; \nEND");
+            glGetIntegerv(GL_PROGRAM_ERROR_POSITION_ARB, var2);//int, buffer, 0 OLD
             if (var2[0] != -1) {
                 return;
             }
@@ -151,29 +151,28 @@ final class Class125 implements ShaderInterface {
 
     public final void method23(int var1) {
         if (this.anInt2186 >= 0) {
-            GL2 var2 = HDToolKit.gl;
-            var2.glActiveTexture('\u84c1');
+            glActiveTexture(GL_TEXTURE1);
             if ((var1 & 128) == 0) {
-                var2.glEnable(Class88.Texture3DEnabled ? '\u806f' : 3553);
+                glEnable(Class88.Texture3DEnabled ? GL_TEXTURE_3D : GL_TEXTURE_2D);
             } else {
-                var2.glDisable(Class88.Texture3DEnabled ? '\u806f' : 3553);
+                glDisable(Class88.Texture3DEnabled ? GL_TEXTURE_3D : GL_TEXTURE_2D);
             }
 
-            var2.glActiveTexture('\u84c0');
+            glActiveTexture(GL_TEXTURE0);
             if ((var1 & 64) == 0) {
-                var2.glGetFloatv(2899, aFloatArray2185, 0);
-                var2.glProgramLocalParameter4fvARB('\u8620', 66, aFloatArray2185, 0);
+                glGetFloatv(GL_LIGHT_MODEL_AMBIENT, aFloatArray2185);
+                glProgramLocalParameter4fvARB(GL_VERTEX_PROGRAM_ARB, 66, aFloatArray2185);
             } else {
-                var2.glProgramLocalParameter4fARB('\u8620', 66, 1.0F, 1.0F, 1.0F, 1.0F);
+                glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, 66, 1.0F, 1.0F, 1.0F, 1.0F);
             }
 
             int var3 = var1 & 3;
             if (var3 == 2) {
-                var2.glProgramLocalParameter4fARB('\u8620', 64, 0.05F, 1.0F, 1.0F, 1.0F);
+                glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, 64, 0.05F, 1.0F, 1.0F, 1.0F);
             } else if (var3 == 3) {
-                var2.glProgramLocalParameter4fARB('\u8620', 64, 0.1F, 1.0F, 1.0F, 1.0F);
+                glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, 64, 0.1F, 1.0F, 1.0F, 1.0F);
             } else {
-                var2.glProgramLocalParameter4fARB('\u8620', 64, 0.025F, 1.0F, 1.0F, 1.0F);
+                glProgramLocalParameter4fARB(GL_VERTEX_PROGRAM_ARB, 64, 0.025F, 1.0F, 1.0F, 1.0F);
             }
 
         }

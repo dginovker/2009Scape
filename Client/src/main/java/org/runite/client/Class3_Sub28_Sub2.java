@@ -16,9 +16,9 @@ final class Class3_Sub28_Sub2 extends Node {
 
     static void method535(byte var0, int var1) {
         try {
-            Unsorted.aFloatArray1934[0] = (float) Unsorted.bitwiseAnd(255, var1 >> 16) / 255.0F;
-            Unsorted.aFloatArray1934[1] = (float) Unsorted.bitwiseAnd(var1 >> 8, 255) / 255.0F;
-            Unsorted.aFloatArray1934[2] = (float) Unsorted.bitwiseAnd(255, var1) / 255.0F;
+            WaterMovementShader.aFloatArray1934[0] = (float) Unsorted.bitwiseAnd(255, var1 >> 16) / 255.0F;
+            WaterMovementShader.aFloatArray1934[1] = (float) Unsorted.bitwiseAnd(var1 >> 8, 255) / 255.0F;
+            WaterMovementShader.aFloatArray1934[2] = (float) Unsorted.bitwiseAnd(255, var1) / 255.0F;
             Unsorted.method383(-32584, 3);
             Unsorted.method383(-32584, 4);
             if (var0 != 56) {

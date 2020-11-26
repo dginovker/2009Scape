@@ -1,6 +1,8 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 import org.rs09.client.config.GameConfig;
 
 import java.util.Objects;
@@ -110,7 +112,6 @@ final class WaterfallShader implements ShaderInterface {
 
     public final void method23(int var1) {
         try {
-            GL2 var2 = HDToolKit.gl;
             float var4 = (float) (1 + (var1 >> 3 & 3)) * 0.01F;
             float var3 = -0.01F * (float) (1 + (var1 & 3));
             float var5 = 0 == (var1 & 64) ? 4.8828125E-4F : 9.765625E-4F;
@@ -127,33 +128,33 @@ final class WaterfallShader implements ShaderInterface {
                 this.aFloatArray2174[0] = 0.0F;
             }
 
-            var2.glActiveTexture('\u84c1');
-            var2.glMatrixMode(5888);
-            var2.glPushMatrix();
-            var2.glLoadIdentity();
-            var2.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
-            var2.glRotatef((float) Class140_Sub7.anInt2938 * 360.0F / 2048.0F, 1.0F, 0.0F, 0.0F);
-            var2.glRotatef(360.0F * (float) Class3_Sub13_Sub8.anInt3103 / 2048.0F, 0.0F, 1.0F, 0.0F);
-            var2.glTranslatef((float) (-Unsorted.anInt144), (float) (-Unsorted.anInt3695), (float) (-LinkableRSString.anInt2587));
-            var2.glTexGenfv(8192, 9474, this.aFloatArray2174, 0);
+            glActiveTexture(GL_TEXTURE1);
+            glMatrixMode(GL_MODELVIEW);
+            glPushMatrix();
+            glLoadIdentity();
+            glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
+            glRotatef((float) Class140_Sub7.anInt2938 * 360.0F / 2048.0F, 1.0F, 0.0F, 0.0F);
+            glRotatef(360.0F * (float) Class3_Sub13_Sub8.anInt3103 / 2048.0F, 0.0F, 1.0F, 0.0F);
+            glTranslatef((float) (-Unsorted.anInt144), (float) (-Unsorted.anInt3695), (float) (-LinkableRSString.anInt2587));
+            glTexGenfv(GL_S, GL_EYE_PLANE, this.aFloatArray2174);
             this.aFloatArray2174[3] = var3 * (float) HDToolKit.anInt1791;
             this.aFloatArray2174[0] = 0.0F;
             this.aFloatArray2174[2] = 0.0F;
             this.aFloatArray2174[1] = var5;
-            var2.glTexGenfv(8193, 9474, this.aFloatArray2174, 0);
-            var2.glPopMatrix();
+            glTexGenfv(GL_T, GL_EYE_PLANE, this.aFloatArray2174);
+            glPopMatrix();
             if (Class88.Texture3DEnabled) {
                 this.aFloatArray2174[3] = (float) HDToolKit.anInt1791 * var4;
                 this.aFloatArray2174[1] = 0.0F;
                 this.aFloatArray2174[0] = 0.0F;
                 this.aFloatArray2174[2] = 0.0F;
-                var2.glTexGenfv(8194, 9473, this.aFloatArray2174, 0);
+                glTexGenfv(GL_R, GL_OBJECT_PLANE, this.aFloatArray2174);
             } else {
                 int var7 = (int) ((float) HDToolKit.anInt1791 * var4 * 64.0F);
-                var2.glBindTexture(3553, Class88.anIntArray1223[var7 % 64]);
+                glBindTexture(GL_TEXTURE_2D, Class88.anIntArray1223[var7 % 64]);
             }
 
-            var2.glActiveTexture('\u84c0');
+            glActiveTexture(GL_TEXTURE0);
         } catch (RuntimeException var8) {
             throw ClientErrorException.clientError(var8, "ob.B(" + var1 + ')');
         }
@@ -161,8 +162,7 @@ final class WaterfallShader implements ShaderInterface {
 
     public final void method21() {
         try {
-            GL2 var1 = HDToolKit.gl;
-            var1.glCallList(1 + this.listId);
+            glCallList(1 + this.listId);
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "ob.A()");
         }
@@ -170,8 +170,7 @@ final class WaterfallShader implements ShaderInterface {
 
     public final void method22() {
         try {
-            GL2 var1 = HDToolKit.gl;
-            var1.glCallList(this.listId);
+            glCallList(this.listId);
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "ob.D()");
         }
@@ -179,38 +178,37 @@ final class WaterfallShader implements ShaderInterface {
 
     private void method1631() {
         try {
-            GL2 var2 = HDToolKit.gl;
-            this.listId = var2.glGenLists(2);
-            var2.glNewList(this.listId, 4864);//COMPILE
-            var2.glActiveTexture('\u84c1');//TEXTURE1
+            this.listId = glGenLists(2);
+            glNewList(this.listId, GL_COMPILE);//COMPILE
+            glActiveTexture(GL_TEXTURE1);//TEXTURE1
             if (Class88.Texture3DEnabled) {
-                var2.glBindTexture('\u806f', waterfallTextureId);//TEXTURE_3D
-                var2.glTexGeni(8194, 9472, 9217);//R, TEXTURE_GEN_MODE, OBJECT_LINEAR
-                var2.glEnable(3170);//TEXTURE_GEN_R
-                var2.glEnable('\u806f');//TEXTURE_3D
+                glBindTexture(GL_TEXTURE_3D, waterfallTextureId);//TEXTURE_3D
+                glTexGeni(GL_R, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);//R, TEXTURE_GEN_MODE, OBJECT_LINEAR
+                glEnable(GL_TEXTURE_GEN_R);//TEXTURE_GEN_R
+                glEnable(GL_TEXTURE_3D);//TEXTURE_3D
             } else {
-                var2.glEnable(3553);//TEXTURE_2D
+                glEnable(GL_TEXTURE_2D);//TEXTURE_2D
             }
 
-            var2.glTexGeni(8192, 9472, 9216);//S, TEXTURE_GEN_MODE, EYE_LINEAR
-            var2.glTexGeni(8193, 9472, 9216);//T, TEXTURE_GEN_MODE, EYE_LINEAR
-            var2.glEnable(3168);//TEXTURE_GEN_S
-            var2.glEnable(3169);//TEXTURE_GEN_T
-            var2.glActiveTexture('\u84c0');//TEXTURE1
-            var2.glEndList();
-            var2.glNewList(this.listId + 1, 4864);//COMPILE
-            var2.glActiveTexture('\u84c1');//TEXTURE1
+            glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);//S, TEXTURE_GEN_MODE, EYE_LINEAR
+            glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);//T, TEXTURE_GEN_MODE, EYE_LINEAR
+            glEnable(GL_TEXTURE_GEN_S);//TEXTURE_GEN_S
+            glEnable(GL_TEXTURE_GEN_T);//TEXTURE_GEN_T
+            glActiveTexture(GL_TEXTURE0);//TEXTURE1
+            glEndList();
+            glNewList(this.listId + 1, GL_COMPILE);//COMPILE
+            glActiveTexture(GL_TEXTURE1);//TEXTURE1
             if (Class88.Texture3DEnabled) {
-                var2.glDisable('\u806f');//TEXTURE_3D
-                var2.glDisable(3170);//TEXTURE_GEN_R
+                glDisable(GL_TEXTURE_3D);//TEXTURE_3D
+                glDisable(GL_TEXTURE_GEN_R);//TEXTURE_GEN_R
             } else {
-                var2.glDisable(3553);//TEXTURE_2D
+                glDisable(GL_TEXTURE_2D);//TEXTURE_2D
             }
 
-            var2.glDisable(3168);//TEXTURE_GEN_S
-            var2.glDisable(3169);//TEXTURE_GEN_T
-            var2.glActiveTexture('\u84c0');//TEXTURE0
-            var2.glEndList();
+            glDisable(GL_TEXTURE_GEN_S);//TEXTURE_GEN_S
+            glDisable(GL_TEXTURE_GEN_T);//TEXTURE_GEN_T
+            glActiveTexture(GL_TEXTURE0);//TEXTURE0
+            glEndList();
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "ob.I(" + 2 + ')');
         }

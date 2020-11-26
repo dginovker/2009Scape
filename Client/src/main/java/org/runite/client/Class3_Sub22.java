@@ -1,6 +1,8 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 import org.rs09.client.Linkable;
 import org.rs09.client.config.GameConfig;
 
@@ -146,27 +148,26 @@ final class Class3_Sub22 extends Linkable {
     }
 
     static void method403() {
-        GL2 var0 = HDToolKit.gl;
-        var0.glDisableClientState('\u8076');
-        HDToolKit.method1837(false);
-        var0.glDisable(2929);
-        var0.glPushAttrib(128);
-        var0.glFogf(2915, 3072.0F);
+        glDisableClientState(GL_COLOR_ARRAY);
+        HDToolKit.enableLighting(false);
+        glDisable(GL_DEPTH_TEST);
+        glPushAttrib(GL_FOG_BIT);
+        glFogf(GL_FOG_START, 3072.0F);
         HDToolKit.depthBufferWritingDisabled();
 
         for (int var1 = 0; var1 < Client.aClass3_Sub11ArrayArray2199[0].length; ++var1) {
             Class3_Sub11 var2 = Client.aClass3_Sub11ArrayArray2199[0][var1];
             if (var2.anInt2351 >= 0 && Class51.anInterface2_838.method18(var2.anInt2351, 255) == 4) {
-                var0.glColor4fv(Class114.method1705(var2.anInt2355, 0), 0);
+                glColor4fv(Class114.method1705(var2.anInt2355, 0));
                 float var3 = 201.5F - (var2.aBoolean2364 ? 1.0F : 0.5F);
                 var2.method149(Class75_Sub2.aClass3_Sub2ArrayArrayArray2638, var3, true);
             }
         }
 
-        var0.glEnableClientState('\u8076');
+        glEnableClientState(GL_COLOR_ARRAY);
         HDToolKit.method1846();
-        var0.glEnable(2929);
-        var0.glPopAttrib();
+        glEnable(GL_DEPTH_TEST);
+        glPopAttrib();
         HDToolKit.method1830();
     }
 

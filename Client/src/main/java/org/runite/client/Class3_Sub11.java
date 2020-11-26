@@ -1,12 +1,16 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
 import org.rs09.client.Linkable;
 import org.rs09.client.LinkableInt;
 import org.rs09.client.data.HashTable;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
+import static org.lwjgl.opengl.GL13.glClientActiveTexture;
+import static org.lwjgl.opengl.GL15.*;
 
 
 final class Class3_Sub11 extends Linkable {
@@ -243,7 +247,6 @@ final class Class3_Sub11 extends Linkable {
         }
 
         if (aClass3_Sub30_2372.index != 0 || aClass3_Sub30_2362.index != 0) {
-            GL2 var10 = HDToolKit.gl;
             if (this.anInt2351 == -1 || var3) {
                 HDToolKit.bindTexture2D(-1);
                 Class3_Sub28_Sub4.method551(0, 0);
@@ -254,44 +257,44 @@ final class Class3_Sub11 extends Linkable {
             int var11 = this.aBoolean2347 ? 40 : 36;
             if (this.aClass156_2363 == null) {
                 if (HDToolKit.supportVertexBufferObject) {
-                    var10.glBindBuffer('\u8892', 0);
+                    glBindBuffer(GL_ARRAY_BUFFER, 0);
                 }
 
                 this.aByteBuffer2345.position(0);
-                var10.glVertexPointer(3, 5126, var11, this.aByteBuffer2345);
+                glVertexPointer(3, GL_FLOAT, var11, this.aByteBuffer2345);
                 this.aByteBuffer2345.position(12);
-                var10.glColorPointer(4, 5121, var11, this.aByteBuffer2345);
+                glColorPointer(4, GL_UNSIGNED_BYTE, var11, this.aByteBuffer2345);
                 if (Class106.aBoolean1441) {
                     this.aByteBuffer2345.position(16);
-                    var10.glNormalPointer(5126, var11, this.aByteBuffer2345);
+                    glNormalPointer(GL_FLOAT, var11, this.aByteBuffer2345);
                 }
 
                 this.aByteBuffer2345.position(28);
-                var10.glTexCoordPointer(2, 5126, var11, this.aByteBuffer2345);
+                glTexCoordPointer(2, GL_FLOAT, var11, this.aByteBuffer2345);
                 if (this.aBoolean2347) {
-                    var10.glClientActiveTexture(WaterShader.method2252());
+                    glClientActiveTexture(WaterShader.method2252());
                     this.aByteBuffer2345.position(36);
-                    var10.glTexCoordPointer(1, 5126, var11, this.aByteBuffer2345);
-                    var10.glClientActiveTexture('\u84c0');
+                    glTexCoordPointer(1, GL_FLOAT, var11, this.aByteBuffer2345);
+                    glClientActiveTexture(GL_TEXTURE0);
                 }
             } else {
                 this.aClass156_2363.method2169();
-                var10.glVertexPointer(3, 5126, var11, 0L);
-                var10.glColorPointer(4, 5121, var11, 12L);
+                glVertexPointer(3, GL_FLOAT, var11, 0L);
+                glColorPointer(4, GL_UNSIGNED_BYTE, var11, 12L);
                 if (Class106.aBoolean1441) {
-                    var10.glNormalPointer(5126, var11, 16L);
+                    glNormalPointer(GL_FLOAT, var11, 16L);
                 }
 
-                var10.glTexCoordPointer(2, 5126, var11, 28L);
+                glTexCoordPointer(2, GL_FLOAT, var11, 28L);
                 if (this.aBoolean2347) {
-                    var10.glClientActiveTexture(WaterShader.method2252());
-                    var10.glTexCoordPointer(1, 5126, var11, 36L);
-                    var10.glClientActiveTexture('\u84c0');
+                    glClientActiveTexture(WaterShader.method2252());
+                    glTexCoordPointer(1, GL_FLOAT, var11, 36L);
+                    glClientActiveTexture(GL_TEXTURE0);
                 }
             }
 
             if (HDToolKit.supportVertexBufferObject) {
-                var10.glBindBuffer('\u8893', 0);
+                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
             }
 
             if (aClass3_Sub30_2372.index != 0) {
@@ -304,7 +307,8 @@ final class Class3_Sub11 extends Linkable {
                 aByteBuffer2368.put(aClass3_Sub30_2372.buffer, 0, aClass3_Sub30_2372.index);
                 aByteBuffer2368.flip();
                 HDToolKit.method1832(var2);
-                var10.glDrawElements(4, aClass3_Sub30_2372.index / 4, 5125, aByteBuffer2368);
+                //Originally glDrawElements
+                glDrawRangeElements(GL_LINE_BIT, aClass3_Sub30_2372.index / 4, GL_UNSIGNED_INT, aByteBuffer2368);
             }
 
             if (aClass3_Sub30_2362.index != 0) {
@@ -318,7 +322,8 @@ final class Class3_Sub11 extends Linkable {
                 aByteBuffer2361.flip();
                 HDToolKit.method1832(var2 - 100.0F);
                 HDToolKit.depthBufferWritingDisabled();
-                var10.glDrawElements(4, aClass3_Sub30_2362.index / 4, 5125, aByteBuffer2361);
+                //Originally glDrawElements
+                glDrawRangeElements(GL_LINE_BIT, aClass3_Sub30_2362.index / 4, GL_UNSIGNED_INT, aByteBuffer2361);
                 HDToolKit.method1830();
             }
 

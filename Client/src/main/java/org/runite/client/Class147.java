@@ -4,7 +4,7 @@ final class Class147 implements ShaderInterface {
 
     public final void method22() {
         if (Class106.aBoolean1441) {
-            HDToolKit.method1837(false);
+            HDToolKit.enableLighting(false);
         }
 
     }
@@ -18,7 +18,7 @@ final class Class147 implements ShaderInterface {
 
     public final void method21() {
         if (Class106.aBoolean1441) {
-            HDToolKit.method1837(true);
+            HDToolKit.enableLighting(true);
         }
 
     }

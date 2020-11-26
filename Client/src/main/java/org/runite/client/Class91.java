@@ -1,5 +1,7 @@
 package org.runite.client;
 
+import static org.lwjgl.opengl.GL11.GL_S;
+
 final class Class91 {
 
     static RSString[] aClass94Array1299 = new RSString[8];
@@ -328,7 +330,7 @@ final class Class91 {
                 if (var3 == 1 || var3 == 3) {
                     if (0 == var1) {
                         this.method1490(512, var6, var5);
-                        this.method1490(8192, -1 + var6, 1 + var5);
+                        this.method1490(GL_S, -1 + var6, 1 + var5);
                     }
 
                     if (var1 == 1) {
@@ -337,7 +339,7 @@ final class Class91 {
                     }
 
                     if (var1 == 2) {
-                        this.method1490(8192, var6, var5);
+                        this.method1490(GL_S, var6, var5);
                         this.method1490(512, var6 - -1, var5 + -1);
                     }
 

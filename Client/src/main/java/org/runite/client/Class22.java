@@ -1,7 +1,8 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL;
-import com.jogamp.opengl.GL2;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 
 import java.nio.IntBuffer;
 
@@ -22,22 +23,20 @@ public final class Class22 {
         anInt448 = 0;
         anInt450 = HDToolKit.viewWidth;
         anInt451 = HDToolKit.viewHeight;
-        GL2 var0 = HDToolKit.gl;
-        var0.glDisable(3089);
+        glDisable(GL_SCISSOR_TEST);
         method921();
     }
 
     static void method926(int[] var0, int var1, int var2, int var3, int var4) {
         HDToolKit.method1835();
-        GL2 var5 = HDToolKit.gl;
-        var5.glRasterPos2i(var1, HDToolKit.viewHeight - var2);
-        var5.glPixelZoom(1.0F, -1.0F);
-        var5.glDisable(3042);
-        var5.glDisable(3008);
-        var5.glDrawPixels(var3, var4, '\u80e1', HDToolKit.aBoolean1790 ? '\u8367' : 5121, IntBuffer.wrap(var0));
-        var5.glEnable(3008);
-        var5.glEnable(3042);
-        var5.glPixelZoom(1.0F, 1.0F);
+        glRasterPos2i(var1, HDToolKit.viewHeight - var2);
+        glPixelZoom(1.0F, -1.0F);
+        glDisable(GL_BLEND);
+        glDisable(GL_ALPHA_TEST);
+        glDrawPixels(var3, var4, GL_BGRA, HDToolKit.aBoolean1790 ? GL_UNSIGNED_INT_8_8_8_8_REV : GL_UNSIGNED_BYTE, IntBuffer.wrap(var0));
+        glEnable(GL_ALPHA_TEST);
+        glEnable(GL_BLEND);
+        glPixelZoom(1.0F, 1.0F);
     }
 
     static void method928(int var0, int var1, int var2, int var3, int var4, int var5) {
@@ -46,14 +45,13 @@ public final class Class22 {
         float var7 = var6 + (float) (var2 - 1);
         float var8 = (float) HDToolKit.viewHeight - ((float) var1 + 0.3F);
         float var9 = var8 - (float) (var3 - 1);
-        GL2 var10 = HDToolKit.gl;
-        var10.glBegin(GL.GL_LINE_LOOP);
-        var10.glColor4ub((byte) (var4 >> 16), (byte) (var4 >> 8), (byte) var4, var5 > 255 ? -1 : (byte) var5);
-        var10.glVertex2f(var6, var8);
-        var10.glVertex2f(var6, var9);
-        var10.glVertex2f(var7, var9);
-        var10.glVertex2f(var7, var8);
-        var10.glEnd();
+        glBegin(GL_LINE_LOOP);
+        glColor4ub((byte) (var4 >> 16), (byte) (var4 >> 8), (byte) var4, var5 > 255 ? -1 : (byte) var5);
+        glVertex2f(var6, var8);
+        glVertex2f(var6, var9);
+        glVertex2f(var7, var9);
+        glVertex2f(var7, var8);
+        glEnd();
     }
 
     static void method929(int var0, int var1, int var2, int var3, int var4, int var5) {
@@ -88,22 +86,21 @@ public final class Class22 {
             int var23 = var1 + var7 - var16;
             int var24 = var1 + var7 + var15;
             HDToolKit.method1835();
-            GL2 var25 = HDToolKit.gl;
-            var25.glColor3ub((byte) (var4 >> 16), (byte) (var4 >> 8), (byte) var4);
-            var25.glBegin(GL.GL_TRIANGLE_FAN);
+            glColor3ub((byte) (var4 >> 16), (byte) (var4 >> 8), (byte) var4);
+            glBegin(GL_TRIANGLE_FAN);
             if (var12 <= var11) {
-                var25.glVertex2f((float) var20, (float) (HDToolKit.viewHeight - var24));
-                var25.glVertex2f((float) var19, (float) (HDToolKit.viewHeight - var23));
-                var25.glVertex2f((float) var18, (float) (HDToolKit.viewHeight - var22));
-                var25.glVertex2f((float) var17, (float) (HDToolKit.viewHeight - var21));
+                glVertex2f((float) var20, (float) (HDToolKit.viewHeight - var24));
+                glVertex2f((float) var19, (float) (HDToolKit.viewHeight - var23));
+                glVertex2f((float) var18, (float) (HDToolKit.viewHeight - var22));
+                glVertex2f((float) var17, (float) (HDToolKit.viewHeight - var21));
             } else {
-                var25.glVertex2f((float) var17, (float) (HDToolKit.viewHeight - var21));
-                var25.glVertex2f((float) var18, (float) (HDToolKit.viewHeight - var22));
-                var25.glVertex2f((float) var19, (float) (HDToolKit.viewHeight - var23));
-                var25.glVertex2f((float) var20, (float) (HDToolKit.viewHeight - var24));
+                glVertex2f((float) var17, (float) (HDToolKit.viewHeight - var21));
+                glVertex2f((float) var18, (float) (HDToolKit.viewHeight - var22));
+                glVertex2f((float) var19, (float) (HDToolKit.viewHeight - var23));
+                glVertex2f((float) var20, (float) (HDToolKit.viewHeight - var24));
             }
 
-            var25.glEnd();
+            glEnd();
         }
     }
 
@@ -124,19 +121,18 @@ public final class Class22 {
             anInt451 = var3;
         }
 
-        GL2 var4 = HDToolKit.gl;
-        var4.glEnable(3089);
+        glEnable(GL_SCISSOR_TEST);
         if (anInt449 <= anInt450 && anInt448 <= anInt451) {
-            var4.glScissor(anInt449, HDToolKit.viewHeight - anInt451, anInt450 - anInt449, anInt451 - anInt448);
+            glScissor(anInt449, HDToolKit.viewHeight - anInt451, anInt450 - anInt449, anInt451 - anInt448);
         } else {
-            var4.glScissor(0, 0, 0, 0);
+            glScissor(0, 0, 0, 0);
         }
 
         method921();
     }
 
     static void method932() {
-        HDToolKit.gl.glClear(16640);
+        glClear(16640);
     }
 
     static void method933(int var0, int var1, int var2, int var3, int var4) {
@@ -145,12 +141,11 @@ public final class Class22 {
         float var6 = (float) var2 + 0.3F;
         float var7 = (float) HDToolKit.viewHeight - ((float) var1 + 0.3F);
         float var8 = (float) HDToolKit.viewHeight - ((float) var3 + 0.3F);
-        GL2 var9 = HDToolKit.gl;
-        var9.glBegin(GL.GL_LINE_LOOP);
-        var9.glColor3ub((byte) (var4 >> 16), (byte) (var4 >> 8), (byte) var4);
-        var9.glVertex2f(var5, var7);
-        var9.glVertex2f(var6, var8);
-        var9.glEnd();
+        glBegin(GL_LINE_LOOP);
+        glColor3ub((byte) (var4 >> 16), (byte) (var4 >> 8), (byte) var4);
+        glVertex2f(var5, var7);
+        glVertex2f(var6, var8);
+        glEnd();
     }
 
     public static void setClipping(int left, int top, int right, int bottom) {
@@ -174,12 +169,11 @@ public final class Class22 {
         anInt448 = top;
         anInt450 = right;
         anInt451 = bottom;
-        GL2 var4 = HDToolKit.gl;
-        var4.glEnable(3089);
+        glEnable(GL_SCISSOR_TEST);
         if (anInt449 <= anInt450 && anInt448 <= anInt451) {
-            var4.glScissor(anInt449, HDToolKit.viewHeight - anInt451, anInt450 - anInt449, anInt451 - anInt448);
+            glScissor(anInt449, HDToolKit.viewHeight - anInt451, anInt450 - anInt449, anInt451 - anInt448);
         } else {
-            var4.glScissor(0, 0, 0, 0);
+            glScissor(0, 0, 0, 0);
         }
 
         method921();

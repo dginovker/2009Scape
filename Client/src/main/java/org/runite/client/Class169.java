@@ -1,9 +1,11 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
+import static org.lwjgl.opengl.GL15.*;
 
 final class Class169 {
 
@@ -18,16 +20,15 @@ final class Class169 {
 
 
     public Class169() {
-        GL2 var1 = HDToolKit.gl;
         int[] var2 = new int[1];
-        var1.glGenTextures(1, var2, 0);
+        glGenTextures(var2);//1, buffer, 0 OLD
         this.anInt2108 = var2[0];
         Class31.anInt580 += 16384;
         HDToolKit.bindTexture2D(this.anInt2108);
-        var1.glTexParameteri(3553, 10241, 9729);
-        var1.glTexParameteri(3553, 10240, 9729);
-        var1.glTexParameteri(3553, 10242, '\u812f');
-        var1.glTexParameteri(3553, 10243, '\u812f');
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     }
 
     final void method2281(int[][] var1, int var2, int var3) {
@@ -153,38 +154,36 @@ final class Class169 {
                 var6 += var5 - 128;
             }
 
-            GL2 var12 = HDToolKit.gl;
             ByteBuffer var13 = ByteBuffer.wrap(aByteArray2111);
-            var13.limit(16384);
+            var13.limit(GL_LIGHT0);
             HDToolKit.bindTexture2D(this.anInt2108);
-            var12.glTexImage2D(3553, 0, 6406, 128, 128, 0, 6406, 5121, var13);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, 128, 128, 0, GL_ALPHA, GL_UNSIGNED_BYTE, var13);
         }
     }
 
     final void method2284() {
-        GL2 var1 = HDToolKit.gl;
         HDToolKit.bindTexture2D(this.anInt2108);
         if (this.aClass156_2110 == null) {
             if (HDToolKit.supportVertexBufferObject) {
-                var1.glBindBuffer('\u8892', 0);
+                glBindBuffer(GL_ARRAY_BUFFER, 0);
             }
-
-            var1.glInterleavedArrays(10791, 20, this.aByteBuffer2109);
+            glInterleavedArrays(GL_T2F_V3F, 20, this.aByteBuffer2109);
         } else {
             this.aClass156_2110.method2169();
-            var1.glInterleavedArrays(10791, 20, 0L);
+            glInterleavedArrays(GL_T2F_V3F, 20, 0L);
         }
-        HDToolKit.aBoolean1798 = false;
+        HDToolKit.enableNormalArrayState = false;
 
         if (this.aClass156_2105 == null) {
             if (HDToolKit.supportVertexBufferObject) {
-                var1.glBindBuffer('\u8893', 0);
+                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
             }
-
-            var1.glDrawElements(4, 384, 5125, this.aByteBuffer2107);
+            //Unsure because 4 is usually GL_LINE_LOOP glDrawElements -> glDrawRangeElements
+            glDrawRangeElements(GL_LINE_BIT, 384, GL_UNSIGNED_INT, this.aByteBuffer2107);
+//            var1.glDrawElements(4, 384, GL_UNSIGNED_INT, this.aByteBuffer2107);
         } else {
             this.aClass156_2105.method2171();
-            var1.glDrawElements(4, 384, 5125, 0L);
+            glDrawElements(GL_LINE_BIT, 384, GL_UNSIGNED_INT, 0L);
         }
 
     }

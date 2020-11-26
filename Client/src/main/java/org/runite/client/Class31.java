@@ -1,6 +1,9 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
+
 import org.rs09.client.LinkableInt;
 
 
@@ -53,14 +56,13 @@ final class Class31 {
     }
 
     static synchronized void method990() {
-        GL2 var0 = HDToolKit.gl;
         int var1 = 0;
 
         while (true) {
             LinkableInt var2 = (LinkableInt) aClass61_581.method1220();
             if (var2 == null) {
                 if (var1 > 0) {
-                    var0.glDeleteBuffers(var1, anIntArray589, 0);
+                    glDeleteBuffers(anIntArray589);//1, array, 0
                     var1 = 0;
                 }
 
@@ -71,7 +73,7 @@ final class Class31 {
                             var2 = (LinkableInt) aClass61_587.method1220();
                             if (var2 == null) {
                                 if (var1 > 0) {
-                                    var0.glDeleteTextures(var1, anIntArray589, 0);
+                                    glDeleteTextures(anIntArray589);//1, array, 0
                                 }
 
                                 while (true) {
@@ -86,14 +88,14 @@ final class Class31 {
                                     }
 
                                     int var3 = (int) var2.linkableKey;
-                                    var0.glDeleteLists(var3, 1);
+                                    glDeleteLists(var3, 1);
                                 }
                             }
 
                             anIntArray589[var1++] = (int) var2.linkableKey;
                             anInt580 -= var2.value;
                             if (var1 == 1000) {
-                                var0.glDeleteTextures(var1, anIntArray589, 0);
+                                glDeleteTextures(anIntArray589);//1000, array, 0
                                 var1 = 0;
                             }
                         }
@@ -102,7 +104,7 @@ final class Class31 {
                     anIntArray589[var1++] = (int) var2.linkableKey;
                     memory2D -= var2.value;
                     if (var1 == 1000) {
-                        var0.glDeleteTextures(var1, anIntArray589, 0);
+                        glDeleteTextures(anIntArray589);//1000, array, 0
                         var1 = 0;
                     }
                 }
@@ -111,7 +113,7 @@ final class Class31 {
             anIntArray589[var1++] = (int) var2.linkableKey;
             anInt585 -= var2.value;
             if (var1 == 1000) {
-                var0.glDeleteBuffers(var1, anIntArray589, 0);
+                glDeleteBuffers(anIntArray589);//1000, array, 0
                 var1 = 0;
             }
         }

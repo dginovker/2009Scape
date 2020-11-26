@@ -1,16 +1,17 @@
 package org.runite.client;
 
-import com.jogamp.nativewindow.NativeWindow;
-import com.jogamp.nativewindow.NativeWindowFactory;
-import com.jogamp.nativewindow.awt.AWTGraphicsConfiguration;
-import com.jogamp.opengl.*;
-import com.jogamp.opengl.glu.gl2.GLUgl2;
 import org.rs09.client.config.GameConfig;
 
 import java.awt.*;
 import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.nio.charset.StandardCharsets;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glGenBuffers;
+import static org.lwjgl.opengl.GL20.GL_MAX_TEXTURE_COORDS;
+import static org.lwjgl.opengl.GL20.GL_MAX_TEXTURE_IMAGE_UNITS;
 
 public final class HDToolKit {
 
@@ -19,14 +20,13 @@ public final class HDToolKit {
     /**
      * JOGL GL4bc related
      */
-    public static GL2 gl;
     public static boolean highDetail = false;
     public static int viewHeight;
     public static int viewWidth;
     static int maxTextureUnits;
     static boolean aBoolean1790;
     static int anInt1791 = 0;
-    static boolean aBoolean1798 = true;
+    static boolean enableNormalArrayState = true;
     static boolean allows3DTextureMapping;
     static boolean supportMultisample;
     static int anInt1810;
@@ -34,8 +34,6 @@ public final class HDToolKit {
     static boolean aBoolean1817;
     static boolean supportVertexProgram;
     static boolean supportTextureCubeMap;
-    private static GLContext glContext;
-    private static GLDrawable glDrawable;
     private static String vendor;
     private static String renderer;
     private static float aFloat1787;
@@ -44,13 +42,13 @@ public final class HDToolKit {
     private static int anInt1793 = 0;
     private static float aFloat1794 = 0.0F;
     private static float aFloat1795;
-    private static boolean aBoolean1796 = true;
+    private static boolean enableLightingState = true;
     private static float aFloat1797 = 0.0F;
     private static boolean viewportSetup = false;
     private static int anInt1803 = -1;
-    private static boolean aBoolean1805 = true;
+    private static boolean enableDepthTestState = true;
     private static int anInt1812;
-    private static boolean aBoolean1816 = true;
+    private static boolean enableFogState = true;
 
     private static RSString method1820(String var0) {
         byte[] var1;
@@ -65,20 +63,20 @@ public final class HDToolKit {
 
     static void method1822() {
         Class3_Sub28_Sub4.method551(0, 0);
-        method1836();
+        setupViewport();
         method1856(1);
         method1847(1);
-        method1837(false);
-        method1831(false);
-        method1827(false);
+        enableLighting(false);
+        enableDepthTest(false);
+        enableFog(false);
         method1823();
     }
 
     static void method1823() {
         if (aBoolean1788) {
-            gl.glMatrixMode(5890);
-            gl.glLoadIdentity();
-            gl.glMatrixMode(5888);
+            glMatrixMode(GL_TEXTURE);
+            glLoadIdentity();
+            glMatrixMode(GL_MODELVIEW);
             aBoolean1788 = false;
         }
 
@@ -86,12 +84,12 @@ public final class HDToolKit {
 
     static void method1824() {
         Class3_Sub28_Sub4.method551(0, 0);
-        method1836();
+        setupViewport();
         method1856(0);
         method1847(0);
-        method1837(false);
-        method1831(false);
-        method1827(false);
+        enableLighting(false);
+        enableDepthTest(false);
+        enableFog(false);
         method1823();
     }
 
@@ -111,104 +109,102 @@ public final class HDToolKit {
                     aFloatArray1808[14] = aFloat1795 * var3;
                 }
 
-                gl.glMatrixMode(5889);
-                gl.glLoadMatrixf(aFloatArray1808, 0);
-                gl.glMatrixMode(5888);
+                glMatrixMode(GL_PROJECTION);
+                glLoadMatrixf(aFloatArray1808);
+                glMatrixMode(GL_MODELVIEW);
             }
         }
     }
 
     static void bufferSwap() {
         try {
-            glDrawable.swapBuffers();
+//            glDrawable.swapBuffers(); TODO: Swap buffers?
         } catch (Exception var1) {
         }
 
     }
 
-    static void method1827(boolean var0) {
-        if (var0 != aBoolean1816) {
-            if (var0) {
-                gl.glEnable(2912);
+    static void enableFog(boolean fogEnabled) {
+        if (fogEnabled != enableFogState) {
+            if (fogEnabled) {
+                glEnable(GL_FOG);
             } else {
-                gl.glDisable(2912);
+                glDisable(GL_FOG);
             }
-
-            aBoolean1816 = var0;
+            enableFogState = fogEnabled;
         }
     }
 
     static void method1828() {
         Class3_Sub28_Sub4.method551(0, 0);
-        method1836();
+        setupViewport();
         method1856(0);
         method1847(0);
-        method1837(false);
-        method1831(false);
-        method1827(false);
+        enableLighting(false);
+        enableDepthTest(false);
+        enableFog(false);
         method1823();
     }
 
     private static void method1829() {
         viewportSetup = false;
-        gl.glDisable(3553);
+        glDisable(GL_TEXTURE_2D);
         anInt1803 = -1;
-        gl.glTexEnvi(8960, 8704, '\u8570');
-        gl.glTexEnvi(8960, '\u8571', 8448);
+        glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+        glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
         anInt1793 = 0;
-        gl.glTexEnvi(8960, '\u8572', 8448);
+        glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_MODULATE);
         anInt1792 = 0;
-        gl.glEnable(2896);
-        gl.glEnable(2912);
-        gl.glEnable(2929);
-        aBoolean1796 = true;
-        aBoolean1805 = true;
-        aBoolean1816 = true;
+        glEnable(GL_LIGHTING);
+        glEnable(GL_FOG);
+        glEnable(GL_DEPTH_TEST);
+        enableLightingState = true;
+        enableDepthTestState = true;
+        enableFogState = true;
         Class44.method1073();
-        gl.glActiveTexture('\u84c1');
-        gl.glTexEnvi(8960, 8704, '\u8570');
-        gl.glTexEnvi(8960, '\u8571', 8448);
-        gl.glTexEnvi(8960, '\u8572', 8448);
-        gl.glActiveTexture('\u84c0');
-        gl.setSwapInterval(0);
-        gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
-        gl.glShadeModel(7425);
-        gl.glClearDepth(1.0D);
-        gl.glDepthFunc(515);
+        glActiveTexture(GL_TEXTURE1);
+        glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+        glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+        glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_MODULATE);
+        glActiveTexture(GL_TEXTURE0);
+//        gl.setSwapInterval(0); TODO: Swap Interval?
+        glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+        glShadeModel(GL_SMOOTH);
+        glClearDepth(1.0D);
+        glDepthFunc(GL_LEQUAL);
         method1830();
-        gl.glMatrixMode(5890);
-        gl.glLoadIdentity();
-        gl.glPolygonMode(1028, 6914);
-        gl.glEnable(2884);
-        gl.glCullFace(1029);
-        gl.glEnable(3042);
-        gl.glBlendFunc(770, 771);
-        gl.glEnable(3008);
-        gl.glAlphaFunc(516, 0.0F);
-        gl.glEnableClientState('\u8074');
-        gl.glEnableClientState('\u8075');
-        aBoolean1798 = true;
-        gl.glEnableClientState('\u8076');
-        gl.glEnableClientState('\u8078');
-        gl.glMatrixMode(5888);
-        gl.glLoadIdentity();
+        glMatrixMode(GL_TEXTURE);
+        glLoadIdentity();
+        glPolygonMode(GL_FRONT, GL_FILL);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glEnable(GL_ALPHA_TEST);
+        glAlphaFunc(GL_GREATER, 0.0F);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_NORMAL_ARRAY);
+        enableNormalArrayState = true;
+        glEnableClientState(GL_COLOR_ARRAY);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
         Class92.method1511();
         Class68.method1275();
     }
 
     static void method1830() {
-        gl.glDepthMask(true);
+        glDepthMask(true);
     }
 
-    static void method1831(boolean var0) {
-        if (var0 != aBoolean1805) {
-            if (var0) {
-                gl.glEnable(2929);
+    static void enableDepthTest(boolean depthTestEnabled) {
+        if (depthTestEnabled != enableDepthTestState) {
+            if (depthTestEnabled) {
+                glEnable(GL_DEPTH_TEST);
             } else {
-                gl.glDisable(2929);
+                glDisable(GL_DEPTH_TEST);
             }
-
-            aBoolean1805 = var0;
+            enableDepthTestState = depthTestEnabled;
         }
     }
 
@@ -218,46 +214,45 @@ public final class HDToolKit {
 
     static void method1833() {
         int[] var0 = new int[2];
-        gl.glGetIntegerv(3073, var0, 0);
-        gl.glGetIntegerv(3074, var0, 1);
-        gl.glDrawBuffer(1026);
-        gl.glReadBuffer(1024);
+        glGetIntegerv(GL_DRAW_BUFFER, var0);//pos0
+        glGetIntegerv(GL_READ_BUFFER, var0);//pos1
+        glDrawBuffer(GL_BACK_LEFT);
+        glReadBuffer(GL_FRONT_LEFT);
         bindTexture2D(-1);
-        gl.glPushAttrib(8192);
-        gl.glDisable(2912);
-        gl.glDisable(3042);
-        gl.glDisable(2929);
-        gl.glDisable(3008);
-        gl.glRasterPos2i(0, 0);
-        gl.glCopyPixels(0, 0, viewWidth, viewHeight, 6144);
-        gl.glPopAttrib();
-        gl.glDrawBuffer(var0[0]);
-        gl.glReadBuffer(var0[1]);
+        glPushAttrib(GL_S);
+        glDisable(GL_FOG);
+        glDisable(GL_BLEND);
+        glDisable(GL_DEPTH_TEST);
+        glDisable(GL_ALPHA_TEST);
+        glRasterPos2i(GL_FALSE, GL_FALSE);
+        glCopyPixels(GL_FALSE, GL_FALSE, viewWidth, viewHeight, GL_COLOR);
+        glPopAttrib();
+        glDrawBuffer(var0[0]);
+        glReadBuffer(var0[1]);
     }
 
     /*
      *  HD -> SD
      *  Clears the canvas of the OpenGL draw calls
-     *  TODO: Review this again, because although there are
-     *   no current issues with the swapping between HD -> SD
-     *   theoretically this should work in reverse as well. (but doesn't)
+     *  TODO: Remove this method completely, the new client will only support OpenGL
      */
     static void method1834(Canvas canvas) {
         try {
             if (!canvas.isDisplayable()) {
                 return;
             }
-            GLCapabilities glCapabilities = new GLCapabilities(GLProfile.getDefault());
-            AWTGraphicsConfiguration configuration = AWTGraphicsConfiguration.create(canvas.getGraphicsConfiguration(), glCapabilities, glCapabilities);
-            NativeWindow nativeWindow = NativeWindowFactory.getNativeWindow(canvas, configuration);
-            GLDrawableFactory glDrawableFactory = GLDrawableFactory.getDesktopFactory();
-            GLDrawable gldrawable = glDrawableFactory.createGLDrawable(nativeWindow);
-            gldrawable.setRealized(true);
-            GLContext glcontext = gldrawable.createContext(null);
-            glcontext.makeCurrent();
-            glcontext.release();
-            glcontext.destroy();
-            gldrawable.setRealized(false);
+
+//            GLCapabilities glCapabilities = new GLCapabilities(GLProfile.getDefault());
+//            AWTGraphicsConfiguration configuration = AWTGraphicsConfiguration.create(canvas.getGraphicsConfiguration(), glCapabilities, glCapabilities);
+//            NativeWindow nativeWindow = NativeWindowFactory.getNativeWindow(canvas, configuration);
+//            GLDrawableFactory glDrawableFactory = GLDrawableFactory.getDesktopFactory();
+//            GLDrawable gldrawable = glDrawableFactory.createGLDrawable(nativeWindow);
+//            gldrawable.setRealized(true);
+//            GLContext glcontext = gldrawable.createContext(null);
+//            glcontext.makeCurrent();
+//            glcontext.release();
+//            glcontext.destroy();
+//            gldrawable.setRealized(false);
         } catch (Throwable var4) {
         }
 
@@ -265,35 +260,34 @@ public final class HDToolKit {
 
     public static void method1835() {
         Class3_Sub28_Sub4.method551(0, 0);
-        method1836();
+        setupViewport();
         bindTexture2D(-1);
-        method1837(false);
-        method1831(false);
-        method1827(false);
+        enableLighting(false);
+        enableDepthTest(false);
+        enableFog(false);
         method1823();
     }
 
-    private static void method1836() {
+    private static void setupViewport() {
         if (!viewportSetup) {
-            gl.glMatrixMode(5889);
-            gl.glLoadIdentity();
-            gl.glOrtho(0.0D, viewWidth, 0.0D, viewHeight, -1.0D, 1.0D);
-            gl.glViewport(0, 0, viewWidth, viewHeight);
-            gl.glMatrixMode(5888);
-            gl.glLoadIdentity();
+            glMatrixMode(GL_PROJECTION);
+            glLoadIdentity();
+            glOrtho(0.0D, viewWidth, 0.0D, viewHeight, -1.0D, 1.0D);
+            glViewport(0, 0, viewWidth, viewHeight);
+            glMatrixMode(GL_MODELVIEW);
+            glLoadIdentity();
             viewportSetup = true;
         }
     }
 
-    static void method1837(boolean var0) {
-        if (var0 != aBoolean1796) {
-            if (var0) {
-                gl.glEnable(2896);
+    static void enableLighting(boolean lightingEnabled) {
+        if (lightingEnabled != enableLightingState) {
+            if (lightingEnabled) {
+                glEnable(GL_LIGHTING);
             } else {
-                gl.glDisable(2896);
+                glDisable(GL_LIGHTING);
             }
-
-            aBoolean1796 = var0;
+            enableLightingState = lightingEnabled;
         }
     }
 
@@ -303,8 +297,8 @@ public final class HDToolKit {
 
     private static int method1840() {
         int var0 = 0;
-        vendor = gl.glGetString(7936);
-        renderer = gl.glGetString(7937);
+        vendor = glGetString(GL_VENDOR);
+        renderer = glGetString(GL_RENDERER);
         String var1 = vendor.toLowerCase();
         if (var1.contains("microsoft")) {
             var0 |= 1;
@@ -314,7 +308,7 @@ public final class HDToolKit {
             var0 |= 1;
         }
 
-        String versionString = gl.glGetString(7938);
+        String versionString = glGetString(GL_VERSION);
         String[] var3 = versionString.split("[. ]");
         if (var3.length >= 2) {
             try {
@@ -332,20 +326,23 @@ public final class HDToolKit {
             var0 |= 2;
         }
 
-        if (!gl.isExtensionAvailable("GL_ARB_multitexture")) {
-            var0 |= 8;
-        }
-
-        if (!gl.isExtensionAvailable("GL_ARB_texture_env_combine")) {
-            var0 |= 32;
-        }
+//        if (!gl.isExtensionAvailable("GL_ARB_multitexture")) {
+//            var0 |= 8;
+//        }
+//
+//        if (!gl.isExtensionAvailable("GL_ARB_texture_env_combine")) {
+//            var0 |= 32;
+//        }
+        //TODO: implement extension checks, work around below
+        var0 |= 8;
+        var0 |= 32;
 
         int[] var12 = new int[1];
-        gl.glGetIntegerv('\u84e2', var12, 0);
+        glGetIntegerv(GL_MAX_TEXTURE_UNITS, var12);//pos0
         maxTextureUnits = var12[0];
-        gl.glGetIntegerv('\u8871', var12, 0);
+        glGetIntegerv(GL_MAX_TEXTURE_COORDS, var12);//pos0
         int anInt1814 = var12[0];
-        gl.glGetIntegerv('\u8872', var12, 0);
+        glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, var12);//pos0
         int anInt1806 = var12[0];
         if (maxTextureUnits < 2 || anInt1814 < 2 || anInt1806 < 2) {
             var0 |= 16;
@@ -353,11 +350,18 @@ public final class HDToolKit {
 
         if (var0 == 0) {
             aBoolean1790 = ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN;
-            supportVertexBufferObject = gl.isExtensionAvailable("GL_ARB_vertex_buffer_object");
-            supportMultisample = gl.isExtensionAvailable("GL_ARB_multisample");
-            supportTextureCubeMap = gl.isExtensionAvailable("GL_ARB_texture_cube_map");
-            supportVertexProgram = gl.isExtensionAvailable("GL_ARB_vertex_program");
-            allows3DTextureMapping = gl.isExtensionAvailable("GL_EXT_texture3D");
+            //TODO: Find LWJGL equivalent
+//            supportVertexBufferObject = gl.isExtensionAvailable("GL_ARB_vertex_buffer_object");
+//            supportMultisample = gl.isExtensionAvailable("GL_ARB_multisample");
+//            supportTextureCubeMap = gl.isExtensionAvailable("GL_ARB_texture_cube_map");
+//            supportVertexProgram = gl.isExtensionAvailable("GL_ARB_vertex_program");
+//            allows3DTextureMapping = gl.isExtensionAvailable("GL_EXT_texture3D");
+            //TODO: implement extension checks, work around below
+            supportVertexBufferObject = true;
+            supportMultisample = true;
+            supportTextureCubeMap = true;
+            supportVertexProgram = true;
+            allows3DTextureMapping = true;
             RSString var13 = method1820(renderer).toLowercase();
             if (var13.indexOf(aClass94_1819, 57) != -1) {
                 int version = 0;
@@ -384,71 +388,73 @@ public final class HDToolKit {
             if (supportVertexBufferObject) {
                 try {
                     int[] var14 = new int[1];
-                    gl.glGenBuffers(1, var14, 0);
+                    glGenBuffers(var14);//1, buffer, 0 OLD
                 } catch (Throwable var10) {
                     return -4;
                 }
             }
-
             return 0;
         } else {
             return var0;
         }
     }
 
-    static void method1841() {
-        gl.glClear(256);
+    static void clearAccumulationBuffer() {
+        glClear(GL_ACCUM);
     }
 
+    /*
+     *  Unsure the purpose of this method, but I'd assume it was used to also
+     *  swap between HD and SD
+     */
     static void method1842() {
-        if (gl != null) {
-            try {
-                Class101.method1609();
-            } catch (Throwable var4) {
-            }
-
-            gl = null;
-        }
-
-        if (glContext != null) {
-            Class31.method988();
-
-            try {
-                if (GLContext.getCurrent() == glContext) {
-                    glContext.release();
-                }
-            } catch (Throwable var3) {
-            }
-
-            try {
-                glContext.destroy();
-            } catch (Throwable var2) {
-            }
-
-            glContext = null;
-        }
-
-        if (glDrawable != null) {
-            try {
-                glDrawable.setRealized(false);
-            } catch (Throwable var1) {
-            }
-
-            glDrawable = null;
-        }
+//        if (gl != null) {
+//            try {
+//                Class101.method1609();
+//            } catch (Throwable var4) {
+//            }
+//
+//            gl = null;
+//        }
+//
+//        if (glContext != null) {
+//            Class31.method988();
+//
+//            try {
+//                if (GLContext.getCurrent() == glContext) {
+//                    glContext.release();
+//                }
+//            } catch (Throwable var3) {
+//            }
+//
+//            try {
+//                glContext.destroy();
+//            } catch (Throwable var2) {
+//            }
+//
+//            glContext = null;
+//        }
+//
+//        if (glDrawable != null) {
+//            try {
+//                glDrawable.setRealized(false);
+//            } catch (Throwable var1) {
+//            }
+//
+//            glDrawable = null;
+//        }
 
         Class68.method1273();
         highDetail = false;
     }
 
     static void method1843(float var0, float var1) {
-        gl.glMatrixMode(5890);
+        glMatrixMode(GL_TEXTURE);
         if (aBoolean1788) {
-            gl.glLoadIdentity();
+            glLoadIdentity();
         }
-
-        gl.glTranslatef(var0, var1, (float) 0.0);
-        gl.glMatrixMode(5888);
+        glTranslatef(var0, var1, (float) 0.0);
+        glMatrixMode(GL_MODELVIEW);
         aBoolean1788 = true;
     }
 
@@ -457,20 +463,19 @@ public final class HDToolKit {
         int right = (x + width - offsetX << 8) / ratioWidth;
         int top = (y - offsetY << 8) / ratioHeight;
         int bottom = (y + height - offsetY << 8) / ratioHeight;
-        gl.glMatrixMode(5889);
-        gl.glLoadIdentity();
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
         float constantFloat = 0.09765625F;
         method1848((float) left * constantFloat, (float) right * constantFloat, (float) (-bottom) * constantFloat, (float) (-top) * constantFloat, 50.0F, GameConfig.RENDER_DISTANCE_VALUE);
-        gl.glViewport(x, viewHeight - y - height, width, height);
-        gl.glMatrixMode(5888);
-        gl.glLoadIdentity();
-        gl.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
+        glViewport(x, viewHeight - y - height, width, height);
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
         if (rotationX != 0.0F) {
-            gl.glRotatef(rotationX, 1.0F, 0.0F, 0.0F);
+            glRotatef(rotationX, 1.0F, 0.0F, 0.0F);
         }
-
         if (rotationY != 0.0F) {
-            gl.glRotatef(rotationY, 0.0F, 1.0F, 0.0F);
+            glRotatef(rotationY, 0.0F, 1.0F, 0.0F);
         }
 
         viewportSetup = false;
@@ -480,27 +485,25 @@ public final class HDToolKit {
         AtmosphereParser.screenLowerY = bottom;
     }
 
-    private static void method1845(boolean var0) {
-        if (var0 != aBoolean1798) {
-            if (var0) {
-                gl.glEnableClientState('\u8075');
+    private static void enableNormalArray(boolean normalArrayEnabled) {
+        if (normalArrayEnabled != enableNormalArrayState) {
+            if (normalArrayEnabled) {
+                glEnableClientState(GL_NORMAL_ARRAY);
             } else {
-                gl.glDisableClientState('\u8075');
+                glDisableClientState(GL_NORMAL_ARRAY);
             }
-
-            aBoolean1798 = var0;
+            enableNormalArrayState = normalArrayEnabled;
         }
     }
 
     static void method1846() {
         if (Class106.aBoolean1441) {
-            method1837(true);
-            method1845(true);
+            enableLighting(true);
+            enableNormalArray(true);
         } else {
-            method1837(false);
-            method1845(false);
+            enableLighting(false);
+            enableNormalArray(false);
         }
-
     }
 
     static void method1847(int var0) {
@@ -508,13 +511,13 @@ public final class HDToolKit {
             //sets a texture environment parameter.
             //TEXTURE_ENV, COMBINE_ALPHA,
             if (var0 == 0) {
-                gl.glTexEnvi(8960, '\u8572', 8448);//MODULATE
+                glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_MODULATE);
             }
             if (var0 == 1) {
-                gl.glTexEnvi(8960, '\u8572', 7681);//REPLACE
+                glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_REPLACE);
             }
             if (var0 == 2) {
-                gl.glTexEnvi(8960, '\u8572', 260);//ADD
+                glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA, GL_ADD);
             }
             anInt1792 = var0;
         }
@@ -538,7 +541,7 @@ public final class HDToolKit {
         aFloatArray1808[13] = 0.0F;
         aFloatArray1808[14] = aFloat1795 = -(var6 * renderDistance) / (renderDistance - constantFloat);
         aFloatArray1808[15] = 0.0F;
-        gl.glLoadMatrixf(aFloatArray1808, 0);
+        glLoadMatrixf(aFloatArray1808);
         aFloat1797 = 0.0F;
         aFloat1794 = 0.0F;
     }
@@ -549,61 +552,73 @@ public final class HDToolKit {
      * @param color
      */
     static void clearScreen(int color) {
-        gl.glClearColor((float) (color >> 16 & 255) / 255.0F, (float) (color >> 8 & 255) / 255.0F, (float) (color & 255) / 255.0F, 0.0F);
-        gl.glClear(16640);
-        gl.glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
+        glClearColor((float) (color >> 16 & 255) / 255.0F, (float) (color >> 8 & 255) / 255.0F, (float) (color & 255) / 255.0F, 0.0F);
+        glClear(16640);
+        glClearColor(0.0F, 0.0F, 0.0F, 0.0F);
     }
 
-    static void bindTexture2D(int var0) {
-        if (var0 != anInt1803) {
-            if (var0 == -1) {
-                gl.glDisable(3553);
+    static void bindTexture2D(int boundTexture) {
+        if (boundTexture != anInt1803) {
+            if (boundTexture == -1) {
+                glDisable(GL_TEXTURE_2D);
             } else {
                 if (anInt1803 == -1) {
-                    gl.glEnable(3553);
+                    glEnable(GL_TEXTURE_2D);
                 }
-
-                gl.glBindTexture(3553, var0);
+                glBindTexture(GL_TEXTURE_2D, boundTexture);
             }
-
-            anInt1803 = var0;
+            anInt1803 = boundTexture;
         }
     }
 
     static void depthBufferWritingDisabled() {
-        gl.glDepthMask(false);
+        glDepthMask(false);
     }
 
     static float method1852() {
         return aFloat1797;
     }
 
+
+    /*
+     *  TODO: Place this inside of GameShell, Support for Standard definition is dropping
+     *   and will become its own separate client
+     *  GL should automatically initiate upon client startup, this will go where
+     *  we first initialize the window/GLFW
+     */
     static void method1853(Canvas canvas, int SceneMSAASamples) {
 
         try {
+            /*
+             *  This is how you would start HD and it would overlay the canvas in JOGL
+             *  It first got the capabilities of the profile,
+             *  Then setup the window accordingly to swap from Standard Definition
+             *  OLD JOGL methods are disabled until LWJGL is fully implemented
+             */
             if (canvas.isDisplayable()) {
-                //GLProfile.initSingleton();
-                GLCapabilities glCapabilities = new GLCapabilities(GLProfile.getDefault());
+//                GLProfile.initSingleton();
+//                GLCapabilities glCapabilities = new GLCapabilities(GLProfile.getDefault());
                 System.out.println("Scene MSAASamples = " + SceneMSAASamples);
                 if (SceneMSAASamples > 0) {
-                    glCapabilities.setSampleBuffers(true);
-                    glCapabilities.setNumSamples(SceneMSAASamples);
+//                    glCapabilities.setSampleBuffers(true);
+//                    glCapabilities.setNumSamples(SceneMSAASamples);
                 }
 
 
-                AWTGraphicsConfiguration configuration = AWTGraphicsConfiguration.create(canvas.getGraphicsConfiguration(), glCapabilities, glCapabilities);
-                NativeWindow nativeWindow = NativeWindowFactory.getNativeWindow(canvas, configuration);
-                GLDrawableFactory glDrawableFactory = GLDrawableFactory.getDesktopFactory();
-                glDrawable = glDrawableFactory.createGLDrawable(nativeWindow);
-                glDrawable.setRealized(true);
+//                AWTGraphicsConfiguration configuration = AWTGraphicsConfiguration.create(canvas.getGraphicsConfiguration(), glCapabilities, glCapabilities);
+//                NativeWindow nativeWindow = NativeWindowFactory.getNativeWindow(canvas, configuration);
+//                GLDrawableFactory glDrawableFactory = GLDrawableFactory.getDesktopFactory();
+//                glDrawable = glDrawableFactory.createGLDrawable(nativeWindow);
+//                glDrawable.setRealized(true);
 
                 int var4 = 0;
-                int var5;
+//                int var5;
+                int var5 = 0;
                 while (true) {
-                    glContext = glDrawable.createContext(null);
+//                    glContext = glDrawable.createContext(null);
 
                     try {
-                        var5 = glContext.makeCurrent();
+//                        var5 = glContext.makeCurrent();
                         if (var5 != 0) {
                             break;
                         }
@@ -617,8 +632,8 @@ public final class HDToolKit {
                     TimeUtils.sleep(1000L);
                 }
 
-                gl = glContext.getGL().getGL2();
-                new GLUgl2();
+//                gl = glContext.getGL().getGL2();
+//                new GLUgl2();
                 highDetail = true;
                 System.out.println("Setting high detail to " + highDetail);
                 viewWidth = canvas.getSize().width;
@@ -627,12 +642,12 @@ public final class HDToolKit {
                 if (var5 == 0) {
                     method1857();
                     method1829();
-                    gl.glClear(16384);
+                    glClear(GL_COLOR_BUFFER_BIT);
                     var4 = 0;
 
                     while (true) {
                         try {
-                            glDrawable.swapBuffers();
+//                            glDrawable.swapBuffers();
                             break;
                         } catch (Exception var7) {
                             if (var4++ > 5) {
@@ -643,8 +658,7 @@ public final class HDToolKit {
                             TimeUtils.sleep(100L);
                         }
                     }
-
-                    gl.glClear(16384);
+                    glClear(GL_COLOR_BUFFER_BIT);
                 } else {
                     method1842();
                 }
@@ -667,43 +681,43 @@ public final class HDToolKit {
         int var7 = viewWidth - var0;
         int var8 = -var1;
         int var9 = viewHeight - var1;
-        gl.glMatrixMode(5889);
-        gl.glLoadIdentity();
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
         float var10 = (float) var2 / 512.0F;
         float var11 = var10 * (256.0F / (float) var4);
         float var12 = var10 * (256.0F / (float) var5);
-        gl.glOrtho((float) var6 * var11, (float) var7 * var11, (float) (-var9) * var12, (float) (-var8) * var12, 50 - var3, 3584 - var3);
-        gl.glViewport(0, 0, viewWidth, viewHeight);
-        gl.glMatrixMode(5888);
-        gl.glLoadIdentity();
-        gl.glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
+        glOrtho((float) var6 * var11, (float) var7 * var11, (float) (-var9) * var12, (float) (-var8) * var12, 50 - var3, 3584 - var3);
+        glViewport(0, 0, viewWidth, viewHeight);
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glRotatef(180.0F, 1.0F, 0.0F, 0.0F);
         viewportSetup = false;
     }
 
     static void method1856(int var0) {
         if (var0 != anInt1793) {
             if (var0 == 0) {
-                gl.glTexEnvi(8960, '\u8571', 8448);
+                glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
             }
 
             if (var0 == 1) {
-                gl.glTexEnvi(8960, '\u8571', 7681);
+                glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_REPLACE);
             }
 
             if (var0 == 2) {
-                gl.glTexEnvi(8960, '\u8571', 260);
+                glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_ADD);
             }
 
             if (var0 == 3) {
-                gl.glTexEnvi(8960, '\u8571', '\u84e7');
+                glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_SUBTRACT);
             }
 
             if (var0 == 4) {
-                gl.glTexEnvi(8960, '\u8571', '\u8574');
+                glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_ADD_SIGNED);
             }
 
             if (var0 == 5) {
-                gl.glTexEnvi(8960, '\u8571', '\u8575');
+                glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_INTERPOLATE);
             }
 
             anInt1793 = var0;
@@ -712,10 +726,10 @@ public final class HDToolKit {
 
     private static void method1857() {
         int[] var0 = new int[1];
-        gl.glGenTextures(1, var0, 0);
+        glGenTextures(var0);//1, buffer, 0 OLD
         anInt1810 = var0[0];
-        gl.glBindTexture(3553, anInt1810);
-        gl.glTexImage2D(3553, 0, 4, 1, 1, 0, 6408, 5121, IntBuffer.wrap(new int[]{-1}));
+        glBindTexture(GL_TEXTURE_2D, anInt1810);
+        glTexImage2D(GL_TEXTURE_2D, 0, 4, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, IntBuffer.wrap(new int[]{-1}));
         Class68.method1276();
         Class3_Sub24_Sub3.method468();
     }

@@ -1,6 +1,8 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 
 import java.nio.ByteBuffer;
 
@@ -37,34 +39,29 @@ final class Class88 {
     }
 
     static void method1455() {
-        GL2 var0;
         int[] var1;
         if (anInt1228 != -1) {
-            var0 = HDToolKit.gl;
             var1 = new int[]{anInt1228};
-            var0.glDeleteTextures(1, var1, 0);
+            glDeleteTextures(var1);//1, array, 0
             anInt1228 = -1;
             Class31.anInt580 -= aByteBuffer1226.limit() * 2;
         }
 
         if (anIntArray1224 != null) {
-            var0 = HDToolKit.gl;
-            var0.glDeleteTextures(64, anIntArray1224, 0);
+            glDeleteTextures(anIntArray1224);//64, array, 0
             anIntArray1224 = null;
             Class31.anInt580 -= aByteBuffer1226.limit() * 2;
         }
 
         if (WaterfallShader.waterfallTextureId != -1) {
-            var0 = HDToolKit.gl;
             var1 = new int[]{WaterfallShader.waterfallTextureId};
-            var0.glDeleteTextures(1, var1, 0);
+            glDeleteTextures(var1);//1, array, 0
             WaterfallShader.waterfallTextureId = -1;
             Class31.anInt580 -= aByteBuffer1225.limit() * 2;
         }
 
         if (anIntArray1223 != null) {
-            var0 = HDToolKit.gl;
-            var0.glDeleteTextures(64, anIntArray1223, 0);
+            glDeleteTextures(anIntArray1223);
             anIntArray1223 = null;
             Class31.anInt580 -= aByteBuffer1225.limit() * 2;
         }
@@ -79,26 +76,25 @@ final class Class88 {
     }
 
     private static void method1458() {
-        GL2 var0 = HDToolKit.gl;
         if (Texture3DEnabled) {
             int[] var1 = new int[1];
-            var0.glGenTextures(1, var1, 0);
-            var0.glBindTexture('\u806f', var1[0]);
+            glGenTextures(var1);//1, array, 0
+            glBindTexture(GL_TEXTURE_3D, var1[0]);
             aByteBuffer1226.position(0);
-            var0.glTexImage3D('\u806f', 0, 6410, 64, 64, 64, 0, 6410, 5121, aByteBuffer1226);
-            var0.glTexParameteri('\u806f', 10241, 9729);
-            var0.glTexParameteri('\u806f', 10240, 9729);
+            glTexImage3D(GL_TEXTURE_3D, 0, GL_LUMINANCE_ALPHA, 64, 64, 64, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, aByteBuffer1226);
+            glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
             anInt1228 = var1[0];
         } else {
             anIntArray1224 = new int[64];
-            var0.glGenTextures(64, anIntArray1224, 0);
+            glGenTextures(anIntArray1224);//64, array, 0
 
             for (int var2 = 0; var2 < 64; ++var2) {
                 HDToolKit.bindTexture2D(anIntArray1224[var2]);
                 aByteBuffer1226.position(var2 * 64 * 64 * 2);
-                var0.glTexImage2D(3553, 0, 6410, 64, 64, 0, 6410, 5121, aByteBuffer1226);
-                var0.glTexParameteri(3553, 10241, 9729);
-                var0.glTexParameteri(3553, 10240, 9729);
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, 64, 64, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, aByteBuffer1226);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
             }
 
         }
@@ -107,26 +103,25 @@ final class Class88 {
     }
 
     private static void method1459() {
-        GL2 var0 = HDToolKit.gl;
         if (Texture3DEnabled) {
             int[] var1 = new int[1];
-            var0.glGenTextures(1, var1, 0);
-            var0.glBindTexture('\u806f', var1[0]);
+            glGenTextures(var1);//1, array, 0
+            glBindTexture(GL_TEXTURE_3D, var1[0]);
             aByteBuffer1225.position(0);
-            var0.glTexImage3D('\u806f', 0, 6410, 64, 64, 64, 0, 6410, 5121, aByteBuffer1225);
-            var0.glTexParameteri('\u806f', 10241, 9729);
-            var0.glTexParameteri('\u806f', 10240, 9729);
+            glTexImage3D(GL_TEXTURE_3D, 0, GL_LUMINANCE_ALPHA, 64, 64, 64, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, aByteBuffer1225);
+            glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_3D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
             WaterfallShader.waterfallTextureId = var1[0];
         } else {
             anIntArray1223 = new int[64];
-            var0.glGenTextures(64, anIntArray1223, 0);
+            glGenTextures(anIntArray1223);//64, array, 0
 
             for (int var2 = 0; var2 < 64; ++var2) {
                 HDToolKit.bindTexture2D(anIntArray1223[var2]);
                 aByteBuffer1225.position(var2 * 64 * 64 * 2);
-                var0.glTexImage2D(3553, 0, 6410, 64, 64, 0, 6410, 5121, aByteBuffer1225);
-                var0.glTexParameteri(3553, 10241, 9729);
-                var0.glTexParameteri(3553, 10240, 9729);
+                glTexImage2D(GL_TEXTURE_2D, 0, GL_LUMINANCE_ALPHA, 64, 64, 0, GL_LUMINANCE_ALPHA, GL_UNSIGNED_BYTE, aByteBuffer1225);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
             }
 
         }

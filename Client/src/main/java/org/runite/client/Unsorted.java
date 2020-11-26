@@ -1,7 +1,10 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL;
-import com.jogamp.opengl.JoglVersion;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
+
+import org.lwjgl.Version;
 import org.rs09.client.config.GameConfig;
 import org.rs09.client.data.HashTable;
 import org.rs09.client.data.ReferenceCache;
@@ -40,7 +43,6 @@ public class Unsorted {
     public static Class61 aClass61_1242 = new Class61();
     public static int anInt1244 = -1;
     public static RSInterface aClass11_1933;
-    public static float[] aFloatArray1934 = new float[]{0.073F, 0.169F, 0.24F, 1.0F};
     public static Class8 aClass8_1936;
     public static Class3_Sub30_Sub1 aClass3_Sub30_Sub1_2942 = new Class3_Sub30_Sub1();
     public static int[] anIntArray2952 = new int[128];
@@ -4176,7 +4178,7 @@ public class Unsorted {
                                     if (ClientCommands.renderInfoOverlayEnabled) {
                                         if (HDToolKit.highDetail) {
                                             int vendorColor;
-                                            String vendor = HDToolKit.gl.glGetString(GL.GL_VENDOR);
+                                            String vendor = glGetString((GL_VENDOR));
                                             if (vendor.contains("NVIDIA")) {
                                                 vendorColor = 7780608;
                                             } else if (vendor.contains("AMD")) {
@@ -4188,13 +4190,13 @@ public class Unsorted {
                                             }
                                             var20 = var11.width + var13;
                                             var21 = 15 + var14;
-                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(JoglVersion.getInstance().getImplementationVendor()), var20, var21, 16776960, 7);
+                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse("LWJGL " + Version.getVersion()), var20, var21, 16776960, 7);
                                             var21 += 15;
-                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(HDToolKit.gl.glGetString(GL.GL_VERSION)), var20, var21, 16776960, 7);
+                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(glGetString(GL_VENDOR)), var20, var21, 16776960, 7);
                                             var21 += 15;
                                             Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(vendor), var20, var21, vendorColor, 4);
                                             var21 += 15;
-                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(HDToolKit.gl.glGetString(GL.GL_RENDERER)), var20, var21, 16776960, 7);
+                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(glGetString(GL_RENDERER)), var20, var21, 16776960, 7);
                                             var21 += 15;
                                             Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse("Oncard Geometry: " + Class31.anInt585), var20, var21, 16776960, 7);
                                             var21 += 15;
@@ -4647,12 +4649,12 @@ public class Unsorted {
                                                         }
 
                                                         HDToolKit.method1846();
-                                                        HDToolKit.method1831(true);
-                                                        HDToolKit.method1827(false);
+                                                        HDToolKit.enableDepthTest(true);
+                                                        HDToolKit.enableFog(false);
                                                         Class3_Sub13_Sub33.method324(anInt3625);
                                                         if (aBoolean47) {
                                                             Class22.resetClipping();
-                                                            HDToolKit.method1841();
+                                                            HDToolKit.clearAccumulationBuffer();
                                                             Class22.setClipping(var0, var6, var4, var7);
                                                             aBoolean47 = false;
                                                         }

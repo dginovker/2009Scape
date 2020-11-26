@@ -16,8 +16,8 @@ dependencies {
     runtimeOnly files('libs/lwjgl-opengl-natives-linux.jar')
     runtimeOnly files('libs/lwjgl-glfw-natives-linux.jar')
 
-    implementation files('libs/gluegen-rt.jar')
-    implementation files('libs/jogl-all.jar')
+//    implementation files('libs/gluegen-rt.jar')
+//    implementation files('libs/jogl-all.jar')
 }
 
 jar {

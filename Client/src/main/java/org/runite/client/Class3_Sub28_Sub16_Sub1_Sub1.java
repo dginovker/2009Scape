@@ -1,6 +1,8 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 
 import java.nio.ByteBuffer;
 
@@ -40,15 +42,14 @@ final class Class3_Sub28_Sub16_Sub1_Sub1 extends HDSprite {
         }
 
         ByteBuffer var9 = ByteBuffer.wrap(var2);
-        GL2 var10 = HDToolKit.gl;
         if (this.anInt4077 == -1) {
             int[] var11 = new int[1];
-            var10.glGenTextures(1, var11, 0);
+            glGenTextures(var11);//1, array, 0
             this.anInt4077 = var11[0];
         }
 
         HDToolKit.bindTexture2D(this.anInt4077);
-        var10.glTexImage2D(3553, 0, 6408, this.anInt4075, this.anInt4079, 0, 6408, 5121, var9);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this.anInt4075, this.anInt4079, 0, GL_RGBA, GL_UNSIGNED_BYTE, var9);
         Class31.memory2D += var9.limit() - this.anInt4074;
         this.anInt4074 = var9.limit();
     }

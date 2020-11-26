@@ -1,10 +1,12 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
-import com.jogamp.opengl.glu.gl2.GLUgl2;
+import org.lwjgl.opengl.GLUtil;
 import org.rs09.client.Node;
 
 import java.nio.ByteBuffer;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 
 final class Class3_Sub28_Sub20 extends Node {
 
@@ -292,33 +294,33 @@ final class Class3_Sub28_Sub20 extends Node {
     final boolean method719(CacheIndex var1, Interface2 var2, boolean var4) {
         try {
             if (this.aClass82_3790.method1408(var2, var1)) {
-                GL2 var5 = HDToolKit.gl;
-                int var6 = !var4 ? 128 : 64;
+                int var6 = !var4 ? 128 : 64;//Texture size, either 128x128 or 64x64 for Low-HD Textures
                 int var7 = Class27.method961();
                 if ((1 & var7) == 0) {
                     if (this.anInt3795 == -1) {
                         int[] var8 = new int[1];
-                        var5.glGenTextures(1, var8, 0);
+                        glGenTextures(var8);//1, array, 0
                         this.anInt3791 = Class31.anInt582;
                         this.anInt3795 = var8[0];
                         HDToolKit.bindTexture2D(this.anInt3795);
                         ByteBuffer var9 = ByteBuffer.wrap(this.aClass82_3790.method1407(var6, var6, this.aBoolean3800, var2, var1));
                         if (2 == this.anInt3788) {
-                            GLUgl2 var14 = new GLUgl2();
-                            var14.gluBuild2DMipmaps(3553, 6408, var6, var6, 6408, 5121, var9);
-                            var5.glTexParameteri(3553, 10241, 9987);
-                            var5.glTexParameteri(3553, 10240, 9729);
+                            //Old Gluegen by JOGL TODO: Verify that glTexImage2D is a good replacement for (OLD AF) Glugen
+                            //gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, var6, var6, GL_RGBA, GL_UNSIGNED_BYTE, var9);
+                            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, var6, var6, 0, GL_RGBA, GL_UNSIGNED_BYTE, var9);
+                            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+                            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
                             Class31.anInt580 += 4 * var9.limit() / 3 - this.anInt3796;
                             this.anInt3796 = var9.limit() * 4 / 3;
                         } else if (this.anInt3788 == 1) {
                             int var10 = 0;
 
                             while (true) {
-                                var5.glTexImage2D(3553, var10++, 6408, var6, var6, 0, 6408, 5121, var9);
+                                glTexImage2D(GL_TEXTURE_2D, var10++, GL_RGBA, var6, var6, 0, GL_RGBA, GL_UNSIGNED_BYTE, var9);
                                 var6 >>= 1;
                                 if (0 == var6) {
-                                    var5.glTexParameteri(3553, 10241, 9987);
-                                    var5.glTexParameteri(3553, 10240, 9729);
+                                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+                                    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
                                     Class31.anInt580 += var9.limit() * 4 / 3 - this.anInt3796;
                                     this.anInt3796 = 4 * var9.limit() / 3;
                                     break;
@@ -327,15 +329,15 @@ final class Class3_Sub28_Sub20 extends Node {
                                 var9 = ByteBuffer.wrap(this.aClass82_3790.method1407(var6, var6, this.aBoolean3800, var2, var1));
                             }
                         } else {
-                            var5.glTexImage2D(3553, 0, 6408, var6, var6, 0, 6408, 5121, var9);
-                            var5.glTexParameteri(3553, 10241, 9729);
-                            var5.glTexParameteri(3553, 10240, 9729);
+                            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, var6, var6, 0, GL_RGBA, GL_UNSIGNED_BYTE, var9);
+                            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
                             Class31.anInt580 += var9.limit() - this.anInt3796;
                             this.anInt3796 = var9.limit();
                         }
 
-                        var5.glTexParameteri(3553, 10242, !this.aBoolean3787 ? '\u812f' : 10497);
-                        var5.glTexParameteri(3553, 10243, this.aBoolean3781 ? 10497 : '\u812f');
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, !this.aBoolean3787 ? GL_CLAMP_TO_EDGE : GL_REPEAT);
+                        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, this.aBoolean3781 ? GL_REPEAT : GL_CLAMP_TO_EDGE);
                     } else {
                         HDToolKit.bindTexture2D(this.anInt3795);
                     }
@@ -381,15 +383,6 @@ final class Class3_Sub28_Sub20 extends Node {
             throw ClientErrorException.clientError(var6, "uh.O(" + false + ',' + var2 + ',' + (var3 != null ? "{...}" : "null") + ',' + (var4 != null ? "{...}" : "null") + ')');
         }
     }
-
-//   static void method724() {
-//      try {
-//         Class163_Sub2_Sub1.aReferenceCache_4015.clearSoftReferences();
-//
-//      } catch (RuntimeException var2) {
-//         throw ClientErrorException.clientError(var2, "uh.B(" + -109 + ')');
-//      }
-//   }
 
     final boolean method722(Interface2 var2, CacheIndex var3) {
         try {

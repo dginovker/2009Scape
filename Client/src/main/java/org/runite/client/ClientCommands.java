@@ -1,6 +1,8 @@
 package org.runite.client;
 
 
+import static org.lwjgl.opengl.GL11.GL_SRC_COLOR;
+
 public class ClientCommands {
 
     static boolean commandQaOpEnabled = false;
@@ -117,7 +119,7 @@ public class ClientCommands {
             }
 
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_HIGHRES_GRAPHICS_FULLSCREEN)) {
-                GameObject.graphicsSettings(false, 3, 1024, 768);
+                GameObject.graphicsSettings(false, 3, 1024, GL_SRC_COLOR);
             }
 
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_NOCLIP)) {

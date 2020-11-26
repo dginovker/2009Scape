@@ -1,7 +1,8 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL;
-import com.jogamp.opengl.GL2;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 
 import java.nio.ByteBuffer;
 
@@ -42,13 +43,12 @@ class HDSprite extends AbstractSprite {
     private void method644(int var1) {
         if (this.anInt4078 != var1) {
             this.anInt4078 = var1;
-            GL2 var2 = HDToolKit.gl;
             if (var1 == 2) {
-                var2.glTexParameteri(3553, 10241, 9729);
-                var2.glTexParameteri(3553, 10240, 9729);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
             } else {
-                var2.glTexParameteri(3553, 10241, 9728);
-                var2.glTexParameteri(3553, 10240, 9728);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+                glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
             }
 
         }
@@ -59,47 +59,45 @@ class HDSprite extends AbstractSprite {
             HDToolKit.method1822();
             HDToolKit.bindTexture2D(var3.anInt4077);
             var3.method644(1);
-            GL2 var4 = HDToolKit.gl;
             HDToolKit.bindTexture2D(this.anInt4077);
             this.method644(1);
-            var4.glActiveTexture('\u84c1');
-            var4.glEnable(3553);
-            var4.glBindTexture(3553, var3.anInt4077);
-            var4.glTexEnvi(8960, '\u8571', 7681);
-            var4.glTexEnvi(8960, '\u8580', '\u8578');
+            glActiveTexture(GL_TEXTURE1);
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, var3.anInt4077);
+            glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_REPLACE);
+            glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_PREVIOUS);
             float var5 = (float) (interfaceWidth - Class22.anInt449) / (float) var3.anInt4075;
             float var6 = (float) (interfaceHeight - Class22.anInt448) / (float) var3.anInt4079;
             float var7 = (float) (interfaceWidth + this.anInt3707 - Class22.anInt449) / (float) var3.anInt4075;
             float var8 = (float) (interfaceHeight + this.anInt3696 - Class22.anInt448) / (float) var3.anInt4079;
             interfaceWidth += this.anInt3701;
             interfaceHeight += this.anInt3698;
-            var4.glBegin(GL.GL_TRIANGLE_FAN);
-            var4.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            glBegin(GL_TRIANGLE_FAN);
+            glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             float var9 = (float) this.anInt3707 / (float) this.anInt4075;
             float var10 = (float) this.anInt3696 / (float) this.anInt4079;
-            var4.glMultiTexCoord2f('\u84c1', var7, var6);
-            var4.glTexCoord2f(var9, 0.0F);
-            var4.glVertex2f((float) (interfaceWidth + this.anInt3707), (float) (HDToolKit.viewHeight - interfaceHeight));
-            var4.glMultiTexCoord2f('\u84c1', var5, var6);
-            var4.glTexCoord2f(0.0F, 0.0F);
-            var4.glVertex2f((float) interfaceWidth, (float) (HDToolKit.viewHeight - interfaceHeight));
-            var4.glMultiTexCoord2f('\u84c1', var5, var8);
-            var4.glTexCoord2f(0.0F, var10);
-            var4.glVertex2f((float) interfaceWidth, (float) (HDToolKit.viewHeight - (interfaceHeight + this.anInt3696)));
-            var4.glMultiTexCoord2f('\u84c1', var7, var8);
-            var4.glTexCoord2f(var9, var10);
-            var4.glVertex2f((float) (interfaceWidth + this.anInt3707), (float) (HDToolKit.viewHeight - (interfaceHeight + this.anInt3696)));
-            var4.glEnd();
-            var4.glTexEnvi(8960, '\u8571', 8448);
-            var4.glTexEnvi(8960, '\u8580', 5890);
-            var4.glDisable(3553);
-            var4.glActiveTexture('\u84c0');
+            glMultiTexCoord2f(GL_TEXTURE1, var7, var6);
+            glTexCoord2f(var9, 0.0F);
+            glVertex2f((float) (interfaceWidth + this.anInt3707), (float) (HDToolKit.viewHeight - interfaceHeight));
+            glMultiTexCoord2f(GL_TEXTURE1, var5, var6);
+            glTexCoord2f(0.0F, 0.0F);
+            glVertex2f((float) interfaceWidth, (float) (HDToolKit.viewHeight - interfaceHeight));
+            glMultiTexCoord2f(GL_TEXTURE1, var5, var8);
+            glTexCoord2f(0.0F, var10);
+            glVertex2f((float) interfaceWidth, (float) (HDToolKit.viewHeight - (interfaceHeight + this.anInt3696)));
+            glMultiTexCoord2f(GL_TEXTURE1, var7, var8);
+            glTexCoord2f(var9, var10);
+            glVertex2f((float) (interfaceWidth + this.anInt3707), (float) (HDToolKit.viewHeight - (interfaceHeight + this.anInt3696)));
+            glEnd();
+            glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+            glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
+            glDisable(GL_TEXTURE_2D);
+            glActiveTexture(GL_TEXTURE0);
         }
     }
 
     final void method646(int var1, int var2, int var3, int var4, int var5) {
         HDToolKit.method1828();
-        GL2 var6 = HDToolKit.gl;
         HDToolKit.bindTexture2D(this.anInt4077);
         this.method644(1);
         float var7 = (float) this.anInt3707 / (float) this.anInt4075;
@@ -111,17 +109,17 @@ class HDSprite extends AbstractSprite {
         int var11 = HDToolKit.viewHeight - var2 - this.anInt3698;
         int var12 = var11 - this.anInt3696 * var5;
         float var13 = (float) var3 / 256.0F;
-        var6.glBegin(GL.GL_TRIANGLE_FAN);
-        var6.glColor4f(1.0F, 1.0F, 1.0F, var13);
-        var6.glTexCoord2f(var7, 0.0F);
-        var6.glVertex2f((float) var10, (float) var11);
-        var6.glTexCoord2f(0.0F, 0.0F);
-        var6.glVertex2f((float) var9, (float) var11);
-        var6.glTexCoord2f(0.0F, var8);
-        var6.glVertex2f((float) var9, (float) var12);
-        var6.glTexCoord2f(var7, var8);
-        var6.glVertex2f((float) var10, (float) var12);
-        var6.glEnd();
+        glBegin(GL_TRIANGLE_FAN);
+        glColor4f(1.0F, 1.0F, 1.0F, var13);
+        glTexCoord2f(var7, 0.0F);
+        glVertex2f((float) var10, (float) var11);
+        glTexCoord2f(0.0F, 0.0F);
+        glVertex2f((float) var9, (float) var11);
+        glTexCoord2f(0.0F, var8);
+        glVertex2f((float) var9, (float) var12);
+        glTexCoord2f(var7, var8);
+        glVertex2f((float) var10, (float) var12);
+        glEnd();
     }
 
     final void drawMinimapRegion(int x, int y, int width, int height, int playerRelativeX, int playerRelativeY, int regionRotation, int zoom, HDSprite var9) {
@@ -129,14 +127,13 @@ class HDSprite extends AbstractSprite {
             HDToolKit.method1822();
             HDToolKit.bindTexture2D(var9.anInt4077);
             var9.method644(1);
-            GL2 var10 = HDToolKit.gl;
             HDToolKit.bindTexture2D(this.anInt4077);
             this.method644(1);
-            var10.glActiveTexture('\u84c1');
-            var10.glEnable(3553);
-            var10.glBindTexture(3553, var9.anInt4077);
-            var10.glTexEnvi(8960, '\u8571', 7681);
-            var10.glTexEnvi(8960, '\u8580', '\u8578');
+            glActiveTexture(GL_TEXTURE1);
+            glEnable(GL_TEXTURE_2D);
+            glBindTexture(GL_TEXTURE_2D, var9.anInt4077);
+            glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_REPLACE);
+            glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_PREVIOUS);
             int var11 = -width / 2;
             int var12 = -height / 2;
             int var13 = -var11;
@@ -155,27 +152,27 @@ class HDSprite extends AbstractSprite {
             int var24 = (playerRelativeY << 16) + (var14 * var16 - var13 * var15);
             float var25 = (float) var9.anInt3707 / (float) var9.anInt4075;
             float var26 = (float) var9.anInt3696 / (float) var9.anInt4079;
-            var10.glBegin(GL.GL_TRIANGLE_FAN);
-            var10.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+            glBegin(GL_TRIANGLE_FAN);
+            glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
             float var27 = 65536.0F * (float) this.anInt4075;
             float var28 = (float) (65536 * this.anInt4079);
-            var10.glMultiTexCoord2f('\u84c1', var25, 0.0F);
-            var10.glTexCoord2f((float) var19 / var27, (float) var20 / var28);
-            var10.glVertex2f((float) (x + width), (float) (HDToolKit.viewHeight - y));
-            var10.glMultiTexCoord2f('\u84c1', 0.0F, 0.0F);
-            var10.glTexCoord2f((float) var17 / var27, (float) var18 / var28);
-            var10.glVertex2f((float) x, (float) (HDToolKit.viewHeight - y));
-            var10.glMultiTexCoord2f('\u84c1', 0.0F, var26);
-            var10.glTexCoord2f((float) var21 / var27, (float) var22 / var28);
-            var10.glVertex2f((float) x, (float) (HDToolKit.viewHeight - (y + height)));
-            var10.glMultiTexCoord2f('\u84c1', var25, var26);
-            var10.glTexCoord2f((float) var23 / var27, (float) var24 / var28);
-            var10.glVertex2f((float) (x + width), (float) (HDToolKit.viewHeight - (y + height)));
-            var10.glEnd();
-            var10.glTexEnvi(8960, '\u8571', 8448);
-            var10.glTexEnvi(8960, '\u8580', 5890);
-            var10.glDisable(3553);
-            var10.glActiveTexture('\u84c0');
+            glMultiTexCoord2f(GL_TEXTURE1, var25, 0.0F);
+            glTexCoord2f((float) var19 / var27, (float) var20 / var28);
+            glVertex2f((float) (x + width), (float) (HDToolKit.viewHeight - y));
+            glMultiTexCoord2f(GL_TEXTURE1, 0.0F, 0.0F);
+            glTexCoord2f((float) var17 / var27, (float) var18 / var28);
+            glVertex2f((float) x, (float) (HDToolKit.viewHeight - y));
+            glMultiTexCoord2f(GL_TEXTURE1, 0.0F, var26);
+            glTexCoord2f((float) var21 / var27, (float) var22 / var28);
+            glVertex2f((float) x, (float) (HDToolKit.viewHeight - (y + height)));
+            glMultiTexCoord2f(GL_TEXTURE1, var25, var26);
+            glTexCoord2f((float) var23 / var27, (float) var24 / var28);
+            glVertex2f((float) (x + width), (float) (HDToolKit.viewHeight - (y + height)));
+            glEnd();
+            glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+            glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_TEXTURE);
+            glDisable(GL_TEXTURE_2D);
+            glActiveTexture(GL_TEXTURE0);
         }
     }
 
@@ -183,49 +180,46 @@ class HDSprite extends AbstractSprite {
         HDToolKit.method1822();
         var1 += this.anInt3701;
         var2 += this.anInt3698;
-        GL2 var3 = HDToolKit.gl;
         HDToolKit.bindTexture2D(this.anInt4077);
         this.method644(1);
-        var3.glTranslatef((float) var1, (float) (HDToolKit.viewHeight - var2), 0.0F);
+        glTranslatef((float) var1, (float) (HDToolKit.viewHeight - var2), 0.0F);
         float var4 = (float) this.anInt3707 / (float) this.anInt4075;
         float var5 = (float) this.anInt3696 / (float) this.anInt4079;
-        var3.glBegin(GL.GL_TRIANGLE_FAN);
-        var3.glTexCoord2f(0.0F, 0.0F);
-        var3.glVertex2f((float) this.anInt3707, 0.0F);
-        var3.glTexCoord2f(var4, 0.0F);
-        var3.glVertex2f(0.0F, 0.0F);
-        var3.glTexCoord2f(var4, var5);
-        var3.glVertex2f(0.0F, (float) (-this.anInt3696));
-        var3.glTexCoord2f(0.0F, var5);
-        var3.glVertex2f((float) this.anInt3707, (float) (-this.anInt3696));
-        var3.glEnd();
-        var3.glLoadIdentity();
+        glBegin(GL_TRIANGLE_FAN);
+        glTexCoord2f(0.0F, 0.0F);
+        glVertex2f((float) this.anInt3707, 0.0F);
+        glTexCoord2f(var4, 0.0F);
+        glVertex2f(0.0F, 0.0F);
+        glTexCoord2f(var4, var5);
+        glVertex2f(0.0F, (float) (-this.anInt3696));
+        glTexCoord2f(0.0F, var5);
+        glVertex2f((float) this.anInt3707, (float) (-this.anInt3696));
+        glEnd();
+        glLoadIdentity();
     }
 
     final void method643(int var1, int var2) {
         HDToolKit.method1822();
         var1 += this.anInt3701;
         var2 += this.anInt3698;
-        GL2 var3 = HDToolKit.gl;
         HDToolKit.bindTexture2D(this.anInt4077);
         this.method644(1);
-        var3.glTranslatef((float) var1, (float) (HDToolKit.viewHeight - var2), 0.0F);
-        var3.glCallList(this.anInt4076);
-        var3.glLoadIdentity();
+        glTranslatef((float) var1, (float) (HDToolKit.viewHeight - var2), 0.0F);
+        glCallList(this.anInt4076);
+        glLoadIdentity();
     }
 
     final void method648(int var1, int var2, int var3, int var4, int var5) {
         HDToolKit.method1822();
-        GL2 var7 = HDToolKit.gl;
         HDToolKit.bindTexture2D(this.anInt4077);
         this.method644(2);
         var1 -= this.anInt3701 << 4;
         var2 -= this.anInt3698 << 4;
-        var7.glTranslatef((float) var3 / 16.0F, (float) HDToolKit.viewHeight - (float) var4 / 16.0F, 0.0F);
-        var7.glRotatef((float) (-var5) * 0.005493164F, 0.0F, 0.0F, 1.0F);
-        var7.glTranslatef((float) (-var1) / 16.0F, (float) var2 / 16.0F, 0.0F);
-        var7.glCallList(this.anInt4076);
-        var7.glLoadIdentity();
+        glTranslatef((float) var3 / 16.0F, (float) HDToolKit.viewHeight - (float) var4 / 16.0F, 0.0F);
+        glRotatef((float) (-var5) * 0.005493164F, 0.0F, 0.0F, 1.0F);
+        glTranslatef((float) (-var1) / 16.0F, (float) var2 / 16.0F, 0.0F);
+        glCallList(this.anInt4076);
+        glLoadIdentity();
     }
 
     final void method639(int var1, int var2, int var3, int var4) {
@@ -260,7 +254,6 @@ class HDSprite extends AbstractSprite {
                 var4 = ((var6 << 16) - var8 + var12 - 1) / var12;
             }
 
-            GL2 var20 = HDToolKit.gl;
             HDToolKit.bindTexture2D(this.anInt4077);
             this.method644(2);
             float var14 = (float) var1;
@@ -269,16 +262,16 @@ class HDSprite extends AbstractSprite {
             float var17 = var16 - (float) var4;
             float var18 = (float) this.anInt3707 / (float) this.anInt4075;
             float var19 = (float) this.anInt3696 / (float) this.anInt4079;
-            var20.glBegin(GL.GL_TRIANGLE_FAN);
-            var20.glTexCoord2f(var18, 0.0F);
-            var20.glVertex2f(var15, var16);
-            var20.glTexCoord2f(0.0F, 0.0F);
-            var20.glVertex2f(var14, var16);
-            var20.glTexCoord2f(0.0F, var19);
-            var20.glVertex2f(var14, var17);
-            var20.glTexCoord2f(var18, var19);
-            var20.glVertex2f(var15, var17);
-            var20.glEnd();
+            glBegin(GL_TRIANGLE_FAN);
+            glTexCoord2f(var18, 0.0F);
+            glVertex2f(var15, var16);
+            glTexCoord2f(0.0F, 0.0F);
+            glVertex2f(var14, var16);
+            glTexCoord2f(0.0F, var19);
+            glVertex2f(var14, var17);
+            glTexCoord2f(var18, var19);
+            glVertex2f(var15, var17);
+            glEnd();
         }
     }
 
@@ -286,12 +279,11 @@ class HDSprite extends AbstractSprite {
         HDToolKit.method1822();
         var1 += this.anInt3701;
         var2 += this.anInt3698;
-        GL2 var3 = HDToolKit.gl;
         HDToolKit.bindTexture2D(this.anInt4077);
         this.method644(1);
-        var3.glTranslatef((float) var1, (float) (HDToolKit.viewHeight - var2), 0.0F);
-        var3.glCallList(this.anInt4076);
-        var3.glLoadIdentity();
+        glTranslatef((float) var1, (float) (HDToolKit.viewHeight - var2), 0.0F);
+        glCallList(this.anInt4076);
+        glLoadIdentity();
     }
 
     protected final void finalize() throws Throwable {
@@ -311,20 +303,19 @@ class HDSprite extends AbstractSprite {
 
     final void method636(int var1, int var2, int var3, int var4, int var5, int var6) {
         HDToolKit.method1822();
-        GL2 var7 = HDToolKit.gl;
         HDToolKit.bindTexture2D(this.anInt4077);
         this.method644(1);
         var1 -= this.anInt3701 << 4;
         var2 -= this.anInt3698 << 4;
-        var7.glTranslatef((float) var3 / 16.0F, (float) HDToolKit.viewHeight - (float) var4 / 16.0F, 0.0F);
-        var7.glRotatef((float) var5 * 0.005493164F, 0.0F, 0.0F, 1.0F);
+        glTranslatef((float) var3 / 16.0F, (float) HDToolKit.viewHeight - (float) var4 / 16.0F, 0.0F);
+        glRotatef((float) var5 * 0.005493164F, 0.0F, 0.0F, 1.0F);
         if (var6 != 4096) {
-            var7.glScalef((float) var6 / 4096.0F, (float) var6 / 4096.0F, 0.0F);
+            glScalef((float) var6 / 4096.0F, (float) var6 / 4096.0F, 0.0F);
         }
 
-        var7.glTranslatef((float) (-var1) / 16.0F, (float) var2 / 16.0F, 0.0F);
-        var7.glCallList(this.anInt4076);
-        var7.glLoadIdentity();
+        glTranslatef((float) (-var1) / 16.0F, (float) var2 / 16.0F, 0.0F);
+        glCallList(this.anInt4076);
+        glLoadIdentity();
     }
 
     final void method642(int var1, int var2, int var3, int var4, int var5) {
@@ -359,7 +350,6 @@ class HDSprite extends AbstractSprite {
                 var4 = ((var7 << 16) - var9 + var13 - 1) / var13;
             }
 
-            GL2 var22 = HDToolKit.gl;
             HDToolKit.bindTexture2D(this.anInt4077);
             this.method644(1);
             float var15 = (float) var1;
@@ -369,23 +359,22 @@ class HDSprite extends AbstractSprite {
             float var19 = (float) this.anInt3707 / (float) this.anInt4075;
             float var20 = (float) this.anInt3696 / (float) this.anInt4079;
             float var21 = (float) var5 / 256.0F;
-            var22.glBegin(GL.GL_TRIANGLE_FAN);
-            var22.glColor4f(1.0F, 1.0F, 1.0F, var21);
-            var22.glTexCoord2f(var19, 0.0F);
-            var22.glVertex2f(var16, var17);
-            var22.glTexCoord2f(0.0F, 0.0F);
-            var22.glVertex2f(var15, var17);
-            var22.glTexCoord2f(0.0F, var20);
-            var22.glVertex2f(var15, var18);
-            var22.glTexCoord2f(var19, var20);
-            var22.glVertex2f(var16, var18);
-            var22.glEnd();
+            glBegin(GL_TRIANGLE_FAN);
+            glColor4f(1.0F, 1.0F, 1.0F, var21);
+            glTexCoord2f(var19, 0.0F);
+            glVertex2f(var16, var17);
+            glTexCoord2f(0.0F, 0.0F);
+            glVertex2f(var15, var17);
+            glTexCoord2f(0.0F, var20);
+            glVertex2f(var15, var18);
+            glTexCoord2f(var19, var20);
+            glVertex2f(var16, var18);
+            glEnd();
         }
     }
 
     final void method649(int var1, int var2, int var3, int var4) {
         HDToolKit.method1822();
-        GL2 var5 = HDToolKit.gl;
         HDToolKit.bindTexture2D(this.anInt4077);
         this.method644(1);
         float var6 = (float) this.anInt3707 / (float) this.anInt4075;
@@ -396,16 +385,16 @@ class HDSprite extends AbstractSprite {
         int var9 = var8 + this.anInt3707 * var3;
         int var10 = HDToolKit.viewHeight - var2 - this.anInt3698;
         int var11 = var10 - this.anInt3696 * var4;
-        var5.glBegin(GL.GL_TRIANGLE_FAN);
-        var5.glTexCoord2f(var6, 0.0F);
-        var5.glVertex2f((float) var9, (float) var10);
-        var5.glTexCoord2f(0.0F, 0.0F);
-        var5.glVertex2f((float) var8, (float) var10);
-        var5.glTexCoord2f(0.0F, var7);
-        var5.glVertex2f((float) var8, (float) var11);
-        var5.glTexCoord2f(var6, var7);
-        var5.glVertex2f((float) var9, (float) var11);
-        var5.glEnd();
+        glBegin(GL_TRIANGLE_FAN);
+        glTexCoord2f(var6, 0.0F);
+        glVertex2f((float) var9, (float) var10);
+        glTexCoord2f(0.0F, 0.0F);
+        glVertex2f((float) var8, (float) var10);
+        glTexCoord2f(0.0F, var7);
+        glVertex2f((float) var8, (float) var11);
+        glTexCoord2f(var6, var7);
+        glVertex2f((float) var9, (float) var11);
+        glEnd();
     }
 
     void method650(int[] var1) {
@@ -433,16 +422,15 @@ class HDSprite extends AbstractSprite {
         }
 
         ByteBuffer var9 = ByteBuffer.wrap(var2);
-        GL2 var10 = HDToolKit.gl;
         if (this.anInt4077 == -1) {
             int[] var11 = new int[1];
-            var10.glGenTextures(1, var11, 0);
+            glGenTextures(var11);//1, array, 0
             this.anInt4077 = var11[0];
             this.anInt4080 = Class31.anInt582;
         }
 
         HDToolKit.bindTexture2D(this.anInt4077);
-        var10.glTexImage2D(3553, 0, 6408, this.anInt4075, this.anInt4079, 0, 6408, 5121, var9);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, this.anInt4075, this.anInt4079, 0, GL_RGBA, GL_UNSIGNED_BYTE, var9);
         Class31.memory2D += var9.limit() - this.anInt4074;
         this.anInt4074 = var9.limit();
     }
@@ -451,35 +439,33 @@ class HDSprite extends AbstractSprite {
         HDToolKit.method1828();
         var1 += this.anInt3701;
         var2 += this.anInt3698;
-        GL2 var4 = HDToolKit.gl;
         HDToolKit.bindTexture2D(this.anInt4077);
         this.method644(1);
-        var4.glColor4f(1.0F, 1.0F, 1.0F, (float) var3 / 256.0F);
-        var4.glTranslatef((float) var1, (float) (HDToolKit.viewHeight - var2), 0.0F);
-        var4.glCallList(this.anInt4076);
-        var4.glLoadIdentity();
+        glColor4f(1.0F, 1.0F, 1.0F, (float) var3 / 256.0F);
+        glTranslatef((float) var1, (float) (HDToolKit.viewHeight - var2), 0.0F);
+        glCallList(this.anInt4076);
+        glLoadIdentity();
     }
 
     private void method651() {
         float var1 = (float) this.anInt3707 / (float) this.anInt4075;
         float var2 = (float) this.anInt3696 / (float) this.anInt4079;
-        GL2 var3 = HDToolKit.gl;
         if (this.anInt4076 == -1) {
-            this.anInt4076 = var3.glGenLists(1);
+            this.anInt4076 = glGenLists(1);
             this.anInt4080 = Class31.anInt582;
         }
 
-        var3.glNewList(this.anInt4076, 4864);
-        var3.glBegin(GL.GL_TRIANGLE_FAN);
-        var3.glTexCoord2f(var1, 0.0F);
-        var3.glVertex2f((float) this.anInt3707, 0.0F);
-        var3.glTexCoord2f(0.0F, 0.0F);
-        var3.glVertex2f(0.0F, 0.0F);
-        var3.glTexCoord2f(0.0F, var2);
-        var3.glVertex2f(0.0F, (float) (-this.anInt3696));
-        var3.glTexCoord2f(var1, var2);
-        var3.glVertex2f((float) this.anInt3707, (float) (-this.anInt3696));
-        var3.glEnd();
-        var3.glEndList();
+        glNewList(this.anInt4076, GL_COMPILE);
+        glBegin(GL_TRIANGLE_FAN);
+        glTexCoord2f(var1, 0.0F);
+        glVertex2f((float) this.anInt3707, 0.0F);
+        glTexCoord2f(0.0F, 0.0F);
+        glVertex2f(0.0F, 0.0F);
+        glTexCoord2f(0.0F, var2);
+        glVertex2f(0.0F, (float) (-this.anInt3696));
+        glTexCoord2f(var1, var2);
+        glVertex2f((float) this.anInt3707, (float) (-this.anInt3696));
+        glEnd();
+        glEndList();
     }
 }

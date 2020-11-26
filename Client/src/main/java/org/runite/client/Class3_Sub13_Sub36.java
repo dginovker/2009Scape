@@ -134,8 +134,8 @@ public final class Class3_Sub13_Sub36 extends Class3_Sub13 {
             byte var19 = Class137.method1817() != 2 ? 1 : (byte) Class79.anInt1127;
             if (HDToolKit.highDetail) {
                 HDToolKit.method1846();
-                HDToolKit.method1831(true);
-                HDToolKit.method1827(true);
+                HDToolKit.enableDepthTest(true);
+                HDToolKit.enableFog(true);
                 if (Class143.loadingStage == 10) {
                     var12 = Class3_Sub30_Sub1.method809(Class106.anInt1446, Class77.anInt1111 >> 10, Unsorted.anInt3625, NPC.anInt3995 >> 10);
                 } else {

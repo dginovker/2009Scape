@@ -1,6 +1,8 @@
 package org.runite.client;
 
-import com.jogamp.opengl.GL2;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.*;
+import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 import org.rs09.client.Node;
 
 import java.lang.reflect.Method;
@@ -19,18 +21,18 @@ final class Class3_Sub28_Sub18 extends Node {
 
     Class3_Sub28_Sub18(int var1) {
         try {
-            GL2 var2 = HDToolKit.gl;
+
             int[] var3 = new int[1];
-            var2.glGenTextures(1, var3, 0);
+            glGenTextures(var3);//1, array, 0
             this.anInt3759 = var3[0];
             this.anInt3760 = Class31.anInt582;
             HDToolKit.bindTexture2D(this.anInt3759);
             int var4 = Class51.anIntArray834[var1];
             byte[] var5 = new byte[]{(byte) (var4 >> 16), (byte) (var4 >> 8), (byte) var4, (byte) -1};
             ByteBuffer var6 = ByteBuffer.wrap(var5);
-            var2.glTexImage2D(3553, 0, 6408, 1, 1, 0, 6408, 5121, var6);
-            var2.glTexParameteri(3553, 10241, 9729);
-            var2.glTexParameteri(3553, 10240, 9729);
+            glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1, 0, GL_RGBA, GL_UNSIGNED_BYTE, var6);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
             Class31.anInt580 += var6.limit() - this.anInt3767;
             this.anInt3767 = var6.limit();
         } catch (RuntimeException var7) {
@@ -62,14 +64,6 @@ final class Class3_Sub28_Sub18 extends Node {
         Class75_Sub2.aClass3_Sub2ArrayArrayArray2638[0][var0][var1].aClass3_Sub2_2235 = var2;
         Class75_Sub2.aClass3_Sub2ArrayArrayArray2638[3][var0][var1] = null;
     }
-
-//   static void method710() {
-//      try {
-//         Class44.aReferenceCache_725.clearSoftReferences();
-//      } catch (RuntimeException var2) {
-//         throw ClientErrorException.clientError(var2, "sd.C(" + (byte) 126 + ')');
-//      }
-//   }
 
     static void method713() {
         try {
