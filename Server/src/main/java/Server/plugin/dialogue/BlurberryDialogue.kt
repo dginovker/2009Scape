@@ -67,7 +67,7 @@ class BlurberryDialogue(player: Player? = null): DialoguePlugin(player) {
 
             21 -> {
                 player.dialogueInterpreter.sendDialogue("You hand over the fruit blast.")
-                player.inventory.remove(Item(ItemNames.FRUIT_BLAST_2084))
+                player.inventory.remove(Item(ItemNames.FRUIT_BLAST_9514))
                 player.setAttribute("/save:$GC_BASE_ATTRIBUTE:$GC_TUT_PROG",22)
                 stage++
             }

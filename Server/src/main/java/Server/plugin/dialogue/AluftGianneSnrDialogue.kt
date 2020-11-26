@@ -160,17 +160,21 @@ class AluftGianneSnrDialogue(player: Player? = null) : DialoguePlugin(player) {
 
     internal class GnomeRestaurantPulse(val player: Player,val minutes: Long): Pulse(){
         var endTime = 0L
+        var timerMsgSent = false
         init {
             endTime = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(minutes)
         }
 
         override fun pulse(): Boolean{
-            val isComplete = player.getAttribute("$GC_BASE_ATTRIBUTE:$GC_JOB_COMPLETE",false)
+            val isComplete = player.getAttribute("$GC_BASE_ATTRIBUTE:$GC_JOB_ORDINAL",-1) == -1
 
             val minsLeft = TimeUnit.MILLISECONDS.toMinutes(endTime - System.currentTimeMillis())
 
-            if(minsLeft % 2L == 0L){
+            if(minsLeft % 2L == 0L && !timerMsgSent){
+                timerMsgSent = true
                 player.sendMessage(colorize("%RYou have $minsLeft minutes remaining on your job."))
+            } else {
+                timerMsgSent = false
             }
 
             if(System.currentTimeMillis() >= endTime){

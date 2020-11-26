@@ -14,8 +14,8 @@ object GnomeTipper {
 
     private val hardTips = arrayListOf(
             //Uniques Weight = 18
-            WeightedChanceItem(ItemNames.GNOME_GOGGLES_9472,1,6),
-            WeightedChanceItem(ItemNames.GNOME_SCARF_9470,1,6),
+            WeightedChanceItem(ItemNames.GNOME_GOGGLES_9472,1,2),
+            WeightedChanceItem(ItemNames.GNOME_SCARF_9470,1,2),
             WeightedChanceItem(ItemNames.GRAND_SEED_POD_9469,5,7),
             WeightedChanceItem(ItemNames.MINT_CAKE_9475,1,4),
             WeightedChanceItem(ItemNames.GNOMEBALL_751,1,4),

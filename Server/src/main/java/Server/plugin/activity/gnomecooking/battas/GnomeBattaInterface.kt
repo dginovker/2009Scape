@@ -84,7 +84,7 @@ class GnomeBattaInterface : ComponentPlugin() {
     internal enum class CookedProduct(val product: Int,val levelReq: Int, val experience: Double, val requiredItems: Array<Item>){
         HALF_MADE_CT(9478,29,40.0, arrayOf(Item(ItemNames.TOMATO), Item(ItemNames.CHEESE_1985))),
         HALF_MADE_FR(9480,25,40.0, arrayOf(Item(ItemNames.EQUA_LEAVES_2128,4), Item(ItemNames.LIME_CHUNKS_2122), Item(ItemNames.ORANGE_CHUNKS_2110), Item(ItemNames.PINEAPPLE_CHUNKS_2116))),
-        HALF_MADE_TO(9482,26,40.0, arrayOf(Item(ItemNames.EQUA_LEAVES_2128), Item(ItemNames.CHEESE_1985), Item(ItemNames.TOADS_LEGS_2152))),
+        HALF_MADE_TO(9482,26,40.0, arrayOf(Item(ItemNames.EQUA_LEAVES_2128), Item(ItemNames.CHEESE_1985), Item(ItemNames.TOADS_LEGS_2152,2))),
         HALF_MADE_VE(9483,28,40.0, arrayOf(Item(ItemNames.TOMATO,2), Item(ItemNames.CHEESE_1985), Item(ItemNames.DWELLBERRIES_2126), Item(ItemNames.ONION_1957), Item(ItemNames.CABBAGE))),
         HALF_MADE_WO(9485,27,40.0, arrayOf(Item(ItemNames.KING_WORM_2162), Item(ItemNames.CHEESE_1985)))
     }
