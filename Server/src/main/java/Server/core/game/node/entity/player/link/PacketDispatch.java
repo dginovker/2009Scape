@@ -378,6 +378,14 @@ public final class PacketDispatch {
 		PacketRepository.send(Config.class, new ConfigContext(player, id, value, cs2));
 	}
 
+	public void sendLeftShiftedVarbit(int varpIndex, int offset, int value){
+		player.getConfigManager().set(varpIndex, (value << offset));
+	}
+
+	public void sendRightShiftedVarbit(int varpIndex, int offset, int value){
+		player.getConfigManager().set(varpIndex, (value >> offset));
+	}
+
 
 	/**
 	 * Gets the player.
