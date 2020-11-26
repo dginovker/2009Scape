@@ -173,7 +173,7 @@ class AluftGianneSnrDialogue(player: Player? = null) : DialoguePlugin(player) {
             if(minsLeft % 2L == 0L && !timerMsgSent){
                 timerMsgSent = true
                 player.sendMessage(colorize("%RYou have $minsLeft minutes remaining on your job."))
-            } else {
+            } else if(minsLeft % 2L != 0L) {
                 timerMsgSent = false
             }
 
