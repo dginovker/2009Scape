@@ -8,6 +8,7 @@ final class Player extends Class140_Sub4 {
     static byte aByte3953;
     static int[] anIntArray3954 = new int[100];
     static int[] anIntArray3959 = new int[2];
+    static Player player;
     int anInt3952 = -1;
     int headIcon = -1;
     int teamId = 0;
@@ -260,7 +261,7 @@ final class Player extends Class140_Sub4 {
                         }
                     }
 
-                    if (Class102.player == this) {
+                    if (player == this) {
                         for (var17 = ClientErrorException.aClass96Array2114.length + -1; var17 >= 0; --var17) {
                             Class96 var27 = ClientErrorException.aClass96Array2114[var17];
                             if (var27 != null && var27.anInt1355 != -1) {
@@ -269,23 +270,23 @@ final class Player extends Class140_Sub4 {
                                 if (var27.anInt1360 == 1 && 0 <= var27.anInt1359 && var27.anInt1359 < NPC.npcs.length) {
                                     NPC var24 = NPC.npcs[var27.anInt1359];
                                     if (null != var24) {
-                                        var20 = var24.anInt2819 / 32 - Class102.player.anInt2819 / 32;
-                                        var21 = -(Class102.player.anInt2829 / 32) + var24.anInt2829 / 32;
+                                        var20 = var24.anInt2819 / 32 - player.anInt2819 / 32;
+                                        var21 = -(player.anInt2829 / 32) + var24.anInt2829 / 32;
                                         this.method1979(null, var21, var15, var20, var6, var11, var1, var8, var5, var4, var2, var27.anInt1355, var3, var7);
                                     }
                                 }
 
                                 if (var27.anInt1360 == 2) {
-                                    int var29 = 4 * (-Class131.anInt1716 + var27.anInt1356) + 2 + -(Class102.player.anInt2819 / 32);
-                                    var20 = 2 + (4 * (var27.anInt1347 - Class82.anInt1152) - Class102.player.anInt2829 / 32);
+                                    int var29 = 4 * (-Class131.anInt1716 + var27.anInt1356) + 2 + -(player.anInt2819 / 32);
+                                    var20 = 2 + (4 * (var27.anInt1347 - Class82.anInt1152) - player.anInt2829 / 32);
                                     this.method1979(null, var20, var15, var29, var6, var11, var1, var8, var5, var4, var2, var27.anInt1355, var3, var7);
                                 }
 
                                 if (var27.anInt1360 == 10 && var27.anInt1359 >= 0 && var27.anInt1359 < Class3_Sub13_Sub22.players.length) {
                                     Player var28 = Class3_Sub13_Sub22.players[var27.anInt1359];
                                     if (null != var28) {
-                                        var20 = -(Class102.player.anInt2819 / 32) + var28.anInt2819 / 32;
-                                        var21 = var28.anInt2829 / 32 + -(Class102.player.anInt2829 / 32);
+                                        var20 = -(player.anInt2819 / 32) + var28.anInt2819 / 32;
+                                        var21 = var28.anInt2829 / 32 + -(player.anInt2829 / 32);
                                         this.method1979(null, var21, var15, var20, var6, var11, var1, var8, var5, var4, var2, var27.anInt1355, var3, var7);
                                     }
                                 }

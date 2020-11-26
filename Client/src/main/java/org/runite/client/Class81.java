@@ -86,7 +86,7 @@ final class Class81 {
                         }
                     }
 
-                    if (var4.equalsString(Class102.player.displayName)) {
+                    if (var4.equalsString(Player.player.displayName)) {
                         Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_3672, 0, TextCore.HasOnOwnIgnoreList, -1);
                     } else {
                         Class114.ignores[Class3_Sub28_Sub5.anInt3591] = var1;

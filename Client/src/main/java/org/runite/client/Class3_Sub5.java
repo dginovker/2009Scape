@@ -202,7 +202,7 @@ final class Class3_Sub5 extends Linkable {
     static void method116(boolean var0) {
         try {
             int var2 = Class159.localPlayerCount;
-            if (Class65.anInt987 == Class102.player.anInt2819 >> 7 && Class45.anInt733 == Class102.player.anInt2829 >> 7) {
+            if (Class65.anInt987 == Player.player.anInt2819 >> 7 && Class45.anInt733 == Player.player.anInt2829 >> 7) {
                 Class65.anInt987 = 0;
             }
 
@@ -219,7 +219,7 @@ final class Class3_Sub5 extends Linkable {
             int var11;
             for (var3 = 0; var3 < var2; ++var3) {
                 if (var0) {
-                    var4 = Class102.player;
+                    var4 = Player.player;
                 } else {
                     var4 = Class3_Sub13_Sub22.players[Class56.localPlayerIndexes[var3]];
                 }
@@ -269,7 +269,7 @@ final class Class3_Sub5 extends Linkable {
             for (var3 = 0; var3 < var2; ++var3) {
                 long var16;
                 if (var0) {
-                    var4 = Class102.player;
+                    var4 = Player.player;
                     var16 = 8791798054912L;
                 } else {
                     var4 = Class3_Sub13_Sub22.players[Class56.localPlayerIndexes[var3]];

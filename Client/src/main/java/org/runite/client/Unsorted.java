@@ -1,7 +1,6 @@
 package org.runite.client;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 
 import org.lwjgl.Version;
@@ -172,8 +171,8 @@ public class Unsorted {
 
     static void method2086() {
         try {
-            int var1 = Class102.player.anInt2819 + Class3_Sub13_Sub13.anInt3216;
-            int var2 = Class102.player.anInt2829 - -anInt42;
+            int var1 = Player.player.anInt2819 + Class3_Sub13_Sub13.anInt3216;
+            int var2 = Player.player.anInt2829 - -anInt42;
             if (-var1 + anInt3155 < -500 || -var1 + anInt3155 > 500 || anInt942 + -var2 < -500 || -var2 + anInt942 > 500) {
                 anInt3155 = var1;
                 anInt942 = var2;
@@ -889,7 +888,7 @@ public class Unsorted {
                 var2.method1973(2279 + -2395);
             }
 
-            if (var2 == Class102.player && (var2.anInt2819 < 1536 || var2.anInt2829 < 1536 || var2.anInt2819 >= 11776 || var2.anInt2829 >= 11776)) {
+            if (var2 == Player.player && (var2.anInt2819 < 1536 || var2.anInt2829 < 1536 || var2.anInt2819 >= 11776 || var2.anInt2829 >= 11776)) {
                 var2.anInt2842 = -1;
                 var2.anInt2800 = 0;
                 var2.anInt2790 = 0;
@@ -1073,7 +1072,7 @@ public class Unsorted {
                     int var5;
                     if (type == 1) { //Walk
                         var4 = GraphicDefinition.incomingBuffer.getBits(3);
-                        Class102.player.walkStep(1, (byte) -128, var4);
+                        Player.player.walkStep(1, (byte) -128, var4);
                         var5 = GraphicDefinition.incomingBuffer.getBits(1);
                         if (var5 == 1) {
                             Class21.maskUpdateIndexes[maskUpdateCount++] = 2047;
@@ -1082,12 +1081,12 @@ public class Unsorted {
                     } else if (2 == type) {
                         if (GraphicDefinition.incomingBuffer.getBits(1) == 1) {
                             var4 = GraphicDefinition.incomingBuffer.getBits(3);
-                            Class102.player.walkStep(2, (byte) -104, var4);
+                            Player.player.walkStep(2, (byte) -104, var4);
                             var5 = GraphicDefinition.incomingBuffer.getBits(3);
-                            Class102.player.walkStep(2, (byte) -126, var5);
+                            Player.player.walkStep(2, (byte) -126, var5);
                         } else {
                             var4 = GraphicDefinition.incomingBuffer.getBits(3);
-                            Class102.player.walkStep(0, (byte) -109, var4);
+                            Player.player.walkStep(0, (byte) -109, var4);
                         }
 
                         var4 = GraphicDefinition.incomingBuffer.getBits(1);
@@ -1105,7 +1104,7 @@ public class Unsorted {
                         }
 
                         int var7 = GraphicDefinition.incomingBuffer.getBits(7);
-                        Class102.player.method1981(var7, var5 == 1, var4);
+                        Player.player.method1981(var7, var5 == 1, var4);
                     }
                 }
             }
@@ -2381,7 +2380,7 @@ public class Unsorted {
                 }
 
                 WorldListCountry.localPlane = plane;
-                Class102.player.method1981(sceneX, false, sceneY);
+                Player.player.method1981(sceneX, false, sceneY);
                 byte var25 = 104;
                 byte var24 = 0;
                 byte var14 = 0;
@@ -2608,7 +2607,7 @@ public class Unsorted {
                         RSString var5 = var0.NPCName;
                         if (0 != var0.anInt1260) {
                             RSString var6 = Class158.anInt2014 != 1 ? TextCore.HasLevel : TextCore.HasRating;
-                            var5 = RSString.stringCombiner(new RSString[]{var5, Player.combatLevelColor(var0.anInt1260, (byte) -122, Class102.player.COMBAT_LEVEL), TextCore.LEFT_PARENTHESES, var6, RSString.stringAnimator(var0.anInt1260), TextCore.RIGHT_PARENTHESES});
+                            var5 = RSString.stringCombiner(new RSString[]{var5, Player.combatLevelColor(var0.anInt1260, (byte) -122, Player.player.COMBAT_LEVEL), TextCore.LEFT_PARENTHESES, var6, RSString.stringAnimator(var0.anInt1260), TextCore.RIGHT_PARENTHESES});
                         }
 
                         if (Class164_Sub1.anInt3012 == 1) {
@@ -2667,7 +2666,7 @@ public class Unsorted {
                                 for (var7 = 4; var7 >= 0; --var7) {
                                     if (null != var11[var7] && var11[var7].equalsStringIgnoreCase(TextCore.HasAttack)) {
                                         short var14 = 0;
-                                        if (var0.anInt1260 > Class102.player.COMBAT_LEVEL) {
+                                        if (var0.anInt1260 > Player.player.COMBAT_LEVEL) {
                                             var14 = 2000;
                                             //This var sets "attack" as a right click attack option for higher level npcs, let's make it a single click!
                                         }
@@ -3765,17 +3764,17 @@ public class Unsorted {
                 var1.modelType = 5;
                 var1.itemId = -1;
             } else if (var2 == 328) {
-                if (null == Class102.player.displayName) {
+                if (null == Player.player.displayName) {
                     var1.itemId = 0;
                 } else {
                     var1.anInt182 = 150;
                     var1.anInt308 = 2047 & (int) (256.0D * Math.sin((double) Class44.anInt719 / 40.0D));
                     var1.modelType = 5;
-                    var1.itemId = 2047 + ((int) Class102.player.displayName.toLong() << 11);
-                    var1.anInt260 = Class102.player.anInt2793;
+                    var1.itemId = 2047 + ((int) Player.player.displayName.toLong() << 11);
+                    var1.anInt260 = Player.player.anInt2793;
                     var1.anInt267 = 0;
-                    var1.animationId = Class102.player.anInt2764;
-                    var1.anInt283 = Class102.player.anInt2813;
+                    var1.animationId = Player.player.anInt2764;
+                    var1.anInt283 = Player.player.anInt2813;
                 }
             }
         } catch (RuntimeException var3) {
@@ -4065,8 +4064,8 @@ public class Unsorted {
                                     var25 = (Class164_Sub2.anInt3020 - -256) * var25 >> 8;
                                     var47 = -(var24 * var20) + var25 * var21 >> 11;
                                     var26 = var21 * var24 - -(var20 * var25) >> 11;
-                                    var28 = Class102.player.anInt2819 + var26 >> 7;
-                                    var29 = -var47 + Class102.player.anInt2829 >> 7;
+                                    var28 = Player.player.anInt2819 + var26 >> 7;
+                                    var29 = -var47 + Player.player.anInt2829 >> 7;
                                     if (GameObject.aBoolean1837 && 0 != (Class164.anInt2051 & 64)) {
                                         RSInterface var53 = AbstractSprite.method638(Class3_Sub30_Sub1.anInt872, RSInterface.anInt278);
                                         if (null == var53) {
@@ -4599,13 +4598,13 @@ public class Unsorted {
                                                     }
                                                 } else if (5 != var11.modelType) {
                                                     if (var21 == -1) {
-                                                        var38 = var11.method865(-1, null, -1, 126, 0, var41, Class102.player.class52);
+                                                        var38 = var11.method865(-1, null, -1, 126, 0, var41, Player.player.class52);
                                                         if (null == var38 && GameShell.aBoolean6) {
                                                             Class20.method909(var11);
                                                         }
                                                     } else {
                                                         SequenceDefinition var48 = SequenceDefinition.getAnimationDefinition(var21);
-                                                        var38 = var11.method865(var11.anInt260, var48, var11.anInt283, 127, var11.anInt267, var41, Class102.player.class52);
+                                                        var38 = var11.method865(var11.anInt260, var48, var11.anInt283, 127, var11.anInt267, var41, Player.player.class52);
                                                         if (null == var38 && GameShell.aBoolean6) {
                                                             Class20.method909(var11);
                                                         }

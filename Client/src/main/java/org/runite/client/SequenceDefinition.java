@@ -109,7 +109,7 @@ public final class SequenceDefinition {
                 NPC.npcs[var1] = null;
             }
 
-            Class102.player = Class3_Sub13_Sub22.players[2047] = new Player();
+            Player.player = Class3_Sub13_Sub22.players[2047] = new Player();
             Class3_Sub13_Sub30.aClass61_3364.method1211(-112);
             Class3_Sub13_Sub15.aClass61_3177.method1211(-58);
             if (null != Class3_Sub13_Sub22.aClass61ArrayArrayArray3273) {

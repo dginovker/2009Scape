@@ -514,7 +514,7 @@ public final class Class39 {
                                         var15 = (31085 & var17) >> 11;
                                         var18 = 2047 & var17;
                                         if (Class3_Sub1.localIndex == var18) {
-                                            var16 = Class102.player;
+                                            var16 = Player.player;
                                         } else {
                                             var16 = Class3_Sub13_Sub22.players[var18];
                                         }
@@ -556,7 +556,7 @@ public final class Class39 {
                             var7 = 7 & var5;
                             if (var2 >= 0 && var3 >= 0 && var2 < 104 && var3 < 104) {
                                 var28 = 1 + var6;
-                                if (var2 + -var28 <= Class102.player.anIntArray2767[0] && Class102.player.anIntArray2767[0] <= var28 + var2 && Class102.player.anIntArray2755[0] >= -var28 + var3 && Class102.player.anIntArray2755[0] <= var28 + var3 && 0 != Sprites.anInt340 && var7 > 0 && 50 > Class113.anInt1552 && var4 != -1) {
+                                if (var2 + -var28 <= Player.player.anIntArray2767[0] && Player.player.anIntArray2767[0] <= var28 + var2 && Player.player.anIntArray2755[0] >= -var28 + var3 && Player.player.anIntArray2755[0] <= var28 + var3 && 0 != Sprites.anInt340 && var7 > 0 && 50 > Class113.anInt1552 && var4 != -1) {
                                     Class3_Sub25.anIntArray2550[Class113.anInt1552] = var4;
                                     Class166.anIntArray2068[Class113.anInt1552] = var7;
                                     Unsorted.anIntArray2157[Class113.anInt1552] = var8;

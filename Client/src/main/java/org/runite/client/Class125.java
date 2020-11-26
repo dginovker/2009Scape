@@ -4,6 +4,8 @@ package org.runite.client;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 import static org.lwjgl.opengl.ARBFragmentProgram.GL_FRAGMENT_PROGRAM_ARB;
 import static org.lwjgl.opengl.ARBVertexProgram.*;
@@ -138,15 +140,14 @@ final class Class125 implements ShaderInterface {
         if (this.anInt2186 >= 0) {
             int[] var2 = new int[1];
             glBindProgramARB(GL_VERTEX_PROGRAM_ARB, this.anInt2184);
-            //TODO Wants Bytebufferstring, will have to look more into this
-            glProgramStringARB(GL_VERTEX_PROGRAM_ARB, GL_PROGRAM_FORMAT_ASCII_ARB,"!!ARBvp1.0\nATTRIB  iPos         = vertex.position;\nATTRIB  iColour      = vertex.color;\nOUTPUT  oPos         = result.position;\nOUTPUT  oColour      = result.color;\nOUTPUT  oTexCoord0   = result.texcoord[0];\nOUTPUT  oTexCoord1   = result.texcoord[1];\nOUTPUT  oFogCoord    = result.fogcoord;\nPARAM   time         = program.local[65];\nPARAM   turbulence   = program.local[64];\nPARAM   lightAmbient = program.local[66]; \nPARAM   pMatrix[4]   = { state.matrix.projection };\nPARAM   mvMatrix[4]  = { state.matrix.modelview };\nPARAM   ivMatrix[4]  = { state.matrix.texture[1] };\nPARAM   fNoise[64]   = { program.local[0..63] };\nTEMP    noise, clipPos, viewPos, worldPos;\nADDRESS noiseAddr;\nDP4   viewPos.x, mvMatrix[0], iPos;\nDP4   viewPos.y, mvMatrix[1], iPos;\nDP4   viewPos.z, mvMatrix[2], iPos;\nDP4   viewPos.w, mvMatrix[3], iPos;\nDP4   worldPos.x, ivMatrix[0], viewPos;\nDP4   worldPos.y, ivMatrix[1], viewPos;\nDP4   worldPos.z, ivMatrix[2], viewPos;\nDP4   worldPos.w, ivMatrix[3], viewPos;\nADD   noise.x, worldPos.x, worldPos.z;SUB   noise.y, worldPos.z, worldPos.x;MUL   noise, noise, 0.0001220703125;\nFRC   noise, noise;\nMUL   noise, noise, 64;\nARL   noiseAddr.x, noise.x;\nMOV   noise.x, fNoise[noiseAddr.x].x;\nARL   noiseAddr.x, noise.y;\nMOV   noise.y, fNoise[noiseAddr.x].y;\nMUL   noise, noise, turbulence.x;\nMAD   oTexCoord0, worldPos.xzww, 0.0078125, noise;\nMOV   oTexCoord0.w, 1;\nMUL   oTexCoord1.xy, worldPos.xzww, 0.0009765625;\nMOV   oTexCoord1.zw, time.xxxw;\nDP4   clipPos.x, pMatrix[0], viewPos;\nDP4   clipPos.y, pMatrix[1], viewPos;\nDP4   clipPos.z, pMatrix[2], viewPos;\nDP4   clipPos.w, pMatrix[3], viewPos;\nMUL   oColour.xyz, iColour, lightAmbient;\nMOV   oColour.w, 1;\nMOV   oFogCoord.x, clipPos.z;\nMOV   oPos, clipPos; \nEND");
+            //This should work, if it throws errors the script will have to be loaded externally
+            glProgramStringARB(GL_VERTEX_PROGRAM_ARB, GL_PROGRAM_FORMAT_ASCII_ARB, vp_str);
             //glProgramStringARB(GL_VERTEX_PROGRAM_ARB, GL_PROGRAM_FORMAT_ASCII_ARB, "!!ARBvp1.0\nATTRIB  iPos         = vertex.position;\nATTRIB  iColour      = vertex.color;\nOUTPUT  oPos         = result.position;\nOUTPUT  oColour      = result.color;\nOUTPUT  oTexCoord0   = result.texcoord[0];\nOUTPUT  oTexCoord1   = result.texcoord[1];\nOUTPUT  oFogCoord    = result.fogcoord;\nPARAM   time         = program.local[65];\nPARAM   turbulence   = program.local[64];\nPARAM   lightAmbient = program.local[66]; \nPARAM   pMatrix[4]   = { state.matrix.projection };\nPARAM   mvMatrix[4]  = { state.matrix.modelview };\nPARAM   ivMatrix[4]  = { state.matrix.texture[1] };\nPARAM   fNoise[64]   = { program.local[0..63] };\nTEMP    noise, clipPos, viewPos, worldPos;\nADDRESS noiseAddr;\nDP4   viewPos.x, mvMatrix[0], iPos;\nDP4   viewPos.y, mvMatrix[1], iPos;\nDP4   viewPos.z, mvMatrix[2], iPos;\nDP4   viewPos.w, mvMatrix[3], iPos;\nDP4   worldPos.x, ivMatrix[0], viewPos;\nDP4   worldPos.y, ivMatrix[1], viewPos;\nDP4   worldPos.z, ivMatrix[2], viewPos;\nDP4   worldPos.w, ivMatrix[3], viewPos;\nADD   noise.x, worldPos.x, worldPos.z;SUB   noise.y, worldPos.z, worldPos.x;MUL   noise, noise, 0.0001220703125;\nFRC   noise, noise;\nMUL   noise, noise, 64;\nARL   noiseAddr.x, noise.x;\nMOV   noise.x, fNoise[noiseAddr.x].x;\nARL   noiseAddr.x, noise.y;\nMOV   noise.y, fNoise[noiseAddr.x].y;\nMUL   noise, noise, turbulence.x;\nMAD   oTexCoord0, worldPos.xzww, 0.0078125, noise;\nMOV   oTexCoord0.w, 1;\nMUL   oTexCoord1.xy, worldPos.xzww, 0.0009765625;\nMOV   oTexCoord1.zw, time.xxxw;\nDP4   clipPos.x, pMatrix[0], viewPos;\nDP4   clipPos.y, pMatrix[1], viewPos;\nDP4   clipPos.z, pMatrix[2], viewPos;\nDP4   clipPos.w, pMatrix[3], viewPos;\nMUL   oColour.xyz, iColour, lightAmbient;\nMOV   oColour.w, 1;\nMOV   oFogCoord.x, clipPos.z;\nMOV   oPos, clipPos; \nEND".length(), "!!ARBvp1.0\nATTRIB  iPos         = vertex.position;\nATTRIB  iColour      = vertex.color;\nOUTPUT  oPos         = result.position;\nOUTPUT  oColour      = result.color;\nOUTPUT  oTexCoord0   = result.texcoord[0];\nOUTPUT  oTexCoord1   = result.texcoord[1];\nOUTPUT  oFogCoord    = result.fogcoord;\nPARAM   time         = program.local[65];\nPARAM   turbulence   = program.local[64];\nPARAM   lightAmbient = program.local[66]; \nPARAM   pMatrix[4]   = { state.matrix.projection };\nPARAM   mvMatrix[4]  = { state.matrix.modelview };\nPARAM   ivMatrix[4]  = { state.matrix.texture[1] };\nPARAM   fNoise[64]   = { program.local[0..63] };\nTEMP    noise, clipPos, viewPos, worldPos;\nADDRESS noiseAddr;\nDP4   viewPos.x, mvMatrix[0], iPos;\nDP4   viewPos.y, mvMatrix[1], iPos;\nDP4   viewPos.z, mvMatrix[2], iPos;\nDP4   viewPos.w, mvMatrix[3], iPos;\nDP4   worldPos.x, ivMatrix[0], viewPos;\nDP4   worldPos.y, ivMatrix[1], viewPos;\nDP4   worldPos.z, ivMatrix[2], viewPos;\nDP4   worldPos.w, ivMatrix[3], viewPos;\nADD   noise.x, worldPos.x, worldPos.z;SUB   noise.y, worldPos.z, worldPos.x;MUL   noise, noise, 0.0001220703125;\nFRC   noise, noise;\nMUL   noise, noise, 64;\nARL   noiseAddr.x, noise.x;\nMOV   noise.x, fNoise[noiseAddr.x].x;\nARL   noiseAddr.x, noise.y;\nMOV   noise.y, fNoise[noiseAddr.x].y;\nMUL   noise, noise, turbulence.x;\nMAD   oTexCoord0, worldPos.xzww, 0.0078125, noise;\nMOV   oTexCoord0.w, 1;\nMUL   oTexCoord1.xy, worldPos.xzww, 0.0009765625;\nMOV   oTexCoord1.zw, time.xxxw;\nDP4   clipPos.x, pMatrix[0], viewPos;\nDP4   clipPos.y, pMatrix[1], viewPos;\nDP4   clipPos.z, pMatrix[2], viewPos;\nDP4   clipPos.w, pMatrix[3], viewPos;\nMUL   oColour.xyz, iColour, lightAmbient;\nMOV   oColour.w, 1;\nMOV   oFogCoord.x, clipPos.z;\nMOV   oPos, clipPos; \nEND");
             glGetIntegerv(GL_PROGRAM_ERROR_POSITION_ARB, var2);//int, buffer, 0 OLD
             if (var2[0] != -1) {
                 return;
             }
         }
-
     }
 
     public final void method23(int var1) {
@@ -177,5 +178,53 @@ final class Class125 implements ShaderInterface {
 
         }
     }
+
+    ByteBuffer vp_str = StandardCharsets.UTF_8.encode(
+            "!!ARBvp1.0\n" +
+            "ATTRIB  iPos         = vertex.position;\n" +
+            "ATTRIB  iColour      = vertex.color;\n" +
+            "OUTPUT  oPos         = result.position;\n" +
+            "OUTPUT  oColour      = result.color;\n" +
+            "OUTPUT  oTexCoord0   = result.texcoord[0];\n" +
+            "OUTPUT  oTexCoord1   = result.texcoord[1];\n" +
+            "OUTPUT  oFogCoord    = result.fogcoord;\n" +
+            "PARAM   time         = program.local[65];\n" +
+            "PARAM   turbulence   = program.local[64];\n" +
+            "PARAM   lightAmbient = program.local[66]; \n" +
+            "PARAM   pMatrix[4]   = { state.matrix.projection };\n" +
+            "PARAM   mvMatrix[4]  = { state.matrix.modelview };\n" +
+            "PARAM   ivMatrix[4]  = { state.matrix.texture[1] };\n" +
+            "PARAM   fNoise[64]   = { program.local[0..63] };\n" +
+            "TEMP    noise, clipPos, viewPos, worldPos;\n" +
+            "ADDRESS noiseAddr;\n" +
+            "DP4   viewPos.x, mvMatrix[0], iPos;\n" +
+            "DP4   viewPos.y, mvMatrix[1], iPos;\n" +
+            "DP4   viewPos.z, mvMatrix[2], iPos;\n" +
+            "DP4   viewPos.w, mvMatrix[3], iPos;\n" +
+            "DP4   worldPos.x, ivMatrix[0], viewPos;\n" +
+            "DP4   worldPos.y, ivMatrix[1], viewPos;\n" +
+            "DP4   worldPos.z, ivMatrix[2], viewPos;\n" +
+            "DP4   worldPos.w, ivMatrix[3], viewPos;\n" +
+            "ADD   noise.x, worldPos.x, worldPos.z;SUB   noise.y, worldPos.z, worldPos.x;MUL   noise, noise, 0.0001220703125;\n" +
+            "FRC   noise, noise;\n" +
+            "MUL   noise, noise, 64;\n" +
+            "ARL   noiseAddr.x, noise.x;\n" +
+            "MOV   noise.x, fNoise[noiseAddr.x].x;\n" +
+            "ARL   noiseAddr.x, noise.y;\n" +
+            "MOV   noise.y, fNoise[noiseAddr.x].y;\n" +
+            "MUL   noise, noise, turbulence.x;\n" +
+            "MAD   oTexCoord0, worldPos.xzww, 0.0078125, noise;\n" +
+            "MOV   oTexCoord0.w, 1;\n" +
+            "MUL   oTexCoord1.xy, worldPos.xzww, 0.0009765625;\n" +
+            "MOV   oTexCoord1.zw, time.xxxw;\n" +
+            "DP4   clipPos.x, pMatrix[0], viewPos;\n" +
+            "DP4   clipPos.y, pMatrix[1], viewPos;\n" +
+            "DP4   clipPos.z, pMatrix[2], viewPos;\n" +
+            "DP4   clipPos.w, pMatrix[3], viewPos;\n" +
+            "MUL   oColour.xyz, iColour, lightAmbient;\n" +
+            "MOV   oColour.w, 1;\n" +
+            "MOV   oFogCoord.x, clipPos.z;\n" +
+            "MOV   oPos, clipPos; \n" +
+            "END");
 
 }

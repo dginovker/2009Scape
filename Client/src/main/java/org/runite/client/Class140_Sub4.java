@@ -144,7 +144,7 @@ abstract class Class140_Sub4 extends GameObject {
             this.anInt2829 = 64 * var2 + this.anIntArray2755[0] * 128;
             this.anInt2819 = var2 * 64 + 128 * this.anIntArray2767[0];
 
-            if (HDToolKit.highDetail && Class102.player == this) {
+            if (HDToolKit.highDetail && Player.player == this) {
                 Class3_Sub13_Sub14.method236();
             }
 

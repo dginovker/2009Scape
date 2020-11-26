@@ -1,8 +1,11 @@
 package org.runite.client;
 
 import org.lwjgl.glfw.GLFWErrorCallback;
+import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.opengl.GL;
 import org.lwjgl.system.MemoryStack;
+import org.lwjgl.system.MemoryUtil;
 import org.rs09.client.config.GameConfig;
 
 import javax.swing.*;
@@ -13,6 +16,7 @@ import java.nio.IntBuffer;
 import java.util.Properties;
 
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryStack.stackPush;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
@@ -96,6 +100,7 @@ public class ClientLoader extends Applet {
             glfwDefaultWindowHints();
             glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
             glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+            glfwWindowHint(GLFW_REFRESH_RATE, GLFW_DONT_CARE);
 
             window = glfwCreateWindow(765, 503, GameConfig.SERVER_NAME, NULL, NULL);
             if (window == NULL)
@@ -120,8 +125,76 @@ public class ClientLoader extends Applet {
             }
 
             glfwMakeContextCurrent(window);
-            glfwSwapInterval(1);
+            GL.createCapabilities();
+            glfwSwapInterval(0);
             glfwShowWindow(window);
+
+            /* Set the key callback */
+            glfwSetKeyCallback(window, keyCallback);
+
+            /* Declare buffers for using inside the loop */
+            IntBuffer width = MemoryUtil.memAllocInt(1);
+            IntBuffer height = MemoryUtil.memAllocInt(1);
+
+            /* Loop until window gets closed */
+            while (!glfwWindowShouldClose(window)) {
+                float ratio;
+
+                /* Get width and height to calcualte the ratio */
+                glfwGetFramebufferSize(window, width, height);
+                ratio = width.get() / (float) height.get();
+
+                /* Rewind buffers for next get */
+                width.rewind();
+                height.rewind();
+
+                /* Set viewport and clear screen */
+                glViewport(0, 0, width.get(), height.get());
+                glClear(GL_COLOR_BUFFER_BIT);
+
+                /* Set ortographic projection */
+                glMatrixMode(GL_PROJECTION);
+                glLoadIdentity();
+                glOrtho(-ratio, ratio, -1f, 1f, 1f, -1f);
+                glMatrixMode(GL_MODELVIEW);
+
+                /* Rotate matrix */
+                glLoadIdentity();
+                glRotatef((float) glfwGetTime() * 50f, 0f, 0f, 1f);
+
+                /* Render triangle */
+                glBegin(GL_TRIANGLES);
+                glColor3f(1f, 0f, 1f);
+                glVertex3f(-0.6f, -0.4f, 0f);
+                glColor3f(0f, 1f, 0f);
+                glVertex3f(0.6f, -0.4f, 0f);
+                glColor3f(0f, 0f, 1f);
+                glVertex3f(0f, 0.6f, 0f);
+                glEnd();
+
+                /* Swap buffers and poll Events */
+                glfwSwapBuffers(window);
+                glfwPollEvents();
+
+                /* Flip buffers for next loop */
+                width.flip();
+                height.flip();
+            }
+
+            /* Free buffers */
+            MemoryUtil.memFree(width);
+            MemoryUtil.memFree(height);
+
+            /* Release window and its callbacks */
+            glfwDestroyWindow(window);
+            keyCallback.free();
+
+            /* Terminate GLFW and release the error callback */
+            glfwTerminate();
+            errorCallback.free();
+
+
+
 
             /*
              *	Old AWT frame information
@@ -152,14 +225,31 @@ public class ClientLoader extends Applet {
             props.put("advertsuppressed", "1");
             props.put("lowmem", "0");
             props.put("settings", "kKmok3kJqOeN6D3mDdihco3oPeYN2KFy6W5--vZUbNA");
-            Signlink sn = new Signlink(this, 32, "runescape", 29);
-            providesignlink(sn);
-            game = new Client();
-            game.init();
+//            Signlink sn = new Signlink(this, 32, "runescape", 29);
+//            providesignlink(sn);
+//            game = new Client();
+//            game.init();
         } catch (Exception localException) {
             localException.printStackTrace();
         }
     }
+
+    private static GLFWErrorCallback errorCallback
+            = GLFWErrorCallback.createPrint(System.err);
+
+    /**
+     * This key callback will check if ESC is pressed and will close the window
+     * if it is pressed.
+     */
+    private static GLFWKeyCallback keyCallback = new GLFWKeyCallback() {
+
+        @Override
+        public void invoke(long window, int key, int scancode, int action, int mods) {
+            if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+                glfwSetWindowShouldClose(window, true);
+            }
+        }
+    };
 
     /**
      * Gets a property parameter.

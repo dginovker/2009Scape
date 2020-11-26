@@ -376,7 +376,7 @@ final class Class68 {
             HDToolKit.bindTexture2D(HDToolKit.anInt1810);
             glDepthMask(false);
             HDToolKit.enableLighting(false);
-            glBlendFunc(774, 1);
+            glBlendFunc(GL_DST_COLOR, 1);
             glFogfv(GL_FOG_COLOR, new float[]{0.0F, 0.0F, 0.0F, 0.0F});
             glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB, GL_CONSTANT);
             glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB, GL_SRC_ALPHA);

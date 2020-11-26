@@ -881,7 +881,7 @@ final class CS2Script extends Linkable {
                                                     }
                                                     if (opcode == 3101) {
                                                         iStackCounter -= 2;
-                                                        WorldMap.method628(ItemDefinition.intsStack[iStackCounter - -1], ItemDefinition.intsStack[iStackCounter], Class102.player);
+                                                        WorldMap.method628(ItemDefinition.intsStack[iStackCounter - -1], ItemDefinition.intsStack[iStackCounter], Player.player);
                                                         continue;
                                                     }
                                                     if (opcode == 3103) {
@@ -1004,8 +1004,8 @@ final class CS2Script extends Linkable {
                                                     }
                                                     if (opcode == 3308) {
                                                         int l9 = WorldListCountry.localPlane;
-                                                        int k47 = Class131.anInt1716 + (Class102.player.anInt2819 >> 7);
-                                                        int i68 = (Class102.player.anInt2829 >> 7) - -Class82.anInt1152;
+                                                        int k47 = Class131.anInt1716 + (Player.player.anInt2819 >> 7);
+                                                        int i68 = (Player.player.anInt2829 >> 7) - -Class82.anInt1152;
                                                         ItemDefinition.intsStack[iStackCounter++] = (l9 << 28) - (-(k47 << 14) - i68);
                                                         continue;
                                                     }
@@ -1091,11 +1091,11 @@ final class CS2Script extends Linkable {
                                                         continue;
                                                     }
                                                     if (3326 == opcode) {
-                                                        ItemDefinition.intsStack[iStackCounter++] = Class102.player.COMBAT_LEVEL;
+                                                        ItemDefinition.intsStack[iStackCounter++] = Player.player.COMBAT_LEVEL;
                                                         continue;
                                                     }
                                                     if (3327 == opcode) {
-                                                        ItemDefinition.intsStack[iStackCounter++] = Class102.player.class52.aBoolean864 ? 1 : 0;
+                                                        ItemDefinition.intsStack[iStackCounter++] = Player.player.class52.aBoolean864 ? 1 : 0;
                                                         continue;
                                                     }
                                                     if (3328 == opcode) {
@@ -1364,7 +1364,7 @@ final class CS2Script extends Linkable {
                                                     }
                                                     if (opcode == 3624) {
                                                         int l15 = ItemDefinition.intsStack[--iStackCounter];
-                                                        if (null != PacketParser.aClass3_Sub19Array3694 && l15 < Unsorted.clanSize && PacketParser.aClass3_Sub19Array3694[l15].aClass94_2476.equalsStringIgnoreCase(Class102.player.displayName))
+                                                        if (null != PacketParser.aClass3_Sub19Array3694 && l15 < Unsorted.clanSize && PacketParser.aClass3_Sub19Array3694[l15].aClass94_2476.equalsStringIgnoreCase(Player.player.displayName))
                                                             ItemDefinition.intsStack[iStackCounter++] = 1;
                                                         else
                                                             ItemDefinition.intsStack[iStackCounter++] = 0;
@@ -1839,10 +1839,10 @@ final class CS2Script extends Linkable {
                                                                     }
                                                                     if (opcode == 5015) {
                                                                         RSString class94_20;
-                                                                        if (Class102.player == null || null == Class102.player.displayName)
+                                                                        if (Player.player == null || null == Player.player.displayName)
                                                                             class94_20 = Class131.username;
                                                                         else
-                                                                            class94_20 = Class102.player.getName();
+                                                                            class94_20 = Player.player.getName();
                                                                         ItemDefinition.stringsStack[sStackCounter++] = class94_20;
                                                                         continue;
                                                                     }
@@ -3291,7 +3291,7 @@ final class CS2Script extends Linkable {
                                                     sStackCounter -= 2;
                                                     RSString class94_58 = ItemDefinition.stringsStack[sStackCounter + 1];
                                                     RSString class94_33 = ItemDefinition.stringsStack[sStackCounter];
-                                                    if (Class102.player.class52 == null || !Class102.player.class52.aBoolean864)
+                                                    if (Player.player.class52 == null || !Player.player.class52.aBoolean864)
                                                         ItemDefinition.stringsStack[sStackCounter++] = class94_33;
                                                     else
                                                         ItemDefinition.stringsStack[sStackCounter++] = class94_58;
@@ -3727,7 +3727,7 @@ final class CS2Script extends Linkable {
                         }
                         if (opcode == 1202) {
                             class11_15.modelType = 3;
-                            class11_15.itemId = Class102.player.class52.method1163();
+                            class11_15.itemId = Player.player.class52.method1163();
                             if (class11_15.anInt191 == -1)
                                 Class162.method2206(class11_15.componentHash);
                             continue;
@@ -3933,7 +3933,7 @@ final class CS2Script extends Linkable {
                     int k75 = 0;
                     while (Class3_Sub26.anIntArray2559.length > k75) {
                         if (j43 == Class3_Sub26.anIntArray2559[k75]) {
-                            Class102.player.class52.method1164(k75, i66);
+                            Player.player.class52.method1164(k75, i66);
                             continue label0;
                         }
                         k75++;
@@ -3943,7 +3943,7 @@ final class CS2Script extends Linkable {
                         if (anIntArray3228.length <= k75)
                             continue label0;
                         if (anIntArray3228[k75] == j43) {
-                            Class102.player.class52.method1164(k75, i66);
+                            Player.player.class52.method1164(k75, i66);
                             continue label0;
                         }
                         k75++;
@@ -3953,14 +3953,14 @@ final class CS2Script extends Linkable {
                     iStackCounter -= 2;
                     int k43 = ItemDefinition.intsStack[iStackCounter];
                     int j66 = ItemDefinition.intsStack[1 + iStackCounter];
-                    Class102.player.class52.method1162(k43, j66);
+                    Player.player.class52.method1162(k43, j66);
                     continue;
                 }
                 if (opcode != 410)
                     break;
                 try {
                     boolean flag2 = 0 != ItemDefinition.intsStack[--iStackCounter];
-                    Class102.player.class52.method1159(flag2);
+                    Player.player.class52.method1159(flag2);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

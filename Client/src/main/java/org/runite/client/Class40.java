@@ -212,8 +212,8 @@ final class Class40 {
                         Unsorted.method1091(false, -93);
                         Class163_Sub1.method2210(true);
                         if (HDToolKit.highDetail) {
-                            var12 = Class102.player.anIntArray2767[0] >> 3;
-                            var4 = Class102.player.anIntArray2755[0] >> 3;
+                            var12 = Player.player.anIntArray2767[0] >> 3;
+                            var4 = Player.player.anIntArray2755[0] >> 3;
                             Class3_Sub13_Sub11.method220(var4, var12);
                         }
 
@@ -227,8 +227,8 @@ final class Class40 {
                         Class49.method1121(false, (byte) 98);
                         Class163_Sub1.method2210(true);
                         if (HDToolKit.highDetail) {
-                            var12 = Class102.player.anIntArray2767[0] >> 3;
-                            var4 = Class102.player.anIntArray2755[0] >> 3;
+                            var12 = Player.player.anIntArray2767[0] >> 3;
+                            var4 = Player.player.anIntArray2755[0] >> 3;
                             Class3_Sub13_Sub11.method220(var4, var12);
                         }
 

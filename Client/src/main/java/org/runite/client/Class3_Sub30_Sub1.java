@@ -51,7 +51,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                 if (31 == var4) {
                     var8 = Class3_Sub13_Sub22.players[var5];
                     if (null != var8) {
-                        Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                        Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Player.player.anIntArray2767[0]);
                         Class36.anInt638 = 2;
                         Unsorted.anInt2958 = 0;
                         Class70.anInt1053 = Class163_Sub1.anInt2993;
@@ -87,7 +87,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                 if (var4 == 19) {
                     var11 = NPC.npcs[var5];
                     if (null != var11) {
-                        Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                        Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Player.player.anIntArray2767[0]);
                         Class70.anInt1053 = Class163_Sub1.anInt2993;
                         Class36.anInt638 = 2;
                         Unsorted.anInt2958 = 0;
@@ -100,7 +100,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                 if (17 == var4) {
                     var11 = NPC.npcs[var5];
                     if (var11 != null) {
-                        Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                        Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Player.player.anIntArray2767[0]);
                         Class70.anInt1053 = Class163_Sub1.anInt2993;
                         Unsorted.anInt2958 = 0;
                         Class36.anInt638 = 2;
@@ -113,7 +113,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                 if (var4 == 44) {
                     var8 = Class3_Sub13_Sub22.players[var5];
                     if (null != var8) {
-                        Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                        Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Player.player.anIntArray2767[0]);
                         Class70.anInt1053 = Class163_Sub1.anInt2993;
                         Class36.anInt638 = 2;
                         Unsorted.anInt4062 = Class38_Sub1.anInt2614;
@@ -148,7 +148,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                 if (var4 == 45) {
                     var11 = NPC.npcs[var5];
                     if (var11 != null) {
-                        Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                        Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Player.player.anIntArray2767[0]);
                         Class70.anInt1053 = Class163_Sub1.anInt2993;
                         Class36.anInt638 = 2;
                         Unsorted.anInt2958 = 0;
@@ -163,11 +163,11 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                 boolean var14;
                 if (18 == var4) {
                     if (Class158.anInt2014 == 1) {
-                        Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                        Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                     } else {
-                        var14 = Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 0, false, 0, 2597 ^ 2599, var2, 0, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                        var14 = Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 0, false, 0, 2597 ^ 2599, var2, 0, 0, 2, var3, Player.player.anIntArray2767[0]);
                         if (!var14) {
-                            Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                            Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                         }
                     }
 
@@ -219,7 +219,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                     } else if (var5 == 1) {
                         if (0 < Class3_Sub13_Sub26.rights && ObjectDefinition.aBooleanArray1490[82] && ObjectDefinition.aBooleanArray1490[81]) {
                             Class30.method979(Class131.anInt1716 + var2, Class82.anInt1152 + var3, WorldListCountry.localPlane);
-                        } else if (Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 0, true, 0, 2, var2, 0, 0, 1, var3, Class102.player.anIntArray2767[0])) {
+                        } else if (Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 0, true, 0, 2, var2, 0, 0, 1, var3, Player.player.anIntArray2767[0])) {
                             Class3_Sub13_Sub1.outgoingBuffer.writeByte(Class1.anInt56);
                             Class3_Sub13_Sub1.outgoingBuffer.writeByte(Class58.anInt916);
                             Class3_Sub13_Sub1.outgoingBuffer.writeShort(GraphicDefinition.CAMERA_DIRECTION);
@@ -227,8 +227,8 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                             Class3_Sub13_Sub1.outgoingBuffer.writeByte(Class3_Sub13_Sub8.anInt3102);
                             Class3_Sub13_Sub1.outgoingBuffer.writeByte(Class164_Sub2.anInt3020);
                             Class3_Sub13_Sub1.outgoingBuffer.writeByte(89);
-                            Class3_Sub13_Sub1.outgoingBuffer.writeShort(Class102.player.anInt2819);
-                            Class3_Sub13_Sub1.outgoingBuffer.writeShort(Class102.player.anInt2829);
+                            Class3_Sub13_Sub1.outgoingBuffer.writeShort(Player.player.anInt2819);
+                            Class3_Sub13_Sub1.outgoingBuffer.writeShort(Player.player.anInt2829);
                             Class3_Sub13_Sub1.outgoingBuffer.writeByte(Class129.anInt1692);
                             Class3_Sub13_Sub1.outgoingBuffer.writeByte(63);
                         }
@@ -291,7 +291,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                 if (var4 == 10) {
                     var8 = Class3_Sub13_Sub22.players[var5];
                     if (var8 != null) {
-                        Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                        Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Player.player.anIntArray2767[0]);
                         Class36.anInt638 = 2;
                         Unsorted.anInt4062 = Class38_Sub1.anInt2614;
                         Class70.anInt1053 = Class163_Sub1.anInt2993;
@@ -339,7 +339,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                 if (var4 == 37) {
                     var8 = Class3_Sub13_Sub22.players[var5];
                     if (var8 != null) {
-                        Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                        Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Player.player.anIntArray2767[0]);
                         Unsorted.anInt2958 = 0;
                         Class36.anInt638 = 2;
                         Unsorted.anInt4062 = Class38_Sub1.anInt2614;
@@ -376,11 +376,11 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
 
                 if (var4 == 21) {
                     if (Class158.anInt2014 == 1) {
-                        Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2597 + -2595, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                        Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2597 + -2595, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                     } else {
-                        var14 = Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 0, false, 0, 2597 + -2595, var2, 0, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                        var14 = Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 0, false, 0, 2597 + -2595, var2, 0, 0, 2, var3, Player.player.anIntArray2767[0]);
                         if (!var14) {
-                            Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2597 + -2595, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                            Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2597 + -2595, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                         }
                     }
 
@@ -397,7 +397,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                 if (var4 == 4) {
                     var11 = NPC.npcs[var5];
                     if (var11 != null) {
-                        Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                        Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Player.player.anIntArray2767[0]);
                         Class36.anInt638 = 2;
                         Unsorted.anInt2958 = 0;
                         Unsorted.anInt4062 = Class38_Sub1.anInt2614;
@@ -430,7 +430,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                     if (29 == var4) {
                         var8 = Class3_Sub13_Sub22.players[var5];
                         if (null != var8) {
-                            Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                            Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Player.player.anIntArray2767[0]);
                             Unsorted.anInt4062 = Class38_Sub1.anInt2614;
                             Unsorted.anInt2958 = 0;
                             Class36.anInt638 = 2;
@@ -453,7 +453,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                     if (15 == var4) {
                         var8 = Class3_Sub13_Sub22.players[var5];
                         if (var8 != null) {
-                            Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                            Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Player.player.anIntArray2767[0]);
                             Unsorted.anInt2958 = 0;
                             Class36.anInt638 = 2;
                             Class70.anInt1053 = Class163_Sub1.anInt2993;
@@ -467,11 +467,11 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
 
                     if (34 == var4) {
                         if (Class158.anInt2014 == 1) {
-                            Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                            Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                         } else {
-                            var14 = Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 0, false, 0, 2597 ^ 2599, var2, 0, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                            var14 = Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 0, false, 0, 2597 ^ 2599, var2, 0, 0, 2, var3, Player.player.anIntArray2767[0]);
                             if (!var14) {
-                                Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                                Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                             }
                         }
 
@@ -498,7 +498,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                     if (var4 == 2) {
                         var11 = NPC.npcs[var5];
                         if (var11 != null) {
-                            Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2597 + -2595, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                            Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2597 + -2595, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Player.player.anIntArray2767[0]);
                             Unsorted.anInt4062 = Class38_Sub1.anInt2614;
                             Class36.anInt638 = 2;
                             Class70.anInt1053 = Class163_Sub1.anInt2993;
@@ -525,7 +525,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                     if (var4 == 26) {
                         var11 = NPC.npcs[var5];
                         if (var11 != null) {
-                            Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                            Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Player.player.anIntArray2767[0]);
                             Class36.anInt638 = 2;
                             Unsorted.anInt2958 = 0;
                             Unsorted.anInt4062 = Class38_Sub1.anInt2614;
@@ -551,9 +551,9 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                     }
 
                     if (var4 == 33) {
-                        var14 = Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 0, false, 0, 2, var2, 0, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                        var14 = Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 0, false, 0, 2, var2, 0, 0, 2, var3, Player.player.anIntArray2767[0]);
                         if (!var14) {
-                            Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2597 + -2595, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                            Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2597 + -2595, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                         }
 
                         Class70.anInt1053 = Class163_Sub1.anInt2993;
@@ -607,7 +607,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                     if (var4 == 1) {
                         var8 = Class3_Sub13_Sub22.players[var5];
                         if (var8 != null) {
-                            Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                            Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Player.player.anIntArray2767[0]);
                             Unsorted.anInt2958 = 0;
                             Unsorted.anInt4062 = Class38_Sub1.anInt2614;
                             Class36.anInt638 = 2;
@@ -632,11 +632,11 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
 
                     if (var4 == 24) {
                         if (Class158.anInt2014 == 1) {
-                            Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2597 + -2595, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                            Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2597 + -2595, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                         } else {
-                            var14 = Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 0, false, 0, 2, var2, 0, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                            var14 = Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 0, false, 0, 2, var2, 0, 0, 2, var3, Player.player.anIntArray2767[0]);
                             if (!var14) {
-                                Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                                Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                             }
                         }
 
@@ -673,7 +673,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                     if (57 == var4) {
                         var8 = Class3_Sub13_Sub22.players[var5];
                         if (null != var8) {
-                            Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                            Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Player.player.anIntArray2767[0]);
                             Class36.anInt638 = 2;
                             Unsorted.anInt4062 = Class38_Sub1.anInt2614;
                             Class70.anInt1053 = Class163_Sub1.anInt2993;
@@ -730,7 +730,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                         if (var4 == 30) {
                             var8 = Class3_Sub13_Sub22.players[var5];
                             if (null != var8) {
-                                Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                                Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Player.player.anIntArray2767[0]);
                                 Unsorted.anInt2958 = 0;
                                 Class70.anInt1053 = Class163_Sub1.anInt2993;
                                 Unsorted.anInt4062 = Class38_Sub1.anInt2614;
@@ -751,9 +751,9 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                         }
 
                         if (var4 == 39) {
-                            var14 = Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 0, false, 0, 2, var2, 0, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                            var14 = Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 0, false, 0, 2, var2, 0, 0, 2, var3, Player.player.anIntArray2767[0]);
                             if (!var14) {
-                                Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                                Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                             }
 
                             Unsorted.anInt4062 = Class38_Sub1.anInt2614;
@@ -792,7 +792,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                         if (6 == var4) {
                             var8 = Class3_Sub13_Sub22.players[var5];
                             if (var8 != null) {
-                                Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                                Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var8.anIntArray2767[0], 1, 0, 2, var8.anIntArray2755[0], Player.player.anIntArray2767[0]);
                                 Unsorted.anInt4062 = Class38_Sub1.anInt2614;
                                 Unsorted.anInt2958 = 0;
                                 Class36.anInt638 = 2;
@@ -804,11 +804,11 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
 
                         if (var4 == 20) {
                             if (1 == Class158.anInt2014) {
-                                Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                                Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                             } else {
-                                var14 = Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 0, false, 0, 2, var2, 0, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                                var14 = Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 0, false, 0, 2, var2, 0, 0, 2, var3, Player.player.anIntArray2767[0]);
                                 if (!var14) {
-                                    Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                                    Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var2, 1, 0, 2, var3, Player.player.anIntArray2767[0]);
                                 }
                             }
 
@@ -825,7 +825,7 @@ public final class Class3_Sub30_Sub1 extends DataBuffer {
                         if (var4 == 16) {
                             var11 = NPC.npcs[var5];
                             if (null != var11) {
-                                Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                                Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var11.anIntArray2767[0], 1, 0, 2, var11.anIntArray2755[0], Player.player.anIntArray2767[0]);
                                 Class70.anInt1053 = Class163_Sub1.anInt2993;
                                 Unsorted.anInt2958 = 0;
                                 Unsorted.anInt4062 = Class38_Sub1.anInt2614;

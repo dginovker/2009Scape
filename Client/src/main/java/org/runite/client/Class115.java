@@ -17,7 +17,7 @@ final class Class115 {
                 if (0 > var1.anInt2273) {
                     var3 = -var1.anInt2273 - 1;
                     if (Class3_Sub1.localIndex == var3) {
-                        var2 = Class102.player;
+                        var2 = Player.player;
                     } else {
                         var2 = Class3_Sub13_Sub22.players[var3];
                     }

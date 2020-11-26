@@ -1,10 +1,8 @@
 package org.runite.client;
 
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.*;
-import static org.lwjgl.opengl.GL15.glDeleteBuffers;
-
 import java.awt.*;
+
+import static org.lwjgl.opengl.GL11.*;
 
 
 abstract class Class146 {

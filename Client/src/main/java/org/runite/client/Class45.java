@@ -128,7 +128,7 @@ final class Class45 {
                 if (var3.textSpoken.charAt(0, (byte) -45) == 126) {
                     var3.textSpoken = var3.textSpoken.substring(1);
                     Class3_Sub30_Sub1.addChatMessage(var3.getName(), 2, var3.textSpoken, (byte) -79 ^ 78);
-                } else if (var3 == Class102.player) {
+                } else if (var3 == Player.player) {
                     Class3_Sub30_Sub1.addChatMessage(var3.getName(), 2, var3.textSpoken, (byte) -79 + 78);
                 }
 
@@ -194,7 +194,7 @@ final class Class45 {
                         if (var7 != -1) {
                             SequenceDefinition var24 = SequenceDefinition.getAnimationDefinition(var7);
                             if (var24.frames != null) {
-                                Unsorted.method1470(var3.anInt2829, var24, 183921384, var3.anInt2819, var3 == Class102.player, 0);
+                                Unsorted.method1470(var3.anInt2829, var24, 183921384, var3.anInt2819, var3 == Player.player, 0);
                             }
                         }
                     }

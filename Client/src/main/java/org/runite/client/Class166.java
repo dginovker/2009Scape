@@ -37,7 +37,7 @@ final class Class166 {
                 Player var6 = Class3_Sub13_Sub22.players[Class56.localPlayerIndexes[var5]];
                 if (null != var6 && null != var6.displayName && var6.displayName.equalsStringIgnoreCase(var3)) {
                     var4 = true;
-                    Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 1, false, 0, 2, var6.anIntArray2767[0], 1, 0, 2, var6.anIntArray2755[0], Class102.player.anIntArray2767[0]);
+                    Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 1, false, 0, 2, var6.anIntArray2767[0], 1, 0, 2, var6.anIntArray2755[0], Player.player.anIntArray2767[0]);
                     if (1 == var0) {
                         Class3_Sub13_Sub1.outgoingBuffer.putOpcode(68);
                         Class3_Sub13_Sub1.outgoingBuffer.writeShort128LE(Class56.localPlayerIndexes[var5]);

@@ -7,7 +7,6 @@ final class Class102 implements Interface2 {
     static int[] anIntArray2125;
     static Class135[] aClass135Array2131 = new Class135[50];
     static int anInt2136;
-    static Player player;
     private final boolean[] aBooleanArray2122;
     private final CacheIndex aClass153_2123;
     private final boolean[] aBooleanArray2124;
@@ -252,7 +251,7 @@ final class Class102 implements Interface2 {
 
     public static void method1612(int var0) {
         try {
-            player = null;
+            Player.player = null;
             if (var0 != -11565) {
                 method1614(false, null, null);
             }

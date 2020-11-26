@@ -595,7 +595,7 @@ public final class PacketParser {
                                                         var6 = modelId & '\uffff';
                                                         Player var60;
                                                         if (var6 == Class3_Sub1.localIndex) {
-                                                            var60 = Class102.player;
+                                                            var60 = Player.player;
                                                         } else {
                                                             var60 = Class3_Sub13_Sub22.players[var6];
                                                         }
@@ -623,7 +623,7 @@ public final class PacketParser {
                                                                     if (var33 != -1) {
                                                                         var53 = SequenceDefinition.getAnimationDefinition(var33);
                                                                         if (null != var53.frames) {
-                                                                            Unsorted.method1470(var60.anInt2829, var53, 183921384, var60.anInt2819, var60 == Class102.player, 0);
+                                                                            Unsorted.method1470(var60.anInt2829, var53, 183921384, var60.anInt2819, var60 == Player.player, 0);
                                                                         }
                                                                     }
                                                                 }
@@ -790,7 +790,7 @@ public final class PacketParser {
                                                 var19 = GraphicDefinition.incomingBuffer.readUnsignedByte128();
                                                 modelId = GraphicDefinition.incomingBuffer.readUnsignedByte();
                                                 WorldListCountry.localPlane = var19 >> 1;
-                                                Class102.player.method1981(nodeModelId, (var19 & 1) == 1, modelId);
+                                                Player.player.method1981(nodeModelId, (var19 & 1) == 1, modelId);
                                                 Unsorted.incomingOpcode = -1;
                                                 return true;
                                             } else {
@@ -1370,8 +1370,8 @@ public final class PacketParser {
                                                         var19 = GraphicDefinition.incomingBuffer.readIntV1();
                                                         Class146.updateInterfacePacketCounter(nodeModelId);
                                                         modelId = 0;
-                                                        if (Class102.player.class52 != null) {
-                                                            modelId = Class102.player.class52.method1163();
+                                                        if (Player.player.class52 != null) {
+                                                            modelId = Player.player.class52.method1163();
                                                         }
 
                                                         method256(-1, 3, var19, modelId);

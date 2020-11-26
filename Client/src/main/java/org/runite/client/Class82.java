@@ -120,7 +120,7 @@ final class Class82 {
             for (var7 = -1; var7 < Class159.localPlayerCount + Class163.localNPCCount; ++var7) {
                 Class140_Sub4 var8;
                 if (var7 == -1) {
-                    var8 = Class102.player;
+                    var8 = Player.player;
                 } else if (var7 < Class159.localPlayerCount) {
                     var8 = Class3_Sub13_Sub22.players[Class56.localPlayerIndexes[var7]];
                 } else {

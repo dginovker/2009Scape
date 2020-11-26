@@ -599,7 +599,7 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                                                             var5 = 3;
                                                         }
 
-                                                        Class30.method979(Class102.player.anIntArray2767[0] + Class131.anInt1716, Class102.player.anIntArray2755[0] + Class82.anInt1152, var5);
+                                                        Class30.method979(Player.player.anIntArray2767[0] + Class131.anInt1716, Player.player.anIntArray2755[0] + Class82.anInt1152, var5);
                                                     }
 
                                                     if (Class3_Sub13_Sub26.rights > 0 && ObjectDefinition.aBooleanArray1490[82] && ObjectDefinition.aBooleanArray1490[81]) {
@@ -636,7 +636,7 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
 
                                                         ObjectDefinition.anInt1521 = 0;
                                                     } else if (-1 != Class27.anInt515 && 0 == CS2Script.anInt2440 && ObjectDefinition.anInt1521 == 0) {
-                                                        boolean var27 = Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, 0, true, 0, 2, Class27.anInt515, 0, 0, 0, Unsorted.anInt999, Class102.player.anIntArray2767[0]);
+                                                        boolean var27 = Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, 0, true, 0, 2, Class27.anInt515, 0, 0, 0, Unsorted.anInt999, Player.player.anIntArray2767[0]);
                                                         if (var27) {
                                                             Unsorted.anInt4062 = Class38_Sub1.anInt2614;
                                                             Unsorted.anInt2958 = 0;

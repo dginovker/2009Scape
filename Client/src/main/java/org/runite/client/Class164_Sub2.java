@@ -115,7 +115,7 @@ class Class164_Sub2 extends Class164 {
                         }
 
                         if (var8 == 8) {
-                            var9 = Class102.player.COMBAT_LEVEL;
+                            var9 = Player.player.COMBAT_LEVEL;
                         }
 
                         if (9 == var8) {
@@ -161,11 +161,11 @@ class Class164_Sub2 extends Class164 {
                         }
 
                         if (var8 == 18) {
-                            var9 = (Class102.player.anInt2819 >> 7) - -Class131.anInt1716;
+                            var9 = (Player.player.anInt2819 >> 7) - -Class131.anInt1716;
                         }
 
                         if (var8 == 19) {
-                            var9 = (Class102.player.anInt2829 >> 7) - -Class82.anInt1152;
+                            var9 = (Player.player.anInt2829 >> 7) - -Class82.anInt1152;
                         }
 
                         if (var8 == 20) {

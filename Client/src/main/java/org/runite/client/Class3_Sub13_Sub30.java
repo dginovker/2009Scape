@@ -16,16 +16,16 @@ final class Class3_Sub13_Sub30 extends Class3_Sub13 {
 
     static void method312(int var0, int var1, int var2, Player playerUsername, int var4) {
         try {
-            if (Class102.player != playerUsername) {
+            if (Player.player != playerUsername) {
                 if (Unsorted.menuOptionCount < 400) {
                     RSString var5;
                     if (playerUsername.anInt3974 == 0) {
                         boolean var6 = true;
-                        if (Class102.player.anInt3970 != -1 && -1 != playerUsername.anInt3970) {
-                            int var7 = Math.max(playerUsername.COMBAT_LEVEL, Class102.player.COMBAT_LEVEL);
-                            int var8 = Math.min(playerUsername.anInt3970, Class102.player.anInt3970);
+                        if (Player.player.anInt3970 != -1 && -1 != playerUsername.anInt3970) {
+                            int var7 = Math.max(playerUsername.COMBAT_LEVEL, Player.player.COMBAT_LEVEL);
+                            int var8 = Math.min(playerUsername.anInt3970, Player.player.anInt3970);
                             int var9 = 5 - -(var7 * 10 / 100) + var8;
-                            int var10 = -playerUsername.COMBAT_LEVEL + Class102.player.COMBAT_LEVEL;
+                            int var10 = -playerUsername.COMBAT_LEVEL + Player.player.COMBAT_LEVEL;
                             if (0 > var10) {
                                 var10 = -var10;
                             }
@@ -37,10 +37,10 @@ final class Class3_Sub13_Sub30 extends Class3_Sub13 {
 
                         RSString levelEquals = Class158.anInt2014 != 1 ? TextCore.HasLevel : TextCore.HasRating;
                         if (playerUsername.COMBAT_LEVEL < playerUsername.combatLevel) {
-                            var5 = RSString.stringCombiner(new RSString[]{playerUsername.getName(), var6 ? Player.combatLevelColor(playerUsername.COMBAT_LEVEL, (byte) -73, Class102.player.COMBAT_LEVEL) : ColorCore.ContextColor, TextCore.LEFT_PARENTHESES, levelEquals, RSString.stringAnimator(playerUsername.COMBAT_LEVEL), TextCore.aClass94_673, RSString.stringAnimator(playerUsername.combatLevel + -playerUsername.COMBAT_LEVEL), TextCore.RIGHT_PARENTHESES});
+                            var5 = RSString.stringCombiner(new RSString[]{playerUsername.getName(), var6 ? Player.combatLevelColor(playerUsername.COMBAT_LEVEL, (byte) -73, Player.player.COMBAT_LEVEL) : ColorCore.ContextColor, TextCore.LEFT_PARENTHESES, levelEquals, RSString.stringAnimator(playerUsername.COMBAT_LEVEL), TextCore.aClass94_673, RSString.stringAnimator(playerUsername.combatLevel + -playerUsername.COMBAT_LEVEL), TextCore.RIGHT_PARENTHESES});
                         } else {
                             //here
-                            var5 = RSString.stringCombiner(new RSString[]{playerUsername.getName(), var6 ? Player.combatLevelColor(playerUsername.COMBAT_LEVEL, (byte) -128, Class102.player.COMBAT_LEVEL) : Player.getCombatLevelDifferenceColor(playerUsername.COMBAT_LEVEL, Class102.player.COMBAT_LEVEL), TextCore.LEFT_PARENTHESES, levelEquals, RSString.stringAnimator(playerUsername.COMBAT_LEVEL), TextCore.RIGHT_PARENTHESES});
+                            var5 = RSString.stringCombiner(new RSString[]{playerUsername.getName(), var6 ? Player.combatLevelColor(playerUsername.COMBAT_LEVEL, (byte) -128, Player.player.COMBAT_LEVEL) : Player.getCombatLevelDifferenceColor(playerUsername.COMBAT_LEVEL, Player.player.COMBAT_LEVEL), TextCore.LEFT_PARENTHESES, levelEquals, RSString.stringAnimator(playerUsername.COMBAT_LEVEL), TextCore.RIGHT_PARENTHESES});
                         }
                     } else {
                         var5 = RSString.stringCombiner(new RSString[]{playerUsername.getName(), TextCore.LEFT_PARENTHESES, TextCore.HasSkill, RSString.stringAnimator(playerUsername.anInt3974), TextCore.RIGHT_PARENTHESES});
@@ -55,11 +55,11 @@ final class Class3_Sub13_Sub30 extends Class3_Sub13 {
                                 short var14 = 0;
                                 if (Class158.anInt2014 == 0 && Class91.aClass94Array1299[var12].equalsStringIgnoreCase(TextCore.HasAttack)) {
                                     //If other player level greater than my level, then right click to attack.
-                                    if (playerUsername.COMBAT_LEVEL > Class102.player.COMBAT_LEVEL) {
+                                    if (playerUsername.COMBAT_LEVEL > Player.player.COMBAT_LEVEL) {
                                         var14 = 2000;//Var for right click higher level players
                                     }
-                                    if (Class102.player.teamId != 0 && playerUsername.teamId != 0) {
-                                        if (playerUsername.teamId == Class102.player.teamId) {
+                                    if (Player.player.teamId != 0 && playerUsername.teamId != 0) {
+                                        if (playerUsername.teamId == Player.player.teamId) {
                                             var14 = 2000;
                                         } else {
                                             var14 = 0;

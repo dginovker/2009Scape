@@ -120,9 +120,9 @@ final class Class163_Sub2_Sub1 extends Class163_Sub2 {
                     var11 = (var11 << var6 & 15) - -(var11 >> -var6 + 4);
                 }
 
-                Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], 0, var10, true, var11, 2, var4, var9, 0, 2, var3, Class102.player.anIntArray2767[0]);
+                Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], 0, var10, true, var11, 2, var4, var9, 0, 2, var3, Player.player.anIntArray2767[0]);
             } else {
-                Class3_Sub28_Sub9.method582(Class102.player.anIntArray2755[0], var6, 0, true, 0, 2, var4, 0, 1 + var5, 2, var3, Class102.player.anIntArray2767[0]);
+                Class3_Sub28_Sub9.method582(Player.player.anIntArray2755[0], var6, 0, true, 0, 2, var4, 0, 1 + var5, 2, var3, Player.player.anIntArray2767[0]);
             }
 
             Unsorted.anInt4062 = Class38_Sub1.anInt2614;

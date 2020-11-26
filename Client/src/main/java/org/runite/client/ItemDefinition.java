@@ -151,7 +151,7 @@ final class ItemDefinition {
                 }
 
 
-                return var0.equalsStringIgnoreCase(Class102.player.displayName);
+                return var0.equalsStringIgnoreCase(Player.player.displayName);
             }
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "hj.A(" + "{...}" + ',' + (byte) -82 + ')');

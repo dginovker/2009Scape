@@ -54,7 +54,7 @@ final class Class167 {
                             var3.anInt2785 = 0;
                         }
 
-                        var3.method1967(var3.getSize(), Class102.player.anIntArray2767[0] + var8, var7 + Class102.player.anIntArray2755[0], var4 == 1);
+                        var3.method1967(var3.getSize(), Player.player.anIntArray2767[0] + var8, var7 + Player.player.anIntArray2755[0], var4 == 1);
                         if (var3.definition.method1474()) {
                             Class70.method1286(var3.anIntArray2755[0], null, 0, var3, var3.anIntArray2767[0], WorldListCountry.localPlane, null);
                         }

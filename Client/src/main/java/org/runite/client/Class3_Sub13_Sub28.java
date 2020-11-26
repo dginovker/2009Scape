@@ -44,7 +44,7 @@ final class Class3_Sub13_Sub28 extends Class3_Sub13 {
                             int var4 = -1 + -var2.anInt2919;
                             Player var6;
                             if (Class3_Sub1.localIndex == var4) {
-                                var6 = Class102.player;
+                                var6 = Player.player;
                             } else {
                                 var6 = Class3_Sub13_Sub22.players[var4];
                             }

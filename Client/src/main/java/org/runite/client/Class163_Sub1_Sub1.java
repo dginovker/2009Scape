@@ -28,7 +28,7 @@ final class Class163_Sub1_Sub1 extends Class163_Sub1 {
                 }
 
             } else {
-                Unsorted.method1301(WorldListCountry.localPlane, Class3_Sub7.anInt2294, Unsorted.anInt3606, Class102.player.anIntArray2755[0], false, Class102.player.anIntArray2767[0]);
+                Unsorted.method1301(WorldListCountry.localPlane, Class3_Sub7.anInt2294, Unsorted.anInt3606, Player.player.anIntArray2755[0], false, Player.player.anIntArray2767[0]);
             }
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "ch.E(" + 0 + ')');

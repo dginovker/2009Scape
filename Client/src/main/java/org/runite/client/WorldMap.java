@@ -65,9 +65,9 @@ final class WorldMap extends Node {
                     /* End Minimap Zoom */
 
 
-                    int var1 = -Class3_Sub13_Sub21.anInt3256 + (Class102.player.anInt2819 >> 7) + Class131.anInt1716;
+                    int var1 = -Class3_Sub13_Sub21.anInt3256 + (Player.player.anInt2819 >> 7) + Class131.anInt1716;
                     var1 += -5 + (int) (Math.random() * 10.0D);
-                    int var2 = -Class82.anInt1152 + -(Class102.player.anInt2829 >> 7) + Unsorted.anInt65 + -1 + Class108.anInt1460;
+                    int var2 = -Class82.anInt1152 + -(Player.player.anInt2829 >> 7) + Unsorted.anInt65 + -1 + Class108.anInt1460;
                     var2 += -5 + (int) (Math.random() * 10.0D);
                     if (var1 >= 0 && var1 < Class23.anInt455 && 0 <= var2 && Class108.anInt1460 > var2) {
                         Class3_Sub28_Sub1.anInt3536 = var1;
@@ -200,7 +200,7 @@ final class WorldMap extends Node {
                     var3.anInt2776 = 1;
                     var3.anInt2832 = 0;
                     var3.anInt2773 = 0;
-                    Unsorted.method1470(var3.anInt2829, var4, 183921384, var3.anInt2819, Class102.player == var3, var3.anInt2832);
+                    Unsorted.method1470(var3.anInt2829, var4, 183921384, var3.anInt2819, Player.player == var3, var3.anInt2832);
                 }
 
                 if (var5 == 2) {
@@ -215,7 +215,7 @@ final class WorldMap extends Node {
                 var3.anInt2760 = 0;
                 var3.anInt2771 = var2;
                 if (var3.anInt2771 != -1) {
-                    Unsorted.method1470(var3.anInt2829, SequenceDefinition.getAnimationDefinition(var3.anInt2771), 183921384, var3.anInt2819, var3 == Class102.player, var3.anInt2832);
+                    Unsorted.method1470(var3.anInt2829, SequenceDefinition.getAnimationDefinition(var3.anInt2771), 183921384, var3.anInt2819, var3 == Player.player, var3.anInt2832);
                 }
             }
 

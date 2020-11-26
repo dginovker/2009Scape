@@ -279,7 +279,7 @@ final class Class49 {
                     }
                 }
 
-                Class61.method1214(Class106.anInt1446, Class102.player.anInt2819, Class102.player.anInt2829, WorldListCountry.localPlane);
+                Class61.method1214(Class106.anInt1446, Player.player.anInt2819, Player.player.anInt2829, WorldListCountry.localPlane);
                 Class106.anInt1446 = 0;
             }
         } catch (RuntimeException var3) {

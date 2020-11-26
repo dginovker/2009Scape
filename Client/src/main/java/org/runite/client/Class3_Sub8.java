@@ -44,8 +44,8 @@ final class Class3_Sub8 extends Linkable {
 
             if (2 != Class161.anInt2028 && 5 != Class161.anInt2028 && Class49.aAbstractSprite_812 != null) {
                 int var19 = Class3_Sub13_Sub8.anInt3102 + GraphicDefinition.CAMERA_DIRECTION & 2047;//Region Rotation (relative to player camera)
-                int var6 = Class102.player.anInt2819 / 32 + 48;//Minimap X Axis (relative to player) Used as offset
-                int var7 = -(Class102.player.anInt2829 / 32) + 464;//Minimap Y Axis (relative to player) Used as offset
+                int var6 = Player.player.anInt2819 / 32 + 48;//Minimap X Axis (relative to player) Used as offset
+                int var7 = -(Player.player.anInt2829 / 32) + 464;//Minimap Y Axis (relative to player) Used as offset
                 if (HDToolKit.highDetail) {
                     ((HDSprite) Class49.aAbstractSprite_812).drawMinimapRegion(var3, var2, var4.width, var4.height, var6, var7, var19, Class164_Sub2.anInt3020 + 256, (HDSprite) var4.method866(false));
                 } else {
@@ -63,12 +63,12 @@ final class Class3_Sub8 extends Linkable {
                 if (null != Class3_Sub13_Sub35.aClass131_3421) {
                     for (int var8 = 0; var8 < Class3_Sub13_Sub35.aClass131_3421.anInt1720; ++var8) {
                         if (Class3_Sub13_Sub35.aClass131_3421.method1789(var8, var1 ^ 553)) {
-                            var9 = 2 + 4 * (Class3_Sub13_Sub35.aClass131_3421.aShortArray1727[var8] + -Class131.anInt1716) + -(Class102.player.anInt2819 / 32);
+                            var9 = 2 + 4 * (Class3_Sub13_Sub35.aClass131_3421.aShortArray1727[var8] + -Class131.anInt1716) + -(Player.player.anInt2819 / 32);
                             var11 = Class51.anIntArray840[var19];
                             var12 = Class51.anIntArray851[var19];
                             Class3_Sub28_Sub17 var15 = Class3_Sub13.aClass3_Sub28_Sub17_2379;
                             var11 = var11 * 256 / (256 + Class164_Sub2.anInt3020);
-                            var10 = 2 + 4 * (-Class82.anInt1152 + Class3_Sub13_Sub35.aClass131_3421.aShortArray1718[var8]) - Class102.player.anInt2829 / 32;
+                            var10 = 2 + 4 * (-Class82.anInt1152 + Class3_Sub13_Sub35.aClass131_3421.aShortArray1718[var8]) - Player.player.anInt2829 / 32;
                             var12 = var12 * 256 / (256 + Class164_Sub2.anInt3020);
                             var14 = -(var9 * var11) + var10 * var12 >> 16;
                             if (Class3_Sub13_Sub35.aClass131_3421.method1791(var8, var1 + -51) == 1) {
@@ -106,8 +106,8 @@ final class Class3_Sub8 extends Linkable {
                 }
 
                 for (var9 = 0; MouseListeningClass.anInt1924 > var9; ++var9) {
-                    var10 = -(Class102.player.anInt2819 / 32) + 2 + 4 * Class84.anIntArray1163[var9];
-                    var11 = -(Class102.player.anInt2829 / 32) + 2 + (Unsorted.anIntArray4050[var9] * 4);
+                    var10 = -(Player.player.anInt2819 / 32) + 2 + 4 * Class84.anIntArray1163[var9];
+                    var11 = -(Player.player.anInt2829 / 32) + 2 + (Unsorted.anIntArray4050[var9] * 4);
                     ObjectDefinition var20 = ObjectDefinition.getObjectDefinition(Class3_Sub19.anIntArray3693[var9]);
                     if (null != var20.ChildrenIds) {
                         var20 = var20.method1685(var1 + -59);
@@ -123,8 +123,8 @@ final class Class3_Sub8 extends Linkable {
                     for (var10 = 0; var10 < 104; ++var10) {
                         Class61 var25 = Class3_Sub13_Sub22.aClass61ArrayArrayArray3273[WorldListCountry.localPlane][var9][var10];
                         if (null != var25) {
-                            var12 = 2 + var9 * 4 + -(Class102.player.anInt2819 / 32);
-                            var13 = -(Class102.player.anInt2829 / 32) + 2 + 4 * var10;
+                            var12 = 2 + var9 * 4 + -(Player.player.anInt2819 / 32);
+                            var13 = -(Player.player.anInt2829 / 32) + 2 + 4 * var10;
                             Class38_Sub1.minimapIcons(var4, Unsorted.aAbstractSpriteArray1136[0], var13, var12, var2, var3);
                         }
                     }
@@ -139,8 +139,8 @@ final class Class3_Sub8 extends Linkable {
                         }
 
                         if (var22 != null && var22.aBoolean1285 && var22.aBoolean1270) {
-                            var12 = var21.anInt2819 / 32 - Class102.player.anInt2819 / 32;
-                            var13 = var21.anInt2829 / 32 + -(Class102.player.anInt2829 / 32);
+                            var12 = var21.anInt2819 / 32 - Player.player.anInt2819 / 32;
+                            var13 = var21.anInt2829 / 32 + -(Player.player.anInt2829 / 32);
                             if (var22.anInt1283 == -1) {
                                 Class38_Sub1.minimapIcons(var4, Unsorted.aAbstractSpriteArray1136[1], var13, var12, var2, var3);
                             } else {
@@ -153,8 +153,8 @@ final class Class3_Sub8 extends Linkable {
                 for (var9 = 0; var9 < Class159.localPlayerCount; ++var9) {
                     Player var23 = Class3_Sub13_Sub22.players[Class56.localPlayerIndexes[var9]];
                     if (null != var23 && var23.hasDefinitions()) {
-                        var12 = var23.anInt2829 / 32 - Class102.player.anInt2829 / 32;
-                        var11 = -(Class102.player.anInt2819 / 32) + var23.anInt2819 / 32;
+                        var12 = var23.anInt2829 / 32 - Player.player.anInt2829 / 32;
+                        var11 = -(Player.player.anInt2819 / 32) + var23.anInt2819 / 32;
                         long var29 = var23.displayName.toLong();
                         boolean var28 = false;
 
@@ -175,7 +175,7 @@ final class Class3_Sub8 extends Linkable {
                         }
 
                         boolean var32 = false;
-                        if (Class102.player.teamId != 0 && 0 != var23.teamId && var23.teamId == Class102.player.teamId) {
+                        if (Player.player.teamId != 0 && 0 != var23.teamId && var23.teamId == Player.player.teamId) {
                             var32 = true;
                         }
 
@@ -199,23 +199,23 @@ final class Class3_Sub8 extends Linkable {
                         if (var26.anInt1360 == 1 && var26.anInt1359 >= 0 && var26.anInt1359 < NPC.npcs.length) {
                             NPC var27 = NPC.npcs[var26.anInt1359];
                             if (null != var27) {
-                                var13 = -(Class102.player.anInt2819 / 32) + var27.anInt2819 / 32;
-                                var14 = var27.anInt2829 / 32 + -(Class102.player.anInt2829 / 32);
+                                var13 = -(Player.player.anInt2819 / 32) + var27.anInt2819 / 32;
+                                var14 = var27.anInt2829 / 32 + -(Player.player.anInt2829 / 32);
                                 Class53.method1171(var26.anInt1351, var2, var3, var13, var14, var4);
                             }
                         }
 
                         if (var26.anInt1360 == 2) {
-                            var12 = (-Class131.anInt1716 + var26.anInt1356) * 4 + 2 - Class102.player.anInt2819 / 32;
-                            var13 = -(Class102.player.anInt2829 / 32) + 2 + (-Class82.anInt1152 + var26.anInt1347) * 4;
+                            var12 = (-Class131.anInt1716 + var26.anInt1356) * 4 + 2 - Player.player.anInt2819 / 32;
+                            var13 = -(Player.player.anInt2829 / 32) + 2 + (-Class82.anInt1152 + var26.anInt1347) * 4;
                             Class53.method1171(var26.anInt1351, var2, var3, var12, var13, var4);
                         }
 
                         if (var26.anInt1360 == 10 && var26.anInt1359 >= 0 && Class3_Sub13_Sub22.players.length > var26.anInt1359) {
                             Player var30 = Class3_Sub13_Sub22.players[var26.anInt1359];
                             if (null != var30) {
-                                var14 = var30.anInt2829 / 32 + -(Class102.player.anInt2829 / 32);
-                                var13 = var30.anInt2819 / 32 + -(Class102.player.anInt2819 / 32);
+                                var14 = var30.anInt2829 / 32 + -(Player.player.anInt2829 / 32);
+                                var13 = var30.anInt2819 / 32 + -(Player.player.anInt2819 / 32);
                                 Class53.method1171(var26.anInt1351, var2, var3, var13, var14, var4);
                             }
                         }
@@ -223,8 +223,8 @@ final class Class3_Sub8 extends Linkable {
                 }
 
                 if (Class65.anInt987 != 0) {
-                    var9 = 4 * Class65.anInt987 + (2 - Class102.player.anInt2819 / 32);
-                    var10 = 2 + 4 * Class45.anInt733 - Class102.player.anInt2829 / 32;
+                    var9 = 4 * Class65.anInt987 + (2 - Player.player.anInt2819 / 32);
+                    var10 = 2 + 4 * Class45.anInt733 - Player.player.anInt2829 / 32;
                     Class38_Sub1.minimapIcons(var4, Class45.aAbstractSprite_736, var10, var9, var2, var3);
                 }
                 Toolkit.getActiveToolkit().method934(-1 + (var3 - -(var4.width / 2)), -1 + var2 - -(var4.height / 2), 3, 3, 16777215);
@@ -369,12 +369,12 @@ final class Class3_Sub8 extends Linkable {
                             int var4 = 128 * (255 & anIntArray3083[var1]);
                             int var7 = anIntArray3083[var1] >> 8 & 255;
                             int var5 = 255 & anIntArray3083[var1] >> 16;
-                            int var8 = -Class102.player.anInt2829 + 64 + 128 * var7;
+                            int var8 = -Player.player.anInt2829 + 64 + 128 * var7;
                             if (var8 < 0) {
                                 var8 = -var8;
                             }
 
-                            int var6 = -Class102.player.anInt2819 + 64 + var5 * 128;
+                            int var6 = -Player.player.anInt2819 + 64 + var5 * 128;
                             if (0 > var6) {
                                 var6 = -var6;
                             }

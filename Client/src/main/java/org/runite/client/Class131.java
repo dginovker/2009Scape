@@ -68,7 +68,7 @@ final class Class131 {
                             var8 -= 32;
                         }
 
-                        var3.method1981(var5 + Class102.player.anIntArray2767[0], var7 == 1, Class102.player.anIntArray2755[0] + var8);
+                        var3.method1981(var5 + Player.player.anIntArray2767[0], var7 == 1, Player.player.anIntArray2755[0] + var8);
                         continue;
                     }
                 }

@@ -18,8 +18,8 @@ final class Class3_Sub13_Sub37 extends Class3_Sub13 {
         try {
             PacketParser.inTutorialIsland = 0;
 
-            int var1 = Class131.anInt1716 + (Class102.player.anInt2819 >> 7);
-            int var2 = (Class102.player.anInt2829 >> 7) - -Class82.anInt1152;
+            int var1 = Class131.anInt1716 + (Player.player.anInt2819 >> 7);
+            int var2 = (Player.player.anInt2829 >> 7) - -Class82.anInt1152;
             if (var1 >= 3053 && var1 <= 3156 && var2 >= 3056 && var2 <= 3136) {
                 PacketParser.inTutorialIsland = 1;
             }

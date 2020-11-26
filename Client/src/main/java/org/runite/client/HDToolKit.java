@@ -1,5 +1,6 @@
 package org.runite.client;
 
+import org.lwjgl.opengl.ARBMultitexture;
 import org.rs09.client.config.GameConfig;
 
 import java.awt.*;
