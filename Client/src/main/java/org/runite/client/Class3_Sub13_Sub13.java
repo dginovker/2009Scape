@@ -460,9 +460,13 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                            RSInterface var20;
                            if(var3 == 3) {
                               var20 = Class7.getRSInterface(var4);
-                              if(!var16.aClass94_3599.equalsString(Objects.requireNonNull(var20).text)) {
-                                 var20.text = var16.aClass94_3599;
-                                 Class20.method909(var20);
+                              if (var20 == null) {
+                                 System.out.println("Whoops, I nulled this interface: " + var4);
+                              } else {
+                                 if (!var16.aClass94_3599.equalsString(var20.text)) {
+                                    var20.text = var16.aClass94_3599;
+                                    Class20.method909(var20);
+                                 }
                               }
                            } else if (var3 == 4) {
                               var20 = Class7.getRSInterface(var4);

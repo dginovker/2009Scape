@@ -297,6 +297,9 @@ class GameConfig {
                     11 -> CHRISTMAS_EVENT_ENABLED = true
                 }
             }
+            if (CHRISTMAS_EVENT_ENABLED) {
+                LOGIN_THEME = "scape santa"
+            }
         }
     }
 }
