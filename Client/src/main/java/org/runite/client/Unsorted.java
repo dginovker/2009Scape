@@ -310,7 +310,7 @@ public class Unsorted {
                             var15[var16 + 1539] = var14;
                         }
                     }
-                } else if (Class15.method888(var1, var13, var0, 0, var3, var10)) {
+                } else if (method888(var1, var13, var0, 0, var3, var10)) {
                     return false;
                 }
             }
@@ -322,7 +322,7 @@ public class Unsorted {
                 var12 = (int) (var8 >>> 32) & Integer.MAX_VALUE;
                 var13 = ObjectDefinition.getObjectDefinition(var12);
                 if (var13.anInt1516 != -1) {
-                    if (Class15.method888(var1, var13, var0, 0, var3, var10)) {
+                    if (method888(var1, var13, var0, 0, var3, var10)) {
                         return false;
                     }
                 } else if (var11 == 9) {
@@ -352,7 +352,7 @@ public class Unsorted {
                 var10 = (int) var8 >> 20 & 3;
                 var11 = (int) (var8 >>> 32) & Integer.MAX_VALUE;
                 ObjectDefinition var18 = ObjectDefinition.getObjectDefinition(var11);
-                return var18.anInt1516 == -1 || !Class15.method888(var1, var18, var0, 0, var3, var10);
+                return var18.anInt1516 == -1 || !method888(var1, var18, var0, 0, var3, var10);
             }
 
             return true;
@@ -1373,17 +1373,6 @@ public class Unsorted {
         }
     }
 
-    public static void method1783(Component var1) {
-        try {
-            var1.removeMouseListener(aClass149_4047);
-            var1.removeMouseMotionListener(aClass149_4047);
-            var1.removeFocusListener(aClass149_4047);
-            GraphicDefinition.anInt549 = 0;
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "sc.M(" + (var1 != null ? "{...}" : "null") + ')');
-        }
-    }
-
     public static long method1395(int var0, int var1, int var2) {
         Class3_Sub2 var3 = Class75_Sub2.aClass3_Sub2ArrayArrayArray2638[var0][var1][var2];
         return var3 != null && var3.aClass19_2233 != null ? var3.aClass19_2233.aLong428 : 0L;
@@ -1468,7 +1457,7 @@ public class Unsorted {
 
     public static boolean method591(int var0) {
         try {
-            KeyboardListener var1 = Class3_Sub13_Sub3.aClass148_3049;
+            KeyboardListener var1 = KeyboardListener.aClass148_3049;
             synchronized (var1) {
                 if (Class3_Sub28_Sub9.anInt3620 == Class134.anInt1762) {
                     return false;
@@ -1630,8 +1619,8 @@ public class Unsorted {
                 }
 
                 if (var0) {
-                    Class163_Sub1_Sub1.method2215(GameShell.canvas);
-                    method1783(GameShell.canvas);
+                    KeyboardListener.removeKeyboardListener(GameShell.canvas);
+                    MouseListeningClass.removeMouseListener(GameShell.canvas);
                     if (null != Class38.aClass146_668) {
                         Class38.aClass146_668.method2082(GameShell.canvas);
                     }
@@ -5255,6 +5244,51 @@ public class Unsorted {
 
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "rc.Q(" + true + ')');
+        }
+    }
+
+    static boolean method888(int var0, ObjectDefinition var1, int var3, int var4, int var5, int var6) {
+        try {
+            Class2 var7 = Class3_Sub28_Sub6.c(var1.anInt1516);
+            if (var7.sprite == -1) {
+                return false;
+            } else {
+                if (var1.aBoolean1537) {
+                    var6 += var1.anInt1478;
+                    var6 &= 3;
+                } else {
+                    var6 = 0;
+                }
+
+                LDIndexedSprite var8 = var7.getSprite(var6);
+                if (var8 == null) {
+                    return true;
+                } else {
+                    int var9 = var1.SizeX;
+                    int var10 = var1.SizeY;
+                    if (1 == (1 & var6)) {
+                        var9 = var1.SizeY;
+                        var10 = var1.SizeX;
+                    }
+
+                    int var11 = var8.anInt1469;
+                    int var12 = var8.anInt1467;
+                    if (var7.aBoolean69) {
+                        var12 = 4 * var10;
+                        var11 = 4 * var9;
+                    }
+
+                    if (var7.color == 0) {
+                        var8.method1677(var0 * 4 + 48, 48 + 4 * (-var10 + -var5 + 104), var11, var12);
+                    } else {
+                        var8.method1669(48 + 4 * var0, 4 * (-var10 + -var5 + 104) + 48, var11, var12, var7.color);
+                    }
+
+                    return false;
+                }
+            }
+        } catch (RuntimeException var13) {
+            throw ClientErrorException.clientError(var13, "cj.D(" + var0 + ',' + (var1 != null ? "{...}" : "null") + ',' + false + ',' + var3 + ',' + var4 + ',' + var5 + ',' + var6 + ')');
         }
     }
 }

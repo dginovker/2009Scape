@@ -82,7 +82,7 @@ final class Class32 {
     static void method996() {
         try {
 
-            KeyboardListener var1 = Class3_Sub13_Sub3.aClass148_3049;
+            KeyboardListener var1 = KeyboardListener.aClass148_3049;
             synchronized (var1) {
                 Class3_Sub28_Sub9.anInt3620 = Class134.anInt1762;
                 ++Class3_Sub13_Sub33.anInt3398;

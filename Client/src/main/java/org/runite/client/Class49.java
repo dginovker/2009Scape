@@ -129,50 +129,6 @@ final class Class49 {
         }
     }
 
-    static void method1125(String var0, Throwable var1, byte var2) {
-        if (var2 <= 100) {
-            aClass47_818 = null;
-        }
-
-        try {
-            String var3 = "";
-            if (null != var1) {
-                var3 = Class53.method1172(var1);
-            }
-
-            if (var0 != null) {
-                if (null != var1) {
-                    var3 = var3 + " | ";
-                }
-
-                var3 = var3 + var0;
-            }
-
-            Class7.method831(var3);
-            var3 = Class3_Sub28_Sub6.a(":", "%3a", var3);
-            var3 = Class3_Sub28_Sub6.a("@", "%40", var3);
-            var3 = Class3_Sub28_Sub6.a("&", "%26", var3);
-            var3 = Class3_Sub28_Sub6.a("#", "%23", var3);
-            if (Class3_Sub13_Sub10.aClass87_3125.applet == null) {
-                return;
-            }
-
-            Class64 var4 = Class3_Sub13_Sub10.aClass87_3125.method1439(false, new URL(Class3_Sub13_Sub10.aClass87_3125.applet.getCodeBase(), "clienterror.ws?c=" + GameShell.anInt4033 + "&u=" + PacketParser.aLong3202 + "&v1=" + Signlink.javaVendor + "&v2=" + Signlink.javaVersion + "&e=" + var3));
-
-            while (var4.anInt978 == 0) {
-                TimeUtils.sleep(1L);
-            }
-
-            if (var4.anInt978 == 1) {
-                DataInputStream var5 = (DataInputStream) var4.anObject974;
-                var5.read();
-                var5.close();
-            }
-        } catch (Exception var6) {
-        }
-
-    }
-
     static void method1126(int var1) {
         try {
             Class3_Sub28_Sub6 var2 = Class3_Sub24_Sub3.method466(2, var1);

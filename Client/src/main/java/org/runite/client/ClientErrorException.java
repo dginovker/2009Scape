@@ -1,5 +1,8 @@
 package org.runite.client;
 
+import java.io.DataInputStream;
+import java.net.URL;
+
 final class ClientErrorException extends RuntimeException {
 
     static int[] anIntArray2113 = new int[]{2, 2, 4, 0, 1, 8, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0};
@@ -49,5 +52,45 @@ final class ClientErrorException extends RuntimeException {
         }
 
         return var2;
+    }
+
+    static void method1125(String message, Throwable exception) {
+        try {
+            String var3 = "";
+            if (null != exception) {
+                var3 = Class53.method1172(exception);
+            }
+
+            if (message != null) {
+                if (null != exception) {
+                    var3 = var3 + " | ";
+                }
+
+                var3 = var3 + message;
+            }
+
+            Class7.method831(var3);
+            var3 = Class3_Sub28_Sub6.a(":", "%3a", var3);
+            var3 = Class3_Sub28_Sub6.a("@", "%40", var3);
+            var3 = Class3_Sub28_Sub6.a("&", "%26", var3);
+            var3 = Class3_Sub28_Sub6.a("#", "%23", var3);
+            if (Class3_Sub13_Sub10.aClass87_3125.applet == null) {
+                return;
+            }
+
+            Class64 var4 = Class3_Sub13_Sub10.aClass87_3125.method1439(false, new URL(Class3_Sub13_Sub10.aClass87_3125.applet.getCodeBase(), "clienterror.ws?c=" + GameShell.anInt4033 + "&u=" + PacketParser.aLong3202 + "&v1=" + Signlink.javaVendor + "&v2=" + Signlink.javaVersion + "&e=" + var3));
+
+            while (var4.anInt978 == 0) {
+                TimeUtils.sleep(1L);
+            }
+
+            if (var4.anInt978 == 1) {
+                DataInputStream var5 = (DataInputStream) var4.anObject974;
+                var5.read();
+                var5.close();
+            }
+        } catch (Exception var6) {
+        }
+
     }
 }

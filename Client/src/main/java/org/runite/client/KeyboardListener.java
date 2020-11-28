@@ -4,6 +4,7 @@ import org.rs09.client.config.GameConfig;
 import org.rs09.client.console.DeveloperConsole;
 import org.rs09.client.data.ReferenceCache;
 
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -21,6 +22,7 @@ final class KeyboardListener implements KeyListener, FocusListener {
     static int anInt1918 = 0;
     static int anInt2384 = 0;
     static int[] anIntArray1978 = new int[128];
+    static KeyboardListener aClass148_3049 = new KeyboardListener();
 
     static void adjustKeyCodeMap() {
         if (!Signlink.javaVendor.toLowerCase().contains("microsoft")) {
@@ -58,6 +60,16 @@ final class KeyboardListener implements KeyListener, FocusListener {
         }
     }
 
+    static void removeKeyboardListener(Component canvas) {
+        try {
+            canvas.removeKeyListener(aClass148_3049);
+            canvas.removeFocusListener(aClass148_3049);
+            anInt2384 = -1;
+        } catch (RuntimeException var3) {
+            throw ClientErrorException.clientError(var3, "ch.G(" + (canvas != null ? "{...}" : "null") + ',' + -9320 + ')');
+        }
+    }
+
 
     public final synchronized void keyPressed(KeyEvent var1) {
         try {
@@ -78,7 +90,7 @@ final class KeyboardListener implements KeyListener, FocusListener {
 //            return;
 //         }
 
-            if (null != Class3_Sub13_Sub3.aClass148_3049) {
+            if (null != aClass148_3049) {
                 Class3_Sub13_Sub33.anInt3398 = 0;
                 int var2 = var1.getKeyCode();
 //            switch(var2) {
@@ -185,7 +197,7 @@ final class KeyboardListener implements KeyListener, FocusListener {
         }
         try {
 
-            if (Class3_Sub13_Sub3.aClass148_3049 != null) {
+            if (aClass148_3049 != null) {
                 int var2 = Class79.method1386(var1);
                 if (var2 >= 0) {
                     int var3 = 1 + Class25.anInt491 & 127;
@@ -204,7 +216,7 @@ final class KeyboardListener implements KeyListener, FocusListener {
     }
 
     public final synchronized void focusLost(FocusEvent var1) {
-        if (Class3_Sub13_Sub3.aClass148_3049 != null) {
+        if (aClass148_3049 != null) {
             anInt2384 = -1;
         }
     }
@@ -223,7 +235,7 @@ final class KeyboardListener implements KeyListener, FocusListener {
                 break;
         }
         try {
-            if (null != Class3_Sub13_Sub3.aClass148_3049) {
+            if (null != aClass148_3049) {
                 Class3_Sub13_Sub33.anInt3398 = 0;
                 int var2 = var1.getKeyCode();
                 if (var2 >= 0 && var2 < KEY_CODE_MAP.length) {

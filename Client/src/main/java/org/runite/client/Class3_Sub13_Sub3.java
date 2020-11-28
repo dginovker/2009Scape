@@ -7,7 +7,6 @@ import java.io.IOException;
 
 public final class Class3_Sub13_Sub3 extends Class3_Sub13 {
 
-    static KeyboardListener aClass148_3049 = new KeyboardListener();
     private int anInt3047 = 4096;
     private boolean aBoolean3050 = true;
 
@@ -124,7 +123,7 @@ public final class Class3_Sub13_Sub3 extends Class3_Sub13 {
                 var2 = var2 + GraphicDefinition.incomingBuffer.buffer[var3] + ",";
             }
 
-            Class49.method1125(var2, var5, (byte) 108);
+            ClientErrorException.method1125(var2, var5);
             Class167.method2269((byte) 46);
             return true;
         }

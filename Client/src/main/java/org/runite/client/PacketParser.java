@@ -1701,7 +1701,7 @@ public final class PacketParser {
                                                             Unsorted.incomingOpcode = -1;
                                                             return true;
                                                         } else {
-                                                            Class49.method1125("T1 - " + Unsorted.incomingOpcode + "," + Class7.anInt2166 + "," + Class24.anInt469 + " - " + Unsorted.incomingPacketLength, null, (byte) 117);
+                                                            ClientErrorException.method1125("T1 - " + Unsorted.incomingOpcode + "," + Class7.anInt2166 + "," + Class24.anInt469 + " - " + Unsorted.incomingPacketLength, null);
                                                             Class167.method2269((byte) 46);
                                                             return true;
                                                         }

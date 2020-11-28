@@ -148,9 +148,39 @@ final class Class3_Sub13_Sub23_Sub1 extends Class3_Sub13_Sub23 {
     static AbstractSprite[] method286(int var2, CacheIndex var3) {
         try {
             //System.out.println("Class3_Sub13_Sub_23_Sub1 " + var2);
-            return !Class75_Sub4.method1351(var3, 0, var2, -30901) ? null : Class15.method891(~4);
+            return !Class75_Sub4.method1351(var3, 0, var2, -30901) ? null : method891(~4);
         } catch (RuntimeException var5) {
             throw ClientErrorException.clientError(var5, "kd.F(" + -1 + ',' + 0 + ',' + var2 + ',' + (var3 != null ? "{...}" : "null") + ')');
+        }
+    }
+
+    static AbstractSprite[] method891(int var0) {
+        try {
+            AbstractSprite[] var1 = new AbstractSprite[Class95.anInt1338];
+            if (var0 != -5) {
+                Class15.method894(113L);
+            }
+
+            for (int var2 = 0; var2 < Class95.anInt1338; ++var2) {
+                int var3 = Class140_Sub7.anIntArray2931[var2] * Unsorted.anIntArray3076[var2];
+                byte[] var4 = Class163_Sub1.aByteArrayArray2987[var2];
+                int[] var5 = new int[var3];
+
+                for (int var6 = 0; var6 < var3; ++var6) {
+                    var5[var6] = Class3_Sub13_Sub38.spritePalette[Unsorted.bitwiseAnd(255, var4[var6])];
+                }
+
+                if (HDToolKit.highDetail) {
+                    var1[var2] = new HDSprite(Class3_Sub15.anInt2426, Class133.anInt1748, Class164.anIntArray2048[var2], Unsorted.anIntArray2591[var2], Class140_Sub7.anIntArray2931[var2], Unsorted.anIntArray3076[var2], var5);
+                } else {
+                    var1[var2] = new Class3_Sub28_Sub16_Sub2(Class3_Sub15.anInt2426, Class133.anInt1748, Class164.anIntArray2048[var2], Unsorted.anIntArray2591[var2], Class140_Sub7.anIntArray2931[var2], Unsorted.anIntArray3076[var2], var5);
+                }
+            }
+
+            Class39.method1035((byte) 116);
+            return var1;
+        } catch (RuntimeException var7) {
+            throw ClientErrorException.clientError(var7, "cj.C(" + var0 + ')');
         }
     }
 

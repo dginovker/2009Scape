@@ -1,6 +1,7 @@
 package org.runite.client;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 final class MouseListeningClass implements MouseListener, MouseMotionListener, FocusListener {
@@ -68,24 +69,23 @@ final class MouseListeningClass implements MouseListener, MouseMotionListener, F
         }
     }
 
-//	  static void method2089()
-//	  {
-//	    try
-//	    {
-//	      Class158_Sub1.aReferenceCache_2982.clearSoftReferences();
-//		}
-//	    catch (RuntimeException var2)
-//	    {
-//	      throw ClientErrorException.clientError(var2, "ug.D(" + (byte) 115 + ')');
-//	    }
-//	  }
-
     static void method2092(int var0) {
         try {
             Class3_Sub28_Sub6 var2 = Class3_Sub24_Sub3.method466(9, var0);
             var2.a();
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "ug.B(" + var0 + ',' + (byte) -47 + ')');
+        }
+    }
+
+    public static void removeMouseListener(Component var1) {
+        try {
+            var1.removeMouseListener(Unsorted.aClass149_4047);
+            var1.removeMouseMotionListener(Unsorted.aClass149_4047);
+            var1.removeFocusListener(Unsorted.aClass149_4047);
+            GraphicDefinition.anInt549 = 0;
+        } catch (RuntimeException var3) {
+            throw ClientErrorException.clientError(var3, "sc.M(" + (var1 != null ? "{...}" : "null") + ')');
         }
     }
 

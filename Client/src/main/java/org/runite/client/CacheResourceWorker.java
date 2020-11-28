@@ -114,7 +114,7 @@ final class CacheResourceWorker implements Runnable {
                     request.data = request.cache.read((int) request.nodeKey);
                 }
             } catch (Exception var5) {
-                Class49.method1125(null, var5, (byte) 111);
+                ClientErrorException.method1125(null, var5);
             }
 
             request.waiting = false;

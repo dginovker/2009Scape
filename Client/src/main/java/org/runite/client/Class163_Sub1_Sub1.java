@@ -35,16 +35,6 @@ final class Class163_Sub1_Sub1 extends Class163_Sub1 {
         }
     }
 
-    static void method2215(Component var0) {
-        try {
-            var0.removeKeyListener(Class3_Sub13_Sub3.aClass148_3049);
-            var0.removeFocusListener(Class3_Sub13_Sub3.aClass148_3049);
-            KeyboardListener.anInt2384 = -1;
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "ch.G(" + (var0 != null ? "{...}" : "null") + ',' + -9320 + ')');
-        }
-    }
-
     static void method2216() {
         try {
 

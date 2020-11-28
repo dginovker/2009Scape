@@ -156,8 +156,8 @@ final class Class3_Sub13_Sub4 extends Class3_Sub13 {
                 }
             }
 
-            var1.addKeyListener(Class3_Sub13_Sub3.aClass148_3049);
-            var1.addFocusListener(Class3_Sub13_Sub3.aClass148_3049);
+            var1.addKeyListener(KeyboardListener.aClass148_3049);
+            var1.addFocusListener(KeyboardListener.aClass148_3049);
         } catch (RuntimeException var5) {
             throw ClientErrorException.clientError(var5, "bi.Q(" + var0 + ',' + (var1 != null ? "{...}" : "null") + ')');
         }

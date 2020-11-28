@@ -159,7 +159,7 @@ public final class Client extends GameShell {
                 var6.launch();
                 GameShell.frame.setLocation(40, 40);
             } catch (Exception var4) {
-                Class49.method1125(null, var4, (byte) 119);
+                ClientErrorException.method1125(null, var4);
             }
 
         } catch (RuntimeException var5) {
@@ -869,8 +869,8 @@ public final class Client extends GameShell {
                 Class3_Sub15.activeConnection = null;
             }
 
-            Class163_Sub1_Sub1.method2215(GameShell.canvas);
-            Unsorted.method1783(GameShell.canvas);
+            KeyboardListener.removeKeyboardListener(GameShell.canvas);
+            MouseListeningClass.removeMouseListener(GameShell.canvas);
             if (null != Class38.aClass146_668) {
                 Class38.aClass146_668.method2082(GameShell.canvas);
             }

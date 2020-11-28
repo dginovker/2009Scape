@@ -360,7 +360,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
                     Class81.method1400(Class38.aClass87_665, canvas, -80);
                 }
             } catch (Exception var5) {
-                Class49.method1125(null, var5, (byte) 127);
+                ClientErrorException.method1125(null, var5);
                 this.method31("crash");
             }
 
@@ -423,7 +423,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
                 Class17.aThread409 = (Thread) var10.anObject974;
                 ClientLoader.create().launch();
             } catch (Exception var11) {
-                Class49.method1125(null, var11, (byte) 115);
+                ClientErrorException.method1125(null, var11);
             }
 
         } catch (RuntimeException var12) {
@@ -480,7 +480,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
                 Class17.aThread409 = (Thread) var7.anObject974;
             } catch (Exception var8) {
-                Class49.method1125(null, var8, (byte) 113);
+                ClientErrorException.method1125(null, var8);
                 this.method31("crash");
             }
 

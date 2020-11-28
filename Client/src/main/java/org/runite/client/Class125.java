@@ -4,7 +4,6 @@ package org.runite.client;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 import static org.lwjgl.opengl.ARBFragmentProgram.GL_FRAGMENT_PROGRAM_ARB;
@@ -27,8 +26,8 @@ final class Class125 implements ShaderInterface {
             int[] var1 = new int[1];
             glGenProgramsARB(var1);//1, buffer, 0 OLD
             this.anInt2184 = var1[0];
-            int[][] var3 = Class15.method895(0);
-            int[][] var4 = Class15.method895(8);
+            int[][] var3 = method895(0);
+            int[][] var4 = method895(8);
             DataBuffer var5 = new DataBuffer(262144);
 
             for (int var6 = 0; var6 < 256; ++var6) {
@@ -58,6 +57,28 @@ final class Class125 implements ShaderInterface {
             this.method1750();
         }
 
+    }
+
+    static int[][] method895(int var4) {
+        try {
+            int[][] var9 = new int[256][64];
+            Class3_Sub13_Sub4 var10 = new Class3_Sub13_Sub4();
+            var10.anInt3062 = (int) ((float) 0.4 * 4096.0F);
+            var10.anInt3058 = 3;
+            var10.anInt3056 = 4;
+            var10.aBoolean3065 = false;
+            var10.anInt3060 = 8;
+            var10.method158(16251);
+            Class3_Sub13_Sub3.method180(122, 256, 64);
+
+            for (int var11 = 0; var11 < 256; ++var11) {
+                var10.method186(var11, var9[var11]);
+            }
+
+            return var9;
+        } catch (RuntimeException var12) {
+            throw ClientErrorException.clientError(var12, "cj.B(" + false + ',' + 3 + ',' + 64 + ',' + 256 + ',' + var4 + ',' + 4 + ',' + 8 + ',' + (float) 0.4 + ')');
+        }
     }
 
     public final void method21() {

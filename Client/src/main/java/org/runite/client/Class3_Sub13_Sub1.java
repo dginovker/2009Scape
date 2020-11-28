@@ -20,10 +20,10 @@ public final class Class3_Sub13_Sub1 extends Class3_Sub13 {
 
     static void method167(int var0) {
         try {
-            if (Class3_Sub13_Sub3.aClass148_3049 != null) {
-                KeyboardListener var1 = Class3_Sub13_Sub3.aClass148_3049;
+            if (KeyboardListener.aClass148_3049 != null) {
+                KeyboardListener var1 = KeyboardListener.aClass148_3049;
                 synchronized (var1) {
-                    Class3_Sub13_Sub3.aClass148_3049 = null;
+                    KeyboardListener.aClass148_3049 = null;
                 }
             }
 
