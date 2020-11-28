@@ -14,6 +14,10 @@ final class Class3_Sub13_Sub12 extends Class3_Sub13 {
     static int anInt486 = 5063219;//Light Brown 5063219 // #4d4233
 
 
+    public Class3_Sub13_Sub12() {
+        super(1, true);
+    }
+
     static void method223(int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
         try {
             if (var7 == var4) {
@@ -30,10 +34,6 @@ final class Class3_Sub13_Sub12 extends Class3_Sub13 {
         } catch (RuntimeException var9) {
             throw ClientErrorException.clientError(var9, "fn.C(" + true + ',' + var1 + ',' + var2 + ',' + var3 + ',' + var4 + ',' + var5 + ',' + var6 + ',' + var7 + ')');
         }
-    }
-
-    public Class3_Sub13_Sub12() {
-        super(1, true);
     }
 
     static void method224(int var1, int var2, int var3, int var4, int var5) {
@@ -67,8 +67,8 @@ final class Class3_Sub13_Sub12 extends Class3_Sub13 {
         int windowWidth;
         int windowHeight;
         if (var2 == null) {
-            windowHeight = Class140_Sub7.anInt2934;
-            windowWidth = Class23.anInt454;
+            windowHeight = GameShell.gameShellAWTHeight;
+            windowWidth = GameShell.gameShellAWTWidth;
         } else {
             windowHeight = var2.height;
             windowWidth = var2.width;

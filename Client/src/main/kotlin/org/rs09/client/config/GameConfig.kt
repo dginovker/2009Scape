@@ -49,7 +49,7 @@ class GameConfig {
         var RCM_BG_COLOR = 6116423
 
         @JvmField
-        var RCM_BG_OPACITY  = 255
+        var RCM_BG_OPACITY = 255
 
         @JvmField
         var RCM_TITLE_COLOR = 0
@@ -98,6 +98,9 @@ class GameConfig {
         var IP_MANAGEMENT = "localhost"
 
         @JvmField
+        var IP_ACCOUNT_REGISTRATION = "localhost"
+
+        @JvmField
         var SERVER_PORT = 43594
 
         @JvmField
@@ -113,80 +116,80 @@ class GameConfig {
          * Json config Parser
          */
         @JvmStatic
-        fun parse(path: String){
+        fun parse(path: String) {
             val reader = FileReader(path)
             val parser = JSONParser()
             val data = parser.parse(reader) as JSONObject
 
             //Networking
-            if(data.containsKey("ip_address")) IP_ADDRESS = data["ip_address"].toString() else IP_ADDRESS = "play.2009scape.org"
-            if(data.containsKey("ip_management")) IP_MANAGEMENT = data["ip_management"].toString() else IP_MANAGEMENT = IP_ADDRESS
-            if(data.containsKey("wl_port")) WL_PORT = data["wl_port"].toString().toInt()
-            if(data.containsKey("server_port")) SERVER_PORT = data["server_port"].toString().toInt()
-            if(data.containsKey("world")) WORLD = data["world"].toString().toInt()
+            if (data.containsKey("ip_address")) IP_ADDRESS = data["ip_address"].toString() else IP_ADDRESS = "play.2009scape.org"
+            if (data.containsKey("ip_management")) IP_MANAGEMENT = data["ip_management"].toString() else IP_MANAGEMENT = IP_ADDRESS
+            if (data.containsKey("wl_port")) WL_PORT = data["wl_port"].toString().toInt()
+            if (data.containsKey("server_port")) SERVER_PORT = data["server_port"].toString().toInt()
+            if (data.containsKey("world")) WORLD = data["world"].toString().toInt()
 
             //Parse customization options
-            if(data.containsKey("customization")){
+            if (data.containsKey("customization")) {
                 val custom = data["customization"] as JSONObject
-                if(custom.containsKey("login_theme")) LOGIN_THEME = custom["login_theme"].toString()
+                if (custom.containsKey("login_theme")) LOGIN_THEME = custom["login_theme"].toString()
 
                 //Right-click menu customizations
-                if(custom.containsKey("right_click_menu")){
+                if (custom.containsKey("right_click_menu")) {
                     val rcm = custom["right_click_menu"] as JSONObject
 
                     //background
-                    if(rcm.containsKey("background")){
+                    if (rcm.containsKey("background")) {
                         val bg = rcm["background"] as JSONObject
-                        if(bg.containsKey("color")) RCM_BG_COLOR = bg["color"].toString().replace("#", "").toInt(16) //convert hex -> deci
-                        if(bg.containsKey("opacity")) RCM_BG_OPACITY = bg["opacity"].toString().toInt()
+                        if (bg.containsKey("color")) RCM_BG_COLOR = bg["color"].toString().replace("#", "").toInt(16) //convert hex -> deci
+                        if (bg.containsKey("opacity")) RCM_BG_OPACITY = bg["opacity"].toString().toInt()
                     }
 
                     //title bar
-                    if(rcm.containsKey("title_bar")){
+                    if (rcm.containsKey("title_bar")) {
                         val tb = rcm["title_bar"] as JSONObject
-                        if(tb.containsKey("font_color")) RCM_TITLE = RCM_TITLE.replace("0", tb["font_color"].toString().replace("#", ""))
-                        if(tb.containsKey("color")) RCM_TITLE_COLOR = tb["color"].toString().replace("#", "").toInt(16) //convert hex -> deci
-                        if(tb.containsKey("opacity")) RCM_TITLE_OPACITY = tb["opacity"].toString().toInt()
+                        if (tb.containsKey("font_color")) RCM_TITLE = RCM_TITLE.replace("0", tb["font_color"].toString().replace("#", ""))
+                        if (tb.containsKey("color")) RCM_TITLE_COLOR = tb["color"].toString().replace("#", "").toInt(16) //convert hex -> deci
+                        if (tb.containsKey("opacity")) RCM_TITLE_OPACITY = tb["opacity"].toString().toInt()
                     }
 
                     //border
-                    if(rcm.containsKey("border")){
+                    if (rcm.containsKey("border")) {
                         val border = rcm["border"] as JSONObject
-                        if(border.containsKey("color")) RCM_BORDER_COLOR = border["color"].toString().replace("#", "").toInt(16) //convert hex -> deci
-                        if(border.containsKey("opacity")) RCM_BORDER_OPACITY = border["opacity"].toString().toInt()
+                        if (border.containsKey("color")) RCM_BORDER_COLOR = border["color"].toString().replace("#", "").toInt(16) //convert hex -> deci
+                        if (border.containsKey("opacity")) RCM_BORDER_OPACITY = border["opacity"].toString().toInt()
                     }
 
                     //styles (changes how things are drawn)
-                    if(rcm.containsKey("styles")){
+                    if (rcm.containsKey("styles")) {
                         val style = rcm["styles"] as JSONObject
-                        if(style.containsKey("presets")) RCM_STYLE_PRESET = style["presets"].toString()
-                        if(style.containsKey("rs3border")) RS3_CONTEXT_STYLE = style["rs3border"] as Boolean
+                        if (style.containsKey("presets")) RCM_STYLE_PRESET = style["presets"].toString()
+                        if (style.containsKey("rs3border")) RS3_CONTEXT_STYLE = style["rs3border"] as Boolean
                     }
                 }
-                if(custom.containsKey("rendering_options")) {
+                if (custom.containsKey("rendering_options")) {
                     val hdoptions = custom["rendering_options"] as JSONObject
 
-                    if(hdoptions.containsKey("technical")) {
+                    if (hdoptions.containsKey("technical")) {
                         val renderIncrease = hdoptions["technical"] as JSONObject
-                        if(renderIncrease.containsKey("render_distance_increase")) RENDER_DISTANCE_INCREASE = renderIncrease["render_distance_increase"] as Boolean
+                        if (renderIncrease.containsKey("render_distance_increase")) RENDER_DISTANCE_INCREASE = renderIncrease["render_distance_increase"] as Boolean
                     }
-                    if(hdoptions.containsKey("skybox")) {
+                    if (hdoptions.containsKey("skybox")) {
                         val skyboxColor = hdoptions["skybox"] as JSONObject
-                        if(skyboxColor.containsKey("skybox_color")) SKYBOX_COLOR
+                        if (skyboxColor.containsKey("skybox_color")) SKYBOX_COLOR
                     }
                 }
             }
 
             //Parse debug options
-            if(data.containsKey("debug")){
+            if (data.containsKey("debug")) {
                 val debug = data["debug"] as JSONObject
-                if(debug.containsKey("item_debug")) ITEM_DEBUG_ENABLED = debug["item_debug"] as Boolean
-                if(debug.containsKey("npc_debug")) NPC_DEBUG_ENABLED = debug["npc_debug"] as Boolean
-                if(debug.containsKey("object_debug")) OBJECT_DEBUG_ENABLED = debug["object_debug"] as Boolean
-                if(debug.containsKey("hd_login_region_debug"))  HD_LOGIN_DEBUG = debug["hd_login_region_debug"] as Boolean
-                if(debug.containsKey("hd_login_region_debug_verbose")) HD_LOGIN_VERBOSE = debug["hd_login_region_debug_verbose"] as Boolean
-                if(debug.containsKey("cache_debug")) CACHE_DEBUG = debug["cache_debug"] as Boolean
-                if(debug.containsKey("world_map_debug")) WORLD_MAP_DEBUG = debug["world_map_debug"] as Boolean
+                if (debug.containsKey("item_debug")) ITEM_DEBUG_ENABLED = debug["item_debug"] as Boolean
+                if (debug.containsKey("npc_debug")) NPC_DEBUG_ENABLED = debug["npc_debug"] as Boolean
+                if (debug.containsKey("object_debug")) OBJECT_DEBUG_ENABLED = debug["object_debug"] as Boolean
+                if (debug.containsKey("hd_login_region_debug")) HD_LOGIN_DEBUG = debug["hd_login_region_debug"] as Boolean
+                if (debug.containsKey("hd_login_region_debug_verbose")) HD_LOGIN_VERBOSE = debug["hd_login_region_debug_verbose"] as Boolean
+                if (debug.containsKey("cache_debug")) CACHE_DEBUG = debug["cache_debug"] as Boolean
+                if (debug.containsKey("world_map_debug")) WORLD_MAP_DEBUG = debug["world_map_debug"] as Boolean
             }
 
 

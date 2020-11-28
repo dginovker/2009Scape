@@ -1,6 +1,8 @@
 package org.runite.client;
 
 
+import static org.lwjgl.opengl.GL11.GL_SRC_COLOR;
+
 public class ClientCommands {
 
     static boolean commandQaOpEnabled = false;
@@ -13,7 +15,6 @@ public class ClientCommands {
      * Removed out of (depreciated)Properties.java
      */
     private static boolean modernHotkeys;
-
 
 
     public static void ClientCommands(RSString command) {
@@ -30,7 +31,7 @@ public class ClientCommands {
 
                 runtime = Runtime.getRuntime();
                 var3 = (int) ((runtime.totalMemory() - runtime.freeMemory()) / 1024L);
-                Class3_Sub30_Sub1.addChatMessage(null, 0, RSString.stringCombiner(new RSString[]{TextCore.memoryEquals, RSString.stringAnimator(var3), TextCore.Memoryk}), -1);
+                Network.addChatMessage(null, 0, RSString.stringCombiner(new RSString[]{TextCore.memoryEquals, RSString.stringAnimator(var3), TextCore.Memoryk}), -1);
             }
 
             int var4;
@@ -43,7 +44,7 @@ public class ClientCommands {
 
                 runtime = Runtime.getRuntime();
                 var3 = (int) ((runtime.totalMemory() + -runtime.freeMemory()) / 1024L);
-                Class3_Sub30_Sub1.addChatMessage(null, 0, RSString.stringCombiner(new RSString[]{TextCore.memoryBeforeCleanup, RSString.stringAnimator(var3), TextCore.Memoryk}), -1);
+                Network.addChatMessage(null, 0, RSString.stringCombiner(new RSString[]{TextCore.memoryBeforeCleanup, RSString.stringAnimator(var3), TextCore.Memoryk}), -1);
                 Class3_Sub1.method90(1);
                 clearClientCacheMemory();
 
@@ -52,11 +53,11 @@ public class ClientCommands {
                 }
 
                 var3 = (int) ((runtime.totalMemory() + -runtime.freeMemory()) / 1024L);
-                Class3_Sub30_Sub1.addChatMessage(null, 0, RSString.stringCombiner(new RSString[]{TextCore.aClass94_2033, RSString.stringAnimator(var3), TextCore.Memoryk}), -1);
+                Network.addChatMessage(null, 0, RSString.stringCombiner(new RSString[]{TextCore.aClass94_2033, RSString.stringAnimator(var3), TextCore.Memoryk}), -1);
             }
 
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_PC_CACHE_SIZE)) {
-                Class3_Sub30_Sub1.addChatMessage(null, 0, RSString.stringCombiner(new RSString[]{TextCore.aClass94_442, RSString.stringAnimator(Unsorted.method1727((byte) 123))}), -1);
+                Network.addChatMessage(null, 0, RSString.stringCombiner(new RSString[]{TextCore.aClass94_442, RSString.stringAnimator(Unsorted.method1727((byte) 123))}), -1);
             }
 
             if (HDToolKit.highDetail && command.equalsStringIgnoreCase(TextCore.COMMAND_GRAPHICS_CARD_MEMORY)) {
@@ -66,7 +67,7 @@ public class ClientCommands {
             }
 
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_BREAK_CLIENT_CONNECTION)) {
-                Class3_Sub13_Sub13.breakClientConnection();
+                Network.breakClientConnection();
             }
 
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_BREAK_JS5_CLIENT_CONNECTION)) {
@@ -79,7 +80,7 @@ public class ClientCommands {
 
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_BREAK_CONNECTION)) {
                 Class38.aClass87_665.method1431();
-                Class3_Sub15.activeConnection.applyDummyStreams();
+                Network.activeConnection.applyDummyStreams();
                 Class58.aJs5Worker_917.applyDummyStreams();
             }
 
@@ -102,7 +103,7 @@ public class ClientCommands {
             if (command.equalsStringIgnoreCase(TextCore.TOGGLE_FK)) {
                 boolean on = !modernHotkeys;
                 modernHotkeys = true;
-                Class3_Sub30_Sub1.addChatMessage(null, 0, RSString.parse("Modern hotkeys mode toggled " + (on ? "on." : "off.")), -1);
+                Network.addChatMessage(null, 0, RSString.parse("Modern hotkeys mode toggled " + (on ? "on." : "off.")), -1);
             }
 
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_LOWRES_GRAPHICS)) {
@@ -118,7 +119,7 @@ public class ClientCommands {
             }
 
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_HIGHRES_GRAPHICS_FULLSCREEN)) {
-                GameObject.graphicsSettings(false, 3, 1024, 768);
+                GameObject.graphicsSettings(false, 3, 1024, GL_SRC_COLOR);
             }
 
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_NOCLIP)) {
@@ -137,7 +138,7 @@ public class ClientCommands {
                 CS2Script.aBoolean2705 = false;
             }
 
-            if (command.startsWith(TextCore.COMMAND_FPS) && Class44.anInt718 != 0) {
+            if (command.startsWith(TextCore.COMMAND_FPS) && Client.modeWhereValue != 0) {
                 Class65.method1237(command.substring(6).parseInt());
             }
 
@@ -147,7 +148,7 @@ public class ClientCommands {
 
             if (command.startsWith(TextCore.COMMAND_RECT_DEBUG)) {
                 Client.rectDebugInt = command.substring(12).trim(1).parseInt();
-                Class3_Sub30_Sub1.addChatMessage(null, 0, RSString.stringCombiner(new RSString[]{TextCore.rectDebugEquals, RSString.stringAnimator(Client.rectDebugInt)}), -1);
+                Network.addChatMessage(null, 0, RSString.stringCombiner(new RSString[]{TextCore.rectDebugEquals, RSString.stringAnimator(Client.rectDebugInt)}), -1);
             }
 
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_QA_OP_TEST)) {
@@ -157,19 +158,19 @@ public class ClientCommands {
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_TWEENING)) {
                 if (tweeningEnabled) {
                     tweeningEnabled = false;
-                    Class3_Sub30_Sub1.addChatMessage(null, 0, TextCore.forcedTweeningDisabled, -1);
+                    Network.addChatMessage(null, 0, TextCore.forcedTweeningDisabled, -1);
                 } else {
                     tweeningEnabled = true;
-                    Class3_Sub30_Sub1.addChatMessage(null, 0, TextCore.forcedTweeningEnabled, -1);
+                    Network.addChatMessage(null, 0, TextCore.forcedTweeningEnabled, -1);
                 }
             }
 
             if (command.equalsStringIgnoreCase(TextCore.COMMAND_SHIFT_DROP_CLICK)) {
                 shiftClickEnabled = !shiftClickEnabled;
             }
-            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(44);
-            Class3_Sub13_Sub1.outgoingBuffer.writeByte(command.length() + -1);
-            Class3_Sub13_Sub1.outgoingBuffer.writeString(command.substring(2));
+            Network.outgoingBuffer.putOpcode(44);
+            Network.outgoingBuffer.writeByte(command.length() + -1);
+            Network.outgoingBuffer.writeString(command.substring(2));
 
         } catch (RuntimeException var5) {
             throw ClientErrorException.clientError(var5, "k.H(" + (command != null ? "{...}" : "null") + ',' + false + ')');
@@ -177,43 +178,43 @@ public class ClientCommands {
     }
 
     static void clearClientCacheMemory() {
-       try {
-          Class163_Sub2_Sub1.aReferenceCache_4015.clearSoftReferences();//Class3_Sub28_Sub20.method724();
-          Class44.aReferenceCache_725.clearSoftReferences();//Class3_Sub28_Sub18.method710();
-          Class140_Sub4.aReferenceCache_2792.clearSoftReferences();
-          Unsorted.aReferenceCache_21.clearSoftReferences();//Unsorted.method55();
-          ObjectDefinition.aReferenceCache_1401.clearSoftReferences();//Unsorted.method55();
-          Unsorted.aReferenceCache_4051.clearSoftReferences();//Unsorted.method55();
-          ObjectDefinition.aReferenceCache_1965.clearSoftReferences();//Unsorted.method55();
-          Unsorted.aReferenceCache_4043.clearSoftReferences();//Class163_Sub2_Sub1.method2222();
-          CS2Script.aReferenceCache_2442.clearSoftReferences();//Class163_Sub2_Sub1.method2222();
-          Class154.aReferenceCache_1964.clearSoftReferences();//Class163_Sub2_Sub1.method2222();
-          Class3_Sub28_Sub4.aReferenceCache_3572.clearSoftReferences();//Originally Class3_Sub30_Sub1.method813();
-          Class143.aReferenceCache_1874.clearSoftReferences();//Originally Class3_Sub30_Sub1.method813();
-          Class67.aReferenceCache_1013.clearSoftReferences();//Originally Class3_Sub30_Sub1.method813();
-          Class82.aReferenceCache_1146.clearSoftReferences();//Originally Class133.method1803();
-          Class159.aReferenceCache_2016.clearSoftReferences();//Originally Class133.method1803();
-          Class3_Sub31.aReferenceCache_2604.clearSoftReferences();//Class38.method1025();
-          Class27.aReferenceCache_511.clearSoftReferences();//Class38.method1025();
-          CS2Script.aReferenceCache_2450.clearSoftReferences();//Class40.method1044();
-          Class136.aReferenceCache_1772.clearSoftReferences();
-          RenderAnimationDefinition.aReferenceCache_1955.clearSoftReferences();//Originally: Class158_Sub1.method2192();
-          Class3_Sub13_Sub34.aReferenceCache_3412.clearSoftReferences();//Originally: Class159.method2196();
-          Class3_Sub13_Sub31.aReferenceCache_3369.clearSoftReferences();//Originally: Class159.method2196();
-          Class128.aReferenceCache_1683.clearSoftReferences();
-          Unsorted.aReferenceCache_684.clearSoftReferences();
-          Class163_Sub1.aReferenceCache_2984.clearSoftReferences();
-          KeyboardListener.aReferenceCache_1911.clearSoftReferences();//Class115.method1714();
-          Unsorted.aReferenceCache_1131.clearSoftReferences();//Class115.method1714();
-          Class114.aReferenceCache_1569.clearSoftReferences();//Class3_Sub28_Sub6.h();
-          Class3_Sub15.aReferenceCache_2428.clearSoftReferences();//Class3_Sub28_Sub6.h();
-          Unsorted.aReferenceCache_743.clearSoftReferences();//Class3_Sub28_Sub6.h();
-          Class61.aReferenceCache_939.clearSoftReferences();//Class107.method1650();
-          Class158_Sub1.aReferenceCache_2982.clearSoftReferences();//MouseListeningClass.method2089();
-          Class3_Sub13_Sub11.aReferenceCache_3130.clearSoftReferences();
-          Unsorted.aReferenceCache_1135.clearSoftReferences();
-       } catch (RuntimeException var2) {
-          throw ClientErrorException.clientError(var2, "je.O(" + ')');
-       }
+        try {
+            Class163_Sub2_Sub1.aReferenceCache_4015.clearSoftReferences();//Class3_Sub28_Sub20.method724();
+            Class44.aReferenceCache_725.clearSoftReferences();//Class3_Sub28_Sub18.method710();
+            Class140_Sub4.aReferenceCache_2792.clearSoftReferences();
+            Unsorted.aReferenceCache_21.clearSoftReferences();//Unsorted.method55();
+            ObjectDefinition.aReferenceCache_1401.clearSoftReferences();//Unsorted.method55();
+            Unsorted.aReferenceCache_4051.clearSoftReferences();//Unsorted.method55();
+            ObjectDefinition.aReferenceCache_1965.clearSoftReferences();//Unsorted.method55();
+            NPCDefinition.aReferenceCache_4043.clearSoftReferences();//Class163_Sub2_Sub1.method2222();
+            CS2Script.aReferenceCache_2442.clearSoftReferences();//Class163_Sub2_Sub1.method2222();
+            Class154.aReferenceCache_1964.clearSoftReferences();//Class163_Sub2_Sub1.method2222();
+            Class3_Sub28_Sub4.aReferenceCache_3572.clearSoftReferences();//Originally Class3_Sub30_Sub1.method813();
+            Class143.aReferenceCache_1874.clearSoftReferences();//Originally Class3_Sub30_Sub1.method813();
+            Class67.aReferenceCache_1013.clearSoftReferences();//Originally Class3_Sub30_Sub1.method813();
+            Class82.aReferenceCache_1146.clearSoftReferences();//Originally Class133.method1803();
+            Class159.aReferenceCache_2016.clearSoftReferences();//Originally Class133.method1803();
+            Class3_Sub31.aReferenceCache_2604.clearSoftReferences();//Class38.method1025();
+            Class27.aReferenceCache_511.clearSoftReferences();//Class38.method1025();
+            CS2Script.aReferenceCache_2450.clearSoftReferences();//Class40.method1044();
+            Class136.aReferenceCache_1772.clearSoftReferences();
+            RenderAnimationDefinition.aReferenceCache_1955.clearSoftReferences();//Originally: Class158_Sub1.method2192();
+            Class3_Sub13_Sub34.aReferenceCache_3412.clearSoftReferences();//Originally: Class159.method2196();
+            Class3_Sub13_Sub31.aReferenceCache_3369.clearSoftReferences();//Originally: Class159.method2196();
+            Class128.aReferenceCache_1683.clearSoftReferences();
+            Unsorted.aReferenceCache_684.clearSoftReferences();
+            Class163_Sub1.aReferenceCache_2984.clearSoftReferences();
+            KeyboardListener.aReferenceCache_1911.clearSoftReferences();//Class115.method1714();
+            Unsorted.aReferenceCache_1131.clearSoftReferences();//Class115.method1714();
+            Class114.aReferenceCache_1569.clearSoftReferences();//Class3_Sub28_Sub6.h();
+            Class3_Sub15.aReferenceCache_2428.clearSoftReferences();//Class3_Sub28_Sub6.h();
+            Unsorted.aReferenceCache_743.clearSoftReferences();//Class3_Sub28_Sub6.h();
+            Class61.aReferenceCache_939.clearSoftReferences();//Class107.method1650();
+            Class158_Sub1.aReferenceCache_2982.clearSoftReferences();//MouseListeningClass.method2089();
+            Class3_Sub13_Sub11.aReferenceCache_3130.clearSoftReferences();
+            Unsorted.aReferenceCache_1135.clearSoftReferences();
+        } catch (RuntimeException var2) {
+            throw ClientErrorException.clientError(var2, "je.O(" + ')');
+        }
     }
 }

@@ -6,63 +6,19 @@ final class AtmosphereParser {
 
     static HashTable aHashTable_3679 = new HashTable(16);
     static AtmosphereParser[][] aAtmosphereParserArrayArray1581 = new AtmosphereParser[13][13];
+    static Class91[] aClass91Array1182 = new Class91[4];
+    static Class41 aClass41_1186;
+    static int anInt1191;
+    static int screenLowerY;
     int anInt1175;
     int anInt1177;
     int anInt1178;
     int anInt1181;
-    static Class91[] aClass91Array1182 = new Class91[4];
     int anInt1184;
     int anInt1185;
-    static Class41 aClass41_1186;
     float aFloat1187;
     float aFloat1189;
     float aFloat1190;
-    static int anInt1191;
-    static int screenLowerY;
-
-    static void method1427(int var1) {
-        try {
-            if (-1 == var1 && !Class83.aBoolean1158) {
-                GameObject.method1870();
-            } else if (var1 != -1 && (Class129.anInt1691 != var1 || Class79.method1391(-1)) && Unsorted.anInt120 != 0 && !Class83.aBoolean1158) {
-                Unsorted.method2099(var1, CacheIndex.musicIndex, Unsorted.anInt120);
-            }
-            Class129.anInt1691 = var1;
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "li.B(" + true + ',' + var1 + ')');
-        }
-    }
-
-    static void method1428(int var0, int var2) {
-        try {
-            ItemDefinition.ram[var0] = var2;
-            Class3_Sub7 var3 = (Class3_Sub7) aHashTable_3679.get((long) var0);
-            if (var3 == null) {
-                var3 = new Class3_Sub7(TimeUtils.time() - -500L);
-                aHashTable_3679.put((long) var0, var3);
-            } else {
-                var3.aLong2295 = 500L + TimeUtils.time();
-            }
-
-        } catch (RuntimeException var4) {
-            throw ClientErrorException.clientError(var4, "li.D(" + var0 + ',' + var2 + ')');
-        }
-    }
-
-    static Class3_Sub28_Sub17_Sub1 method1430(int var1) {
-        try {
-            Class3_Sub28_Sub17_Sub1 var2 = (Class3_Sub28_Sub17_Sub1) Unsorted.aReferenceCache_1135.get(var1);
-            if (var2 == null) {
-                byte[] var3 = CacheIndex.fontsIndex.getFile(var1, 0);
-                var2 = new Class3_Sub28_Sub17_Sub1(var3);
-                var2.method697(Class3_Sub13_Sub22.aClass109Array3270, null);
-                Unsorted.aReferenceCache_1135.put(var2, var1);
-            }
-            return var2;
-        } catch (RuntimeException var4) {
-            throw ClientErrorException.clientError(var4, "li.A(" + -28922 + ',' + var1 + ')');
-        }
-    }
 
     public AtmosphereParser() {
         try {
@@ -131,6 +87,50 @@ final class AtmosphereParser {
 
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "li.<init>(" + (var1 != null ? "{...}" : "null") + ')');
+        }
+    }
+
+    static void method1427(int var1) {
+        try {
+            if (-1 == var1 && !Class83.aBoolean1158) {
+                GameObject.method1870();
+            } else if (var1 != -1 && (Class129.anInt1691 != var1 || Class79.method1391(-1)) && Unsorted.anInt120 != 0 && !Class83.aBoolean1158) {
+                Unsorted.method2099(var1, CacheIndex.musicIndex, Unsorted.anInt120);
+            }
+            Class129.anInt1691 = var1;
+        } catch (RuntimeException var3) {
+            throw ClientErrorException.clientError(var3, "li.B(" + true + ',' + var1 + ')');
+        }
+    }
+
+    static void method1428(int var0, int var2) {
+        try {
+            ItemDefinition.ram[var0] = var2;
+            Class3_Sub7 var3 = (Class3_Sub7) aHashTable_3679.get(var0);
+            if (var3 == null) {
+                var3 = new Class3_Sub7(TimeUtils.time() - -500L);
+                aHashTable_3679.put(var0, var3);
+            } else {
+                var3.aLong2295 = 500L + TimeUtils.time();
+            }
+
+        } catch (RuntimeException var4) {
+            throw ClientErrorException.clientError(var4, "li.D(" + var0 + ',' + var2 + ')');
+        }
+    }
+
+    static Class3_Sub28_Sub17_Sub1 method1430(int var1) {
+        try {
+            Class3_Sub28_Sub17_Sub1 var2 = (Class3_Sub28_Sub17_Sub1) Unsorted.aReferenceCache_1135.get(var1);
+            if (var2 == null) {
+                byte[] var3 = CacheIndex.fontsIndex.getFile(var1, 0);
+                var2 = new Class3_Sub28_Sub17_Sub1(var3);
+                var2.method697(Class3_Sub13_Sub22.aClass109Array3270, null);
+                Unsorted.aReferenceCache_1135.put(var2, var1);
+            }
+            return var2;
+        } catch (RuntimeException var4) {
+            throw ClientErrorException.clientError(var4, "li.A(" + -28922 + ',' + var1 + ')');
         }
     }
 

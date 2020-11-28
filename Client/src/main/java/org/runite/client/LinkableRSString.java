@@ -5,24 +5,25 @@ import org.rs09.client.data.NodeCache;
 
 public final class LinkableRSString extends Linkable {
 
+    public static int anInt2582 = 0;
     static int anInt2579 = 1;
     static RSString[] aClass94Array2580 = new RSString[100];
     static CacheIndex aClass153_2581;
-    public static int anInt2582 = 0;
-    static boolean isDynamicSceneGraph = false;
     static NodeCache aClass47_3776 = new NodeCache(64);
-    public RSString value;
     static int anInt2587;
     static GameShell anApplet_Sub1_2588 = null;
     static int anInt2589 = 0;
+    public RSString value;
 
 
-    static void method727() {
+    public LinkableRSString() {
+    }
+
+    public LinkableRSString(RSString var1) {
         try {
-            KeyboardListener.aReferenceCache_1911.clear();
-            Unsorted.aReferenceCache_1131.clear();
-        } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "sj.O(" + 91 + ')');
+            this.value = var1;
+        } catch (RuntimeException var3) {
+            throw ClientErrorException.clientError(var3, "sj.<init>(" + (var1 != null ? "{...}" : "null") + ')');
         }
     }
 
@@ -117,12 +118,9 @@ public final class LinkableRSString extends Linkable {
         }
     }
 
-    public LinkableRSString() {
-    }
-
     static Class3_Sub28_Sub4 method733(int var1) {
         try {
-            Class3_Sub28_Sub4 var2 = (Class3_Sub28_Sub4) aClass47_3776.get((long) var1);
+            Class3_Sub28_Sub4 var2 = (Class3_Sub28_Sub4) aClass47_3776.get(var1);
             if (null == var2) {
                 byte[] var3;
                 if (var1 < 32768) {
@@ -141,7 +139,7 @@ public final class LinkableRSString extends Linkable {
                     var2.method548();
                 }
 
-                aClass47_3776.put((long) var1, var2);
+                aClass47_3776.put(var1, var2);
             }
             return var2;
         } catch (RuntimeException var4) {
@@ -187,14 +185,6 @@ public final class LinkableRSString extends Linkable {
 
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "sj.P(" + var0 + ',' + var1 + ')');
-        }
-    }
-
-    public LinkableRSString(RSString var1) {
-        try {
-            this.value = var1;
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "sj.<init>(" + (var1 != null ? "{...}" : "null") + ')');
         }
     }
 

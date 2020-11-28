@@ -14,11 +14,11 @@ object RenderingUtils {
 
     // TODO Is this actually the width?
     val width: Int
-        get() = Class23.anInt454
+        get() = GameShell.gameShellAWTWidth
 
     // TODO Is this actually the height?
     val height: Int
-        get() = Class140_Sub7.anInt2934
+        get() = GameShell.gameShellAWTHeight
 
     @JvmStatic
     @Deprecated("Please use the Toolkit methods instead of this delegating method", ReplaceWith("Toolkit.getActiveToolkit().fillRect(x, y, w, h, rgb, alpha)"))
@@ -37,7 +37,7 @@ object RenderingUtils {
 
     @JvmStatic
     fun drawVerticalLine(x: Int, y: Int, h: Int, rgb: Int) {
-        Toolkit.getActiveToolkit().drawVerticalLine(x,y,h,rgb)
+        Toolkit.getActiveToolkit().drawVerticalLine(x, y, h, rgb)
 //        if (hd) Class22.drawVerticalLine(x, y, h, rgb)
 //        else Class74.drawVerticalLine(x, y, h, rgb)
     }

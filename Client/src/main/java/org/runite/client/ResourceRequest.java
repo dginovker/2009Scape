@@ -4,12 +4,12 @@ import org.rs09.client.Node;
 
 abstract class ResourceRequest extends Node {
 
-   boolean priority;
-   boolean aBoolean3635;
-   volatile boolean waiting = true;
+    boolean priority;
+    boolean aBoolean3635;
+    volatile boolean waiting = true;
 
-   abstract int getCompletion();
+    abstract int getCompletion();
 
-   abstract byte[] getData();
+    abstract byte[] getData();
 
 }
