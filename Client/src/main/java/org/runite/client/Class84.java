@@ -27,7 +27,7 @@ final class Class84 {
         }
     }
 
-    static void method1418(int var0, CacheIndex var1) {
+    static void method1418(CacheIndex var1) {
         try {
             Class163_Sub2_Sub1.aClass109_Sub1Array4027 = Unsorted.method619((byte) 65, NPC.anInt4001, var1);
             Class52.anIntArray861 = new int[256];
@@ -59,11 +59,11 @@ final class Class84 {
             Class161.anIntArray2026 = new int['\u8000'];
             Unsorted.anIntArray49 = new int['\u8000'];
             Class3_Sub13_Sub10.method215((byte) -89, null);
-            Class3_Sub30_Sub1.anIntArray3805 = new int['\u8000'];
+            Network.anIntArray3805 = new int['\u8000'];
             Class159.anIntArray1681 = new int['\u8000'];
             aClass3_Sub28_Sub16_Sub2_1381 = new Class3_Sub28_Sub16_Sub2(128, 254);
         } catch (RuntimeException var13) {
-            throw ClientErrorException.clientError(var13, "lf.E(" + var0 + ',' + (var1 != null ? "{...}" : "null") + ')');
+            throw ClientErrorException.clientError(var13, "lf.E(" + -110 + ',' + (var1 != null ? "{...}" : "null") + ')');
         }
     }
 

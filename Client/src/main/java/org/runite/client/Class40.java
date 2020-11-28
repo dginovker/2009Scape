@@ -12,6 +12,7 @@ final class Class40 {
     static byte[][] aByteArrayArray3669;
     static byte[][] aByteArrayArray3057;
     static int anInt3293 = 0;
+    static boolean isDynamicSceneGraph = false;
 
 
     static int method1040(int var0, int var1, int var3) {
@@ -25,9 +26,9 @@ final class Class40 {
     static void method1041(long var0, RSString name) {
         try {
             // System.out.println("Class 40 " + var0 + ", " + var2 + ", " + name.toString());
-            Class3_Sub13_Sub1.outgoingBuffer.index = 0;
-            Class3_Sub13_Sub1.outgoingBuffer.writeByte(186);
-            Class3_Sub13_Sub1.outgoingBuffer.writeString(name);
+            Network.outgoingBuffer.index = 0;
+            Network.outgoingBuffer.writeByte(186);
+            Network.outgoingBuffer.writeString(name);
             // Class3_Sub13_Sub1.outgoingBuffer.putLong(var0, var2 + -2037463204);
             Unsorted.registryStage = 1;
             Class132.anInt1734 = 0;
@@ -46,14 +47,6 @@ final class Class40 {
             throw ClientErrorException.clientError(var5, "gd.G(" + var0 + ',' + (var1 != null ? "{...}" : "null") + ',' + -3178 + ',' + archiveId + ')');
         }
     }
-
-//   static void method1044() {
-//      try {
-//         CS2Script.aReferenceCache_2450.clearSoftReferences();
-//      } catch (RuntimeException var2) {
-//         throw ClientErrorException.clientError(var2, "gd.E(" + ')');
-//      }
-//   }
 
     static void method1046() {
         try {
@@ -130,7 +123,7 @@ final class Class40 {
                     if (null != var3) {
                         var5 = -Class82.anInt1152 + (Class3_Sub24_Sub3.anIntArray3494[var2] & 255) * 64;
                         var4 = -Class131.anInt1716 + (Class3_Sub24_Sub3.anIntArray3494[var2] >> 8) * 64;
-                        if (LinkableRSString.isDynamicSceneGraph) {
+                        if (isDynamicSceneGraph) {
                             var5 = 10;
                             var4 = 10;
                         }
@@ -143,7 +136,7 @@ final class Class40 {
                         if (null != var3) {
                             var4 = -Class131.anInt1716 + 64 * (Class3_Sub24_Sub3.anIntArray3494[var2] >> 8);
                             var5 = -Class82.anInt1152 + 64 * (Class3_Sub24_Sub3.anIntArray3494[var2] & 255);
-                            if (LinkableRSString.isDynamicSceneGraph) {
+                            if (isDynamicSceneGraph) {
                                 var5 = 10;
                                 var4 = 10;
                             }
@@ -208,7 +201,7 @@ final class Class40 {
                     System.gc();
                     Class163_Sub1.method2210(true);
                     Class117.method1720(false, 105);
-                    if (!LinkableRSString.isDynamicSceneGraph) {
+                    if (!isDynamicSceneGraph) {
                         Unsorted.method1091(false, -93);
                         Class163_Sub1.method2210(true);
                         if (HDToolKit.highDetail) {
@@ -223,7 +216,7 @@ final class Class40 {
                         }
                     }
 
-                    if (LinkableRSString.isDynamicSceneGraph) {
+                    if (isDynamicSceneGraph) {
                         Class49.method1121(false, (byte) 98);
                         Class163_Sub1.method2210(true);
                         if (HDToolKit.highDetail) {
@@ -261,13 +254,13 @@ final class Class40 {
                     if (HDToolKit.highDetail && var11) {
                         Class167.method2264(true);
                         Class117.method1720(true, 105);
-                        if (!LinkableRSString.isDynamicSceneGraph) {
+                        if (!isDynamicSceneGraph) {
                             Unsorted.method1091(true, -121);
                             Class163_Sub1.method2210(true);
                             Class3_Sub13_Sub6.method198(true);
                         }
 
-                        if (LinkableRSString.isDynamicSceneGraph) {
+                        if (isDynamicSceneGraph) {
                             Class49.method1121(true, (byte) 56);
                             Class163_Sub1.method2210(true);
                             Class163_Sub2_Sub1.method2223(true, (byte) -105);
@@ -300,12 +293,12 @@ final class Class40 {
                     method318();
                     Class3_Sub13_Sub30.method313((byte) 100);
                     Class3_Sub13_Sub34.aBoolean3416 = false;
-                    if (GameShell.frame != null && null != Class3_Sub15.activeConnection && 25 == Class143.loadingStage) {
-                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(20);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeInt(1057001181);
+                    if (GameShell.frame != null && null != Network.activeConnection && 25 == Class143.loadingStage) {
+                        Network.outgoingBuffer.putOpcode(20);
+                        Network.outgoingBuffer.writeInt(1057001181);
                     }
 
-                    if (!LinkableRSString.isDynamicSceneGraph) {
+                    if (!isDynamicSceneGraph) {
                         int var7 = (Class3_Sub7.anInt2294 + 6) / 8;
                         int var6 = (Class3_Sub7.anInt2294 - 6) / 8;
                         var4 = (Unsorted.anInt3606 - 6) / 8;
@@ -325,8 +318,8 @@ final class Class40 {
                         Class117.method1719(10);
                     } else {
                         Class117.method1719(30);
-                        if (null != Class3_Sub15.activeConnection) {
-                            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(110);
+                        if (null != Network.activeConnection) {
+                            Network.outgoingBuffer.putOpcode(110);
                         }
                     }
 

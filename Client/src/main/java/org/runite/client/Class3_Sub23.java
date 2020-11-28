@@ -22,20 +22,20 @@ final class Class3_Sub23 extends Linkable {
         try {
             int var3;
             if (HDToolKit.highDetail || var1) {
-                var3 = Class140_Sub7.anInt2934;
+                var3 = GameShell.gameShellAWTHeight;
                 int var4 = var3 * 956 / 503;
-                Class40.aAbstractSprite_680.method639((Class23.anInt454 + -var4) / 2, 0, var4, var3);
-                SequenceDefinition.aClass109_1856.method1667(-(SequenceDefinition.aClass109_1856.width / 2) + Class23.anInt454 / 2, 18);
+                Class40.aAbstractSprite_680.method639((GameShell.gameShellAWTWidth + -var4) / 2, 0, var4, var3);
+                SequenceDefinition.aClass109_1856.method1667(-(SequenceDefinition.aClass109_1856.width / 2) + GameShell.gameShellAWTWidth / 2, 18);
             }
 
-            var2.method699(TextCore.RSLoadingPleaseWait, Class23.anInt454 / 2, Class140_Sub7.anInt2934 / 2 - 26, 16777215, -1);
-            var3 = Class140_Sub7.anInt2934 / 2 + -18;
-            Toolkit.getActiveToolkit().drawRect(Class23.anInt454 / 2 - 152, var3, 304, 34, 9179409, 255);
-            Toolkit.getActiveToolkit().drawRect(-151 + Class23.anInt454 / 2, var3 - -1, 302, 32, 0, 255);
-            Toolkit.getActiveToolkit().method934(Class23.anInt454 / 2 - 150, var3 + 2, Client.LoadingStageNumber * 3, 30, 9179409);
-            Toolkit.getActiveToolkit().method934(Class23.anInt454 / 2 + -150 - -(3 * Client.LoadingStageNumber), 2 + var3, 300 + -(3 * Client.LoadingStageNumber), 30, 0);
+            var2.method699(TextCore.RSLoadingPleaseWait, GameShell.gameShellAWTWidth / 2, GameShell.gameShellAWTHeight / 2 - 26, 16777215, -1);
+            var3 = GameShell.gameShellAWTHeight / 2 + -18;
+            Toolkit.getActiveToolkit().drawRect(GameShell.gameShellAWTWidth / 2 - 152, var3, 304, 34, 9179409, 255);
+            Toolkit.getActiveToolkit().drawRect(-151 + GameShell.gameShellAWTWidth / 2, var3 - -1, 302, 32, 0, 255);
+            Toolkit.getActiveToolkit().method934(GameShell.gameShellAWTWidth / 2 - 150, var3 + 2, Client.LoadingStageNumber * 3, 30, 9179409);
+            Toolkit.getActiveToolkit().method934(GameShell.gameShellAWTWidth / 2 + -150 - -(3 * Client.LoadingStageNumber), 2 + var3, 300 + -(3 * Client.LoadingStageNumber), 30, 0);
 
-            var2.method699(Class3_Sub17.aClass94_2464, Class23.anInt454 / 2, 4 + Class140_Sub7.anInt2934 / 2, 16777215, -1);
+            var2.method699(Class3_Sub17.aClass94_2464, GameShell.gameShellAWTWidth / 2, 4 + GameShell.gameShellAWTHeight / 2, 16777215, -1);
             if (var0 < 50) {
                 anIntArray2533 = null;
             }

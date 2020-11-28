@@ -13,7 +13,6 @@ public class ClearReferenceCache {
 
     static void method2257() {
         try {
-
             Class163_Sub2_Sub1.aReferenceCache_4015.clear();
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "wh.F(" + 96 + ')');
@@ -23,7 +22,6 @@ public class ClearReferenceCache {
     static void method128() {
         try {
             Class44.aReferenceCache_725.clear();
-
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "ed.O(" + 2 + ')');
         }
@@ -37,22 +35,20 @@ public class ClearReferenceCache {
         }
     }
 
-    static void method139(int var0) {
+    static void method139() {
         try {
-            if (var0 >= 63) {
-                Unsorted.aReferenceCache_21.clear();
-                ObjectDefinition.aReferenceCache_1401.clear();
-                Unsorted.aReferenceCache_4051.clear();
-                ObjectDefinition.aReferenceCache_1965.clear();
-            }
+            Unsorted.aReferenceCache_21.clear();
+            ObjectDefinition.aReferenceCache_1401.clear();
+            Unsorted.aReferenceCache_4051.clear();
+            ObjectDefinition.aReferenceCache_1965.clear();
         } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "hb.D(" + var0 + ')');
+            throw ClientErrorException.clientError(var2, "hb.D(" + ')');
         }
     }
 
     static void method512() {
         try {
-            Unsorted.aReferenceCache_4043.clear();
+            NPCDefinition.aReferenceCache_4043.clear();
             CS2Script.aReferenceCache_2442.clear();
             Class154.aReferenceCache_1964.clear();
 
@@ -61,24 +57,18 @@ public class ClearReferenceCache {
         }
     }
 
-    static void method1626(byte var0) {
+    static void method1626() {
         try {
             Class3_Sub28_Sub4.aReferenceCache_3572.clear();
             Class143.aReferenceCache_1874.clear();
-            if (var0 <= -124) {
-                Class67.aReferenceCache_1013.clear();
-            }
+            Class67.aReferenceCache_1013.clear();
         } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "ob.F(" + var0 + ')');
+            throw ClientErrorException.clientError(var2, "ob.F(" + ')');
         }
     }
 
     static void method182() {
         try {
-            if (false) {
-                Class3_Sub13_Sub3.method179((byte) 120, -73);
-            }
-
             Class82.aReferenceCache_1146.clear();
             Class159.aReferenceCache_2016.clear();
         } catch (RuntimeException var2) {
@@ -151,17 +141,13 @@ public class ClearReferenceCache {
         }
     }
 
-    static void method397(byte var0) {
+    static void method397() {
         try {
             Class114.aReferenceCache_1569.clear();
             Class3_Sub15.aReferenceCache_2428.clear();
-            if (var0 != -41) {
-                Class3_Sub21.method394(14, 52);
-            }
-
             Unsorted.aReferenceCache_743.clear();
         } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "lh.C(" + var0 + ')');
+            throw ClientErrorException.clientError(var2, "lh.C(" + (byte) -41 + ')');
         }
     }
 
@@ -179,6 +165,15 @@ public class ClearReferenceCache {
             Class158_Sub1.aReferenceCache_2982.clear();
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "hb.C(" + true + ')');
+        }
+    }
+
+    static void method28() {
+        try {
+            Class143.aReferenceCache_1874.clear();
+
+        } catch (RuntimeException var2) {
+            throw ClientErrorException.clientError(var2, "rc.Q(" + true + ')');
         }
     }
 }

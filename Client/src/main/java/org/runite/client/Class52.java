@@ -478,7 +478,7 @@ final class Class52 {
     final int method1163() {
         try {
 
-            return this.pnpcId != -1 ? 305419896 + Unsorted.method522(this.pnpcId).npcId : (this.lookInfo[8] << 10) + ((this.anIntArray862[0] << 25) - -(this.anIntArray862[4] << 20)) - (-(this.lookInfo[0] << 15) - ((this.lookInfo[11] << 5) + this.lookInfo[1]));
+            return this.pnpcId != -1 ? 305419896 + NPCDefinition.method522(this.pnpcId).npcId : (this.lookInfo[8] << 10) + ((this.anIntArray862[0] << 25) - -(this.anIntArray862[4] << 20)) - (-(this.lookInfo[0] << 15) - ((this.lookInfo[11] << 5) + this.lookInfo[1]));
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "hh.E(" + -24861 + ')');
         }
@@ -590,7 +590,7 @@ final class Class52 {
 
                         RenderAnimationDefinition var40 = null;
                         if (this.renderAnim != -1) {
-                            var40 = Class3_Sub10.getRenderAnimationDefinition(this.renderAnim);
+                            var40 = Class140_Sub4.getRenderAnimationDefinition(this.renderAnim);
                         }
 
                         if (var40 != null && null != var40.anIntArrayArray359) {
@@ -821,7 +821,7 @@ final class Class52 {
                     return var51;
                 }
             } else {
-                return Unsorted.method522(this.pnpcId).method1476(var1, var6, (byte) -128, var11, var2, var8, var10, var3, var5, var4);
+                return NPCDefinition.method522(this.pnpcId).method1476(var1, var6, (byte) -128, var11, var2, var8, var10, var3, var5, var4);
             }
         } catch (RuntimeException var36) {
             throw ClientErrorException.clientError(var36, "hh.D(" + (var1 != null ? "{...}" : "null") + ',' + var2 + ',' + (var3 != null ? "{...}" : "null") + ',' + (var4 != null ? "{...}" : "null") + ',' + var5 + ',' + var6 + ',' + var7 + ',' + var8 + ',' + true + ',' + var10 + ',' + var11 + ')');
@@ -894,7 +894,7 @@ final class Class52 {
 
                 return var6;
             } else {
-                return Unsorted.method522(this.pnpcId).getChatModel(var3, var1, var5, -109, var4);
+                return NPCDefinition.method522(this.pnpcId).getChatModel(var3, var1, var5, -109, var4);
             }
         } catch (RuntimeException var13) {
             throw ClientErrorException.clientError(var13, "hh.F(" + var1 + ',' + (byte) 127 + ',' + (var3 != null ? "{...}" : "null") + ',' + var4 + ',' + var5 + ')');

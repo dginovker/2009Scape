@@ -56,16 +56,20 @@ final class ClientErrorException extends RuntimeException {
 
     static void method1125(String message, Throwable exception) {
         try {
+            System.out.println("method1125");
             String var3 = "";
             if (null != exception) {
+                System.out.println("method1125 2");
                 var3 = Class53.method1172(exception);
             }
 
             if (message != null) {
+                System.out.println("method1125 3");
                 if (null != exception) {
+                    System.out.println("method1125 4");
                     var3 = var3 + " | ";
                 }
-
+                System.out.println("method1125 5");
                 var3 = var3 + message;
             }
 
@@ -74,17 +78,22 @@ final class ClientErrorException extends RuntimeException {
             var3 = Class3_Sub28_Sub6.a("@", "%40", var3);
             var3 = Class3_Sub28_Sub6.a("&", "%26", var3);
             var3 = Class3_Sub28_Sub6.a("#", "%23", var3);
+            System.out.println("method1125 6");
             if (Class3_Sub13_Sub10.aClass87_3125.applet == null) {
+                System.out.println("method1125 7");
                 return;
             }
 
+            System.out.println("method1125 8");
             Class64 var4 = Class3_Sub13_Sub10.aClass87_3125.method1439(false, new URL(Class3_Sub13_Sub10.aClass87_3125.applet.getCodeBase(), "clienterror.ws?c=" + GameShell.anInt4033 + "&u=" + PacketParser.aLong3202 + "&v1=" + Signlink.javaVendor + "&v2=" + Signlink.javaVersion + "&e=" + var3));
 
             while (var4.anInt978 == 0) {
+                System.out.println("method1125 9");
                 TimeUtils.sleep(1L);
             }
 
             if (var4.anInt978 == 1) {
+                System.out.println("method1125 10");
                 DataInputStream var5 = (DataInputStream) var4.anObject974;
                 var5.read();
                 var5.close();
@@ -92,5 +101,14 @@ final class ClientErrorException extends RuntimeException {
         } catch (Exception var6) {
         }
 
+    }
+
+    static void wrongParamaterValuesSet(String var0) {
+        try {
+            System.out.println("Bad " + var0 + ", Usage: worldid, <live/rc/wip>, <english/german>, <game0/game1>");
+            System.exit(1);
+        } catch (RuntimeException var3) {
+            throw clientError(var3, "kd.O(" + (var0 != null ? "{...}" : "null") + ',' + (byte) 38 + ')');
+        }
     }
 }

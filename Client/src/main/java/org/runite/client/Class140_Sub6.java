@@ -104,7 +104,7 @@ final class Class140_Sub6 extends GameObject {
 
     static void method2025() {
         try {
-            Unsorted.aReferenceCache_4043.sweep(5);
+            NPCDefinition.aReferenceCache_4043.sweep(5);
             CS2Script.aReferenceCache_2442.sweep(5);
             Class154.aReferenceCache_1964.sweep(5);
         } catch (RuntimeException var3) {

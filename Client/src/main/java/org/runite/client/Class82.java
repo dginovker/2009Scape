@@ -543,7 +543,7 @@ final class Class82 {
                         var20 = 0;
                     }
 
-                    var20 = Class3_Sub30_Sub1.anIntArray3804[var20];
+                    var20 = Network.anIntArray3804[var20];
                     int var22 = var18[var25] >> 4;
                     int var21 = var17[var25] >> 4;
                     if (var21 > 255) {
@@ -558,12 +558,12 @@ final class Class82 {
                         var22 = 255;
                     }
 
-                    var21 = Class3_Sub30_Sub1.anIntArray3804[var21];
+                    var21 = Network.anIntArray3804[var21];
                     if (var22 < 0) {
                         var22 = 0;
                     }
 
-                    var22 = Class3_Sub30_Sub1.anIntArray3804[var22];
+                    var22 = Network.anIntArray3804[var22];
                     var10[var14++] = (var20 << 16) - -(var21 << 8) + var22;
                     if (var2) {
                         var14 += var3 + -1;
@@ -644,7 +644,7 @@ final class Class82 {
                         var19 = 255;
                     }
 
-                    var17 = Class3_Sub30_Sub1.anIntArray3804[var17];
+                    var17 = Network.anIntArray3804[var17];
                     if (var19 < 0) {
                         var19 = 0;
                     }
@@ -653,8 +653,8 @@ final class Class82 {
                         var18 = 0;
                     }
 
-                    var18 = Class3_Sub30_Sub1.anIntArray3804[var18];
-                    var19 = Class3_Sub30_Sub1.anIntArray3804[var19];
+                    var18 = Network.anIntArray3804[var18];
+                    var19 = Network.anIntArray3804[var19];
                     int var20;
                     if (var17 == 0 && var18 == 0 && var19 == 0) {
                         var20 = 0;

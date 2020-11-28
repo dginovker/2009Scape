@@ -2,8 +2,8 @@ package org.runite.client;
 
 final class Class38_Sub1 extends Class38 {
 
-    static int[][][] anIntArrayArrayArray2609;
     static String accRegistryIp;
+    static int[][][] anIntArrayArrayArray2609;
     static int anInt2612;
     static Class15 aClass15_2613;
     static int anInt2614 = 0;

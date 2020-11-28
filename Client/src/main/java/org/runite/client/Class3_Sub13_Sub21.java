@@ -1,5 +1,6 @@
 package org.runite.client;
 
+import org.rs09.client.config.GameConfig;
 import org.rs09.client.net.Connection;
 
 import java.io.IOException;
@@ -31,9 +32,9 @@ final class Class3_Sub13_Sub21 extends Class3_Sub13 {
             if (Unsorted.registryStage != 0) {
                 try {
                     if (++Class132.anInt1734 > 2000) {
-                        if (null != Class3_Sub15.activeConnection) {
-                            Class3_Sub15.activeConnection.close();
-                            Class3_Sub15.activeConnection = null;
+                        if (null != Network.activeConnection) {
+                            Network.activeConnection.close();
+                            Network.activeConnection = null;
                         }
 
                         if (GraphicDefinition.anInt548 >= 1) {
@@ -66,16 +67,16 @@ final class Class3_Sub13_Sub21 extends Class3_Sub13 {
                         if (1 != Class3_Sub9.aClass64_2318.anInt978) {
                             return;
                         }
-                        Class3_Sub15.activeConnection = new Connection((Socket) Class3_Sub9.aClass64_2318.anObject974, Class38.aClass87_665);
+                        Network.activeConnection = new Connection((Socket) Class3_Sub9.aClass64_2318.anObject974, Class38.aClass87_665);
                         Class3_Sub9.aClass64_2318 = null;
-                        Class3_Sub15.activeConnection.sendBytes(Class3_Sub13_Sub1.outgoingBuffer.buffer, Class3_Sub13_Sub1.outgoingBuffer.index);
+                        Network.activeConnection.sendBytes(Network.outgoingBuffer.buffer, Network.outgoingBuffer.index);
                         if (WorldListEntry.aClass155_2627 != null) {
                             WorldListEntry.aClass155_2627.method2159(63);
                         }
                         if (null != Class3_Sub21.aClass155_2491) {
                             Class3_Sub21.aClass155_2491.method2159(66);
                         }
-                        response = Class3_Sub15.activeConnection.readByte();
+                        response = Network.activeConnection.readByte();
                         System.out.println("Response = " + response);
                         if (WorldListEntry.aClass155_2627 != null) {
                             WorldListEntry.aClass155_2627.method2159(64);
@@ -86,8 +87,8 @@ final class Class3_Sub13_Sub21 extends Class3_Sub13 {
                         if (response != 21) {
                             Unsorted.anInt1711 = response;
                             Unsorted.registryStage = 0;
-                            Class3_Sub15.activeConnection.close();
-                            Class3_Sub15.activeConnection = null;
+                            Network.activeConnection.close();
+                            Network.activeConnection = null;
                             return;
                         }
                         Unsorted.registryStage = 3;
@@ -98,36 +99,36 @@ final class Class3_Sub13_Sub21 extends Class3_Sub13 {
                     }
 
                     if (3 == Unsorted.registryStage) {
-                        if (Class3_Sub15.activeConnection.availableBytes() < 1) {
+                        if (Network.activeConnection.availableBytes() < 1) {
                             return;
                         }
 
-                        Class3_Sub13_Sub33.aClass94Array3391 = new RSString[Class3_Sub15.activeConnection.readByte()];
+                        Class3_Sub13_Sub33.aClass94Array3391 = new RSString[Network.activeConnection.readByte()];
                         Unsorted.registryStage = 4;
                     }
 
                     if (Unsorted.registryStage == 4) {
-                        if (8 * Class3_Sub13_Sub33.aClass94Array3391.length > Class3_Sub15.activeConnection.availableBytes()) {
+                        if (8 * Class3_Sub13_Sub33.aClass94Array3391.length > Network.activeConnection.availableBytes()) {
                             return;
                         }
 
-                        GraphicDefinition.incomingBuffer.index = 0;
-                        Class3_Sub15.activeConnection.readBytes(GraphicDefinition.incomingBuffer.buffer, 0, 8 * Class3_Sub13_Sub33.aClass94Array3391.length);
+                        Network.incomingBuffer.index = 0;
+                        Network.activeConnection.readBytes(Network.incomingBuffer.buffer, 0, 8 * Class3_Sub13_Sub33.aClass94Array3391.length);
 
                         for (response = 0; response < Class3_Sub13_Sub33.aClass94Array3391.length; ++response) {
-                            Class3_Sub13_Sub33.aClass94Array3391[response] = Unsorted.method1052(GraphicDefinition.incomingBuffer.readLong());
+                            Class3_Sub13_Sub33.aClass94Array3391[response] = Unsorted.method1052(Network.incomingBuffer.readLong());
                         }
 
                         Unsorted.anInt1711 = 21;
                         Unsorted.registryStage = 0;
-                        Class3_Sub15.activeConnection.close();
-                        Class3_Sub15.activeConnection = null;
+                        Network.activeConnection.close();
+                        Network.activeConnection = null;
                         return;
                     }
                 } catch (IOException var2) {
-                    if (Class3_Sub15.activeConnection != null) {
-                        Class3_Sub15.activeConnection.close();
-                        Class3_Sub15.activeConnection = null;
+                    if (Network.activeConnection != null) {
+                        Network.activeConnection.close();
+                        Network.activeConnection = null;
                     }
 
                     if (GraphicDefinition.anInt548 < 1) {
@@ -199,7 +200,7 @@ final class Class3_Sub13_Sub21 extends Class3_Sub13 {
                         int var11 = var9 + 64 * (Class3_Sub24_Sub3.anIntArray3494[var2] >> 8) - Class131.anInt1716;
                         int var10 = var7 & 63;
                         int var12 = var10 + -Class82.anInt1152 + 64 * (255 & Class3_Sub24_Sub3.anIntArray3494[var2]);
-                        NPCDefinition var13 = Unsorted.method522(var16.readUnsignedShort());
+                        NPCDefinition var13 = NPCDefinition.method522(var16.readUnsignedShort());
                         if (NPC.npcs[var6] == null && (var13.aByte1267 & 1) > 0 && Class140_Sub3.anInt2745 == var8 && var11 >= 0 && 104 > var13.size + var11 && var12 >= 0 && 104 > var12 - -var13.size) {
                             NPC.npcs[var6] = new NPC();
                             NPC npc = NPC.npcs[var6];
@@ -298,7 +299,7 @@ final class Class3_Sub13_Sub21 extends Class3_Sub13 {
 
     final void method158(int var1) {
         try {
-            Class8.method844((byte) -9);
+            Class8.method844();
             if (var1 != 16251) {
                 method272((byte) -85);
             }

@@ -98,6 +98,9 @@ class GameConfig {
         var IP_MANAGEMENT = "localhost"
 
         @JvmField
+        var IP_ACCOUNT_REGISTRATION = "localhost"
+
+        @JvmField
         var SERVER_PORT = 43594
 
         @JvmField

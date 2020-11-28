@@ -89,9 +89,8 @@ final class Class3_Sub13_Sub17 extends Class3_Sub13 {
         }
     }
 
-    private void method248(int var1, byte var2, int var3) {
+    private void method248(int var1, int var3) {
         try {
-            if (var2 > 80) {
                 int var4 = Class102.anIntArray2125[var3];
                 int var5 = Class163_Sub3.anIntArray2999[var1];
                 float var6 = (float) Math.atan2(var4 - 2048, var5 - 2048);
@@ -123,9 +122,8 @@ final class Class3_Sub13_Sub17 extends Class3_Sub13 {
 
                 Class159.anInt2024 &= RenderAnimationDefinition.anInt396;
                 Class50.anInt828 &= Class3_Sub20.anInt2487;
-            }
         } catch (RuntimeException var7) {
-            throw ClientErrorException.clientError(var7, "je.Q(" + var1 + ',' + var2 + ',' + var3 + ')');
+            throw ClientErrorException.clientError(var7, "je.Q(" + var1 + ',' + var3 + ')');
         }
     }
 
@@ -149,7 +147,7 @@ final class Class3_Sub13_Sub17 extends Class3_Sub13 {
             int[] var4 = this.aClass114_2382.method1709(var1);
             if (this.aClass114_2382.aBoolean1580) {
                 for (int var5 = 0; var5 < Class113.anInt1559; ++var5) {
-                    this.method248(var1, (byte) 105, var5);
+                    this.method248(var1, var5);
                     int[] var6 = this.method152(0, Class50.anInt828, 32755);
                     var4[var5] = var6[Class159.anInt2024];
                 }
@@ -174,7 +172,7 @@ final class Class3_Sub13_Sub17 extends Class3_Sub13 {
                 int[] var5 = var3[1];
 
                 for (int var7 = 0; Class113.anInt1559 > var7; ++var7) {
-                    this.method248(var2, (byte) 107, var7);
+                    this.method248(var2, var7);
                     int[][] var8 = this.method162(Class50.anInt828, 0, (byte) -49);
                     var4[var7] = Objects.requireNonNull(var8)[0][Class159.anInt2024];
                     var5[var7] = var8[1][Class159.anInt2024];

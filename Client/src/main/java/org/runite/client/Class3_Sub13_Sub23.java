@@ -40,27 +40,6 @@ class Class3_Sub13_Sub23 extends Class3_Sub13 {
         }
     }
 
-    static boolean handleWorldListUpdate(byte[] buf) {
-        try {
-            DataBuffer buffer = new DataBuffer(buf);
-            int opcode = buffer.readUnsignedByte();
-            //System.out.println(opcode);
-            if (1 == opcode) {
-                boolean updated = buffer.readUnsignedByte() == 1;
-                if (updated) {
-                    WorldListEntry.parseWorldList(buffer);
-                }
-
-                Class3_Sub13_Sub10.method216(buffer);
-                return true;
-            } else {
-                return false;
-            }
-        } catch (RuntimeException var5) {
-            throw ClientErrorException.clientError(var5, "nh.AA(" + 4 + ',' + (buf != null ? "{...}" : "null") + ')');
-        }
-    }
-
     static void method280(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var11, int var12) {
         try {
             Class3_Sub5 var13 = new Class3_Sub5();

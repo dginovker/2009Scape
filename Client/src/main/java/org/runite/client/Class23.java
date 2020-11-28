@@ -2,7 +2,6 @@ package org.runite.client;
 
 public final class Class23 {
 
-    public static int anInt454;
     static int anInt453 = 0;
     static int anInt455;
     static boolean[][] aBooleanArrayArray457;

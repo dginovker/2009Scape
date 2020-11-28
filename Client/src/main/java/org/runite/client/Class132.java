@@ -72,12 +72,12 @@ final class Class132 {
             int var4 = Class38_Sub1.anInt2612;
             var1 += 8;
             var3 = NPCDefinition.anInt1297 + -(var1 / 2);
-            if (Class140_Sub7.anInt2934 < var4 + var2) {
-                var4 = Class140_Sub7.anInt2934 + -var2;
+            if (GameShell.gameShellAWTHeight < var4 + var2) {
+                var4 = GameShell.gameShellAWTHeight + -var2;
             }
 
-            if (Class23.anInt454 < var3 + var1) {
-                var3 = -var1 + Class23.anInt454;
+            if (GameShell.gameShellAWTWidth < var3 + var1) {
+                var3 = -var1 + GameShell.gameShellAWTWidth;
             }
 
             if (var3 < 0) {

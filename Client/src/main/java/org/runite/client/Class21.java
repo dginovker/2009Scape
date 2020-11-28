@@ -12,19 +12,19 @@ final class Class21 {
 
     static void method912() {
         try {
-            Class3_Sub13_Sub1.outgoingBuffer.index = 0;
+            Network.outgoingBuffer.index = 0;
             Class7.anInt2166 = -1;
             Class38_Sub1.aBoolean2615 = false;
-            Unsorted.incomingPacketLength = 0;
+            Network.incomingPacketLength = 0;
             Class65.anInt987 = 0;
             Unsorted.menuOptionCount = 0;
             LinkableRSString.anInt2582 = -1;
             Class161.anInt2028 = 0;
             Class38_Sub1.anInt2617 = 0;
             Class24.anInt469 = -1;
-            GraphicDefinition.incomingBuffer.index = 0;
+            Network.incomingBuffer.index = 0;
             AbstractSprite.anInt3699 = 0;
-            Unsorted.incomingOpcode = -1;
+            Network.incomingOpcode = -1;
 
             int var1;
             for (var1 = 0; Class3_Sub13_Sub22.players.length > var1; ++var1) {

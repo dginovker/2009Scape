@@ -406,7 +406,7 @@ public class DataBuffer extends Linkable {
         this.buffer[this.index++] = (byte) (value >> 24);
     }
 
-    final int readUnsignedNegativeByte() {
+    public final int readUnsignedNegativeByte() {
         return -this.buffer[this.index++] & 0xff;
     }
 

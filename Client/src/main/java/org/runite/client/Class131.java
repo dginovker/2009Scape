@@ -32,8 +32,8 @@ final class Class131 {
     static void addLocalPlayers() {
         try {
             while (true) {
-                if (GraphicDefinition.incomingBuffer.method815(Unsorted.incomingPacketLength) >= 11) {
-                    int index = GraphicDefinition.incomingBuffer.getBits(11);
+                if (Network.incomingBuffer.method815(Network.incomingPacketLength) >= 11) {
+                    int index = Network.incomingBuffer.getBits(11);
                     if (index != 2047) {
                         boolean var2 = false;
                         if (null == Class3_Sub13_Sub22.players[index]) {
@@ -47,13 +47,13 @@ final class Class131 {
                         Class56.localPlayerIndexes[Class159.localPlayerCount++] = index;
                         Player var3 = Class3_Sub13_Sub22.players[index];
                         var3.anInt2838 = Class44.anInt719;
-                        int var4 = GraphicDefinition.incomingBuffer.getBits(1);
+                        int var4 = Network.incomingBuffer.getBits(1);
                         if (var4 == 1) {
                             Class21.maskUpdateIndexes[Unsorted.maskUpdateCount++] = index;
                         }
 
-                        int var5 = GraphicDefinition.incomingBuffer.getBits(5);
-                        int var6 = Class27.anIntArray510[GraphicDefinition.incomingBuffer.getBits(3)];
+                        int var5 = Network.incomingBuffer.getBits(5);
+                        int var6 = Class27.anIntArray510[Network.incomingBuffer.getBits(3)];
                         if (var5 > 15) {
                             var5 -= 32;
                         }
@@ -62,8 +62,8 @@ final class Class131 {
                             var3.anInt2806 = var3.anInt2785 = var6;
                         }
 
-                        int var7 = GraphicDefinition.incomingBuffer.getBits(1);
-                        int var8 = GraphicDefinition.incomingBuffer.getBits(5);
+                        int var7 = Network.incomingBuffer.getBits(1);
+                        int var8 = Network.incomingBuffer.getBits(5);
                         if (var8 > 15) {
                             var8 -= 32;
                         }
@@ -73,7 +73,7 @@ final class Class131 {
                     }
                 }
 
-                GraphicDefinition.incomingBuffer.method818();
+                Network.incomingBuffer.method818();
                 return;
             }
         } catch (RuntimeException var9) {
@@ -127,10 +127,10 @@ final class Class131 {
                 var4.writeString(password);
                 var4.writeInt((int) (Math.random() * 9.9999999E7D));
                 var4.rsaEncrypt(Class3_Sub13_Sub14.aBigInteger3162, Class3_Sub13_Sub37.aBigInteger3441);
-                Class3_Sub13_Sub1.outgoingBuffer.index = 0;
-                Class3_Sub13_Sub1.outgoingBuffer.writeByte(210);
-                Class3_Sub13_Sub1.outgoingBuffer.writeByte(var4.index);
-                Class3_Sub13_Sub1.outgoingBuffer.putBytes(var4.buffer, var4.index);
+                Network.outgoingBuffer.index = 0;
+                Network.outgoingBuffer.writeByte(210);
+                Network.outgoingBuffer.writeByte(var4.index);
+                Network.outgoingBuffer.putBytes(var4.buffer, var4.index);
             } else {
                 Class24.method951();
             }

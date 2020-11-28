@@ -2,7 +2,6 @@ package org.runite.client;
 
 public final class Class140_Sub7 extends GameObject {
 
-    public static int anInt2934;
     static int[] anIntArray2931;
     static int[] anIntArray2933 = new int[]{2, 0, 0, 2, 0, 0, 0, 4, 4};
     static RSString[] aClass94Array2935 = new RSString[500];

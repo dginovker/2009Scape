@@ -137,9 +137,9 @@ public final class Class3_Sub13_Sub36 extends Class3_Sub13 {
                 HDToolKit.enableDepthTest(true);
                 HDToolKit.enableFog(true);
                 if (Class143.loadingStage == 10) {
-                    var12 = Class3_Sub30_Sub1.method809(Class106.anInt1446, Class77.anInt1111 >> 10, Unsorted.anInt3625, NPC.anInt3995 >> 10);
+                    var12 = method809(Class106.anInt1446, Class77.anInt1111 >> 10, Unsorted.anInt3625, NPC.anInt3995 >> 10);
                 } else {
-                    var12 = Class3_Sub30_Sub1.method809(Class106.anInt1446, Player.player.anIntArray2755[0] >> 3, Unsorted.anInt3625, Player.player.anIntArray2767[0] >> 3);
+                    var12 = method809(Class106.anInt1446, Player.player.anIntArray2755[0] >> 3, Unsorted.anInt3625, Player.player.anIntArray2767[0] >> 3);
                 }
 
                 Class68.method1269(Class44.anInt719, !WorldListEntry.aBoolean2623);
@@ -200,7 +200,7 @@ public final class Class3_Sub13_Sub36 extends Class3_Sub13 {
                 int var11 = (var5 - var3) * (-var7 + var8) / var1 - -var7;
                 var12 = var9 + (var10 + -var9) * (-var0 + var4) / var2;
                 if (GameObject.aBoolean1837 && (64 & Class164.anInt2051) != 0) {
-                    RSInterface var13 = AbstractSprite.method638(Class3_Sub30_Sub1.anInt872, RSInterface.anInt278);
+                    RSInterface var13 = AbstractSprite.method638(Network.anInt872, RSInterface.anInt278);
                     if (var13 == null) {
                         Class25.method958((byte) -87);
                     } else {
@@ -470,6 +470,69 @@ public final class Class3_Sub13_Sub36 extends Class3_Sub13 {
             }
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "ui.KA(" + var0 + ',' + var1 + ')');
+        }
+    }
+
+    static int method809(int var0, int var1, int var2, int var3) {
+        try {
+            if (Class3_Sub13_Sub32.aBoolean3387) {
+                var0 = 1000000;
+                Class3_Sub13_Sub32.aBoolean3387 = false;
+            }
+
+            AtmosphereParser var5 = AtmosphereParser.aAtmosphereParserArrayArray1581[var3][var1];
+            float var7 = ((float) var2 * 0.1F + 0.7F) * var5.aFloat1187;
+            float var8 = var5.aFloat1190;
+            int var6 = var5.anInt1177;
+            int var11 = var5.anInt1184;
+            int var10 = var5.anInt1175;
+            if (!Class38.aBoolean661) {
+                var11 = 0;
+            }
+
+            float var9 = var5.aFloat1189;
+            if (var6 != Class60.anInt932 || Class3_Sub17.aFloat2457 != var7 || Network.aFloat3044 != var8 || var9 != RSInterface.aFloat246 || Network.anInt1345 != var10 || Network.anInt1736 != var11) {
+                Class3_Sub17.aFloat2457 = var7;
+                aFloat3435 = aFloat3424;
+                Class3_Sub13_Sub8.aFloat3105 = Class30.aFloat578;
+                Class60.anInt932 = var6;
+                Network.anInt1971 = Class3_Sub28_Sub12.anInt3652;
+                Network.anInt1407 = Unsorted.anInt689;
+                RSInterface.aFloat246 = var9;
+                Unsorted.anInt72 = 0;
+                Network.anInt4037 = Unsorted.anInt1950;
+                Network.anInt1736 = var11;
+                Network.aFloat3044 = var8;
+                Network.anInt1345 = var10;
+                Network.aFloat1475 = Class12.aFloat319;
+            }
+
+            if (65536 > Unsorted.anInt72) {
+                Unsorted.anInt72 += 250 * var0;
+                if (Unsorted.anInt72 >= 65536) {
+                    Unsorted.anInt72 = 65536;
+                }
+
+                float var15 = (float) Unsorted.anInt72 / 65536.0F;
+                int var13 = Unsorted.anInt72 >> 8;
+                int var12 = -Unsorted.anInt72 + 65536 >> 8;
+                Class3_Sub28_Sub12.anInt3652 = (-16711936 & var13 * (Network.anInt1345 & 16711935) + (16711935 & Network.anInt1971) * var12) + (16711680 & var12 * (Network.anInt1971 & '\uff00') + ('\uff00' & Network.anInt1345) * var13) >> 8;
+                float var14 = (float) (65536 - Unsorted.anInt72) / 65536.0F;
+                Class30.aFloat578 = var14 * Class3_Sub13_Sub8.aFloat3105 + var15 * Class3_Sub17.aFloat2457;
+                aFloat3424 = aFloat3435 * var14 + var15 * Network.aFloat3044;
+                Class12.aFloat319 = var15 * RSInterface.aFloat246 + var14 * Network.aFloat1475;
+                Unsorted.anInt1950 = (16711680 & (Class60.anInt932 & '\uff00') * var13 + var12 * (Network.anInt4037 & '\uff00')) + ((16711935 & Network.anInt4037) * var12 - -((Class60.anInt932 & 16711935) * var13) & -16711936) >> 8;
+                Unsorted.anInt689 = var13 * Network.anInt1736 + var12 * Network.anInt1407 >> 8;
+            }
+
+            Class92.setLightParams(Unsorted.anInt1950, Class30.aFloat578, aFloat3424, Class12.aFloat319);
+            Class92.setFogValues(Class3_Sub28_Sub12.anInt3652, Unsorted.anInt689);
+
+            Class92.setLightPosition((float) Class46.anInt741, (float) Class3_Sub13_Sub11.anInt3274, (float) AtmosphereParser.anInt1191);
+            Class92.method1504();
+            return Class3_Sub28_Sub12.anInt3652;
+        } catch (RuntimeException var16) {
+            throw ClientErrorException.clientError(var16, "i.F(" + var0 + ',' + var1 + ',' + var2 + ',' + var3 + ',' + 1 + ')');
         }
     }
 

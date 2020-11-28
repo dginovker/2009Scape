@@ -91,9 +91,9 @@ final class Class8 {
     static void method841() {
         try {
             aClass11Array1836 = null;
-            Class3_Sub13_Sub1.method171(-101, Class3_Sub28_Sub12.anInt3655, 0, Class23.anInt454, 0, -1, Class140_Sub7.anInt2934, 0, 0);
+            Class3_Sub13_Sub1.method171(-101, Class3_Sub28_Sub12.anInt3655, 0, GameShell.gameShellAWTWidth, 0, -1, GameShell.gameShellAWTHeight, 0, 0);
             if (aClass11Array1836 != null) {
-                Unsorted.method1095(0, Unsorted.anInt1082, Unsorted.anInt3602, aClass11Array1836, Class23.anInt454, -1412584499, 0, Class140_Sub7.anInt2934, (byte) 73, PacketParser.aClass11_88.anInt292);
+                Unsorted.method1095(0, Unsorted.anInt1082, Unsorted.anInt3602, aClass11Array1836, GameShell.gameShellAWTWidth, -1412584499, 0, GameShell.gameShellAWTHeight, (byte) 73, PacketParser.aClass11_88.anInt292);
                 aClass11Array1836 = null;
             }
 
@@ -119,20 +119,16 @@ final class Class8 {
         }
     }
 
-    static Class75_Sub1 method843(int var0, DataBuffer var1) {
+    static Class75_Sub1 method843(DataBuffer var1) {
         try {
-            return var0 != -5232 ? null : new Class75_Sub1(var1.readSignedShort(), var1.readSignedShort(), var1.readSignedShort(), var1.readSignedShort(), var1.readMedium(), var1.readUnsignedByte());
+            return new Class75_Sub1(var1.readSignedShort(), var1.readSignedShort(), var1.readSignedShort(), var1.readSignedShort(), var1.readMedium(), var1.readUnsignedByte());
         } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "al.D(" + var0 + ',' + (var1 != null ? "{...}" : "null") + ')');
+            throw ClientErrorException.clientError(var3, "al.D(" + -5232 + ',' + (var1 != null ? "{...}" : "null") + ')');
         }
     }
 
-    static void method844(byte var0) {
+    static void method844() {
         try {
-            if (var0 != -9) {
-                TextCore.aClass94_106 = null;
-            }
-
             if (null == Class3_Sub13_Sub17.anIntArray3212 || null == Class75_Sub2.anIntArray2639) {
                 Class3_Sub13_Sub17.anIntArray3212 = new int[256];
                 Class75_Sub2.anIntArray2639 = new int[256];
@@ -145,7 +141,7 @@ final class Class8 {
             }
 
         } catch (RuntimeException var4) {
-            throw ClientErrorException.clientError(var4, "al.C(" + var0 + ')');
+            throw ClientErrorException.clientError(var4, "al.C(" + (byte) -9 + ')');
         }
     }
 
@@ -154,7 +150,7 @@ final class Class8 {
             if (var0 == !Class139.aBoolean1827) {
                 Class139.aBoolean1827 = var0;
 
-                ClearReferenceCache.method1626((byte) -126);
+                ClearReferenceCache.method1626();
             }
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "al.H(" + var0 + ',' + 255 + ')');

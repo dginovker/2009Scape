@@ -9,8 +9,8 @@ final class Class167 {
     static void addLocalNPCs() {
         try {
             while (true) {
-                if (GraphicDefinition.incomingBuffer.method815(Unsorted.incomingPacketLength) >= 27) {
-                    int var1 = GraphicDefinition.incomingBuffer.getBits(15);
+                if (Network.incomingBuffer.method815(Network.incomingPacketLength) >= 27) {
+                    int var1 = Network.incomingBuffer.getBits(15);
                     if (32767 != var1) {
                         boolean var2 = false;
                         if (null == NPC.npcs[var1]) {
@@ -25,24 +25,24 @@ final class Class167 {
                             Class3_Sub28_Sub8.method574(var3);
                         }
 
-                        int var4 = GraphicDefinition.incomingBuffer.getBits(1);
-                        int var5 = Class27.anIntArray510[GraphicDefinition.incomingBuffer.getBits(3)];
+                        int var4 = Network.incomingBuffer.getBits(1);
+                        int var5 = Class27.anIntArray510[Network.incomingBuffer.getBits(3)];
                         if (var2) {
                             var3.anInt2806 = var3.anInt2785 = var5;
                         }
 
-                        int var6 = GraphicDefinition.incomingBuffer.getBits(1);
+                        int var6 = Network.incomingBuffer.getBits(1);
                         if (var6 == 1) {
                             Class21.maskUpdateIndexes[Unsorted.maskUpdateCount++] = var1;
                         }
 
-                        int var7 = GraphicDefinition.incomingBuffer.getBits(5);
-                        var3.setDefinitions(Unsorted.method522(GraphicDefinition.incomingBuffer.getBits(14)));
+                        int var7 = Network.incomingBuffer.getBits(5);
+                        var3.setDefinitions(NPCDefinition.method522(Network.incomingBuffer.getBits(14)));
                         if (15 < var7) {
                             var7 -= 32;
                         }
 
-                        int var8 = GraphicDefinition.incomingBuffer.getBits(5);
+                        int var8 = Network.incomingBuffer.getBits(5);
                         if (15 < var8) {
                             var8 -= 32;
                         }
@@ -62,7 +62,7 @@ final class Class167 {
                     }
                 }
 
-                GraphicDefinition.incomingBuffer.method818();
+                Network.incomingBuffer.method818();
 
                 return;
             }
@@ -220,9 +220,9 @@ final class Class167 {
 
     static void method2269(byte var0) {
         try {
-            if (null != Class3_Sub15.activeConnection) {
-                Class3_Sub15.activeConnection.close();
-                Class3_Sub15.activeConnection = null;
+            if (null != Network.activeConnection) {
+                Network.activeConnection.close();
+                Network.activeConnection = null;
             }
 
             Class3_Sub13_Sub30.method313((byte) 110);
@@ -239,7 +239,7 @@ final class Class167 {
             Class83.aBoolean1158 = false;
             Class129.anInt1691 = -1;
             Class164_Sub1.method2241((byte) -77, true);
-            LinkableRSString.isDynamicSceneGraph = false;
+            Class40.isDynamicSceneGraph = false;
             Class82.anInt1152 = 0;
             Unsorted.anInt3606 = 0;
             Class3_Sub7.anInt2294 = 0;

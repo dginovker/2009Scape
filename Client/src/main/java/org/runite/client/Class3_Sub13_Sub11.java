@@ -43,7 +43,7 @@ final class Class3_Sub13_Sub11 extends Class3_Sub13 {
             }
 
             Class3_Sub28_Sub5.anInt3590 = -1;
-            Class3_Sub13_Sub13.method229(Class161.anInt2027);
+            Class3_Sub13_Sub13.sendComputerUsernameAndOS(Class161.anInt2027);
             Player.player = new Player();
             Player.player.anInt2829 = 3000;
             Player.player.anInt2819 = 3000;
@@ -59,7 +59,7 @@ final class Class3_Sub13_Sub11 extends Class3_Sub13 {
                 Class3_Sub13_Sub6.method195();
                 Class117.method1719(28);
             } else {
-                Class84.method1418(-110, CacheIndex.spritesIndex);
+                Class84.method1418(CacheIndex.spritesIndex);
                 Class117.method1719(10);
             }
 

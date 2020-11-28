@@ -28,7 +28,7 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
         super(1, false);
     }
 
-    static void method229(int cursor) {
+    static void sendComputerUsernameAndOS(int cursor) {
         try {
             if (!Class163_Sub3.aBoolean3004) {
                 cursor = -1;
@@ -57,21 +57,6 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
         }
     }
 
-    static void breakClientConnection() {
-        try {
-
-            if (Class159.anInt2023 > 0) {
-                Class167.method2269((byte) 46);
-            } else {
-                Class163_Sub2_Sub1.aClass89_4012 = Class3_Sub15.activeConnection;
-                Class3_Sub15.activeConnection = null;
-                Class117.method1719(40);
-            }
-        } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "nm.B(" + false + ')');
-        }
-    }
-
     static void method230(int[][] var0) {
         try {
             Class38.anIntArrayArray663 = var0;
@@ -85,7 +70,7 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
         try {
             Class24 var2 = (Class24) Class140_Sub4.aReferenceCache_2792.get(var0);
             if (var2 == null) {
-                byte[] var3 = LoginHandler.aClass153_1680.getFile(3, var0);
+                byte[] var3 = CacheIndex.aClass153_1680.getFile(3, var0);
                 var2 = new Class24();
                 if (null != var3) {
                     var2.method952(new DataBuffer(var3));
@@ -120,15 +105,11 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
         }
     }
 
-    static void method233(int var0, CacheIndex var1) {
+    static void method233(CacheIndex var1) {
         try {
-            if (var0 != 28280) {
-                aClass153_3154 = null;
-            }
-
             NPC.anInt4001 = var1.getArchiveForName(TextCore.aClass94_119);
         } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "gg.R(" + var0 + ',' + (var1 != null ? "{...}" : "null") + ')');
+            throw ClientErrorException.clientError(var3, "gg.R(" + 28280 + ',' + (var1 != null ? "{...}" : "null") + ')');
         }
     }
 
@@ -145,14 +126,14 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
 
             if (Class3_Sub28_Sub18.aBoolean3769) {
                 Class3_Sub28_Sub18.aBoolean3769 = false;
-                breakClientConnection();
+                Network.breakClientConnection();
             } else {
                 int queuedVarpIndex;
                 for (queuedVarpIndex = 0; queuedVarpIndex < 100 && Class3_Sub13_Sub3.method181(); ++queuedVarpIndex) {
                 }
 
                 if (Class143.loadingStage == 30) {
-                    Class163_Sub2_Sub1.method2226(Class3_Sub13_Sub1.outgoingBuffer, 163, -116);
+                    Class163_Sub2_Sub1.method2226(Network.outgoingBuffer, 163, -116);
                     Object var14 = aClass67_1443.anObject1016;
                     int var2;
                     int var3;
@@ -164,12 +145,12 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                     synchronized (var14) {
                         if (Unsorted.aBoolean29) {
                             if (Unsorted.anInt3644 != 0 || aClass67_1443.anInt1018 >= 40) {
-                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(123);
+                                Network.outgoingBuffer.putOpcode(123);
                                 var3 = 0;
-                                Class3_Sub13_Sub1.outgoingBuffer.writeByte(0);
-                                var2 = Class3_Sub13_Sub1.outgoingBuffer.index;
+                                Network.outgoingBuffer.writeByte(0);
+                                var2 = Network.outgoingBuffer.index;
 
-                                for (var4 = 0; aClass67_1443.anInt1018 > var4 && Class3_Sub13_Sub1.outgoingBuffer.index - var2 < 240; ++var4) {
+                                for (var4 = 0; aClass67_1443.anInt1018 > var4 && Network.outgoingBuffer.index - var2 < 240; ++var4) {
                                     ++var3;
                                     var5 = aClass67_1443.anIntArray1019[var4];
                                     var6 = aClass67_1443.anIntArray1020[var4];
@@ -206,29 +187,29 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                                         if (Class3_Sub26.anInt2556 < 8 && var8 >= -32 && 31 >= var8 && -32 <= var9 && var9 <= 31) {
                                             var9 += 32;
                                             var8 += 32;
-                                            Class3_Sub13_Sub1.outgoingBuffer.writeShort(var9 + (Class3_Sub26.anInt2556 << 12) + (var8 << 6));
+                                            Network.outgoingBuffer.writeShort(var9 + (Class3_Sub26.anInt2556 << 12) + (var8 << 6));
                                             Class3_Sub26.anInt2556 = 0;
                                         } else if (Class3_Sub26.anInt2556 < 32 && var8 >= -128 && var8 <= 127 && var9 >= -128 && var9 <= 127) {
-                                            Class3_Sub13_Sub1.outgoingBuffer.writeByte(128 - -Class3_Sub26.anInt2556);
+                                            Network.outgoingBuffer.writeByte(128 - -Class3_Sub26.anInt2556);
                                             var9 += 128;
                                             var8 += 128;
-                                            Class3_Sub13_Sub1.outgoingBuffer.writeShort((var8 << 8) + var9);
+                                            Network.outgoingBuffer.writeShort((var8 << 8) + var9);
                                             Class3_Sub26.anInt2556 = 0;
                                         } else if (32 > Class3_Sub26.anInt2556) {
-                                            Class3_Sub13_Sub1.outgoingBuffer.writeByte(192 - -Class3_Sub26.anInt2556);
+                                            Network.outgoingBuffer.writeByte(192 - -Class3_Sub26.anInt2556);
                                             if (var7) {
-                                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(Integer.MIN_VALUE);
+                                                Network.outgoingBuffer.writeInt(Integer.MIN_VALUE);
                                             } else {
-                                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var6 | var5 << 16);
+                                                Network.outgoingBuffer.writeInt(var6 | var5 << 16);
                                             }
 
                                             Class3_Sub26.anInt2556 = 0;
                                         } else {
-                                            Class3_Sub13_Sub1.outgoingBuffer.writeShort(Class3_Sub26.anInt2556 + '\ue000');
+                                            Network.outgoingBuffer.writeShort(Class3_Sub26.anInt2556 + '\ue000');
                                             if (var7) {
-                                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(Integer.MIN_VALUE);
+                                                Network.outgoingBuffer.writeInt(Integer.MIN_VALUE);
                                             } else {
-                                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var6 | var5 << 16);
+                                                Network.outgoingBuffer.writeInt(var6 | var5 << 16);
                                             }
 
                                             Class3_Sub26.anInt2556 = 0;
@@ -236,7 +217,7 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                                     }
                                 }
 
-                                Class3_Sub13_Sub1.outgoingBuffer.method769(-var2 + Class3_Sub13_Sub1.outgoingBuffer.index);
+                                Network.outgoingBuffer.method769(-var2 + Network.outgoingBuffer.index);
                                 if (var3 < aClass67_1443.anInt1018) {
                                     aClass67_1443.anInt1018 -= var3;
 
@@ -284,9 +265,9 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                             var19 = 1;
                         }
 
-                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(75);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeShort128LE(var19 << 15 | var6);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeIntV2(var4 | var3 << 16);
+                        Network.outgoingBuffer.putOpcode(75);
+                        Network.outgoingBuffer.writeShort128LE(var19 << 15 | var6);
+                        Network.outgoingBuffer.writeIntV2(var4 | var3 << 16);
                     }
 
                     if (0 < anInt2212) {
@@ -308,26 +289,26 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                     if (Unsorted.aBoolean4068 && 0 >= anInt2212) {
                         anInt2212 = 20;
                         Unsorted.aBoolean4068 = false;
-                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(21);
-                        Class3_Sub13_Sub1.outgoingBuffer.putShortA(Unsorted.anInt2309);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeShortLE(GraphicDefinition.CAMERA_DIRECTION);
+                        Network.outgoingBuffer.putOpcode(21);
+                        Network.outgoingBuffer.putShortA(Unsorted.anInt2309);
+                        Network.outgoingBuffer.writeShortLE(GraphicDefinition.CAMERA_DIRECTION);
                     }
 
                     if (Class3_Sub13_Sub6.aBoolean3078 && !aBoolean2774) {
                         aBoolean2774 = true;
-                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(22);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(1);
+                        Network.outgoingBuffer.putOpcode(22);
+                        Network.outgoingBuffer.writeByte(1);
                     }
 
                     if (!Class3_Sub13_Sub6.aBoolean3078 && aBoolean2774) {
                         aBoolean2774 = false;
-                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(22);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(0);
+                        Network.outgoingBuffer.putOpcode(22);
+                        Network.outgoingBuffer.writeByte(0);
                     }
 
                     if (!CS2Script.aBoolean2705) {
-                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(98);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeInt(Class84.method1421());
+                        Network.outgoingBuffer.putOpcode(98);
+                        Network.outgoingBuffer.writeInt(Class84.method1421());
                         CS2Script.aBoolean2705 = true;
                     }
 
@@ -338,7 +319,7 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                         Class3_Sub8.method132((byte) -92);
                         ++AbstractSprite.anInt3699;
                         if (AbstractSprite.anInt3699 > 750) {
-                            breakClientConnection();
+                            Network.breakClientConnection();
                         } else {
                             Class38.method1028();
                             Class60.method1207();
@@ -482,8 +463,8 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
 
                             ++Class106.anInt1446;
                             if (Unsorted.aClass11_1933 != null) {
-                                ++Class3_Sub30_Sub1.anInt2330;
-                                if (15 <= Class3_Sub30_Sub1.anInt2330) {
+                                ++Network.anInt2330;
+                                if (15 <= Network.anInt2330) {
                                     Class20.method909(Unsorted.aClass11_1933);
                                     Unsorted.aClass11_1933 = null;
                                 }
@@ -534,11 +515,11 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                                                 var17.method864(anInt2701, PacketParser.anInt86);
                                             }
 
-                                            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(231);
-                                            Class3_Sub13_Sub1.outgoingBuffer.writeShort(PacketParser.anInt86);
-                                            Class3_Sub13_Sub1.outgoingBuffer.writeIntLE2(Class67.aClass11_1017.componentHash);
-                                            Class3_Sub13_Sub1.outgoingBuffer.putShortA(anInt2701);
-                                            Class3_Sub13_Sub1.outgoingBuffer.write128Byte(var18);
+                                            Network.outgoingBuffer.putOpcode(231);
+                                            Network.outgoingBuffer.writeShort(PacketParser.anInt86);
+                                            Network.outgoingBuffer.writeIntLE2(Class67.aClass11_1017.componentHash);
+                                            Network.outgoingBuffer.putShortA(anInt2701);
+                                            Network.outgoingBuffer.write128Byte(var18);
                                         }
                                     } else if ((Unsorted.anInt998 == 1 || Class3_Sub13_Sub39.method353(-1 + Unsorted.menuOptionCount, 0)) && Unsorted.menuOptionCount > 2) {
                                         Class132.method1801();
@@ -547,7 +528,7 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                                     }
 
                                     Unsorted.anInt3644 = 0;
-                                    Class3_Sub30_Sub1.anInt2330 = 10;
+                                    Network.anInt2330 = 10;
                                     Class67.aClass11_1017 = null;
                                 }
                             }
@@ -567,7 +548,7 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
 
                             Class3_Sub28_Sub3.aClass11_3551 = null;
                             if (Class3_Sub28_Sub12.anInt3655 != -1) {
-                                GraphicDefinition.method967(0, 0, 0, Class23.anInt454, Class3_Sub28_Sub12.anInt3655, 0, Class140_Sub7.anInt2934);
+                                GraphicDefinition.method967(0, 0, 0, GameShell.gameShellAWTWidth, Class3_Sub28_Sub12.anInt3655, 0, GameShell.gameShellAWTHeight);
                             }
 
                             ++PacketParser.anInt3213;
@@ -611,11 +592,11 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                                                         CS2Script.anInt2440 = 0;
                                                     } else if (CS2Script.anInt2440 == 2) {
                                                         if (Class27.anInt515 != -1) {
-                                                            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(131);
-                                                            Class3_Sub13_Sub1.outgoingBuffer.writeIntV2(Class3_Sub30_Sub1.anInt872);
-                                                            Class3_Sub13_Sub1.outgoingBuffer.putShortA(Class131.anInt1716 + Class27.anInt515);
-                                                            Class3_Sub13_Sub1.outgoingBuffer.writeShort128LE(RSInterface.anInt278);
-                                                            Class3_Sub13_Sub1.outgoingBuffer.putShortA(Unsorted.anInt999 + Class82.anInt1152);
+                                                            Network.outgoingBuffer.putOpcode(131);
+                                                            Network.outgoingBuffer.writeIntV2(Network.anInt872);
+                                                            Network.outgoingBuffer.putShortA(Class131.anInt1716 + Class27.anInt515);
+                                                            Network.outgoingBuffer.writeShort128LE(RSInterface.anInt278);
+                                                            Network.outgoingBuffer.putShortA(Unsorted.anInt999 + Class82.anInt1152);
                                                             Class36.anInt638 = 1;
                                                             Unsorted.anInt2958 = 0;
                                                             Unsorted.anInt4062 = Class38_Sub1.anInt2614;
@@ -625,9 +606,9 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                                                         CS2Script.anInt2440 = 0;
                                                     } else if (2 == ObjectDefinition.anInt1521) {
                                                         if (-1 != Class27.anInt515) {
-                                                            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(179);
-                                                            Class3_Sub13_Sub1.outgoingBuffer.writeShort(Class82.anInt1152 + Unsorted.anInt999);
-                                                            Class3_Sub13_Sub1.outgoingBuffer.writeShort(Class27.anInt515 + Class131.anInt1716);
+                                                            Network.outgoingBuffer.putOpcode(179);
+                                                            Network.outgoingBuffer.writeShort(Class82.anInt1152 + Unsorted.anInt999);
+                                                            Network.outgoingBuffer.writeShort(Class27.anInt515 + Class131.anInt1716);
                                                             Unsorted.anInt2958 = 0;
                                                             Class36.anInt638 = 1;
                                                             Class70.anInt1053 = Class163_Sub1.anInt2993;
@@ -695,7 +676,7 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                                                     if (var5 > 15000 && var6 > 15000) {
                                                         Class159.anInt2023 = 250;
                                                         Class23.method940(112, 14500);
-                                                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(245);
+                                                        Network.outgoingBuffer.putOpcode(245);
                                                     }
 
                                                     if (Class15.aClass64_351 != null && Class15.aClass64_351.anInt978 == 1) {
@@ -780,7 +761,7 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                                                     }
 
                                                     if (Class3_Sub13_Sub23_Sub1.anInt4032 > 50) {
-                                                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(93);
+                                                        Network.outgoingBuffer.putOpcode(93);
                                                     }
 
                                                     if (RenderAnimationDefinition.aBoolean402) {
@@ -789,13 +770,13 @@ final class Class3_Sub13_Sub13 extends Class3_Sub13 {
                                                     }
 
                                                     try {
-                                                        if (Class3_Sub15.activeConnection != null && Class3_Sub13_Sub1.outgoingBuffer.index > 0) {
-                                                            Class3_Sub15.activeConnection.sendBytes(Class3_Sub13_Sub1.outgoingBuffer.buffer, Class3_Sub13_Sub1.outgoingBuffer.index);
+                                                        if (Network.activeConnection != null && Network.outgoingBuffer.index > 0) {
+                                                            Network.activeConnection.sendBytes(Network.outgoingBuffer.buffer, Network.outgoingBuffer.index);
                                                             Class3_Sub13_Sub23_Sub1.anInt4032 = 0;
-                                                            Class3_Sub13_Sub1.outgoingBuffer.index = 0;
+                                                            Network.outgoingBuffer.index = 0;
                                                         }
                                                     } catch (IOException var11) {
-                                                        breakClientConnection();
+                                                        Network.breakClientConnection();
                                                     }
 
                                                     return;

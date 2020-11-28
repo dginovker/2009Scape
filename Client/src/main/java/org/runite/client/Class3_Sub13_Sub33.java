@@ -109,7 +109,7 @@ final class Class3_Sub13_Sub33 extends Class3_Sub13 {
                 for (int var4 = 0; var4 < this.aClass75Array3392.length; ++var4) {
                     int var5 = var2.readUnsignedByte();
                     if (var5 == 0) {
-                        this.aClass75Array3392[var4] = Class8.method843(-5232, var2);
+                        this.aClass75Array3392[var4] = Class8.method843(var2);
                     } else if (var5 == 1) {
                         this.aClass75Array3392[var4] = Class3_Sub28_Sub2.method536(var2);
                     } else if (var5 == 2) {

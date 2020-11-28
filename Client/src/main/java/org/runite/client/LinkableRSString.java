@@ -9,7 +9,6 @@ public final class LinkableRSString extends Linkable {
     static int anInt2579 = 1;
     static RSString[] aClass94Array2580 = new RSString[100];
     static CacheIndex aClass153_2581;
-    static boolean isDynamicSceneGraph = false;
     static NodeCache aClass47_3776 = new NodeCache(64);
     static int anInt2587;
     static GameShell anApplet_Sub1_2588 = null;

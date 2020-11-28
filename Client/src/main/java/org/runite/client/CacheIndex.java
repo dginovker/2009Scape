@@ -43,9 +43,12 @@ public final class CacheIndex {
     static CacheIndex materialsIndex;
     static CacheIndex particlesConfigIndex;
     static CacheIndex libIndex;
-    /**
-     *
+
+    /*
+     *  Unnamed
      */
+    static CacheIndex aClass153_1680;
+
 
 
     private final boolean discardPacked;

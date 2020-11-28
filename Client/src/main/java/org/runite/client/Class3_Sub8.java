@@ -168,7 +168,7 @@ final class Class3_Sub8 extends Linkable {
                         boolean var31 = false;
 
                         for (var17 = 0; Unsorted.clanSize > var17; ++var17) {
-                            if (var29 == PacketParser.aClass3_Sub19Array3694[var17].linkableKey) {
+                            if (var29 == PacketParser.clanChatInformationArray[var17].linkableKey) {
                                 var31 = true;
                                 break;
                             }
@@ -415,8 +415,8 @@ final class Class3_Sub8 extends Linkable {
 
                 Class83.aBoolean1158 = false;
             } else if (Unsorted.anInt120 != 0 && Class129.anInt1691 != -1 && Class79.method1391(var0 + 91)) {
-                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(137);
-                Class3_Sub13_Sub1.outgoingBuffer.writeInt(Class129.anInt1691);
+                Network.outgoingBuffer.putOpcode(137);
+                Network.outgoingBuffer.writeInt(Class129.anInt1691);
                 Class129.anInt1691 = -1;
             }
 

@@ -2,7 +2,6 @@ package org.runite.client;
 
 public final class GraphicDefinition {
 
-    public static Class3_Sub30_Sub1 incomingBuffer = new Class3_Sub30_Sub1();
     static int anInt529;
     static int CAMERA_DIRECTION = 0;
     static int anInt546;

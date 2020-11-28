@@ -36,24 +36,4 @@ public final class Class3_Sub10 extends Linkable {
         }
     }
 
-    static RenderAnimationDefinition getRenderAnimationDefinition(int renderAnimationId) {
-        try {
-            RenderAnimationDefinition def = (RenderAnimationDefinition) RenderAnimationDefinition.aReferenceCache_1955.get(renderAnimationId);
-            if (def == null) {
-                byte[] var3 = Class97.aClass153_1372.getFile(32, renderAnimationId);
-
-                def = new RenderAnimationDefinition();
-                if (var3 != null) {
-                    def.parse(new DataBuffer(var3));
-                }
-
-                def.method899();
-                RenderAnimationDefinition.aReferenceCache_1955.put(def, renderAnimationId);
-            }
-            return def;
-        } catch (RuntimeException var4) {
-            throw ClientErrorException.clientError(var4, "hb.E(" + false + ',' + renderAnimationId + ')');
-        }
-    }
-
 }

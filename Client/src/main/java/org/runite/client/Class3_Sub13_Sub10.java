@@ -1,14 +1,10 @@
 package org.runite.client;
 
-import java.awt.*;
 import java.util.Objects;
 
 final class Class3_Sub13_Sub10 extends Class3_Sub13 {
 
-    static volatile boolean aBoolean3116 = true;
-
     static boolean[][] aBooleanArrayArray3118 = new boolean[][]{new boolean[0], {true, false, true}, {true, false, false, true}, {false, false, true, true}, {true, true, false}, {false, true, true}, {true, false, false, true}, {false, false, false, true, true}, {false, true, true}, {true, false, true, true, true}, {false, true, true, true, true}, {false, true, true, true, true, false}};
-    static Frame aFrame3121;
     static Signlink aClass87_3125;
     private int anInt3126 = 2048;
     private int anInt3127 = 3072;
@@ -40,7 +36,7 @@ final class Class3_Sub13_Sub10 extends Class3_Sub13 {
                 aClass87_3125 = null;
             }
             TextCore.COMMAND_NOCLIP = null;
-            aFrame3121 = null;
+            GameShell.aFrame3121 = null;
             aBooleanArrayArray3118 = null;
             aClass87_3125 = null;
         } catch (RuntimeException var2) {
@@ -61,8 +57,8 @@ final class Class3_Sub13_Sub10 extends Class3_Sub13 {
                         }
 
                         Class110.anInt1472 = PacketParser.anInt3213;
-                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(213);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeLong(var0);
+                        Network.outgoingBuffer.putOpcode(213);
+                        Network.outgoingBuffer.writeLong(var0);
                         break;
                     }
                 }
@@ -157,7 +153,7 @@ final class Class3_Sub13_Sub10 extends Class3_Sub13 {
             short var2 = 256;
             int var3 = 0;
             if (var0 >= -80) {
-                aBoolean3116 = true;
+                GameShell.aBoolean3116 = true;
             }
 
             while (Class161.anIntArray2026.length > var3) {

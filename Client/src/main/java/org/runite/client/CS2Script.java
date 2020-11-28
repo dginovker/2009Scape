@@ -44,12 +44,12 @@ final class CS2Script extends Linkable {
     static void sendRegistryRequest(int year, int country, int day, int month) {
         try {
             //  System.out.println("CS2Script year=" + year + ", country=" + country + ", day=" + day + ", month=" + month + ", stage=" + stage + ", " + System.currentTimeMillis());
-            Class3_Sub13_Sub1.outgoingBuffer.index = 0;
-            Class3_Sub13_Sub1.outgoingBuffer.writeByte(147);//Handshake opcode
-            Class3_Sub13_Sub1.outgoingBuffer.writeByte(day);
-            Class3_Sub13_Sub1.outgoingBuffer.writeByte(month);
-            Class3_Sub13_Sub1.outgoingBuffer.writeShort(year);
-            Class3_Sub13_Sub1.outgoingBuffer.writeShort(country);
+            Network.outgoingBuffer.index = 0;
+            Network.outgoingBuffer.writeByte(147);//Handshake opcode
+            Network.outgoingBuffer.writeByte(day);
+            Network.outgoingBuffer.writeByte(month);
+            Network.outgoingBuffer.writeShort(year);
+            Network.outgoingBuffer.writeShort(country);
             Class132.anInt1734 = 0;
             GraphicDefinition.anInt548 = 0;
             Unsorted.registryStage = 1;
@@ -876,7 +876,7 @@ final class CS2Script extends Linkable {
                                                 if (opcode < 3200) {
                                                     if (opcode == 3100) {
                                                         RSString class94_3 = ItemDefinition.stringsStack[--sStackCounter];
-                                                        Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_2331, 0, class94_3, -1);
+                                                        Network.addChatMessage(TextCore.aClass94_2331, 0, class94_3, -1);
                                                         continue;
                                                     }
                                                     if (opcode == 3101) {
@@ -893,21 +893,21 @@ final class CS2Script extends Linkable {
                                                         int i46 = 0;
                                                         if (class94_4.isInteger())
                                                             i46 = class94_4.parseInt();
-                                                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(23);
-                                                        Class3_Sub13_Sub1.outgoingBuffer.writeInt(i46);
+                                                        Network.outgoingBuffer.putOpcode(23);
+                                                        Network.outgoingBuffer.writeInt(i46);
                                                         continue;
                                                     }
                                                     if (opcode == 3105) {
                                                         RSString class94_5 = ItemDefinition.stringsStack[--sStackCounter];
-                                                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(244);
-                                                        Class3_Sub13_Sub1.outgoingBuffer.writeLong(class94_5.toLong());
+                                                        Network.outgoingBuffer.putOpcode(244);
+                                                        Network.outgoingBuffer.writeLong(class94_5.toLong());
                                                         continue;
                                                     }
                                                     if (opcode == 3106) {
                                                         RSString class94_6 = ItemDefinition.stringsStack[--sStackCounter];
-                                                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(65);
-                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(1 + class94_6.length());
-                                                        Class3_Sub13_Sub1.outgoingBuffer.writeString(class94_6);
+                                                        Network.outgoingBuffer.putOpcode(65);
+                                                        Network.outgoingBuffer.writeByte(1 + class94_6.length());
+                                                        Network.outgoingBuffer.writeString(class94_6);
                                                         continue;
                                                     }
                                                     if (opcode == 3107) {
@@ -936,8 +936,8 @@ final class CS2Script extends Linkable {
                                                     if (opcode != 3110)
                                                         break;
                                                     int l7 = ItemDefinition.intsStack[--iStackCounter];
-                                                    Class3_Sub13_Sub1.outgoingBuffer.putOpcode(111);
-                                                    Class3_Sub13_Sub1.outgoingBuffer.writeShort(l7);
+                                                    Network.outgoingBuffer.putOpcode(111);
+                                                    Network.outgoingBuffer.writeShort(l7);
                                                     continue;
                                                 }
                                                 if (opcode < 3300) {
@@ -1299,7 +1299,7 @@ final class CS2Script extends Linkable {
                                                         if (RSInterface.aClass94_251 == null || l14 >= Unsorted.clanSize)
                                                             ItemDefinition.stringsStack[sStackCounter++] = TextCore.aClass94_2331;
                                                         else
-                                                            ItemDefinition.stringsStack[sStackCounter++] = PacketParser.aClass3_Sub19Array3694[l14].aClass94_2476.method1545();
+                                                            ItemDefinition.stringsStack[sStackCounter++] = PacketParser.clanChatInformationArray[l14].aClass94_2476.method1545();
                                                         continue;
                                                     }
                                                     if (opcode == 3614) {
@@ -1307,7 +1307,7 @@ final class CS2Script extends Linkable {
                                                         if (RSInterface.aClass94_251 == null || i15 >= Unsorted.clanSize)
                                                             ItemDefinition.intsStack[iStackCounter++] = 0;
                                                         else
-                                                            ItemDefinition.intsStack[iStackCounter++] = PacketParser.aClass3_Sub19Array3694[i15].anInt2478;
+                                                            ItemDefinition.intsStack[iStackCounter++] = PacketParser.clanChatInformationArray[i15].anInt2478;
                                                         continue;
                                                     }
                                                     if (3615 == opcode) {
@@ -1315,7 +1315,7 @@ final class CS2Script extends Linkable {
                                                         if (null == RSInterface.aClass94_251 || j15 >= Unsorted.clanSize)
                                                             ItemDefinition.intsStack[iStackCounter++] = 0;
                                                         else
-                                                            ItemDefinition.intsStack[iStackCounter++] = PacketParser.aClass3_Sub19Array3694[j15].aByte2472;
+                                                            ItemDefinition.intsStack[iStackCounter++] = PacketParser.clanChatInformationArray[j15].aByte2472;
                                                         continue;
                                                     }
                                                     if (3616 == opcode) {
@@ -1364,7 +1364,7 @@ final class CS2Script extends Linkable {
                                                     }
                                                     if (opcode == 3624) {
                                                         int l15 = ItemDefinition.intsStack[--iStackCounter];
-                                                        if (null != PacketParser.aClass3_Sub19Array3694 && l15 < Unsorted.clanSize && PacketParser.aClass3_Sub19Array3694[l15].aClass94_2476.equalsStringIgnoreCase(Player.player.displayName))
+                                                        if (null != PacketParser.clanChatInformationArray && l15 < Unsorted.clanSize && PacketParser.clanChatInformationArray[l15].aClass94_2476.equalsStringIgnoreCase(Player.player.displayName))
                                                             ItemDefinition.intsStack[iStackCounter++] = 1;
                                                         else
                                                             ItemDefinition.intsStack[iStackCounter++] = 0;
@@ -1382,7 +1382,7 @@ final class CS2Script extends Linkable {
                                                         if (RSInterface.aClass94_251 == null || i16 >= Unsorted.clanSize)
                                                             ItemDefinition.stringsStack[sStackCounter++] = TextCore.aClass94_2331;
                                                         else
-                                                            ItemDefinition.stringsStack[sStackCounter++] = PacketParser.aClass3_Sub19Array3694[i16].aClass94_2473;
+                                                            ItemDefinition.stringsStack[sStackCounter++] = PacketParser.clanChatInformationArray[i16].aClass94_2473;
                                                         continue;
                                                     }
                                                     if (opcode == 3627) {
@@ -1614,9 +1614,9 @@ final class CS2Script extends Linkable {
                                                             int i55 = ItemDefinition.intsStack[1 + iStackCounter];
                                                             Class3_Sub28_Sub9 class3_sub28_sub9 = Class61.method1210(i55);
                                                             if (!class3_sub28_sub9.method585())
-                                                                ItemDefinition.intsStack[iStackCounter++] = Unsorted.method522(k23).method1475(i55, class3_sub28_sub9.anInt3614);
+                                                                ItemDefinition.intsStack[iStackCounter++] = NPCDefinition.method522(k23).method1475(i55, class3_sub28_sub9.anInt3614);
                                                             else
-                                                                ItemDefinition.stringsStack[sStackCounter++] = Unsorted.method522(k23).method1477(i55, class3_sub28_sub9.aClass94_3619);
+                                                                ItemDefinition.stringsStack[sStackCounter++] = NPCDefinition.method522(k23).method1477(i55, class3_sub28_sub9.aClass94_3619);
                                                             continue;
                                                         }
                                                         if (opcode >= 4500) {
@@ -1631,10 +1631,10 @@ final class CS2Script extends Linkable {
                                                                         anInt3101 = ItemDefinition.intsStack[iStackCounter];
                                                                         Class24.anInt467 = ItemDefinition.intsStack[1 + iStackCounter];
                                                                         Class45.anInt734 = ItemDefinition.intsStack[2 + iStackCounter];
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(157);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(anInt3101);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(Class24.anInt467);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(Class45.anInt734);
+                                                                        Network.outgoingBuffer.putOpcode(157);
+                                                                        Network.outgoingBuffer.writeByte(anInt3101);
+                                                                        Network.outgoingBuffer.writeByte(Class24.anInt467);
+                                                                        Network.outgoingBuffer.writeByte(Class45.anInt734);
                                                                         continue;
                                                                     }
                                                                     if (opcode == 5002) {
@@ -1642,10 +1642,10 @@ final class CS2Script extends Linkable {
                                                                         iStackCounter -= 2;
                                                                         int j55 = ItemDefinition.intsStack[iStackCounter];
                                                                         int j69 = ItemDefinition.intsStack[1 + iStackCounter];
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(99);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeLong(class94_17.toLong());
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(j55 - 1);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(j69);
+                                                                        Network.outgoingBuffer.putOpcode(99);
+                                                                        Network.outgoingBuffer.writeLong(class94_17.toLong());
+                                                                        Network.outgoingBuffer.writeByte(j55 - 1);
+                                                                        Network.outgoingBuffer.writeByte(j69);
                                                                         continue;
                                                                     }
                                                                     if (opcode == 5003) {
@@ -1785,13 +1785,13 @@ final class CS2Script extends Linkable {
                                                                                     class94_18 = class94_18.substring(TextCore.TextSlide.length());
                                                                                     byte4 = 5;
                                                                                 }
-                                                                            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(237);
-                                                                            Class3_Sub13_Sub1.outgoingBuffer.writeByte(0);
-                                                                            int k79 = Class3_Sub13_Sub1.outgoingBuffer.index;
-                                                                            Class3_Sub13_Sub1.outgoingBuffer.writeByte(byte3);
-                                                                            Class3_Sub13_Sub1.outgoingBuffer.writeByte(byte4);
-                                                                            Class85.method1423(Class3_Sub13_Sub1.outgoingBuffer, class94_18);
-                                                                            Class3_Sub13_Sub1.outgoingBuffer.method769(-k79 + Class3_Sub13_Sub1.outgoingBuffer.index);
+                                                                            Network.outgoingBuffer.putOpcode(237);
+                                                                            Network.outgoingBuffer.writeByte(0);
+                                                                            int k79 = Network.outgoingBuffer.index;
+                                                                            Network.outgoingBuffer.writeByte(byte3);
+                                                                            Network.outgoingBuffer.writeByte(byte4);
+                                                                            Class85.method1423(Network.outgoingBuffer, class94_18);
+                                                                            Network.outgoingBuffer.method769(-k79 + Network.outgoingBuffer.index);
                                                                         }
                                                                         continue;
                                                                     }
@@ -1800,12 +1800,12 @@ final class CS2Script extends Linkable {
                                                                         RSString class94_48 = ItemDefinition.stringsStack[sStackCounter + 1];
                                                                         RSString class94_19 = ItemDefinition.stringsStack[sStackCounter];
                                                                         if (Class3_Sub13_Sub26.rights != 0 || (!Class3_Sub15.aBoolean2433 || Class121.aBoolean1641) && !Class3_Sub13_Sub14.aBoolean3166) {
-                                                                            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(201);
-                                                                            Class3_Sub13_Sub1.outgoingBuffer.writeByte(0);
-                                                                            int k69 = Class3_Sub13_Sub1.outgoingBuffer.index;
-                                                                            Class3_Sub13_Sub1.outgoingBuffer.writeLong(class94_19.toLong());
-                                                                            Class85.method1423(Class3_Sub13_Sub1.outgoingBuffer, class94_48);
-                                                                            Class3_Sub13_Sub1.outgoingBuffer.method769(Class3_Sub13_Sub1.outgoingBuffer.index - k69);
+                                                                            Network.outgoingBuffer.putOpcode(201);
+                                                                            Network.outgoingBuffer.writeByte(0);
+                                                                            int k69 = Network.outgoingBuffer.index;
+                                                                            Network.outgoingBuffer.writeLong(class94_19.toLong());
+                                                                            Class85.method1423(Network.outgoingBuffer, class94_48);
+                                                                            Network.outgoingBuffer.method769(Network.outgoingBuffer.index - k69);
                                                                         }
                                                                         continue;
                                                                     }
@@ -1922,34 +1922,34 @@ final class CS2Script extends Linkable {
                                                                         continue;
                                                                     }
                                                                     if (5059 == opcode) {
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(167);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(0);
-                                                                        int j27 = Class3_Sub13_Sub1.outgoingBuffer.index;
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(0);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeShort(Class70.aClass10_1056.anInt149);
-                                                                        Class70.aClass10_1056.aClass3_Sub28_Sub4_151.method545(Class3_Sub13_Sub1.outgoingBuffer, Class70.aClass10_1056.anIntArray153);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.method769(-j27 + Class3_Sub13_Sub1.outgoingBuffer.index);
+                                                                        Network.outgoingBuffer.putOpcode(167);
+                                                                        Network.outgoingBuffer.writeByte(0);
+                                                                        int j27 = Network.outgoingBuffer.index;
+                                                                        Network.outgoingBuffer.writeByte(0);
+                                                                        Network.outgoingBuffer.writeShort(Class70.aClass10_1056.anInt149);
+                                                                        Class70.aClass10_1056.aClass3_Sub28_Sub4_151.method545(Network.outgoingBuffer, Class70.aClass10_1056.anIntArray153);
+                                                                        Network.outgoingBuffer.method769(-j27 + Network.outgoingBuffer.index);
                                                                         continue;
                                                                     }
                                                                     if (5060 == opcode) {
                                                                         RSString class94_21 = ItemDefinition.stringsStack[--sStackCounter];
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(178);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(0);
-                                                                        int l56 = Class3_Sub13_Sub1.outgoingBuffer.index;
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeLong(class94_21.toLong());
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeShort(Class70.aClass10_1056.anInt149);
-                                                                        Class70.aClass10_1056.aClass3_Sub28_Sub4_151.method545(Class3_Sub13_Sub1.outgoingBuffer, Class70.aClass10_1056.anIntArray153);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.method769(Class3_Sub13_Sub1.outgoingBuffer.index + -l56);
+                                                                        Network.outgoingBuffer.putOpcode(178);
+                                                                        Network.outgoingBuffer.writeByte(0);
+                                                                        int l56 = Network.outgoingBuffer.index;
+                                                                        Network.outgoingBuffer.writeLong(class94_21.toLong());
+                                                                        Network.outgoingBuffer.writeShort(Class70.aClass10_1056.anInt149);
+                                                                        Class70.aClass10_1056.aClass3_Sub28_Sub4_151.method545(Network.outgoingBuffer, Class70.aClass10_1056.anIntArray153);
+                                                                        Network.outgoingBuffer.method769(Network.outgoingBuffer.index + -l56);
                                                                         continue;
                                                                     }
                                                                     if (opcode == 5061) {
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(167);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(0);
-                                                                        int k27 = Class3_Sub13_Sub1.outgoingBuffer.index;
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(1);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeShort(Class70.aClass10_1056.anInt149);
-                                                                        Class70.aClass10_1056.aClass3_Sub28_Sub4_151.method545(Class3_Sub13_Sub1.outgoingBuffer, Class70.aClass10_1056.anIntArray153);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.method769(-k27 + Class3_Sub13_Sub1.outgoingBuffer.index);
+                                                                        Network.outgoingBuffer.putOpcode(167);
+                                                                        Network.outgoingBuffer.writeByte(0);
+                                                                        int k27 = Network.outgoingBuffer.index;
+                                                                        Network.outgoingBuffer.writeByte(1);
+                                                                        Network.outgoingBuffer.writeShort(Class70.aClass10_1056.anInt149);
+                                                                        Class70.aClass10_1056.aClass3_Sub28_Sub4_151.method545(Network.outgoingBuffer, Class70.aClass10_1056.anIntArray153);
+                                                                        Network.outgoingBuffer.method769(-k27 + Network.outgoingBuffer.index);
                                                                         continue;
                                                                     }
                                                                     if (opcode == 5062) {
@@ -2068,7 +2068,7 @@ final class CS2Script extends Linkable {
                                                                 }
                                                                 if (opcode < 5300) {
                                                                     if (opcode == 5200) {
-                                                                        NPCDefinition.method1479(ItemDefinition.intsStack[--iStackCounter]);
+                                                                        CS2Methods.method1479(ItemDefinition.intsStack[--iStackCounter]);
                                                                         continue;
                                                                     }
                                                                     if (5201 == opcode) {
@@ -2232,11 +2232,11 @@ final class CS2Script extends Linkable {
                                                                         int i59 = ItemDefinition.intsStack[1 + iStackCounter];
                                                                         int l31 = ItemDefinition.intsStack[iStackCounter];
                                                                         GameObject.graphicsSettings(false, 3, l31, i59);
-                                                                        ItemDefinition.intsStack[iStackCounter++] = null != Class3_Sub13_Sub10.aFrame3121 ? 1 : 0;
+                                                                        ItemDefinition.intsStack[iStackCounter++] = null != GameShell.aFrame3121 ? 1 : 0;
                                                                         continue;
                                                                     }
                                                                     if (opcode == 5301) {
-                                                                        if (null != Class3_Sub13_Sub10.aFrame3121)
+                                                                        if (null != GameShell.aFrame3121)
                                                                             GameObject.graphicsSettings(false, Unsorted.anInt2577, -1, -1);
                                                                         continue;
                                                                     }
@@ -2301,17 +2301,17 @@ final class CS2Script extends Linkable {
                                                                         RSString class94_23 = ItemDefinition.stringsStack[sStackCounter];
                                                                         RSString class94_54 = ItemDefinition.stringsStack[sStackCounter - -1];
                                                                         int k71 = ItemDefinition.intsStack[--iStackCounter];
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(117);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(Class3_Sub13_Sub33.method326((byte) 39, class94_23) - (-Class3_Sub13_Sub33.method326((byte) 102, class94_54) + -1));
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeString(class94_23);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeString(class94_54);
-                                                                        Class3_Sub13_Sub1.outgoingBuffer.writeByte(k71);
+                                                                        Network.outgoingBuffer.putOpcode(117);
+                                                                        Network.outgoingBuffer.writeByte(Class3_Sub13_Sub33.method326((byte) 39, class94_23) - (-Class3_Sub13_Sub33.method326((byte) 102, class94_54) + -1));
+                                                                        Network.outgoingBuffer.writeString(class94_23);
+                                                                        Network.outgoingBuffer.writeString(class94_54);
+                                                                        Network.outgoingBuffer.writeByte(k71);
                                                                         continue;
                                                                     }
                                                                     if (opcode == 5401) {
                                                                         iStackCounter -= 2;
                                                                         Class3_Sub13_Sub38.aShortArray3455[ItemDefinition.intsStack[iStackCounter]] = (short) Class56.method1186(ItemDefinition.intsStack[iStackCounter + 1]);
-                                                                        Unsorted.method28();
+                                                                        ClearReferenceCache.method28();
                                                                         Unsorted.method746((byte) -29);
                                                                         Class167.method2265();
                                                                         WorldListEntry.method1076();
@@ -2351,7 +2351,7 @@ final class CS2Script extends Linkable {
                                                                         continue;
                                                                     }
                                                                     if (opcode == 5411) {
-                                                                        if (Class3_Sub13_Sub10.aFrame3121 != null)
+                                                                        if (GameShell.aFrame3121 != null)
                                                                             GameObject.graphicsSettings(false, Unsorted.anInt2577, -1, -1);
                                                                         if (null == GameShell.frame)
                                                                             System.exit(0);
@@ -2378,7 +2378,7 @@ final class CS2Script extends Linkable {
                                                                         continue;
                                                                     }
                                                                     if (opcode == 5421) {
-                                                                        if (null != Class3_Sub13_Sub10.aFrame3121)
+                                                                        if (null != GameShell.aFrame3121)
                                                                             GameObject.graphicsSettings(false, Unsorted.anInt2577, -1, -1);
                                                                         boolean flag5 = 1 == ItemDefinition.intsStack[--iStackCounter];
                                                                         RSString class94_25 = ItemDefinition.stringsStack[--sStackCounter];
@@ -2400,9 +2400,9 @@ final class CS2Script extends Linkable {
                                                                         RSString class94_55 = ItemDefinition.stringsStack[1 + sStackCounter];
                                                                         RSString class94_26 = ItemDefinition.stringsStack[sStackCounter];
                                                                         if (class94_26.length() > 0) {
-                                                                            if (null == Class3_Sub30_Sub1.aClass94Array3802)
-                                                                                Class3_Sub30_Sub1.aClass94Array3802 = new RSString[Class3_Sub13_Sub18.anIntArray3218[Class158.anInt2014]];
-                                                                            Class3_Sub30_Sub1.aClass94Array3802[i72] = class94_26;
+                                                                            if (null == Network.aClass94Array3802)
+                                                                                Network.aClass94Array3802 = new RSString[Class3_Sub13_Sub18.anIntArray3218[Class158.anInt2014]];
+                                                                            Network.aClass94Array3802[i72] = class94_26;
                                                                         }
                                                                         if (class94_55.length() > 0) {
                                                                             if (Unsorted.aClass94Array45 == null)
@@ -2549,7 +2549,7 @@ final class CS2Script extends Linkable {
                                                                         }
                                                                         if (opcode == 6002) {
                                                                             Class25.method957(1 == ItemDefinition.intsStack[--iStackCounter]);
-                                                                            ClearReferenceCache.method139(66);
+                                                                            ClearReferenceCache.method139();
                                                                             Class84.method1417();
                                                                             Unsorted.method792();
                                                                             Class119.method1730(Class38.aClass87_665);
@@ -2719,7 +2719,7 @@ final class CS2Script extends Linkable {
                                                                             if (i36 > 2)
                                                                                 i36 = 2;
                                                                             boolean flag6 = false;
-                                                                            if (96 > Class3_Sub24_Sub3.anInt3492) {
+                                                                            if (96 > GameShell.clientMemory) {
                                                                                 flag6 = true;
                                                                                 i36 = 0;
                                                                             }

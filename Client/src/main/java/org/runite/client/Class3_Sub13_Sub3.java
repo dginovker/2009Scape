@@ -46,9 +46,9 @@ public final class Class3_Sub13_Sub3 extends Class3_Sub13 {
     static int method179(byte var0, int var1) {
         try {
             if (var0 == 92) {
-                if (null != Class3_Sub15.activeConnection) {
-                    Class3_Sub15.activeConnection.close();
-                    Class3_Sub15.activeConnection = null;
+                if (null != Network.activeConnection) {
+                    Network.activeConnection.close();
+                    Network.activeConnection = null;
                 }
 
                 ++Unsorted.anInt1088;
@@ -114,13 +114,13 @@ public final class Class3_Sub13_Sub3 extends Class3_Sub13 {
 //            return PacketParser.parseIncomingPackets();
             return PacketDecoder.INSTANCE.decodePacket();
         } catch (IOException var4) {
-            Class3_Sub13_Sub13.breakClientConnection();
+            Network.breakClientConnection();
             return true;
         } catch (Exception var5) {
-            String var2 = "T2 - " + Unsorted.incomingOpcode + "," + Class7.anInt2166 + "," + Class24.anInt469 + " - " + Unsorted.incomingPacketLength + "," + (Class131.anInt1716 - -Player.player.anIntArray2767[0]) + "," + (Player.player.anIntArray2755[0] + Class82.anInt1152) + " - ";
+            String var2 = "T2 - " + Network.incomingOpcode + "," + Class7.anInt2166 + "," + Class24.anInt469 + " - " + Network.incomingPacketLength + "," + (Class131.anInt1716 - -Player.player.anIntArray2767[0]) + "," + (Player.player.anIntArray2755[0] + Class82.anInt1152) + " - ";
 
-            for (int var3 = 0; var3 < Unsorted.incomingPacketLength && 50 > var3; ++var3) {
-                var2 = var2 + GraphicDefinition.incomingBuffer.buffer[var3] + ",";
+            for (int var3 = 0; var3 < Network.incomingPacketLength && 50 > var3; ++var3) {
+                var2 = var2 + Network.incomingBuffer.buffer[var3] + ",";
             }
 
             ClientErrorException.method1125(var2, var5);

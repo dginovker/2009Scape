@@ -932,7 +932,6 @@ final class Class158_Sub1 extends Class158 implements ImageProducer, ImageObserv
 
     final void method2179(Graphics var3) {
         try {
-
             this.method2190();
             var3.drawImage(this.anImage2009, 0, 0, this);
         } catch (RuntimeException var6) {

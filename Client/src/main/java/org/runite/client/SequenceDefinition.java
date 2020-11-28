@@ -6,10 +6,8 @@ import org.rs09.client.data.HashTable;
 public final class SequenceDefinition {
 
     public static CacheIndex aClass153_1852;
-    static volatile long aLong1847 = 0L;
     static AbstractIndexedSprite aClass109_1856;
     static CacheIndex aClass153_1860;
-    static int anInt1862 = 0;
     static Class25[] aClass25Array1868;
     static int[] anIntArray1871 = new int[2];
     int delayType = 2;
@@ -62,13 +60,13 @@ public final class SequenceDefinition {
             Class3_Sub13.method153(112);
             Class24.anInt469 = -1;
             Class7.anInt2166 = -1;
-            Unsorted.incomingOpcode = -1;
+            Network.incomingOpcode = -1;
             Class159.anInt2023 = 0;
             Class38_Sub1.anInt2617 = 0;
-            Class3_Sub13_Sub1.outgoingBuffer.index = 0;
+            Network.outgoingBuffer.index = 0;
             LinkableRSString.anInt2582 = -1;
             AbstractSprite.anInt3699 = 0;
-            GraphicDefinition.incomingBuffer.index = 0;
+            Network.incomingBuffer.index = 0;
 
             int var1;
             for (var1 = 0; ClientErrorException.aClass96Array2114.length > var1; ++var1) {
@@ -172,7 +170,7 @@ public final class SequenceDefinition {
             }
 
             Unsorted.clanSize = 0;
-            PacketParser.aClass3_Sub19Array3694 = null;
+            PacketParser.clanChatInformationArray = null;
             RSInterface.aClass94_251 = null;
 
             for (var1 = 0; 6 > var1; ++var1) {

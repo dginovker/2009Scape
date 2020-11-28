@@ -91,10 +91,30 @@ abstract class Class140_Sub4 extends GameObject {
     private int anInt2830 = 0;
     private int anInt2834 = 0;
 
+    static RenderAnimationDefinition getRenderAnimationDefinition(int renderAnimationId) {
+        try {
+            RenderAnimationDefinition def = (RenderAnimationDefinition) RenderAnimationDefinition.aReferenceCache_1955.get(renderAnimationId);
+            if (def == null) {
+                byte[] var3 = Class97.aClass153_1372.getFile(32, renderAnimationId);
+
+                def = new RenderAnimationDefinition();
+                if (var3 != null) {
+                    def.parse(new DataBuffer(var3));
+                }
+
+                def.method899();
+                RenderAnimationDefinition.aReferenceCache_1955.put(def, renderAnimationId);
+            }
+            return def;
+        } catch (RuntimeException var4) {
+            throw ClientErrorException.clientError(var4, "hb.E(" + false + ',' + renderAnimationId + ')');
+        }
+    }
+
     final RenderAnimationDefinition method1965() {
         try {
             int var2 = this.getRenderAnimationId();
-            return (var2 == -1 ? PacketParser.aClass16_84 : Class3_Sub10.getRenderAnimationDefinition(var2));
+            return (var2 == -1 ? PacketParser.aClass16_84 : getRenderAnimationDefinition(var2));
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "fe.D(" + false + ')');
         }

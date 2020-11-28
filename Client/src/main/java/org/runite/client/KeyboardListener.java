@@ -70,6 +70,23 @@ final class KeyboardListener implements KeyListener, FocusListener {
         }
     }
 
+    static int method1386(KeyEvent var1) {
+        try {
+            int var2 = var1.getKeyChar();
+            if (8364 == var2) {
+                return 128;
+            } else {
+                if (var2 <= 0 || 256 <= var2) {
+                    var2 = -1;
+                }
+
+                return var2;
+            }
+        } catch (RuntimeException var3) {
+            throw ClientErrorException.clientError(var3, "kk.C(" + true + ',' + (var1 != null ? "{...}" : "null") + ')');
+        }
+    }
+
 
     public final synchronized void keyPressed(KeyEvent var1) {
         try {
@@ -180,17 +197,17 @@ final class KeyboardListener implements KeyListener, FocusListener {
         if (var1.isAltDown()) {
             if (var1.getKeyChar() == 'n') {
                 GameConfig.NPC_DEBUG_ENABLED = !GameConfig.NPC_DEBUG_ENABLED;
-                Class3_Sub30_Sub1.addChatMessage(TextCore.clientDebugNotifier, 0, RSString.parse("NPC debug context " + (GameConfig.NPC_DEBUG_ENABLED ? "enabled." : "disabled.")), -1);
+                Network.addChatMessage(TextCore.clientDebugNotifier, 0, RSString.parse("NPC debug context " + (GameConfig.NPC_DEBUG_ENABLED ? "enabled." : "disabled.")), -1);
                 return;
             }
             if (var1.getKeyChar() == 'o') {
                 GameConfig.OBJECT_DEBUG_ENABLED = !GameConfig.OBJECT_DEBUG_ENABLED;
-                Class3_Sub30_Sub1.addChatMessage(TextCore.clientDebugNotifier, 0, RSString.parse("Object debug context " + (GameConfig.OBJECT_DEBUG_ENABLED ? "enabled." : "disabled.")), -1);
+                Network.addChatMessage(TextCore.clientDebugNotifier, 0, RSString.parse("Object debug context " + (GameConfig.OBJECT_DEBUG_ENABLED ? "enabled." : "disabled.")), -1);
                 return;
             }
             if (var1.getKeyChar() == 'i') {
                 GameConfig.ITEM_DEBUG_ENABLED = !GameConfig.ITEM_DEBUG_ENABLED;
-                Class3_Sub30_Sub1.addChatMessage(TextCore.clientDebugNotifier, 0, RSString.parse("Item debug context " + (GameConfig.ITEM_DEBUG_ENABLED ? "enabled." : "disabled.")), -1);
+                Network.addChatMessage(TextCore.clientDebugNotifier, 0, RSString.parse("Item debug context " + (GameConfig.ITEM_DEBUG_ENABLED ? "enabled." : "disabled.")), -1);
                 return;
             }
             return;
@@ -198,7 +215,7 @@ final class KeyboardListener implements KeyListener, FocusListener {
         try {
 
             if (aClass148_3049 != null) {
-                int var2 = Class79.method1386(var1);
+                int var2 = method1386(var1);
                 if (var2 >= 0) {
                     int var3 = 1 + Class25.anInt491 & 127;
                     if (var3 != Class3_Sub28_Sub9.anInt3620) {

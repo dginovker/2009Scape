@@ -7,7 +7,6 @@ import java.util.Random;
 
 final class Class3_Sub13_Sub25 extends Class3_Sub13 {
 
-    static int anInt3313 = 500;
     static int anInt3315;
     private int anInt3299 = 1024;
     private int anInt3300 = 1024;

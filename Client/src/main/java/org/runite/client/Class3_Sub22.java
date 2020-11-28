@@ -1,7 +1,6 @@
 package org.runite.client;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.*;
 import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 import org.rs09.client.Linkable;
 import org.rs09.client.config.GameConfig;
@@ -139,8 +138,8 @@ final class Class3_Sub22 extends Linkable {
     static void method400(long var0) {
         try {
             if ((long) 0 != var0) {
-                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(104);
-                Class3_Sub13_Sub1.outgoingBuffer.writeLong(var0);
+                Network.outgoingBuffer.putOpcode(104);
+                Network.outgoingBuffer.writeLong(var0);
             }
         } catch (RuntimeException var4) {
             throw ClientErrorException.clientError(var4, "mf.F(" + var0 + ',' + 0 + ')');

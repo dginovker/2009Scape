@@ -670,7 +670,7 @@ public final class HDToolKit {
         }
     }
 
-    static void method1854(int width, int height) {
+    static void setHDWindowSize(int width, int height) {
         viewWidth = width;
         viewHeight = height;
         viewportSetup = false;

@@ -18,7 +18,6 @@ import java.util.Objects;
 
 public class Unsorted {
     public static boolean aBoolean2146 = false;
-    public static int incomingOpcode = 0;
     public static int anInt2148 = 0;
     public static boolean aBoolean2150;
     public static boolean aBoolean2154;
@@ -43,14 +42,13 @@ public class Unsorted {
     public static int anInt1244 = -1;
     public static RSInterface aClass11_1933;
     public static Class8 aClass8_1936;
-    public static Class3_Sub30_Sub1 aClass3_Sub30_Sub1_2942 = new Class3_Sub30_Sub1();
+    public static Network aNetwork_2942 = new Network();
     public static int[] anIntArray2952 = new int[128];
     public static int anInt2958 = 0;
     public static Class61 aClass61_78 = new Class61();
     public static int anInt72 = 0;
     public static boolean[] aBooleanArray73 = new boolean[200];
     public static boolean[] aBooleanArray1703;
-    public static int incomingPacketLength = 0;
     public static int anInt1705 = 0;
     public static int anInt1709 = 0;
     public static int anInt1711 = -2;
@@ -115,7 +113,6 @@ public class Unsorted {
     public static int anInt3606;
     public static int[] anIntArray3607 = new int[]{0, 2, 2, 2, 1, 1, 2, 2, 1, 3, 1, 1};
     public static int updateStamp;
-    public static ReferenceCache aReferenceCache_4043 = new ReferenceCache(64);
     public static volatile int anInt4045 = 0;
     public static HashTable aHashTable_4046 = new HashTable(16);
     public static MouseListeningClass aClass149_4047 = new MouseListeningClass();
@@ -791,70 +788,70 @@ public class Unsorted {
 
                 boolean var8 = true;
                 if (0 < var5.anInt189) {
-                    var8 = Class3_Sub30_Sub1.method715(var5);
+                    var8 = Network.method715(var5);
                 }
 
                 if (var8) {
                     if (Client.method44(var5).method92(var2 - 1, (byte) -108)) {
                         if (1 == var2) {
-                            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(155);
-                            Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
-                            Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
+                            Network.outgoingBuffer.putOpcode(155);
+                            Network.outgoingBuffer.writeInt(var4);
+                            Network.outgoingBuffer.writeShort(var1);
                         }
 
                         if (var3 < -7) {
                             if (var2 == 2) {
-                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(196);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
+                                Network.outgoingBuffer.putOpcode(196);
+                                Network.outgoingBuffer.writeInt(var4);
+                                Network.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 3) {
-                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(124);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
+                                Network.outgoingBuffer.putOpcode(124);
+                                Network.outgoingBuffer.writeInt(var4);
+                                Network.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 4) {
-                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(199);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
+                                Network.outgoingBuffer.putOpcode(199);
+                                Network.outgoingBuffer.writeInt(var4);
+                                Network.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 5) {
-                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(234);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
+                                Network.outgoingBuffer.putOpcode(234);
+                                Network.outgoingBuffer.writeInt(var4);
+                                Network.outgoingBuffer.writeShort(var1);
                             }
 
                             if (6 == var2) {
-                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(168);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
+                                Network.outgoingBuffer.putOpcode(168);
+                                Network.outgoingBuffer.writeInt(var4);
+                                Network.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 7) {
-                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(166);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
+                                Network.outgoingBuffer.putOpcode(166);
+                                Network.outgoingBuffer.writeInt(var4);
+                                Network.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 8) {
-                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(64);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
+                                Network.outgoingBuffer.putOpcode(64);
+                                Network.outgoingBuffer.writeInt(var4);
+                                Network.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 9) {
-                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(53);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
+                                Network.outgoingBuffer.putOpcode(53);
+                                Network.outgoingBuffer.writeInt(var4);
+                                Network.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 10) {
-                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(9);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
-                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
+                                Network.outgoingBuffer.putOpcode(9);
+                                Network.outgoingBuffer.writeInt(var4);
+                                Network.outgoingBuffer.writeShort(var1);
                             }
 
                         }
@@ -1061,49 +1058,49 @@ public class Unsorted {
 
     public static void updateLocalPosition() {
         try {
-            GraphicDefinition.incomingBuffer.setBitAccess((byte) 118);
-            int opcode = GraphicDefinition.incomingBuffer.getBits(1);
+            Network.incomingBuffer.setBitAccess((byte) 118);
+            int opcode = Network.incomingBuffer.getBits(1);
             if (opcode != 0) {
-                int type = GraphicDefinition.incomingBuffer.getBits(2);
+                int type = Network.incomingBuffer.getBits(2);
                 if (0 == type) {
                     Class21.maskUpdateIndexes[maskUpdateCount++] = 2047;
                 } else {
                     int var4;
                     int var5;
                     if (type == 1) { //Walk
-                        var4 = GraphicDefinition.incomingBuffer.getBits(3);
+                        var4 = Network.incomingBuffer.getBits(3);
                         Player.player.walkStep(1, (byte) -128, var4);
-                        var5 = GraphicDefinition.incomingBuffer.getBits(1);
+                        var5 = Network.incomingBuffer.getBits(1);
                         if (var5 == 1) {
                             Class21.maskUpdateIndexes[maskUpdateCount++] = 2047;
                         }
 
                     } else if (2 == type) {
-                        if (GraphicDefinition.incomingBuffer.getBits(1) == 1) {
-                            var4 = GraphicDefinition.incomingBuffer.getBits(3);
+                        if (Network.incomingBuffer.getBits(1) == 1) {
+                            var4 = Network.incomingBuffer.getBits(3);
                             Player.player.walkStep(2, (byte) -104, var4);
-                            var5 = GraphicDefinition.incomingBuffer.getBits(3);
+                            var5 = Network.incomingBuffer.getBits(3);
                             Player.player.walkStep(2, (byte) -126, var5);
                         } else {
-                            var4 = GraphicDefinition.incomingBuffer.getBits(3);
+                            var4 = Network.incomingBuffer.getBits(3);
                             Player.player.walkStep(0, (byte) -109, var4);
                         }
 
-                        var4 = GraphicDefinition.incomingBuffer.getBits(1);
+                        var4 = Network.incomingBuffer.getBits(1);
                         if (var4 == 1) {
                             Class21.maskUpdateIndexes[maskUpdateCount++] = 2047;
                         }
 
                     } else if (type == 3) {
-                        var4 = GraphicDefinition.incomingBuffer.getBits(7);
-                        var5 = GraphicDefinition.incomingBuffer.getBits(1);
-                        WorldListCountry.localPlane = GraphicDefinition.incomingBuffer.getBits(2);
-                        int var6 = GraphicDefinition.incomingBuffer.getBits(1);
+                        var4 = Network.incomingBuffer.getBits(7);
+                        var5 = Network.incomingBuffer.getBits(1);
+                        WorldListCountry.localPlane = Network.incomingBuffer.getBits(2);
+                        int var6 = Network.incomingBuffer.getBits(1);
                         if (var6 == 1) {
                             Class21.maskUpdateIndexes[maskUpdateCount++] = 2047;
                         }
 
-                        int var7 = GraphicDefinition.incomingBuffer.getBits(7);
+                        int var7 = Network.incomingBuffer.getBits(7);
                         Player.player.method1981(var7, var5 == 1, var4);
                     }
                 }
@@ -1382,13 +1379,13 @@ public class Unsorted {
         try {
             int var2 = Class106.anInt1442;
             int var1 = Class84.anInt1164;
-            int var4 = -Class140_Sub7.anInt2934 + (Class70.anInt1047 - var2);
-            int var3 = -var1 + anInt2334 - Class23.anInt454;
+            int var4 = -GameShell.gameShellAWTHeight + (Class70.anInt1047 - var2);
+            int var3 = -var1 + anInt2334 - GameShell.gameShellAWTWidth;
             if (~var1 < var0 || var3 > 0 || var2 > 0 || var4 > 0) {
                 try {
-                    Object var5;
-                    if (null != Class3_Sub13_Sub10.aFrame3121) {
-                        var5 = Class3_Sub13_Sub10.aFrame3121;
+                    Container var5;
+                    if (null != GameShell.aFrame3121) {
+                        var5 = GameShell.aFrame3121;
                     } else if (GameShell.frame == null) {
                         var5 = Class38.aClass87_665.applet;
                     } else {
@@ -1403,7 +1400,7 @@ public class Unsorted {
                         var7 = var8.top;
                     }
 
-                    Graphics var11 = ((Container) var5).getGraphics();
+                    Graphics var11 = var5.getGraphics();
                     var11.setColor(Color.black);
                     if (var1 > 0) {
                         var11.fillRect(var6, var7, var1, Class70.anInt1047);
@@ -1569,32 +1566,32 @@ public class Unsorted {
                 HDToolKit.method1842();
             }
 
-            if (null != Class3_Sub13_Sub10.aFrame3121 && (3 != var1 || Class3_Sub13.anInt2378 != var5 || anInt3071 != var6)) {
-                method593(Class3_Sub13_Sub10.aFrame3121, Class38.aClass87_665);
-                Class3_Sub13_Sub10.aFrame3121 = null;
+            if (null != GameShell.aFrame3121 && (3 != var1 || Class3_Sub13.anInt2378 != var5 || anInt3071 != var6)) {
+                method593(GameShell.aFrame3121, Class38.aClass87_665);
+                GameShell.aFrame3121 = null;
             }
 
-            if (3 == var1 && null == Class3_Sub13_Sub10.aFrame3121) {
-                Class3_Sub13_Sub10.aFrame3121 = Class99.method1597(0, var6, var5, Class38.aClass87_665);
-                if (null != Class3_Sub13_Sub10.aFrame3121) {
+            if (3 == var1 && null == GameShell.aFrame3121) {
+                GameShell.aFrame3121 = Class99.method1597(0, var6, var5, Class38.aClass87_665);
+                if (null != GameShell.aFrame3121) {
                     anInt3071 = var6;
                     Class3_Sub13.anInt2378 = var5;
                     Class119.method1730(Class38.aClass87_665);
                 }
             }
 
-            if (var1 == 3 && Class3_Sub13_Sub10.aFrame3121 == null) {
+            if (var1 == 3 && GameShell.aFrame3121 == null) {
                 method598(true, anInt2577, true, var3, var4, -1, -1);
             } else {
                 Object var7;
-                if (null == Class3_Sub13_Sub10.aFrame3121) {
+                if (null == GameShell.aFrame3121) {
                     if (null == GameShell.frame) {
                         var7 = Class38.aClass87_665.applet;
                     } else {
                         var7 = GameShell.frame;
                     }
                 } else {
-                    var7 = Class3_Sub13_Sub10.aFrame3121;
+                    var7 = GameShell.aFrame3121;
                 }
 
                 anInt2334 = ((Container) var7).getSize().width;
@@ -1607,15 +1604,15 @@ public class Unsorted {
                 }
 
                 if (var1 >= 2) {
-                    Class23.anInt454 = anInt2334;
-                    Class140_Sub7.anInt2934 = Class70.anInt1047;
+                    GameShell.gameShellAWTWidth = anInt2334;
+                    GameShell.gameShellAWTHeight = Class70.anInt1047;
                     Class84.anInt1164 = 0;
                     Class106.anInt1442 = 0;
                 } else {
                     Class106.anInt1442 = 0;
                     Class84.anInt1164 = (anInt2334 + -765) / 2;
-                    Class23.anInt454 = 765;
-                    Class140_Sub7.anInt2934 = 503;
+                    GameShell.gameShellAWTWidth = 765;
+                    GameShell.gameShellAWTHeight = 503;
                 }
 
                 if (var0) {
@@ -1625,7 +1622,7 @@ public class Unsorted {
                         Class38.aClass146_668.method2082(GameShell.canvas);
                     }
 
-                    Class126.aClient1671.method30((byte) 97);
+                    Class126.aClient1671.method30();
                     Class3_Sub13_Sub4.method193((byte) 97, GameShell.canvas);
                     ItemDefinition.method1119(GameShell.canvas, var4);
                     if (Class38.aClass146_668 != null) {
@@ -1633,10 +1630,10 @@ public class Unsorted {
                     }
                 } else {
                     if (HDToolKit.highDetail) {
-                        HDToolKit.method1854(Class23.anInt454, Class140_Sub7.anInt2934);
+                        HDToolKit.setHDWindowSize(GameShell.gameShellAWTWidth, GameShell.gameShellAWTHeight);
                     }
 
-                    GameShell.canvas.setSize(Class23.anInt454, Class140_Sub7.anInt2934);
+                    GameShell.canvas.setSize(GameShell.gameShellAWTWidth, GameShell.gameShellAWTHeight);
                     if (GameShell.frame == var7) {
                         var8 = GameShell.frame.getInsets();
                         GameShell.canvas.setLocation(var8.left - -Class84.anInt1164, var8.top + Class106.anInt1442);
@@ -1655,7 +1652,7 @@ public class Unsorted {
                     if (!GameShell.aBoolean11) {
                         Class32.method995();
                         Class164_Sub1.aClass158_3009 = null;
-                        Class164_Sub1.aClass158_3009 = Class3_Sub13_Sub23_Sub1.method285(Class140_Sub7.anInt2934, Class23.anInt454, GameShell.canvas);
+                        Class164_Sub1.aClass158_3009 = Class3_Sub13_Sub23_Sub1.method285(GameShell.gameShellAWTHeight, GameShell.gameShellAWTWidth, GameShell.canvas);
                         Class74.method1320();
                         if (5 == Class143.loadingStage) {
                             Class3_Sub23.method406((byte) 122, true, Class168.aClass3_Sub28_Sub17_2096);
@@ -1743,7 +1740,7 @@ public class Unsorted {
                         Class124.method1746(true, (byte) -107);
                     }
 
-                    if (null != Class3_Sub15.activeConnection && (Class143.loadingStage == 30 || Class143.loadingStage == 25)) {
+                    if (null != Network.activeConnection && (Class143.loadingStage == 30 || Class143.loadingStage == 25)) {
                         Class3_Sub13_Sub8.method204(-3);
                     }
 
@@ -1751,7 +1748,7 @@ public class Unsorted {
                         aBooleanArray3674[var12] = true;
                     }
 
-                    Class3_Sub13_Sub10.aBoolean3116 = true;
+                    GameShell.aBoolean3116 = true;
                 }
             }
         } catch (RuntimeException var10) {
@@ -1980,25 +1977,6 @@ public class Unsorted {
             return aClass3_Sub28_Sub3_2600;
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "rg.OA(" + var0 + ')');
-        }
-    }
-
-    static NPCDefinition method522(int var0) {
-        try {
-            NPCDefinition def = (NPCDefinition) aReferenceCache_4043.get(var0);
-            if (null == def) {
-                byte[] var3 = Class29.aClass153_557.getFile(Class38_Sub1.method1031(var0), method54(var0));
-                def = new NPCDefinition();
-
-                def.npcId = var0;
-                if (null != var3) {
-                    def.method1478(new DataBuffer(var3));
-                }
-                aReferenceCache_4043.put(def, var0);
-            }
-            return def;
-        } catch (RuntimeException var4) {
-            throw ClientErrorException.clientError(var4, "rg.PA(" + var0 + ',' + 27112 + ')');
         }
     }
 
@@ -2768,9 +2746,9 @@ public class Unsorted {
         while (var1 < maskUpdateCount) {
             int var2 = Class21.maskUpdateIndexes[var1];
             Player var3 = Class3_Sub13_Sub22.players[var2];
-            int var4 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+            int var4 = Network.incomingBuffer.readUnsignedByte();
             if ((16 & var4) != 0) {
-                var4 += GraphicDefinition.incomingBuffer.readUnsignedByte() << 8;
+                var4 += Network.incomingBuffer.readUnsignedByte() << 8;
             }
 
             Class45.parsePlayerMask(var4, var2, var3);
@@ -3711,9 +3689,9 @@ public class Unsorted {
 
     public static void method78(int var0, int var2) {
         try {
-            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(132);
-            Class3_Sub13_Sub1.outgoingBuffer.writeIntV1(var2);
-            Class3_Sub13_Sub1.outgoingBuffer.writeShortLE(var0);
+            Network.outgoingBuffer.putOpcode(132);
+            Network.outgoingBuffer.writeIntV1(var2);
+            Network.outgoingBuffer.writeShortLE(var0);
         } catch (RuntimeException var4) {
             throw ClientErrorException.clientError(var4, "aa.E(" + var0 + ',' + false + ',' + var2 + ')');
         }
@@ -4056,7 +4034,7 @@ public class Unsorted {
                                     var28 = Player.player.anInt2819 + var26 >> 7;
                                     var29 = -var47 + Player.player.anInt2829 >> 7;
                                     if (GameObject.aBoolean1837 && 0 != (Class164.anInt2051 & 64)) {
-                                        RSInterface var53 = AbstractSprite.method638(Class3_Sub30_Sub1.anInt872, RSInterface.anInt278);
+                                        RSInterface var53 = AbstractSprite.method638(Network.anInt872, RSInterface.anInt278);
                                         if (null == var53) {
                                             Class25.method958((byte) -91);
                                         } else {
@@ -4122,7 +4100,7 @@ public class Unsorted {
                                     if (ClientCommands.fpsOverlayEnabled) {
                                         var20 = var11.width + var13;
                                         var21 = 15 + var14;
-                                        Class126.aClass3_Sub28_Sub17_1669.method688(RSString.stringCombiner(new RSString[]{TextCore.aClass94_3196, RSString.stringAnimator(SequenceDefinition.anInt1862)}), var20, var21, 16776960, -1);//Class72.stringAnimator(SequenceDefinition.anInt1862)}), var20, var21, 16776960, -1);
+                                        Class126.aClass3_Sub28_Sub17_1669.method688(RSString.stringCombiner(new RSString[]{TextCore.aClass94_3196, RSString.stringAnimator(GameShell.fpsCounter)}), var20, var21, 16776960, -1);//Class72.stringAnimator(SequenceDefinition.fpsCounter)}), var20, var21, 16776960, -1);
                                         var21 += 15;
                                         Runtime var57 = Runtime.getRuntime();
                                         var23 = (int) ((var57.totalMemory() + -var57.freeMemory()) / 1024L);
@@ -4292,7 +4270,7 @@ public class Unsorted {
                                                     if (null != var11.anIntArray197 && var20 < 20) {
                                                         AbstractSprite var58 = var11.method859(var20);
                                                         if (null == var58) {
-                                                            if (GameShell.aBoolean6) {
+                                                            if (RSInterface.aBoolean6) {
                                                                 Class20.method909(var11);
                                                             }
                                                         } else {
@@ -4303,7 +4281,7 @@ public class Unsorted {
                                                     var47 = var11.itemAmounts[var20] + -1;
                                                     if (var0 < 32 + var23 && var4 > var23 && var24 - -32 > var6 && var7 > var24 || var11 == Class67.aClass11_1017 && var20 == PacketParser.anInt86) {
                                                         AbstractSprite var54;
-                                                        if (Class164_Sub1.anInt3012 == 1 && Class3_Sub30_Sub1.anInt1473 == var20 && Class3_Sub28_Sub18.anInt3764 == var11.componentHash) {
+                                                        if (Class164_Sub1.anInt3012 == 1 && Network.anInt1473 == var20 && Class3_Sub28_Sub18.anInt3764 == var11.componentHash) {
                                                             var54 = Class114.method1707(2, var47, var11.aBoolean227, var11.itemIds[var20], 0);
                                                         } else {
                                                             var54 = Class114.method1707(1, var47, var11.aBoolean227, var11.itemIds[var20], 3153952);
@@ -4459,7 +4437,7 @@ public class Unsorted {
                                                 }
 
                                                 var34.method676(var45, var13, var14, var11.width, var11.height, var21, !var11.aBoolean215 ? -1 : 0, var11.anInt194, var11.anInt225, var11.anInt205);
-                                            } else if (GameShell.aBoolean6) {
+                                            } else if (RSInterface.aBoolean6) {
                                                 Class20.method909(var11);
                                             }
                                         } else if (5 == var11.type) {
@@ -4472,7 +4450,7 @@ public class Unsorted {
                                                 }
 
                                                 if (var37 == null) {
-                                                    if (GameShell.aBoolean6) {
+                                                    if (RSInterface.aBoolean6) {
                                                         Class20.method909(var11);
                                                     }
                                                 } else {
@@ -4559,7 +4537,7 @@ public class Unsorted {
                                                 var37 = var11.method866(Class3_Sub28_Sub12.method609(var11, 69));
                                                 if (null != var37) {
                                                     var37.method643(var13, var14);
-                                                } else if (GameShell.aBoolean6) {
+                                                } else if (RSInterface.aBoolean6) {
                                                     Class20.method909(var11);
                                                 }
                                             }
@@ -4588,13 +4566,13 @@ public class Unsorted {
                                                 } else if (5 != var11.modelType) {
                                                     if (var21 == -1) {
                                                         var38 = var11.method865(-1, null, -1, 126, 0, var41, Player.player.class52);
-                                                        if (null == var38 && GameShell.aBoolean6) {
+                                                        if (null == var38 && RSInterface.aBoolean6) {
                                                             Class20.method909(var11);
                                                         }
                                                     } else {
                                                         SequenceDefinition var48 = SequenceDefinition.getAnimationDefinition(var21);
                                                         var38 = var11.method865(var11.anInt260, var48, var11.anInt283, 127, var11.anInt267, var41, Player.player.class52);
-                                                        if (null == var38 && GameShell.aBoolean6) {
+                                                        if (null == var38 && RSInterface.aBoolean6) {
                                                             Class20.method909(var11);
                                                         }
                                                     }
@@ -4681,7 +4659,7 @@ public class Unsorted {
                                                 if (var11.type == 7) {
                                                     var34 = var11.method868(Class3_Sub13_Sub22.aClass109Array3270);
                                                     if (var34 == null) {
-                                                        if (GameShell.aBoolean6) {
+                                                        if (RSInterface.aBoolean6) {
                                                             Class20.method909(var11);
                                                         }
                                                         continue;
@@ -5002,7 +4980,7 @@ public class Unsorted {
             anInt3671 = 0;
             RandomAccessFileWrapper var2 = null;
             CS2Script.anInt2453 = 127;
-            if (Class3_Sub24_Sub3.anInt3492 >= 96) {
+            if (GameShell.clientMemory >= 96) {
                 Class127_Sub1.method1758(2);
             } else {
                 Class127_Sub1.method1758(0);
@@ -5235,15 +5213,6 @@ public class Unsorted {
             return var2 != -1 ? Class119.aClass131_1624.aClass94Array1721[var2].method1560(TextCore.aClass94_3192, TextCore.aClass94_4066) : TextCore.aClass94_4049;
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "rc.V(" + (var0 != null ? "{...}" : "null") + ',' + true + ')');
-        }
-    }
-
-    static void method28() {
-        try {
-            Class143.aReferenceCache_1874.clear();
-
-        } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "rc.Q(" + true + ')');
         }
     }
 

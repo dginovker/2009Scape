@@ -105,9 +105,9 @@ final class Class3_Sub13_Sub30 extends Class3_Sub13 {
             ClearReferenceCache.method2257();
             ClearReferenceCache.method128();
             ClearReferenceCache.method2220();
-            ClearReferenceCache.method139(69);
+            ClearReferenceCache.method139();
             ClearReferenceCache.method512();
-            ClearReferenceCache.method1626((byte) -128);
+            ClearReferenceCache.method1626();
             ClearReferenceCache.method182();
             ClearReferenceCache.method2077();
             ClearReferenceCache.method959();
@@ -117,7 +117,7 @@ final class Class3_Sub13_Sub30 extends Class3_Sub13 {
             ClearReferenceCache.method1045();
             ClearReferenceCache.method183();
             ClearReferenceCache.method727();
-            ClearReferenceCache.method397((byte) -41);
+            ClearReferenceCache.method397();
             if (Class3_Sub13_Sub13.anInt3148 != 0) {
                 for (int var1 = 0; var1 < Class3_Sub6.aByteArrayArray2287.length; ++var1) {
                     Class3_Sub6.aByteArrayArray2287[var1] = null;

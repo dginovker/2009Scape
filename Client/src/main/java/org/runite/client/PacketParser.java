@@ -14,7 +14,7 @@ public final class PacketParser {
     static int anInt87 = 0;
     static RSInterface aClass11_88 = null;
     static int inTutorialIsland = 0; // could be boolean
-    static Class3_Sub19[] aClass3_Sub19Array3694;
+    static Class3_Sub19[] clanChatInformationArray;
     static long aLong3202;
     static int anInt3213 = 1;
 
@@ -70,42 +70,42 @@ public final class PacketParser {
 
     public static boolean parseIncomingPackets() {
         int nodeModelId;
-        if (60 == Unsorted.incomingOpcode) {
-            nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-            byte var69 = GraphicDefinition.incomingBuffer.readSignedNegativeByte();
+        if (60 == Network.incomingOpcode) {
+            nodeModelId = Network.incomingBuffer.readUnsignedShort128();
+            byte var69 = Network.incomingBuffer.readSignedNegativeByte();
             Class3_Sub13_Sub23.method281(var69, nodeModelId);
-            Unsorted.incomingOpcode = -1;
+            Network.incomingOpcode = -1;
             return true;
         } else {
             int counter;
             RSString playerName;
-            if (Unsorted.incomingOpcode == 115) {
-                nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                playerName = GraphicDefinition.incomingBuffer.readString();
+            if (Network.incomingOpcode == 115) {
+                nodeModelId = Network.incomingBuffer.readUnsignedShort();
+                playerName = Network.incomingBuffer.readString();
                 Object[] var71 = new Object[playerName.length() - -1];
                 for (counter = playerName.length() + -1; counter >= 0; --counter) {
                     if (115 == playerName.charAt(counter, (byte) -45)) {
-                        var71[1 + counter] = GraphicDefinition.incomingBuffer.readString();
+                        var71[1 + counter] = Network.incomingBuffer.readString();
                     } else {
-                        var71[1 + counter] = GraphicDefinition.incomingBuffer.readInt();
+                        var71[1 + counter] = Network.incomingBuffer.readInt();
                     }
                 }
 
-                var71[0] = GraphicDefinition.incomingBuffer.readInt();
+                var71[0] = Network.incomingBuffer.readInt();
                 Class146.updateInterfacePacketCounter(nodeModelId);
                 CS2Script var66 = new CS2Script();
                 var66.arguments = var71;
                 Class43.method1065(var66);
 
-                Unsorted.incomingOpcode = -1;
+                Network.incomingOpcode = -1;
                 return true;
             } else {
                 long nameAsLong;
                 boolean isIgnored;
                 int var30;
                 RSString var41;
-                if (Unsorted.incomingOpcode == 70) {
-                    RSString message = GraphicDefinition.incomingBuffer.readString();
+                if (Network.incomingOpcode == 70) {
+                    RSString message = Network.incomingBuffer.readString();
                     if (message.endsWith(TextCore.HasTradeRequest)) {
                         playerName = message.substring(0, message.indexOf(TextCore.char_colon, 65), 0);
                         nameAsLong = playerName.toLong();
@@ -119,7 +119,7 @@ public final class PacketParser {
                         }
 
                         if (!isIgnored && inTutorialIsland == 0) {
-                            Class3_Sub30_Sub1.addChatMessage(playerName, 4, TextCore.HasWishToTrade, (byte) -83 + 82);
+                            Network.addChatMessage(playerName, 4, TextCore.HasWishToTrade, (byte) -83 + 82);
                         }
                     } else if (message.endsWith(TextCore.cmdChalReq)) {
                         playerName = message.substring(0, message.indexOf(TextCore.char_colon, 75), 0);
@@ -135,7 +135,7 @@ public final class PacketParser {
 
                         if (!isIgnored && inTutorialIsland == 0) {
                             var41 = message.substring(1 + message.indexOf(TextCore.char_colon, 101), message.length() + -9, (byte) -83 ^ -83);
-                            Class3_Sub30_Sub1.addChatMessage(playerName, 8, var41, (byte) -83 ^ 82);
+                            Network.addChatMessage(playerName, 8, var41, (byte) -83 ^ 82);
                         }
                     } else if (message.endsWith(TextCore.HasAssistRequest)) {
                         isIgnored = false;
@@ -150,20 +150,20 @@ public final class PacketParser {
                         }
 
                         if (!isIgnored && inTutorialIsland == 0) {
-                            Class3_Sub30_Sub1.addChatMessage(playerName, 10, TextCore.aClass94_3672, -1);
+                            Network.addChatMessage(playerName, 10, TextCore.aClass94_3672, -1);
                         }
                     } else if (message.endsWith(TextCore.HasClan)) {
                         playerName = message.substring(0, message.indexOf(TextCore.HasClan, (byte) -83 ^ -50), 0);
-                        Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_3672, 11, playerName, -1);
+                        Network.addChatMessage(TextCore.aClass94_3672, 11, playerName, -1);
                     } else if (message.endsWith(TextCore.HasTrade)) {
                         playerName = message.substring(0, message.indexOf(TextCore.HasTrade, 102), 0);
                         if (0 == inTutorialIsland) {
-                            Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_3672, 12, playerName, -1);
+                            Network.addChatMessage(TextCore.aClass94_3672, 12, playerName, -1);
                         }
                     } else if (message.endsWith(TextCore.HasAssist)) {
                         playerName = message.substring(0, message.indexOf(TextCore.HasAssist, 121), 0);
                         if (inTutorialIsland == 0) {
-                            Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_3672, 13, playerName, -1);
+                            Network.addChatMessage(TextCore.aClass94_3672, 13, playerName, -1);
                         }
                     } else if (message.endsWith(TextCore.HasDuelStake)) {
                         isIgnored = false;
@@ -178,7 +178,7 @@ public final class PacketParser {
                         }
 
                         if (!isIgnored && inTutorialIsland == 0) {
-                            Class3_Sub30_Sub1.addChatMessage(playerName, 14, TextCore.aClass94_3672, -1);
+                            Network.addChatMessage(playerName, 14, TextCore.aClass94_3672, -1);
                         }
                     } else if (message.endsWith(TextCore.HasDuelFriend)) {
                         playerName = message.substring(0, message.indexOf(TextCore.char_colon, 118), 0);
@@ -193,7 +193,7 @@ public final class PacketParser {
                         }
 
                         if (!isIgnored && 0 == inTutorialIsland) {
-                            Class3_Sub30_Sub1.addChatMessage(playerName, 15, TextCore.aClass94_3672, -1);
+                            Network.addChatMessage(playerName, 15, TextCore.aClass94_3672, -1);
                         }
                     } else if (message.endsWith(TextCore.HasClanRequest)) {
                         playerName = message.substring(0, message.indexOf(TextCore.char_colon, (byte) -83 + 138), 0);
@@ -208,7 +208,7 @@ public final class PacketParser {
                         }
 
                         if (!isIgnored && inTutorialIsland == 0) {
-                            Class3_Sub30_Sub1.addChatMessage(playerName, 16, TextCore.aClass94_3672, -1);
+                            Network.addChatMessage(playerName, 16, TextCore.aClass94_3672, -1);
                         }
                     } else if (message.endsWith(TextCore.HasAllyReq)) {
                         playerName = message.substring(0, message.indexOf(TextCore.char_colon, (byte) -83 + 189), (byte) -83 + 83);
@@ -224,52 +224,52 @@ public final class PacketParser {
 
                         if (!isIgnored && inTutorialIsland == 0) {
                             var41 = message.substring(1 + message.indexOf(TextCore.char_colon, 92), message.length() - 9, (byte) -83 ^ -83);
-                            Class3_Sub30_Sub1.addChatMessage(playerName, 21, var41, -1);
+                            Network.addChatMessage(playerName, 21, var41, -1);
                         }
                     } else {
-                        Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_3672, 0, message, (byte) -83 + 82);
+                        Network.addChatMessage(TextCore.aClass94_3672, 0, message, (byte) -83 + 82);
                     }
 
-                    Unsorted.incomingOpcode = -1;
+                    Network.incomingOpcode = -1;
                     return true;
                 } else {
                     int var19;
                     RSString var58;
-                    if (Unsorted.incomingOpcode == 123) {
-                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
-                        var19 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                        var58 = GraphicDefinition.incomingBuffer.readString();
+                    if (Network.incomingOpcode == 123) {
+                        nodeModelId = Network.incomingBuffer.readUnsignedShortLE();
+                        var19 = Network.incomingBuffer.readUnsignedShort128();
+                        var58 = Network.incomingBuffer.readString();
                         Class146.updateInterfacePacketCounter(var19);
                         Class3_Sub13_Sub27.method295(var58, nodeModelId);
 
 
-                        Unsorted.incomingOpcode = -1;
+                        Network.incomingOpcode = -1;
                         return true;
-                    } else if (Unsorted.incomingOpcode == 230) {
-                        Class39.currentChunkY = GraphicDefinition.incomingBuffer.readUnsignedByte128();
-                        Class65.currentChunkX = GraphicDefinition.incomingBuffer.readUnsigned128Byte();
+                    } else if (Network.incomingOpcode == 230) {
+                        Class39.currentChunkY = Network.incomingBuffer.readUnsignedByte128();
+                        Class39.currentChunkX = Network.incomingBuffer.readUnsigned128Byte();
 
-                        while (GraphicDefinition.incomingBuffer.index < Unsorted.incomingPacketLength) {
-                            Unsorted.incomingOpcode = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                        while (Network.incomingBuffer.index < Network.incomingPacketLength) {
+                            Network.incomingOpcode = Network.incomingBuffer.readUnsignedByte();
                             Class39.parseChunkPacket((byte) -82);
                         }
 
-                        Unsorted.incomingOpcode = -1;
+                        Network.incomingOpcode = -1;
                         return true;
-                    } else if (153 == Unsorted.incomingOpcode) {
-                        Unsorted.incomingOpcode = -1;
+                    } else if (153 == Network.incomingOpcode) {
+                        Network.incomingOpcode = -1;
                         Class65.anInt987 = 0;
                         return true;
                     } else {
                         int modelId;
-                        if (Unsorted.incomingOpcode == 220) {
-                            nodeModelId = GraphicDefinition.incomingBuffer.readIntV2();
-                            var19 = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
-                            modelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                        if (Network.incomingOpcode == 220) {
+                            nodeModelId = Network.incomingBuffer.readIntV2();
+                            var19 = Network.incomingBuffer.readUnsignedShortLE();
+                            modelId = Network.incomingBuffer.readUnsignedShort();
                             Class146.updateInterfacePacketCounter(modelId);
                             Class3_Sub13_Sub33.method327(var19, nodeModelId);
 
-                            Unsorted.incomingOpcode = -1;
+                            Network.incomingOpcode = -1;
                             return true;
                         } else {
                             long var2;
@@ -277,15 +277,15 @@ public final class PacketParser {
                             int var11;
                             long var29;
                             long var36;
-                            if (81 == Unsorted.incomingOpcode) {
-                                var2 = GraphicDefinition.incomingBuffer.readLong();
-                                GraphicDefinition.incomingBuffer.readSignedByte();
-                                nameAsLong = GraphicDefinition.incomingBuffer.readLong();
-                                var29 = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                var36 = GraphicDefinition.incomingBuffer.readMedium();
-                                clanChatIcon = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                            if (81 == Network.incomingOpcode) {
+                                var2 = Network.incomingBuffer.readLong();
+                                Network.incomingBuffer.readSignedByte();
+                                nameAsLong = Network.incomingBuffer.readLong();
+                                var29 = Network.incomingBuffer.readUnsignedShort();
+                                var36 = Network.incomingBuffer.readMedium();
+                                clanChatIcon = Network.incomingBuffer.readUnsignedByte();
                                 boolean var63 = false;
-                                var11 = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                var11 = Network.incomingBuffer.readUnsignedShort();
                                 long var55 = (var29 << 32) + var36;
                                 int var54 = 0;
 
@@ -315,7 +315,7 @@ public final class PacketParser {
                                 if (!var63 && 0 == inTutorialIsland) {
                                     Class163_Sub2_Sub1.aLongArray4017[MouseListeningClass.anInt1921] = var55;
                                     MouseListeningClass.anInt1921 = (1 + MouseListeningClass.anInt1921) % 100;
-                                    RSString var61 = LinkableRSString.method733(var11).method555(GraphicDefinition.incomingBuffer);
+                                    RSString var61 = LinkableRSString.method733(var11).method555(Network.incomingBuffer);
                                     if (clanChatIcon == 2 || 3 == clanChatIcon) {
                                         Class3_Sub28_Sub12.sendGameMessage(var11, 20, var61, Objects.requireNonNull(Unsorted.method1052(nameAsLong)).method1545(), RSString.stringCombiner(new RSString[]{TextCore.aClass94_444, Objects.requireNonNull(Unsorted.method1052(var2)).method1545()}));
                                     } else if (clanChatIcon == 1) {
@@ -325,39 +325,39 @@ public final class PacketParser {
                                     }
                                 }
 
-                                Unsorted.incomingOpcode = -1;
+                                Network.incomingOpcode = -1;
                                 return true;
                             } else {
                                 int var6;
                                 int chatIcon;
                                 boolean var32;
-                                if (Unsorted.incomingOpcode == 55) {
+                                if (Network.incomingOpcode == 55) {
                                     Class167.anInt2087 = anInt3213;
-                                    var2 = GraphicDefinition.incomingBuffer.readLong();
+                                    var2 = Network.incomingBuffer.readLong();
                                     if (var2 == 0) {
                                         Class161.aClass94_2035 = null;
-                                        Unsorted.incomingOpcode = -1;
+                                        Network.incomingOpcode = -1;
                                         RSInterface.aClass94_251 = null;
-                                        aClass3_Sub19Array3694 = null;
+                                        clanChatInformationArray = null;
                                         Unsorted.clanSize = 0;
                                         return true;
                                     } else {
-                                        nameAsLong = GraphicDefinition.incomingBuffer.readLong();
+                                        nameAsLong = Network.incomingBuffer.readLong();
                                         RSInterface.aClass94_251 = Unsorted.method1052(nameAsLong);
                                         Class161.aClass94_2035 = Unsorted.method1052(var2);
-                                        Player.aByte3953 = GraphicDefinition.incomingBuffer.readSignedByte();
-                                        var6 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                        Player.aByte3953 = Network.incomingBuffer.readSignedByte();
+                                        var6 = Network.incomingBuffer.readUnsignedByte();
                                         if (255 != var6) {
                                             Unsorted.clanSize = var6;
                                             Class3_Sub19[] var7 = new Class3_Sub19[100];
 
                                             for (chatIcon = 0; chatIcon < Unsorted.clanSize; ++chatIcon) {
                                                 var7[chatIcon] = new Class3_Sub19();
-                                                var7[chatIcon].linkableKey = GraphicDefinition.incomingBuffer.readLong();
+                                                var7[chatIcon].linkableKey = Network.incomingBuffer.readLong();
                                                 var7[chatIcon].aClass94_2476 = Unsorted.method1052(var7[chatIcon].linkableKey);
-                                                var7[chatIcon].anInt2478 = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                var7[chatIcon].aByte2472 = GraphicDefinition.incomingBuffer.readSignedByte();
-                                                var7[chatIcon].aClass94_2473 = GraphicDefinition.incomingBuffer.readString();
+                                                var7[chatIcon].anInt2478 = Network.incomingBuffer.readUnsignedShort();
+                                                var7[chatIcon].aByte2472 = Network.incomingBuffer.readSignedByte();
+                                                var7[chatIcon].aClass94_2473 = Network.incomingBuffer.readString();
                                                 if (var7[chatIcon].linkableKey == aLong3202) {
                                                     Class91.aByte1308 = var7[chatIcon].aByte2472;
                                                 }
@@ -383,46 +383,46 @@ public final class PacketParser {
                                                 }
                                             }
 
-                                            aClass3_Sub19Array3694 = var7;
+                                            clanChatInformationArray = var7;
                                         }
-                                        Unsorted.incomingOpcode = -1;
+                                        Network.incomingOpcode = -1;
                                         return true;
                                     }
-                                } else if (Unsorted.incomingOpcode == 164) {
-                                    nodeModelId = GraphicDefinition.incomingBuffer.readIntV1();
+                                } else if (Network.incomingOpcode == 164) {
+                                    nodeModelId = Network.incomingBuffer.readIntV1();
                                     Class136.aClass64_1778 = Class38.aClass87_665.method1449((byte) -83 ^ -82, nodeModelId);
-                                    Unsorted.incomingOpcode = -1;
+                                    Network.incomingOpcode = -1;
                                     return true;
-                                } else if (Unsorted.incomingOpcode == 225) {
+                                } else if (Network.incomingOpcode == 225) {
                                     Class163_Sub3.renderPlayers();
-                                    Unsorted.incomingOpcode = -1;
+                                    Network.incomingOpcode = -1;
                                     return true;
-                                } else if (Unsorted.incomingOpcode == 48) { //UNUSED BY SERVER
-                                    nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                    playerName = GraphicDefinition.incomingBuffer.readString();
-                                    modelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
+                                } else if (Network.incomingOpcode == 48) { //UNUSED BY SERVER
+                                    nodeModelId = Network.incomingBuffer.readUnsignedShort();
+                                    playerName = Network.incomingBuffer.readString();
+                                    modelId = Network.incomingBuffer.readUnsignedShortLE128();
                                     Class146.updateInterfacePacketCounter(nodeModelId);
                                     Class3_Sub13_Sub27.method295(playerName, modelId);
 
-                                    Unsorted.incomingOpcode = -1;
+                                    Network.incomingOpcode = -1;
                                     return true;
-                                } else if (232 == Unsorted.incomingOpcode) {
-                                    CS2Script.anInt3101 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                    Class24.anInt467 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                    Class45.anInt734 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                    Unsorted.incomingOpcode = -1;
+                                } else if (232 == Network.incomingOpcode) {
+                                    CS2Script.anInt3101 = Network.incomingBuffer.readUnsignedByte();
+                                    Class24.anInt467 = Network.incomingBuffer.readUnsignedByte();
+                                    Class45.anInt734 = Network.incomingBuffer.readUnsignedByte();
+                                    Network.incomingOpcode = -1;
                                     return true;
                                 } else {
                                     RSString var56;
-                                    if (Unsorted.incomingOpcode == 44) {
-                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
+                                    if (Network.incomingOpcode == 44) {
+                                        nodeModelId = Network.incomingBuffer.readUnsignedShortLE128();
                                         if (nodeModelId == '\uffff') {
                                             nodeModelId = -1;
                                         }
 
-                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                        var56 = GraphicDefinition.incomingBuffer.readString();
+                                        var19 = Network.incomingBuffer.readUnsignedByte();
+                                        modelId = Network.incomingBuffer.readUnsignedByte();
+                                        var56 = Network.incomingBuffer.readString();
                                         if (1 <= modelId && modelId <= 8) {
                                             if (var56.equalsStringIgnoreCase(TextCore.HasNull)) {
                                                 var56 = null;
@@ -433,27 +433,27 @@ public final class PacketParser {
                                             Class1.aBooleanArray54[modelId + -1] = var19 == 0;
                                         }
 
-                                        Unsorted.incomingOpcode = -1;
+                                        Network.incomingOpcode = -1;
                                         return true;
-                                    } else if (Unsorted.incomingOpcode == 226) {
-                                        nodeModelId = GraphicDefinition.incomingBuffer.readInt();
-                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
+                                    } else if (Network.incomingOpcode == 226) {
+                                        nodeModelId = Network.incomingBuffer.readInt();
+                                        var19 = Network.incomingBuffer.readUnsignedShort128();
                                         Class3_Sub13_Sub23.method281(nodeModelId, var19);
-                                        Unsorted.incomingOpcode = -1;
+                                        Network.incomingOpcode = -1;
                                         return true;
-                                    } else if (Unsorted.incomingOpcode == 21) {
-                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedNegativeByte();
-                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                        modelId = GraphicDefinition.incomingBuffer.readIntLE();
+                                    } else if (Network.incomingOpcode == 21) {
+                                        nodeModelId = Network.incomingBuffer.readUnsignedNegativeByte();
+                                        var19 = Network.incomingBuffer.readUnsignedShort();
+                                        modelId = Network.incomingBuffer.readIntLE();
                                         Class146.updateInterfacePacketCounter(var19);
                                         Class3_Sub13_Sub19.method260(modelId, nodeModelId);
 
-                                        Unsorted.incomingOpcode = -1;
+                                        Network.incomingOpcode = -1;
                                         return true;
-                                    } else if (Unsorted.incomingOpcode == 145) {
-                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
-                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedByte128();
-                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
+                                    } else if (Network.incomingOpcode == 145) {
+                                        nodeModelId = Network.incomingBuffer.readUnsignedShortLE128();
+                                        var19 = Network.incomingBuffer.readUnsignedByte128();
+                                        modelId = Network.incomingBuffer.readUnsignedShortLE128();
                                         Class146.updateInterfacePacketCounter(modelId);
                                         if (var19 == 2) {
                                             Class7.method834();
@@ -467,68 +467,68 @@ public final class PacketParser {
                                             Unsorted.aBooleanArray3674[counter] = true;
                                         }
 
-                                        Unsorted.incomingOpcode = -1;
+                                        Network.incomingOpcode = -1;
                                         return true;
-                                    } else if (Unsorted.incomingOpcode == 69) { //UNUSED BY SERVER
-                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
-                                        var19 = GraphicDefinition.incomingBuffer.readInt();
-                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedShort128();
+                                    } else if (Network.incomingOpcode == 69) { //UNUSED BY SERVER
+                                        nodeModelId = Network.incomingBuffer.readUnsignedShortLE128();
+                                        var19 = Network.incomingBuffer.readInt();
+                                        modelId = Network.incomingBuffer.readUnsignedShort128();
                                         Class146.updateInterfacePacketCounter(nodeModelId);
                                         Class3_Sub13_Sub18.method255(modelId, var19, 1);
 
-                                        Unsorted.incomingOpcode = -1;
+                                        Network.incomingOpcode = -1;
                                         return true;
-                                    } else if (141 == Unsorted.incomingOpcode) { //UNUSED BY SERVER
-                                        var2 = GraphicDefinition.incomingBuffer.readLong();
-                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                        var56 = LinkableRSString.method733(modelId).method555(GraphicDefinition.incomingBuffer);
+                                    } else if (141 == Network.incomingOpcode) { //UNUSED BY SERVER
+                                        var2 = Network.incomingBuffer.readLong();
+                                        modelId = Network.incomingBuffer.readUnsignedShort();
+                                        var56 = LinkableRSString.method733(modelId).method555(Network.incomingBuffer);
                                         Class3_Sub28_Sub12.sendGameMessage(modelId, 19, var56, null, Objects.requireNonNull(Unsorted.method1052(var2)).method1545());
-                                        Unsorted.incomingOpcode = -1;
+                                        Network.incomingOpcode = -1;
                                         return true;
-                                    } else if (Unsorted.incomingOpcode == 169) { //UNUSED BY SERVER
-                                        Class162.method2204(GraphicDefinition.incomingBuffer);
-                                        Unsorted.incomingOpcode = -1;
+                                    } else if (Network.incomingOpcode == 169) { //UNUSED BY SERVER
+                                        Class162.method2204(Network.incomingBuffer);
+                                        Network.incomingOpcode = -1;
                                         return true;
-                                    } else if (89 == Unsorted.incomingOpcode) { //UNUSED BY SERVER
+                                    } else if (89 == Network.incomingOpcode) { //UNUSED BY SERVER
                                         Class3_Sub13_Sub2.method176(-117);
-                                        Class3_Sub30_Sub1.method819();
+                                        Network.method819();
                                         Class36.anInt641 += 32;
-                                        Unsorted.incomingOpcode = -1;
+                                        Network.incomingOpcode = -1;
                                         return true;
-                                    } else if (Unsorted.incomingOpcode == 125) {//camera rotation
-                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                        counter = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                        var6 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                        var30 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                    } else if (Network.incomingOpcode == 125) {//camera rotation
+                                        nodeModelId = Network.incomingBuffer.readUnsignedShort();
+                                        var19 = Network.incomingBuffer.readUnsignedByte();
+                                        modelId = Network.incomingBuffer.readUnsignedByte();
+                                        counter = Network.incomingBuffer.readUnsignedShort();
+                                        var6 = Network.incomingBuffer.readUnsignedByte();
+                                        var30 = Network.incomingBuffer.readUnsignedByte();
                                         Class146.updateInterfacePacketCounter(nodeModelId);
                                         Class164_Sub1.method2238(counter, modelId, var6, var19, var30);
 
-                                        Unsorted.incomingOpcode = -1;
+                                        Network.incomingOpcode = -1;
                                         return true;
-                                    } else if (Unsorted.incomingOpcode == 36) {
-                                        nodeModelId = GraphicDefinition.incomingBuffer.readIntV2();
-                                        var19 = GraphicDefinition.incomingBuffer.readSignedShortLE();
-                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedShort128();
+                                    } else if (Network.incomingOpcode == 36) {
+                                        nodeModelId = Network.incomingBuffer.readIntV2();
+                                        var19 = Network.incomingBuffer.readSignedShortLE();
+                                        modelId = Network.incomingBuffer.readUnsignedShort128();
                                         Class146.updateInterfacePacketCounter(modelId);
                                         Class131.method1790(nodeModelId, var19);
 
-                                        Unsorted.incomingOpcode = -1;
+                                        Network.incomingOpcode = -1;
                                         return true;
                                     } else {
                                         Class3_Sub1 var38;
                                         Class3_Sub1 var47;
-                                        if (Unsorted.incomingOpcode == 9) {
-                                            nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
-                                            var19 = GraphicDefinition.incomingBuffer.readIntLE();
-                                            modelId = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                                            counter = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
+                                        if (Network.incomingOpcode == 9) {
+                                            nodeModelId = Network.incomingBuffer.readUnsignedShortLE128();
+                                            var19 = Network.incomingBuffer.readIntLE();
+                                            modelId = Network.incomingBuffer.readUnsignedShort128();
+                                            counter = Network.incomingBuffer.readUnsignedShortLE();
                                             if (counter == 65535) {
                                                 counter = -1;
                                             }
 
-                                            var6 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
+                                            var6 = Network.incomingBuffer.readUnsignedShort128();
                                             if (var6 == 65535) {
                                                 var6 = -1;
                                             }
@@ -549,15 +549,15 @@ public final class PacketParser {
                                                 Class124.aHashTable_1659.put(var36, var38);
                                             }
 
-                                            Unsorted.incomingOpcode = -1;
+                                            Network.incomingOpcode = -1;
                                             return true;
                                         } else {
                                             int var33;
-                                            if (Unsorted.incomingOpcode == 56) { //UNUSED
-                                                nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                var19 = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
-                                                modelId = GraphicDefinition.incomingBuffer.readIntV1();
-                                                counter = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
+                                            if (Network.incomingOpcode == 56) { //UNUSED
+                                                nodeModelId = Network.incomingBuffer.readUnsignedShort();
+                                                var19 = Network.incomingBuffer.readUnsignedShortLE();
+                                                modelId = Network.incomingBuffer.readIntV1();
+                                                counter = Network.incomingBuffer.readUnsignedShortLE128();
                                                 if (modelId >> 30 == 0) {
                                                     SequenceDefinition var53;
                                                     if (modelId >> 29 != 0) {
@@ -642,23 +642,23 @@ public final class PacketParser {
                                                     }
                                                 }
 
-                                                Unsorted.incomingOpcode = -1;
+                                                Network.incomingOpcode = -1;
                                                 return true;
-                                            } else if (Unsorted.incomingOpcode == 207) { //UNUSED
-                                                nodeModelId = GraphicDefinition.incomingBuffer.readIntV2();
-                                                var19 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                                                modelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                counter = GraphicDefinition.incomingBuffer.readUnsignedShort128();
+                                            } else if (Network.incomingOpcode == 207) { //UNUSED
+                                                nodeModelId = Network.incomingBuffer.readIntV2();
+                                                var19 = Network.incomingBuffer.readUnsignedShort128();
+                                                modelId = Network.incomingBuffer.readUnsignedShort();
+                                                counter = Network.incomingBuffer.readUnsignedShort128();
                                                 Class146.updateInterfacePacketCounter(var19);
                                                 Class114.method1708(counter + (modelId << 16), nodeModelId);
 
-                                                Unsorted.incomingOpcode = -1;
+                                                Network.incomingOpcode = -1;
                                                 return true;
-                                            } else if (Unsorted.incomingOpcode == 38) {
-                                                Class3_Sub30_Sub1.method819();
-                                                nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedByte128();//Level
-                                                var19 = GraphicDefinition.incomingBuffer.readIntV1();//Skillxp
-                                                modelId = GraphicDefinition.incomingBuffer.readUnsignedByte();//Skill ID
+                                            } else if (Network.incomingOpcode == 38) {
+                                                Network.method819();
+                                                nodeModelId = Network.incomingBuffer.readUnsignedByte128();//Level
+                                                var19 = Network.incomingBuffer.readIntV1();//Skillxp
+                                                modelId = Network.incomingBuffer.readUnsignedByte();//Skill ID
                                                 Class133.anIntArray1743[modelId] = var19;//XP for Skill ID
                                                 Class3_Sub13_Sub15.anIntArray3185[modelId] = nodeModelId;//Level for Skill ID
                                                 Class3_Sub20.anIntArray2480[modelId] = 1;
@@ -673,27 +673,27 @@ public final class PacketParser {
 
 
                                                 Client.anIntArray3780[Unsorted.bitwiseAnd(31, Class49.anInt815++)] = modelId;
-                                                Unsorted.incomingOpcode = -1;
+                                                Network.incomingOpcode = -1;
                                                 return true;
-                                            } else if (Unsorted.incomingOpcode == 104 ||
-                                                    121 == Unsorted.incomingOpcode ||
-                                                    Unsorted.incomingOpcode == 97 ||
-                                                    Unsorted.incomingOpcode == 14 ||
-                                                    Unsorted.incomingOpcode == 202 ||
-                                                    Unsorted.incomingOpcode == 135 ||
-                                                    Unsorted.incomingOpcode == 17 ||
-                                                    Unsorted.incomingOpcode == 16 ||
-                                                    Unsorted.incomingOpcode == 240 ||
-                                                    Unsorted.incomingOpcode == 33 ||
-                                                    Unsorted.incomingOpcode == 20 ||
-                                                    195 == Unsorted.incomingOpcode ||
-                                                    179 == Unsorted.incomingOpcode) {
+                                            } else if (Network.incomingOpcode == 104 ||
+                                                    121 == Network.incomingOpcode ||
+                                                    Network.incomingOpcode == 97 ||
+                                                    Network.incomingOpcode == 14 ||
+                                                    Network.incomingOpcode == 202 ||
+                                                    Network.incomingOpcode == 135 ||
+                                                    Network.incomingOpcode == 17 ||
+                                                    Network.incomingOpcode == 16 ||
+                                                    Network.incomingOpcode == 240 ||
+                                                    Network.incomingOpcode == 33 ||
+                                                    Network.incomingOpcode == 20 ||
+                                                    195 == Network.incomingOpcode ||
+                                                    179 == Network.incomingOpcode) {
                                                 Class39.parseChunkPacket((byte) -99);
-                                                Unsorted.incomingOpcode = -1;
+                                                Network.incomingOpcode = -1;
                                                 return true;
-                                            } else if (Unsorted.incomingOpcode == 149) {
-                                                nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                var19 = GraphicDefinition.incomingBuffer.readInt();
+                                            } else if (Network.incomingOpcode == 149) {
+                                                nodeModelId = Network.incomingBuffer.readUnsignedShort();
+                                                var19 = Network.incomingBuffer.readInt();
                                                 Class146.updateInterfacePacketCounter(nodeModelId);
                                                 Class3_Sub31 var67 = Class3_Sub13_Sub17.aHashTable_3208.get(var19);
                                                 if (null != var67) {
@@ -705,13 +705,13 @@ public final class PacketParser {
                                                     Class3_Sub13_Sub7.aClass11_3087 = null;
                                                 }
 
-                                                Unsorted.incomingOpcode = -1;
+                                                Network.incomingOpcode = -1;
                                                 return true;
-                                            } else if (Unsorted.incomingOpcode == 187) {
+                                            } else if (Network.incomingOpcode == 187) {
                                                 //set camera
-                                                nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
-                                                var19 = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                modelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                nodeModelId = Network.incomingBuffer.readUnsignedShortLE();
+                                                var19 = Network.incomingBuffer.readUnsignedShort();
+                                                modelId = Network.incomingBuffer.readUnsignedShort();
                                                 Class146.updateInterfacePacketCounter(var19);
                                                 GraphicDefinition.CAMERA_DIRECTION = nodeModelId;
                                                 Unsorted.anInt2309 = modelId;
@@ -722,24 +722,24 @@ public final class PacketParser {
 
                                                 Unsorted.method1098((byte) -117);
 
-                                                Unsorted.incomingOpcode = -1;
+                                                Network.incomingOpcode = -1;
                                                 return true;
-                                            } else if (Unsorted.incomingOpcode == 132) { //UNUSED
-                                                nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                var19 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                                                modelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
-                                                counter = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
-                                                var6 = GraphicDefinition.incomingBuffer.readInt();
+                                            } else if (Network.incomingOpcode == 132) { //UNUSED
+                                                nodeModelId = Network.incomingBuffer.readUnsignedShort();
+                                                var19 = Network.incomingBuffer.readUnsignedShort128();
+                                                modelId = Network.incomingBuffer.readUnsignedShortLE128();
+                                                counter = Network.incomingBuffer.readUnsignedShortLE128();
+                                                var6 = Network.incomingBuffer.readInt();
                                                 Class146.updateInterfacePacketCounter(var19);
                                                 Unsorted.method2143((byte) -124, modelId, var6, counter, nodeModelId);
 
-                                                Unsorted.incomingOpcode = -1;
+                                                Network.incomingOpcode = -1;
                                                 return true;
-                                            } else if (112 == Unsorted.incomingOpcode) {
-                                                Class65.currentChunkX = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                Class39.currentChunkY = GraphicDefinition.incomingBuffer.readUnsignedNegativeByte();
+                                            } else if (112 == Network.incomingOpcode) {
+                                                Class39.currentChunkX = Network.incomingBuffer.readUnsignedByte();
+                                                Class39.currentChunkY = Network.incomingBuffer.readUnsignedNegativeByte();
 
-                                                for (nodeModelId = Class65.currentChunkX; nodeModelId < 8 + Class65.currentChunkX; ++nodeModelId) {
+                                                for (nodeModelId = Class39.currentChunkX; nodeModelId < 8 + Class39.currentChunkX; ++nodeModelId) {
                                                     for (var19 = Class39.currentChunkY; 8 + Class39.currentChunkY > var19; ++var19) {
                                                         if (null != Class3_Sub13_Sub22.aClass61ArrayArrayArray3273[WorldListCountry.localPlane][nodeModelId][var19]) {
                                                             Class3_Sub13_Sub22.aClass61ArrayArrayArray3273[WorldListCountry.localPlane][nodeModelId][var19] = null;
@@ -749,15 +749,15 @@ public final class PacketParser {
                                                 }
 
                                                 for (Class3_Sub4 var68 = (Class3_Sub4) Class3_Sub13_Sub6.aClass61_3075.method1222(); null != var68; var68 = (Class3_Sub4) Class3_Sub13_Sub6.aClass61_3075.method1221()) {
-                                                    if (Class65.currentChunkX <= var68.anInt2264 && 8 + Class65.currentChunkX > var68.anInt2264 && var68.anInt2248 >= Class39.currentChunkY && 8 + Class39.currentChunkY > var68.anInt2248 && var68.anInt2250 == WorldListCountry.localPlane) {
+                                                    if (Class39.currentChunkX <= var68.anInt2264 && 8 + Class39.currentChunkX > var68.anInt2264 && var68.anInt2248 >= Class39.currentChunkY && 8 + Class39.currentChunkY > var68.anInt2248 && var68.anInt2250 == WorldListCountry.localPlane) {
                                                         var68.anInt2259 = 0;
                                                     }
                                                 }
 
-                                                Unsorted.incomingOpcode = -1;
+                                                Network.incomingOpcode = -1;
                                                 return true;
-                                            } else if (Unsorted.incomingOpcode == 144) {
-                                                nodeModelId = GraphicDefinition.incomingBuffer.readIntV2();
+                                            } else if (Network.incomingOpcode == 144) {
+                                                nodeModelId = Network.incomingBuffer.readIntV2();
                                                 RSInterface var65 = Class7.getRSInterface(nodeModelId);
 
                                                 for (modelId = 0; Objects.requireNonNull(var65).itemAmounts.length > modelId; ++modelId) {
@@ -766,12 +766,12 @@ public final class PacketParser {
                                                 }
 
                                                 Class20.method909(var65);
-                                                Unsorted.incomingOpcode = -1;
+                                                Network.incomingOpcode = -1;
                                                 return true;
-                                            } else if (Unsorted.incomingOpcode == 130) {
-                                                nodeModelId = GraphicDefinition.incomingBuffer.readIntLE();
-                                                var19 = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
-                                                modelId = GraphicDefinition.incomingBuffer.readUnsignedShort128();
+                                            } else if (Network.incomingOpcode == 130) {
+                                                nodeModelId = Network.incomingBuffer.readIntLE();
+                                                var19 = Network.incomingBuffer.readUnsignedShortLE128();
+                                                modelId = Network.incomingBuffer.readUnsignedShort128();
                                                 if (modelId == '\uffff') {
                                                     modelId = -1;
                                                 }
@@ -779,28 +779,28 @@ public final class PacketParser {
                                                 Class146.updateInterfacePacketCounter(var19);
                                                 method256(-1, 1, nodeModelId, modelId);
 
-                                                Unsorted.incomingOpcode = -1;
+                                                Network.incomingOpcode = -1;
                                                 return true;
-                                            } else if (Unsorted.incomingOpcode == 192) {
-                                                Class161.anInt2028 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                Unsorted.incomingOpcode = -1;
+                                            } else if (Network.incomingOpcode == 192) {
+                                                Class161.anInt2028 = Network.incomingBuffer.readUnsignedByte();
+                                                Network.incomingOpcode = -1;
                                                 return true;
-                                            } else if (Unsorted.incomingOpcode == 13) {
-                                                nodeModelId = GraphicDefinition.incomingBuffer.readUnsigned128Byte();
-                                                var19 = GraphicDefinition.incomingBuffer.readUnsignedByte128();
-                                                modelId = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                            } else if (Network.incomingOpcode == 13) {
+                                                nodeModelId = Network.incomingBuffer.readUnsigned128Byte();
+                                                var19 = Network.incomingBuffer.readUnsignedByte128();
+                                                modelId = Network.incomingBuffer.readUnsignedByte();
                                                 WorldListCountry.localPlane = var19 >> 1;
                                                 Player.player.method1981(nodeModelId, (var19 & 1) == 1, modelId);
-                                                Unsorted.incomingOpcode = -1;
+                                                Network.incomingOpcode = -1;
                                                 return true;
                                             } else {
                                                 int var12;
                                                 RSString var57;
                                                 RSString var64;
-                                                if (Unsorted.incomingOpcode == 62) {
-                                                    var2 = GraphicDefinition.incomingBuffer.readLong();
-                                                    modelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                    counter = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                                if (Network.incomingOpcode == 62) {
+                                                    var2 = Network.incomingBuffer.readLong();
+                                                    modelId = Network.incomingBuffer.readUnsignedShort();
+                                                    counter = Network.incomingBuffer.readUnsignedByte();
                                                     isIgnored = true;
                                                     if (var2 < 0L) {
                                                         var2 &= Long.MAX_VALUE;
@@ -809,7 +809,7 @@ public final class PacketParser {
 
                                                     var41 = TextCore.aClass94_3672;
                                                     if (modelId > 0) {
-                                                        var41 = GraphicDefinition.incomingBuffer.readString();
+                                                        var41 = Network.incomingBuffer.readString();
                                                     }
 
                                                     RSString var46 = Objects.requireNonNull(Unsorted.method1052(var2)).method1545();
@@ -819,11 +819,11 @@ public final class PacketParser {
                                                             if (Unsorted.anIntArray882[var33] != modelId) {
                                                                 Unsorted.anIntArray882[var33] = modelId;
                                                                 if (0 < modelId) {
-                                                                    Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_3672, 5, RSString.stringCombiner(new RSString[]{var46, TextCore.HasLoggedIn}), -1);
+                                                                    Network.addChatMessage(TextCore.aClass94_3672, 5, RSString.stringCombiner(new RSString[]{var46, TextCore.HasLoggedIn}), -1);
                                                                 }
 
                                                                 if (modelId == 0) {
-                                                                    Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_3672, 5, RSString.stringCombiner(new RSString[]{var46, TextCore.HasLoggedOut}), -1);
+                                                                    Network.addChatMessage(TextCore.aClass94_3672, 5, RSString.stringCombiner(new RSString[]{var46, TextCore.HasLoggedOut}), -1);
                                                                 }
                                                             }
 
@@ -882,18 +882,18 @@ public final class PacketParser {
                                                         }
                                                     }
 
-                                                    Unsorted.incomingOpcode = -1;
+                                                    Network.incomingOpcode = -1;
                                                     return true;
-                                                } else if (Unsorted.incomingOpcode == 160) {
-                                                    if (0 == Unsorted.incomingPacketLength) {
+                                                } else if (Network.incomingOpcode == 160) {
+                                                    if (0 == Network.incomingPacketLength) {
                                                         Class3_Sub13_Sub28.aClass94_3353 = TextCore.HasWalkHere;
                                                     } else {
-                                                        Class3_Sub13_Sub28.aClass94_3353 = GraphicDefinition.incomingBuffer.readString();
+                                                        Class3_Sub13_Sub28.aClass94_3353 = Network.incomingBuffer.readString();
                                                     }
 
-                                                    Unsorted.incomingOpcode = -1;
+                                                    Network.incomingOpcode = -1;
                                                     return true;
-                                                } else if (128 == Unsorted.incomingOpcode) { //UNUSED
+                                                } else if (128 == Network.incomingOpcode) { //UNUSED
                                                     for (nodeModelId = 0; nodeModelId < ItemDefinition.ram.length; ++nodeModelId) {
                                                         if (ItemDefinition.ram[nodeModelId] != Class57.varpArray[nodeModelId]) {
                                                             ItemDefinition.ram[nodeModelId] = Class57.varpArray[nodeModelId];
@@ -902,26 +902,26 @@ public final class PacketParser {
                                                         }
                                                     }
 
-                                                    Unsorted.incomingOpcode = -1;
+                                                    Network.incomingOpcode = -1;
                                                     return true;
-                                                } else if (Unsorted.incomingOpcode == 154) {//camera position
-                                                    nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                    var19 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                    modelId = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                    counter = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                    var6 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                    var30 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                                } else if (Network.incomingOpcode == 154) {//camera position
+                                                    nodeModelId = Network.incomingBuffer.readUnsignedShort();
+                                                    var19 = Network.incomingBuffer.readUnsignedByte();
+                                                    modelId = Network.incomingBuffer.readUnsignedByte();
+                                                    counter = Network.incomingBuffer.readUnsignedShort();
+                                                    var6 = Network.incomingBuffer.readUnsignedByte();
+                                                    var30 = Network.incomingBuffer.readUnsignedByte();
                                                     Class146.updateInterfacePacketCounter(nodeModelId);
                                                     Class3_Sub20.method390(true, var6, counter, var30, (byte) -124, modelId, var19);
 
-                                                    Unsorted.incomingOpcode = -1;
+                                                    Network.incomingOpcode = -1;
                                                     return true;
-                                                } else if (247 == Unsorted.incomingOpcode) { //UNUSED
-                                                    var2 = GraphicDefinition.incomingBuffer.readLong();
-                                                    nameAsLong = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                    var29 = GraphicDefinition.incomingBuffer.readMedium();
-                                                    chatIcon = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                    var33 = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                } else if (247 == Network.incomingOpcode) { //UNUSED
+                                                    var2 = Network.incomingBuffer.readLong();
+                                                    nameAsLong = Network.incomingBuffer.readUnsignedShort();
+                                                    var29 = Network.incomingBuffer.readMedium();
+                                                    chatIcon = Network.incomingBuffer.readUnsignedByte();
+                                                    var33 = Network.incomingBuffer.readUnsignedShort();
                                                     boolean var49 = false;
                                                     long var51 = (nameAsLong << 32) - -var29;
                                                     int var59 = 0;
@@ -952,7 +952,7 @@ public final class PacketParser {
                                                     if (!var49 && inTutorialIsland == 0) {
                                                         Class163_Sub2_Sub1.aLongArray4017[MouseListeningClass.anInt1921] = var51;
                                                         MouseListeningClass.anInt1921 = (1 + MouseListeningClass.anInt1921) % 100;
-                                                        var64 = LinkableRSString.method733(var33).method555(GraphicDefinition.incomingBuffer);
+                                                        var64 = LinkableRSString.method733(var33).method555(Network.incomingBuffer);
                                                         if (chatIcon == 2) {
                                                             Class3_Sub28_Sub12.sendGameMessage(var33, 18, var64, null, RSString.stringCombiner(new RSString[]{TextCore.aClass94_444, Objects.requireNonNull(Unsorted.method1052(var2)).method1545()}));
                                                         } else if (1 == chatIcon) {
@@ -962,14 +962,14 @@ public final class PacketParser {
                                                         }
                                                     }
 
-                                                    Unsorted.incomingOpcode = -1;
+                                                    Network.incomingOpcode = -1;
                                                     return true;
                                                 } else {
                                                     Class3_Sub31 var26;
-                                                    if (Unsorted.incomingOpcode == 176) { //IMISED
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readIntV1();
-                                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                                                        modelId = GraphicDefinition.incomingBuffer.readIntV1();
+                                                    if (Network.incomingOpcode == 176) { //IMISED
+                                                        nodeModelId = Network.incomingBuffer.readIntV1();
+                                                        var19 = Network.incomingBuffer.readUnsignedShort128();
+                                                        modelId = Network.incomingBuffer.readIntV1();
                                                         Class146.updateInterfacePacketCounter(var19);
                                                         Class3_Sub31 var23 = Class3_Sub13_Sub17.aHashTable_3208.get(nodeModelId);
                                                         var26 = Class3_Sub13_Sub17.aHashTable_3208.get(modelId);
@@ -997,15 +997,15 @@ public final class PacketParser {
                                                             Class3_Sub8.method124(28, 1, Class3_Sub28_Sub12.anInt3655);
                                                         }
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 27) { //UNUSED
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                        counter = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                        var6 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                        var30 = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                    } else if (Network.incomingOpcode == 27) { //UNUSED
+                                                        nodeModelId = Network.incomingBuffer.readUnsignedShort();
+                                                        var19 = Network.incomingBuffer.readUnsignedByte();
+                                                        modelId = Network.incomingBuffer.readUnsignedByte();
+                                                        counter = Network.incomingBuffer.readUnsignedByte();
+                                                        var6 = Network.incomingBuffer.readUnsignedByte();
+                                                        var30 = Network.incomingBuffer.readUnsignedShort();
                                                         Class146.updateInterfacePacketCounter(nodeModelId);
                                                         WaterfallShader.aBooleanArray2169[var19] = true;
                                                         Class3_Sub13_Sub32.anIntArray3383[var19] = modelId;
@@ -1013,85 +1013,85 @@ public final class PacketParser {
                                                         Class3_Sub13_Sub29.anIntArray3359[var19] = var6;
                                                         Class163_Sub1_Sub1.anIntArray4009[var19] = var30;
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 2) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readIntV1();
-                                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
+                                                    } else if (Network.incomingOpcode == 2) {
+                                                        nodeModelId = Network.incomingBuffer.readIntV1();
+                                                        var19 = Network.incomingBuffer.readUnsignedShort128();
+                                                        modelId = Network.incomingBuffer.readUnsignedShortLE128();
                                                         Class146.updateInterfacePacketCounter(var19);
                                                         Class79.method1385(modelId, nodeModelId);
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 85) {
-                                                        Class38_Sub1.anInt2617 = GraphicDefinition.incomingBuffer.readUnsignedShort() * 30;
-                                                        Unsorted.incomingOpcode = -1;
+                                                    } else if (Network.incomingOpcode == 85) {
+                                                        Class38_Sub1.anInt2617 = Network.incomingBuffer.readUnsignedShort() * 30;
+                                                        Network.incomingOpcode = -1;
                                                         Class140_Sub6.anInt2905 = anInt3213;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 114) {
-                                                        Class3_Sub13_Sub29.method305(Class38.aClass87_665, GraphicDefinition.incomingBuffer, Unsorted.incomingPacketLength);
-                                                        Unsorted.incomingOpcode = -1;
+                                                    } else if (Network.incomingOpcode == 114) {
+                                                        Class3_Sub13_Sub29.method305(Class38.aClass87_665, Network.incomingBuffer, Network.incomingPacketLength);
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (65 == Unsorted.incomingOpcode) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
-                                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedNegativeByte();
-                                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
+                                                    } else if (65 == Network.incomingOpcode) {
+                                                        nodeModelId = Network.incomingBuffer.readUnsignedShortLE();
+                                                        var19 = Network.incomingBuffer.readUnsignedNegativeByte();
+                                                        modelId = Network.incomingBuffer.readUnsignedShortLE128();
                                                         Class146.updateInterfacePacketCounter(nodeModelId);
                                                         Class3_Sub13_Sub18.method255(modelId, var19, (byte) -83 ^ -84);
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 234) {
-                                                        Class3_Sub30_Sub1.method819();
-                                                        Unsorted.anInt136 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                                    } else if (Network.incomingOpcode == 234) {
+                                                        Network.method819();
+                                                        Unsorted.anInt136 = Network.incomingBuffer.readUnsignedByte();
                                                         Class140_Sub6.anInt2905 = anInt3213;
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 209) {
+                                                    } else if (Network.incomingOpcode == 209) {
                                                         if (-1 != Class3_Sub28_Sub12.anInt3655) {
                                                             Class3_Sub8.method124(48, 0, Class3_Sub28_Sub12.anInt3655);
                                                         }
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 191) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
+                                                    } else if (Network.incomingOpcode == 191) {
+                                                        nodeModelId = Network.incomingBuffer.readUnsignedShortLE();
                                                         Class3_Sub28_Sub1.method532(nodeModelId);
                                                         Class3_Sub28_Sub4.anIntArray3565[Unsorted.bitwiseAnd(31, Unsorted.anInt944++)] = Unsorted.bitwiseAnd(nodeModelId, 32767);
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 102) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
-                                                        var19 = GraphicDefinition.incomingBuffer.readUnsigned128Byte();
-                                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                    } else if (Network.incomingOpcode == 102) {
+                                                        nodeModelId = Network.incomingBuffer.readUnsignedShortLE();
+                                                        var19 = Network.incomingBuffer.readUnsigned128Byte();
+                                                        modelId = Network.incomingBuffer.readUnsignedShort();
                                                         NPC var39 = NPC.npcs[nodeModelId];
                                                         if (null != var39) {
                                                             Unsorted.method1772(var19, modelId, 39, var39);
                                                         }
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 159) {
-                                                        Class3_Sub30_Sub1.method819();
-                                                        MouseListeningClass.anInt1925 = GraphicDefinition.incomingBuffer.readSignedShort();
+                                                    } else if (Network.incomingOpcode == 159) {
+                                                        Network.method819();
+                                                        MouseListeningClass.anInt1925 = Network.incomingBuffer.readSignedShort();
                                                         Class140_Sub6.anInt2905 = anInt3213;
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 71) {
-                                                        var2 = GraphicDefinition.incomingBuffer.readLong();
-                                                        var58 = Class3_Sub28_Sub17.method686(Objects.requireNonNull(Class32.method992(GraphicDefinition.incomingBuffer).properlyCapitalize()));
-                                                        Class3_Sub30_Sub1.addChatMessage(Objects.requireNonNull(Unsorted.method1052(var2)).method1545(), 6, var58, (byte) -83 ^ 82);
-                                                        Unsorted.incomingOpcode = -1;
+                                                    } else if (Network.incomingOpcode == 71) {
+                                                        var2 = Network.incomingBuffer.readLong();
+                                                        var58 = Class3_Sub28_Sub17.method686(Objects.requireNonNull(Class32.method992(Network.incomingBuffer).properlyCapitalize()));
+                                                        Network.addChatMessage(Objects.requireNonNull(Unsorted.method1052(var2)).method1545(), 6, var58, (byte) -83 ^ 82);
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 42) {
-                                                        if (null != Class3_Sub13_Sub10.aFrame3121) {
+                                                    } else if (Network.incomingOpcode == 42) {
+                                                        if (null != GameShell.aFrame3121) {
                                                             GameObject.graphicsSettings(false, Unsorted.anInt2577, -1, -1);
                                                         }
 
-                                                        byte[] var22 = new byte[Unsorted.incomingPacketLength];
-                                                        GraphicDefinition.incomingBuffer.method811((byte) 30, 0, var22, Unsorted.incomingPacketLength);
-                                                        playerName = Class3_Sub13_Sub3.method178(var22, Unsorted.incomingPacketLength, 0);
+                                                        byte[] var22 = new byte[Network.incomingPacketLength];
+                                                        Network.incomingBuffer.method811((byte) 30, 0, var22, Network.incomingPacketLength);
+                                                        playerName = Class3_Sub13_Sub3.method178(var22, Network.incomingPacketLength, 0);
                                                         if (null == GameShell.frame && (3 == Signlink.anInt1214 || !Signlink.osName.startsWith("win") || Class106.hasInternetExplorer6)) {
                                                             Class99.method1596(playerName, (byte) 127, true);
                                                         } else {
@@ -1100,30 +1100,30 @@ public final class PacketParser {
                                                             Class15.aClass64_351 = Class38.aClass87_665.method1452(new String(playerName.method1568(), StandardCharsets.ISO_8859_1), true);
                                                         }
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 111) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                                                        var19 = GraphicDefinition.incomingBuffer.readIntV2();
-                                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
-                                                        counter = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
-                                                        var6 = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
+                                                    } else if (Network.incomingOpcode == 111) {
+                                                        nodeModelId = Network.incomingBuffer.readUnsignedShort128();
+                                                        var19 = Network.incomingBuffer.readIntV2();
+                                                        modelId = Network.incomingBuffer.readUnsignedShortLE128();
+                                                        counter = Network.incomingBuffer.readUnsignedShortLE();
+                                                        var6 = Network.incomingBuffer.readUnsignedShortLE128();
                                                         Class146.updateInterfacePacketCounter(nodeModelId);
                                                         method256(modelId, 7, var19, counter << 16 | var6);
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (37 == Unsorted.incomingOpcode) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedByte128();
-                                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
+                                                    } else if (37 == Network.incomingOpcode) {
+                                                        nodeModelId = Network.incomingBuffer.readUnsignedByte128();
+                                                        var19 = Network.incomingBuffer.readUnsignedShortLE();
                                                         Class163.method2209((byte) -122, nodeModelId, var19);
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 155) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                        var19 = GraphicDefinition.incomingBuffer.readIntV2();
-                                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                                                        counter = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                    } else if (Network.incomingOpcode == 155) {
+                                                        nodeModelId = Network.incomingBuffer.readUnsignedByte();
+                                                        var19 = Network.incomingBuffer.readIntV2();
+                                                        modelId = Network.incomingBuffer.readUnsignedShort128();
+                                                        counter = Network.incomingBuffer.readUnsignedShort();
                                                         Class146.updateInterfacePacketCounter(modelId);
                                                         var26 = Class3_Sub13_Sub17.aHashTable_3208.get(var19);
                                                         if (null != var26) {
@@ -1132,9 +1132,9 @@ public final class PacketParser {
 
                                                         Class21.method914(counter, var19, nodeModelId);
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 131) {
+                                                    } else if (Network.incomingOpcode == 131) {
                                                         for (nodeModelId = 0; nodeModelId < Class3_Sub13_Sub22.players.length; ++nodeModelId) {
                                                             if (Class3_Sub13_Sub22.players[nodeModelId] != null) {
                                                                 Class3_Sub13_Sub22.players[nodeModelId].anInt2771 = -1;
@@ -1147,18 +1147,18 @@ public final class PacketParser {
                                                             }
                                                         }
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 217) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                                    } else if (Network.incomingOpcode == 217) {
+                                                        nodeModelId = Network.incomingBuffer.readUnsignedByte();
                                                         Class96 var48 = new Class96();
                                                         var19 = nodeModelId >> 6;
                                                         var48.anInt1360 = nodeModelId & 63;
-                                                        var48.anInt1351 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                                        var48.anInt1351 = Network.incomingBuffer.readUnsignedByte();
                                                         if (var48.anInt1351 >= 0 && Class166.aAbstractSpriteArray2072.length > var48.anInt1351) {
                                                             if (var48.anInt1360 == 1 || 10 == var48.anInt1360) {
-                                                                var48.anInt1359 = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                                GraphicDefinition.incomingBuffer.index += 3;
+                                                                var48.anInt1359 = Network.incomingBuffer.readUnsignedShort();
+                                                                Network.incomingBuffer.index += 3;
                                                             } else if (var48.anInt1360 >= 2 && 6 >= var48.anInt1360) {
                                                                 if (var48.anInt1360 == 2) {
                                                                     var48.anInt1346 = 64;
@@ -1186,12 +1186,12 @@ public final class PacketParser {
                                                                 }
 
                                                                 var48.anInt1360 = 2;
-                                                                var48.anInt1356 = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                                var48.anInt1347 = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                                var48.anInt1353 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                                                var48.anInt1356 = Network.incomingBuffer.readUnsignedShort();
+                                                                var48.anInt1347 = Network.incomingBuffer.readUnsignedShort();
+                                                                var48.anInt1353 = Network.incomingBuffer.readUnsignedByte();
                                                             }
 
-                                                            var48.anInt1355 = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                            var48.anInt1355 = Network.incomingBuffer.readUnsignedShort();
                                                             if (var48.anInt1355 == '\uffff') {
                                                                 var48.anInt1355 = -1;
                                                             }
@@ -1199,41 +1199,41 @@ public final class PacketParser {
                                                             ClientErrorException.aClass96Array2114[var19] = var48;
                                                         }
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (126 == Unsorted.incomingOpcode) {
-                                                        Class3_Sub28_Sub5.anInt3591 = Unsorted.incomingPacketLength / 8;
+                                                    } else if (126 == Network.incomingOpcode) {
+                                                        Class3_Sub28_Sub5.anInt3591 = Network.incomingPacketLength / 8;
 
                                                         for (nodeModelId = 0; Class3_Sub28_Sub5.anInt3591 > nodeModelId; ++nodeModelId) {
-                                                            Class114.ignores[nodeModelId] = GraphicDefinition.incomingBuffer.readLong();
+                                                            Class114.ignores[nodeModelId] = Network.incomingBuffer.readLong();
                                                             Class3_Sub13_Sub27.aClass94Array3341[nodeModelId] = Unsorted.method1052(Class114.ignores[nodeModelId]);
                                                         }
 
                                                         Class110.anInt1472 = anInt3213;
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 32) {
+                                                    } else if (Network.incomingOpcode == 32) {
                                                         Class3_Sub13_Sub14.renderNPCs(8169);
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 119) {
+                                                    } else if (Network.incomingOpcode == 119) {
                                                         //Reposition child?
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                                                        var19 = GraphicDefinition.incomingBuffer.readIntLE();
-                                                        modelId = GraphicDefinition.incomingBuffer.readSignedShort();
-                                                        counter = GraphicDefinition.incomingBuffer.readSignedShort128();
+                                                        nodeModelId = Network.incomingBuffer.readUnsignedShort128();
+                                                        var19 = Network.incomingBuffer.readIntLE();
+                                                        modelId = Network.incomingBuffer.readSignedShort();
+                                                        counter = Network.incomingBuffer.readSignedShort128();
                                                         Class146.updateInterfacePacketCounter(nodeModelId);
                                                         Class168.method2271(modelId, var19, counter);
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 235) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsigned128Byte();
+                                                    } else if (Network.incomingOpcode == 235) {
+                                                        nodeModelId = Network.incomingBuffer.readUnsigned128Byte();
                                                         var19 = nodeModelId >> 2;
                                                         modelId = 3 & nodeModelId;
                                                         counter = Class75.anIntArray1107[var19];
-                                                        var6 = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                        var30 = GraphicDefinition.incomingBuffer.readInt();
+                                                        var6 = Network.incomingBuffer.readUnsignedShort();
+                                                        var30 = Network.incomingBuffer.readInt();
                                                         if ('\uffff' == var6) {
                                                             var6 = -1;
                                                         }
@@ -1244,13 +1244,13 @@ public final class PacketParser {
                                                         clanChatIcon -= Class82.anInt1152;
                                                         chatIcon = 3 & var30 >> 28;
                                                         Class50.method1131(chatIcon, 110, modelId, var19, clanChatIcon, counter, var33, var6);
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 0) {
-                                                        var2 = GraphicDefinition.incomingBuffer.readLong();
-                                                        nameAsLong = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                        var29 = GraphicDefinition.incomingBuffer.readMedium();
-                                                        chatIcon = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                                    } else if (Network.incomingOpcode == 0) {
+                                                        var2 = Network.incomingBuffer.readLong();
+                                                        nameAsLong = Network.incomingBuffer.readUnsignedShort();
+                                                        var29 = Network.incomingBuffer.readMedium();
+                                                        chatIcon = Network.incomingBuffer.readUnsignedByte();
                                                         boolean var42 = false;
                                                         long var35 = var29 + (nameAsLong << 32);
                                                         var12 = 0;
@@ -1283,26 +1283,26 @@ public final class PacketParser {
                                                         if (!var42 && inTutorialIsland == 0) {
                                                             Class163_Sub2_Sub1.aLongArray4017[MouseListeningClass.anInt1921] = var35;
                                                             MouseListeningClass.anInt1921 = (MouseListeningClass.anInt1921 - -1) % 100;
-                                                            RSString var52 = Class3_Sub28_Sub17.method686(Objects.requireNonNull(Class32.method992(GraphicDefinition.incomingBuffer).properlyCapitalize()));
+                                                            RSString var52 = Class3_Sub28_Sub17.method686(Objects.requireNonNull(Class32.method992(Network.incomingBuffer).properlyCapitalize()));
                                                             if (chatIcon == 2 || chatIcon == 3) {
-                                                                Class3_Sub30_Sub1.addChatMessage(RSString.stringCombiner(new RSString[]{TextCore.aClass94_444, Objects.requireNonNull(Unsorted.method1052(var2)).method1545()}), 7, var52, -1);
+                                                                Network.addChatMessage(RSString.stringCombiner(new RSString[]{TextCore.aClass94_444, Objects.requireNonNull(Unsorted.method1052(var2)).method1545()}), 7, var52, -1);
                                                             } else if (chatIcon == 1) {
-                                                                Class3_Sub30_Sub1.addChatMessage(RSString.stringCombiner(new RSString[]{RSString.parse("<img=" + (chatIcon - 1) + ">"), Objects.requireNonNull(Unsorted.method1052(var2)).method1545()}), 7, var52, -1);
+                                                                Network.addChatMessage(RSString.stringCombiner(new RSString[]{RSString.parse("<img=" + (chatIcon - 1) + ">"), Objects.requireNonNull(Unsorted.method1052(var2)).method1545()}), 7, var52, -1);
                                                             } else {
-                                                                Class3_Sub30_Sub1.addChatMessage(RSString.stringCombiner(new RSString[]{RSString.parse("<img=" + (chatIcon - 1) + ">"), Objects.requireNonNull(Unsorted.method1052(var2)).method1545()}), 7, var52, -1);
+                                                                Network.addChatMessage(RSString.stringCombiner(new RSString[]{RSString.parse("<img=" + (chatIcon - 1) + ">"), Objects.requireNonNull(Unsorted.method1052(var2)).method1545()}), 7, var52, -1);
                                                             }
                                                         }
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 54) {//cc messahe
-                                                        var2 = GraphicDefinition.incomingBuffer.readLong();
-                                                        GraphicDefinition.incomingBuffer.readSignedByte();
-                                                        nameAsLong = GraphicDefinition.incomingBuffer.readLong();
-                                                        var29 = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                        var36 = GraphicDefinition.incomingBuffer.readMedium();
+                                                    } else if (Network.incomingOpcode == 54) {//cc messahe
+                                                        var2 = Network.incomingBuffer.readLong();
+                                                        Network.incomingBuffer.readSignedByte();
+                                                        nameAsLong = Network.incomingBuffer.readLong();
+                                                        var29 = Network.incomingBuffer.readUnsignedShort();
+                                                        var36 = Network.incomingBuffer.readMedium();
                                                         long var44 = (var29 << 32) + var36;
-                                                        clanChatIcon = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                                        clanChatIcon = Network.incomingBuffer.readUnsignedByte();
                                                         boolean var13 = false;
                                                         int var14 = 0;
 
@@ -1335,7 +1335,7 @@ public final class PacketParser {
                                                         if (!var13 && 0 == inTutorialIsland) {
                                                             Class163_Sub2_Sub1.aLongArray4017[MouseListeningClass.anInt1921] = var44;
                                                             MouseListeningClass.anInt1921 = (MouseListeningClass.anInt1921 + 1) % 100;
-                                                            var57 = Class3_Sub28_Sub17.method686(Objects.requireNonNull(Class32.method992(GraphicDefinition.incomingBuffer).properlyCapitalize()));
+                                                            var57 = Class3_Sub28_Sub17.method686(Objects.requireNonNull(Class32.method992(Network.incomingBuffer).properlyCapitalize()));
                                                             if (clanChatIcon == 2 || clanChatIcon == 3) {
                                                                 Class3_Sub13_Sub11.method221(-1, var57, RSString.stringCombiner(new RSString[]{TextCore.aClass94_444, Objects.requireNonNull(Unsorted.method1052(var2)).method1545()}), Objects.requireNonNull(Unsorted.method1052(nameAsLong)).method1545(), 9);
                                                             } else if (clanChatIcon == 1) {
@@ -1348,26 +1348,26 @@ public final class PacketParser {
                                                             }
                                                         }
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 214) {
+                                                    } else if (Network.incomingOpcode == 214) {
                                                         Class39.updateSceneGraph(true);
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 172) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                                    } else if (Network.incomingOpcode == 172) {
+                                                        nodeModelId = Network.incomingBuffer.readUnsignedShort();
+                                                        var19 = Network.incomingBuffer.readUnsignedByte();
                                                         if (nodeModelId == 65535) {
                                                             nodeModelId = -1;
                                                         }
 
-                                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                        modelId = Network.incomingBuffer.readUnsignedShort();
                                                         Class3_Sub13_Sub6.method199(var19, nodeModelId, modelId);
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 66) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
-                                                        var19 = GraphicDefinition.incomingBuffer.readIntV1();
+                                                    } else if (Network.incomingOpcode == 66) {
+                                                        nodeModelId = Network.incomingBuffer.readUnsignedShortLE128();
+                                                        var19 = Network.incomingBuffer.readIntV1();
                                                         Class146.updateInterfacePacketCounter(nodeModelId);
                                                         modelId = 0;
                                                         if (Player.player.class52 != null) {
@@ -1376,28 +1376,28 @@ public final class PacketParser {
 
                                                         method256(-1, 3, var19, modelId);
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 171) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readIntV2();
-                                                        playerName = GraphicDefinition.incomingBuffer.readString();
-                                                        modelId = GraphicDefinition.incomingBuffer.readUnsignedShort128();
+                                                    } else if (Network.incomingOpcode == 171) {
+                                                        nodeModelId = Network.incomingBuffer.readIntV2();
+                                                        playerName = Network.incomingBuffer.readString();
+                                                        modelId = Network.incomingBuffer.readUnsignedShort128();
                                                         Class146.updateInterfacePacketCounter(modelId);
                                                         Unsorted.method566(playerName, nodeModelId);
 
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
-                                                    } else if (Unsorted.incomingOpcode == 84) {
-                                                        nodeModelId = GraphicDefinition.incomingBuffer.readIntLE();
-                                                        var19 = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
+                                                    } else if (Network.incomingOpcode == 84) {
+                                                        nodeModelId = Network.incomingBuffer.readIntLE();
+                                                        var19 = Network.incomingBuffer.readUnsignedShortLE128();
                                                         Class163.method2209((byte) -106, nodeModelId, var19);
-                                                        Unsorted.incomingOpcode = -1;
+                                                        Network.incomingOpcode = -1;
                                                         return true;
                                                     } else {
                                                         RSInterface var25;
-                                                        if (Unsorted.incomingOpcode == 22) {
-                                                            nodeModelId = GraphicDefinition.incomingBuffer.readInt();
-                                                            var19 = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                        if (Network.incomingOpcode == 22) {
+                                                            nodeModelId = Network.incomingBuffer.readInt();
+                                                            var19 = Network.incomingBuffer.readUnsignedShort();
                                                             if (nodeModelId < -70000) {
                                                                 var19 += '\u8000';
                                                             }
@@ -1408,14 +1408,14 @@ public final class PacketParser {
                                                                 var25 = Class7.getRSInterface(nodeModelId);
                                                             }
 
-                                                            for (; Unsorted.incomingPacketLength > GraphicDefinition.incomingBuffer.index; Class168.method2277(var6 + -1, counter, var30, var19, (byte) 46)) {
-                                                                counter = GraphicDefinition.incomingBuffer.getSmart();
-                                                                var6 = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                            for (; Network.incomingPacketLength > Network.incomingBuffer.index; Class168.method2277(var6 + -1, counter, var30, var19, (byte) 46)) {
+                                                                counter = Network.incomingBuffer.getSmart();
+                                                                var6 = Network.incomingBuffer.readUnsignedShort();
                                                                 var30 = 0;
                                                                 if (var6 != 0) {
-                                                                    var30 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                                                    var30 = Network.incomingBuffer.readUnsignedByte();
                                                                     if (var30 == 255) {
-                                                                        var30 = GraphicDefinition.incomingBuffer.readInt();
+                                                                        var30 = Network.incomingBuffer.readInt();
                                                                     }
                                                                 }
 
@@ -1429,60 +1429,60 @@ public final class PacketParser {
                                                                 Class20.method909(var25);
                                                             }
 
-                                                            Class3_Sub30_Sub1.method819();
+                                                            Network.method819();
                                                             Class3_Sub28_Sub4.anIntArray3565[Unsorted.bitwiseAnd(Unsorted.anInt944++, 31)] = Unsorted.bitwiseAnd(32767, var19);
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             return true;
-                                                        } else if (Unsorted.incomingOpcode == 24) {
-                                                            nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                        } else if (Network.incomingOpcode == 24) {
+                                                            nodeModelId = Network.incomingBuffer.readUnsignedShort();
                                                             Class146.updateInterfacePacketCounter(nodeModelId);
                                                             Class3_Sub28_Sub5.method560();
 
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             return true;
-                                                        } else if (Unsorted.incomingOpcode == 86) {
+                                                        } else if (Network.incomingOpcode == 86) {
                                                             Class167.method2269((byte) 46);
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             return false;
-                                                        } else if (116 == Unsorted.incomingOpcode) {
-                                                            nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                            if (GraphicDefinition.incomingBuffer.readUnsignedByte() == 0) {
+                                                        } else if (116 == Network.incomingOpcode) {
+                                                            nodeModelId = Network.incomingBuffer.readUnsignedByte();
+                                                            if (Network.incomingBuffer.readUnsignedByte() == 0) {
                                                                 Class3_Sub13_Sub33.aClass133Array3393[nodeModelId] = new Class133();
                                                             } else {
-                                                                --GraphicDefinition.incomingBuffer.index;
-                                                                Class3_Sub13_Sub33.aClass133Array3393[nodeModelId] = new Class133(GraphicDefinition.incomingBuffer);
+                                                                --Network.incomingBuffer.index;
+                                                                Class3_Sub13_Sub33.aClass133Array3393[nodeModelId] = new Class133(Network.incomingBuffer);
                                                             }
 
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             Class121.anInt1642 = anInt3213;
                                                             return true;
-                                                        } else if (Unsorted.incomingOpcode == 73) {//npc model
-                                                            nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                                                            var19 = GraphicDefinition.incomingBuffer.readIntLE();
+                                                        } else if (Network.incomingOpcode == 73) {//npc model
+                                                            nodeModelId = Network.incomingBuffer.readUnsignedShort128();
+                                                            var19 = Network.incomingBuffer.readIntLE();
                                                             if (nodeModelId == 65535) {
                                                                 nodeModelId = -1;
                                                             }
 
-                                                            modelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
+                                                            modelId = Network.incomingBuffer.readUnsignedShortLE();
                                                             Class146.updateInterfacePacketCounter(modelId);
                                                             method256(-1, 2, var19, nodeModelId);
 
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             return true;
-                                                        } else if (Unsorted.incomingOpcode == 162) {
+                                                        } else if (Network.incomingOpcode == 162) {
                                                             Class39.updateSceneGraph(false);
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             return true;
-                                                        } else if (165 == Unsorted.incomingOpcode) {
-                                                            nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
-                                                            var19 = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
+                                                        } else if (165 == Network.incomingOpcode) {
+                                                            nodeModelId = Network.incomingBuffer.readUnsignedShortLE();
+                                                            var19 = Network.incomingBuffer.readUnsignedShortLE();
                                                             if (var19 == '\uffff') {
                                                                 var19 = -1;
                                                             }
 
-                                                            modelId = GraphicDefinition.incomingBuffer.readInt();
-                                                            counter = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                                                            var6 = GraphicDefinition.incomingBuffer.readIntV1();
+                                                            modelId = Network.incomingBuffer.readInt();
+                                                            counter = Network.incomingBuffer.readUnsignedShort128();
+                                                            var6 = Network.incomingBuffer.readIntV1();
                                                             if (counter == 65535) {
                                                                 counter = -1;
                                                             }
@@ -1505,41 +1505,41 @@ public final class PacketParser {
                                                                 Class124.aHashTable_1659.put(var36, var38);
                                                             }
 
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             return true;
-                                                        } else if (Unsorted.incomingOpcode == 197) {
-                                                            CS2Script.anInt1357 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                                                        } else if (Network.incomingOpcode == 197) {
+                                                            CS2Script.anInt1357 = Network.incomingBuffer.readUnsignedByte();
                                                             Class110.anInt1472 = anInt3213;
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             return true;
-                                                        } else if (Unsorted.incomingOpcode == 196) {
-                                                            var2 = GraphicDefinition.incomingBuffer.readLong();
-                                                            modelId = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                                                            byte var28 = GraphicDefinition.incomingBuffer.readSignedByte();
+                                                        } else if (Network.incomingOpcode == 196) {
+                                                            var2 = Network.incomingBuffer.readLong();
+                                                            modelId = Network.incomingBuffer.readUnsignedShort();
+                                                            byte var28 = Network.incomingBuffer.readSignedByte();
                                                             isIgnored = (Long.MIN_VALUE & var2) != 0;
 
                                                             if (isIgnored) {
                                                                 if (Unsorted.clanSize == 0) {
-                                                                    Unsorted.incomingOpcode = -1;
+                                                                    Network.incomingOpcode = -1;
                                                                     return true;
                                                                 }
 
                                                                 var2 &= Long.MAX_VALUE;
 
-                                                                for (var30 = 0; var30 < Unsorted.clanSize && (var2 != aClass3_Sub19Array3694[var30].linkableKey || aClass3_Sub19Array3694[var30].anInt2478 != modelId); ++var30) {
+                                                                for (var30 = 0; var30 < Unsorted.clanSize && (var2 != clanChatInformationArray[var30].linkableKey || clanChatInformationArray[var30].anInt2478 != modelId); ++var30) {
                                                                 }
 
                                                                 if (var30 < Unsorted.clanSize) {
                                                                     while (var30 < -1 + Unsorted.clanSize) {
-                                                                        aClass3_Sub19Array3694[var30] = aClass3_Sub19Array3694[1 + var30];
+                                                                        clanChatInformationArray[var30] = clanChatInformationArray[1 + var30];
                                                                         ++var30;
                                                                     }
 
                                                                     --Unsorted.clanSize;
-                                                                    aClass3_Sub19Array3694[Unsorted.clanSize] = null;
+                                                                    clanChatInformationArray[Unsorted.clanSize] = null;
                                                                 }
                                                             } else {
-                                                                var41 = GraphicDefinition.incomingBuffer.readString();
+                                                                var41 = Network.incomingBuffer.readString();
                                                                 Class3_Sub19 var40 = new Class3_Sub19();
                                                                 var40.linkableKey = var2;
                                                                 var40.aClass94_2476 = Unsorted.method1052(var40.linkableKey);
@@ -1548,17 +1548,17 @@ public final class PacketParser {
                                                                 var40.anInt2478 = modelId;
 
                                                                 for (var33 = -1 + Unsorted.clanSize; var33 >= 0; --var33) {
-                                                                    clanChatIcon = aClass3_Sub19Array3694[var33].aClass94_2476.method1559(var40.aClass94_2476);
+                                                                    clanChatIcon = clanChatInformationArray[var33].aClass94_2476.method1559(var40.aClass94_2476);
                                                                     if (clanChatIcon == 0) {
-                                                                        aClass3_Sub19Array3694[var33].anInt2478 = modelId;
-                                                                        aClass3_Sub19Array3694[var33].aByte2472 = var28;
-                                                                        aClass3_Sub19Array3694[var33].aClass94_2473 = var41;
+                                                                        clanChatInformationArray[var33].anInt2478 = modelId;
+                                                                        clanChatInformationArray[var33].aByte2472 = var28;
+                                                                        clanChatInformationArray[var33].aClass94_2473 = var41;
                                                                         if (aLong3202 == var2) {
                                                                             Class91.aByte1308 = var28;
                                                                         }
 
                                                                         Class167.anInt2087 = anInt3213;
-                                                                        Unsorted.incomingOpcode = -1;
+                                                                        Network.incomingOpcode = -1;
                                                                         return true;
                                                                     }
 
@@ -1567,20 +1567,20 @@ public final class PacketParser {
                                                                     }
                                                                 }
 
-                                                                if (aClass3_Sub19Array3694.length <= Unsorted.clanSize) {
-                                                                    Unsorted.incomingOpcode = -1;
+                                                                if (clanChatInformationArray.length <= Unsorted.clanSize) {
+                                                                    Network.incomingOpcode = -1;
                                                                     return true;
                                                                 }
 
                                                                 for (clanChatIcon = Unsorted.clanSize + -1; clanChatIcon > var33; --clanChatIcon) {
-                                                                    aClass3_Sub19Array3694[1 + clanChatIcon] = aClass3_Sub19Array3694[clanChatIcon];
+                                                                    clanChatInformationArray[1 + clanChatIcon] = clanChatInformationArray[clanChatIcon];
                                                                 }
 
                                                                 if (Unsorted.clanSize == 0) {
-                                                                    aClass3_Sub19Array3694 = new Class3_Sub19[100];
+                                                                    clanChatInformationArray = new Class3_Sub19[100];
                                                                 }
 
-                                                                aClass3_Sub19Array3694[1 + var33] = var40;
+                                                                clanChatInformationArray[1 + var33] = var40;
                                                                 if (aLong3202 == var2) {
                                                                     Class91.aByte1308 = var28;
                                                                 }
@@ -1588,18 +1588,18 @@ public final class PacketParser {
                                                                 ++Unsorted.clanSize;
                                                             }
 
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             Class167.anInt2087 = anInt3213;
                                                             return true;
-                                                        } else if (50 == Unsorted.incomingOpcode) {
-                                                            nodeModelId = GraphicDefinition.incomingBuffer.readInt();
-                                                            var19 = GraphicDefinition.incomingBuffer.readIntV2();
-                                                            modelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
+                                                        } else if (50 == Network.incomingOpcode) {
+                                                            nodeModelId = Network.incomingBuffer.readInt();
+                                                            var19 = Network.incomingBuffer.readIntV2();
+                                                            modelId = Network.incomingBuffer.readUnsignedShortLE128();
                                                             if ('\uffff' == modelId) {
                                                                 modelId = -1;
                                                             }
 
-                                                            counter = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
+                                                            counter = Network.incomingBuffer.readUnsignedShortLE();
                                                             Class146.updateInterfacePacketCounter(counter);
                                                             RSInterface var34 = Class7.getRSInterface(var19);
                                                             ItemDefinition var43;
@@ -1611,7 +1611,7 @@ public final class PacketParser {
                                                             } else {
                                                                 if (-1 == modelId) {
                                                                     var34.modelType = 0;
-                                                                    Unsorted.incomingOpcode = -1;
+                                                                    Network.incomingOpcode = -1;
                                                                     return true;
                                                                 }
 
@@ -1624,11 +1624,11 @@ public final class PacketParser {
                                                                 Class20.method909(var34);
                                                             }
 
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             return true;
-                                                        } else if (Unsorted.incomingOpcode == 105) {
-                                                            nodeModelId = GraphicDefinition.incomingBuffer.readInt();
-                                                            var19 = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                        } else if (Network.incomingOpcode == 105) {
+                                                            nodeModelId = Network.incomingBuffer.readInt();
+                                                            var19 = Network.incomingBuffer.readUnsignedShort();
                                                             if (nodeModelId < -70000) {
                                                                 var19 += '\u8000';
                                                             }
@@ -1647,15 +1647,15 @@ public final class PacketParser {
                                                             }
 
                                                             Class10.method852((byte) 114, var19);
-                                                            counter = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                            counter = Network.incomingBuffer.readUnsignedShort();
 
                                                             for (var6 = 0; counter > var6; ++var6) {
-                                                                var30 = GraphicDefinition.incomingBuffer.readUnsigned128Byte();
+                                                                var30 = Network.incomingBuffer.readUnsigned128Byte();
                                                                 if (255 == var30) {
-                                                                    var30 = GraphicDefinition.incomingBuffer.readInt();
+                                                                    var30 = Network.incomingBuffer.readInt();
                                                                 }
 
-                                                                chatIcon = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                                                                chatIcon = Network.incomingBuffer.readUnsignedShort();
                                                                 if (null != var25 && var25.itemAmounts.length > var6) {
                                                                     var25.itemAmounts[var6] = chatIcon;
                                                                     var25.itemIds[var6] = var30;
@@ -1668,40 +1668,40 @@ public final class PacketParser {
                                                                 Class20.method909(var25);
                                                             }
 
-                                                            Class3_Sub30_Sub1.method819();
+                                                            Network.method819();
                                                             Class3_Sub28_Sub4.anIntArray3565[Unsorted.bitwiseAnd(Unsorted.anInt944++, 31)] = Unsorted.bitwiseAnd(32767, var19);
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             return true;
-                                                        } else if (Unsorted.incomingOpcode == 142) {
-                                                            LinkableRSString.method734(GraphicDefinition.incomingBuffer.readString());
-                                                            Unsorted.incomingOpcode = -1;
+                                                        } else if (Network.incomingOpcode == 142) {
+                                                            LinkableRSString.method734(Network.incomingBuffer.readString());
+                                                            Network.incomingOpcode = -1;
                                                             return true;
-                                                        } else if (Unsorted.incomingOpcode == 26) {
-                                                            Class65.currentChunkX = GraphicDefinition.incomingBuffer.readUnsignedNegativeByte();
-                                                            Class39.currentChunkY = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                                                            Unsorted.incomingOpcode = -1;
+                                                        } else if (Network.incomingOpcode == 26) {
+                                                            Class39.currentChunkX = Network.incomingBuffer.readUnsignedNegativeByte();
+                                                            Class39.currentChunkY = Network.incomingBuffer.readUnsignedByte();
+                                                            Network.incomingOpcode = -1;
                                                             return true;
-                                                        } else if (4 == Unsorted.incomingOpcode) {
-                                                            nodeModelId = GraphicDefinition.incomingBuffer.readUnsignedShortLE128();
+                                                        } else if (4 == Network.incomingOpcode) {
+                                                            nodeModelId = Network.incomingBuffer.readUnsignedShortLE128();
                                                             if (nodeModelId == '\uffff') {
                                                                 nodeModelId = -1;
                                                             }
 
                                                             AtmosphereParser.method1427(nodeModelId);
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             return true;
-                                                        } else if (Unsorted.incomingOpcode == 208) {
-                                                            nodeModelId = GraphicDefinition.incomingBuffer.getTriByte2();
-                                                            var19 = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
+                                                        } else if (Network.incomingOpcode == 208) {
+                                                            nodeModelId = Network.incomingBuffer.getTriByte2();
+                                                            var19 = Network.incomingBuffer.readUnsignedShortLE();
                                                             if (var19 == '\uffff') {
                                                                 var19 = -1;
                                                             }
 
                                                             Class167.method2266(nodeModelId, var19);
-                                                            Unsorted.incomingOpcode = -1;
+                                                            Network.incomingOpcode = -1;
                                                             return true;
                                                         } else {
-                                                            ClientErrorException.method1125("T1 - " + Unsorted.incomingOpcode + "," + Class7.anInt2166 + "," + Class24.anInt469 + " - " + Unsorted.incomingPacketLength, null);
+                                                            ClientErrorException.method1125("T1 - " + Network.incomingOpcode + "," + Class7.anInt2166 + "," + Class24.anInt469 + " - " + Network.incomingPacketLength, null);
                                                             Class167.method2269((byte) 46);
                                                             return true;
                                                         }
@@ -1778,11 +1778,11 @@ public final class PacketParser {
                         if (withInter == null) {
                             withInter = Class56.aClass11_886;
                         }
-                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(79);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeIntV2(Class56.aClass11_886.componentHash);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeShortLE(withInter.anInt191);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeInt(withInter.componentHash);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeShortLE(Class56.aClass11_886.anInt191);
+                        Network.outgoingBuffer.putOpcode(79);
+                        Network.outgoingBuffer.writeIntV2(Class56.aClass11_886.componentHash);
+                        Network.outgoingBuffer.writeShortLE(withInter.anInt191);
+                        Network.outgoingBuffer.writeInt(withInter.componentHash);
+                        Network.outgoingBuffer.writeShortLE(Class56.aClass11_886.anInt191);
 
                         // && client.method42(Class56.aClass11_886) != null) {
                         if (Class27.aClass11_526 == null) {
@@ -1821,9 +1821,9 @@ public final class PacketParser {
 
     static void method1605(RSString var1, int var2) {
         try {
-            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(188);
-            Class3_Sub13_Sub1.outgoingBuffer.writeByte128(var2);
-            Class3_Sub13_Sub1.outgoingBuffer.writeLong(var1.toLong());
+            Network.outgoingBuffer.putOpcode(188);
+            Network.outgoingBuffer.writeByte128(var2);
+            Network.outgoingBuffer.writeLong(var1.toLong());
         } catch (RuntimeException var4) {
             throw ClientErrorException.clientError(var4, "ni.B(" + 255 + ',' + (var1 != null ? "{...}" : "null") + ',' + var2 + ')');
         }

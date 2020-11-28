@@ -6,7 +6,6 @@ import org.rs09.client.net.Connection;
 
 public final class Class3_Sub15 extends Linkable {
 
-    public static Connection activeConnection;
     static int anInt2421 = -1;
     static int anInt2426;
     static boolean aBoolean2427 = false;

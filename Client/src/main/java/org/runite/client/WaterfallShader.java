@@ -30,22 +30,23 @@ final class WaterfallShader implements ShaderInterface {
             WorldListEntry var2 = Class3_Sub8.getWorld(97, var0);
             if (var2 == null) {
                 return false;
-            } else if (1 != Signlink.anInt1214 && Signlink.anInt1214 != 2 && Class44.anInt718 != 2) {
-                RSString var9 = GameShell.aClass94_8;
-                if (Class44.anInt718 != 0) {
+            } else if (1 != Signlink.anInt1214 && Signlink.anInt1214 != 2 && Client.modeWhereValue != 2) {
+                RSString var9 = TextCore.aClass94_8;
+                if (Client.modeWhereValue != 0) {
                     var9 = RSString.stringCombiner(new RSString[]{TextCore.aClass94_4007, RSString.stringAnimator(var2.worldId - -7000)});
                 }
 
                 if (var1 > -2) {
                     return false;
                 } else {
-                    RSString var4 = GameShell.aClass94_8;
+                    RSString var4 = TextCore.aClass94_8;
                     if (Class163_Sub2.aClass94_2996 != null) {
                         var4 = RSString.stringCombiner(new RSString[]{Class97.aClass94_1380, Class163_Sub2.aClass94_2996});
                     }
                     RSString var5 = RSString.stringCombiner(new RSString[]{RSString.parse("http:)4)4"), var2.address, var9, TextCore.aClass94_2608, RSString.stringAnimator(Class3_Sub20.language), aClass94_2175, RSString.stringAnimator(Class3_Sub26.anInt2554), var4, TextCore.aClass94_1133, !Unsorted.aBoolean3641 ? TextCore.aClass94_3013 : TextCore.aClass94_339, TextCore.aClass94_2610, !Class163_Sub2_Sub1.aBoolean4018 ? TextCore.aClass94_3013 : TextCore.aClass94_339, TextCore.aClass94_1617, Client.aBoolean3779 ? TextCore.aClass94_339 : TextCore.aClass94_3013});
 
                     try {
+                        System.out.println("Trying to get this applet 6.");
                         Objects.requireNonNull(Class126.aClient1671.getAppletContext()).showDocument(var5.toURL(), "_self");
                     } catch (Exception var7) {
                         return false;
@@ -58,9 +59,8 @@ final class WaterfallShader implements ShaderInterface {
                 System.out.println(GameConfig.IP_ADDRESS);
 //            GameLaunch.SETTINGS.setIp(var2.address.toString());
                 var2.address.method1568();
-                Class38_Sub1.accRegistryIp = GameConfig.IP_MANAGEMENT;
                 CS2Script.anInt2451 = var2.worldId;
-                if (Class44.anInt718 != 0) {
+                if (Client.modeWhereValue != 0) {
                     Class162.anInt2036 = '\u9c40' + CS2Script.anInt2451;
                     Class140_Sub6.accRegistryPort = Class162.anInt2036;
                     Client.currentPort = CS2Script.anInt2451 + '\uc350';

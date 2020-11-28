@@ -16,13 +16,13 @@ final class Class163_Sub3 extends Class163 {
             Unsorted.maskUpdateCount = 0;
             Class139.anInt1829 = 0;
             Unsorted.updateLocalPosition();
-            PLAYER_RENDER_LOG[0] = GraphicDefinition.incomingBuffer.index;
+            PLAYER_RENDER_LOG[0] = Network.incomingBuffer.index;
             Class140_Sub3.renderLocalPlayers();
-            PLAYER_RENDER_LOG[1] = GraphicDefinition.incomingBuffer.index;
+            PLAYER_RENDER_LOG[1] = Network.incomingBuffer.index;
             Class131.addLocalPlayers();
-            PLAYER_RENDER_LOG[2] = GraphicDefinition.incomingBuffer.index;
+            PLAYER_RENDER_LOG[2] = Network.incomingBuffer.index;
             Unsorted.parsePlayerMasks();
-            PLAYER_RENDER_LOG[3] = GraphicDefinition.incomingBuffer.index;
+            PLAYER_RENDER_LOG[3] = Network.incomingBuffer.index;
             int var1;
             for (var1 = 0; Class139.anInt1829 > var1; ++var1) {
                 int var2 = Class3_Sub7.anIntArray2292[var1];
@@ -35,7 +35,7 @@ final class Class163_Sub3 extends Class163 {
                 }
             }
 
-            if (GraphicDefinition.incomingBuffer.index == Unsorted.incomingPacketLength) {
+            if (Network.incomingBuffer.index == Network.incomingPacketLength) {
                 for (var1 = 0; var1 < Class159.localPlayerCount; ++var1) {
                     if (null == Class3_Sub13_Sub22.players[Class56.localPlayerIndexes[var1]]) {
 //                     throw new RuntimeException("gpp2 pos:" + var1 + " size:" + Class159.anInt2022);
@@ -63,20 +63,20 @@ final class Class163_Sub3 extends Class163 {
                     int var4;
                     for (var4 = 0; Class8.anInt104 > var4; ++var4) {
                         if (var0 == Class50.aLongArray826[var4]) {
-                            Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_3672, 0, RSString.stringCombiner(new RSString[]{var3, TextCore.HasFriendsAlready}), -1);
+                            Network.addChatMessage(TextCore.aClass94_3672, 0, RSString.stringCombiner(new RSString[]{var3, TextCore.HasFriendsAlready}), -1);
                             return;
                         }
                     }
 
                     for (var4 = 0; var4 < Class3_Sub28_Sub5.anInt3591; ++var4) {
                         if (Class114.ignores[var4] == var0) {
-                            Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_3672, 0, RSString.stringCombiner(new RSString[]{TextCore.HasPleaseRemove, var3, TextCore.HasIgnoreToFriends}), -1);
+                            Network.addChatMessage(TextCore.aClass94_3672, 0, RSString.stringCombiner(new RSString[]{TextCore.HasPleaseRemove, var3, TextCore.HasIgnoreToFriends}), -1);
                             return;
                         }
                     }
 
                     if (var3.equalsString(Player.player.displayName)) {
-                        Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_3672, 0, TextCore.HasOnOwnFriendsList, -1);
+                        Network.addChatMessage(TextCore.aClass94_3672, 0, TextCore.HasOnOwnFriendsList, -1);
                     } else {
                         Class70.aClass94Array1046[Class8.anInt104] = var3;
                         Class50.aLongArray826[Class8.anInt104] = var0;
@@ -86,11 +86,11 @@ final class Class163_Sub3 extends Class163 {
                         Unsorted.aBooleanArray73[Class8.anInt104] = false;
                         ++Class8.anInt104;
                         Class110.anInt1472 = PacketParser.anInt3213;
-                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(120);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeLong(var0);
+                        Network.outgoingBuffer.putOpcode(120);
+                        Network.outgoingBuffer.writeLong(var0);
                     }
                 } else {
-                    Class3_Sub30_Sub1.addChatMessage(TextCore.aClass94_3672, 0, TextCore.HasFriendsListFull, -1);
+                    Network.addChatMessage(TextCore.aClass94_3672, 0, TextCore.HasFriendsListFull, -1);
                 }
             }
         } catch (RuntimeException var5) {

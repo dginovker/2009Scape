@@ -134,7 +134,7 @@ final class Class163_Sub2_Sub1 extends Class163_Sub2 {
         }
     }
 
-    static void method2226(Class3_Sub30_Sub1 var0, int var1, int var2) {
+    static void method2226(Network var0, int var1, int var2) {
         try {
             if (var2 > -109) {
                 method2226(null, 67, 54);

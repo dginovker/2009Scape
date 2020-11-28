@@ -14,24 +14,72 @@ import java.util.Objects;
 
 public abstract class GameShell extends Applet implements Runnable, FocusListener, WindowListener {
 
+    /*
+     *  AWT Canvas
+     */
     public static Canvas canvas;
+
+    /*
+     *  AWT Dimensions
+     */
+    public static int gameShellAWTHeight;
+    public static int gameShellAWTWidth;
+
+    /*
+     *  AWT Frame (s)
+     */
+    static Frame frame;
+    static Frame aFrame3121;
+
+    /*
+     *  Window FPS display
+     */
+    static int fpsCounter = 0;
     static int anInt950;
-    static volatile boolean hasWindowFocus = true;
+    static long[] aLongArray2986 = new long[32];
+    static int anInt3313 = 500;
+
+    /*
+     *  Client memory
+     */
+    static int clientMemory = 64;
+
+    /*
+     *  Timers
+     */
     static long aLong2313 = 0L;
+    static volatile long aLong1847 = 0L;
+
+
+    static volatile boolean hasWindowFocus = true;
+
     static int anInt4033;
     static int anInt1737 = 1;
     static boolean aBoolean1784 = false;
-    static int anInt3 = 0;
-    static Frame frame;
-    static boolean aBoolean6 = false;
-    static RSString aClass94_8 = RSString.parse("");
-    static RSString aClass94_9 = RSString.parse(")3)3)3");
-    static boolean aBoolean11 = false;
-    private boolean aBoolean1 = false;
 
+    static boolean aBoolean11 = false;
+    static volatile boolean aBoolean3116 = true;
+    static boolean aBoolean554 = false;
+    private boolean displayErrorPopupMessage = false;
+
+    /*
+     *  Launch method
+     */
     public static void launchDesktop() {
-        //GameShell.setDesktop(true);
+        System.out.println("Trying to launch Desktop");
         ClientLoader.create().launch();
+    }
+
+    /*
+     * AWT window Events
+     */
+    public final void focusGained(FocusEvent var1) {
+        try {
+            hasWindowFocus = true;
+            aBoolean3116 = true;
+        } catch (RuntimeException var3) {
+            throw ClientErrorException.clientError(var3, "rc.focusGained(" + (var1 != null ? "{...}" : "null") + ')');
+        }
     }
 
     public final void focusLost(FocusEvent var1) {
@@ -42,7 +90,19 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
         }
     }
 
-    abstract void method25();
+    public final void start() {
+        try {
+            if (LinkableRSString.anApplet_Sub1_2588 == this && !aBoolean554) {
+                aLong2313 = 0L;
+            }
+        } catch (RuntimeException var2) {
+            throw ClientErrorException.clientError(var2, "rc.start()");
+        }
+    }
+
+
+    public final void windowOpened(WindowEvent var1) {
+    }
 
     public final void windowClosing(WindowEvent var1) {
         try {
@@ -55,75 +115,90 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
     public final void windowIconified(WindowEvent var1) {
     }
 
+    public final void windowDeiconified(WindowEvent var1) {
+    }
+
+    public final void windowActivated(WindowEvent var1) {
+    }
+
     public final void windowDeactivated(WindowEvent var1) {
     }
 
+    public final void windowClosed(WindowEvent var1) {
+    }
+
+    static void checkMaxMemory() {
+        try {
+            try {
+                Method maxMemory = Runtime.class.getMethod("maxMemory");
+                try {
+                    Runtime runtime = Runtime.getRuntime();
+                    Long memoryLong = (Long) maxMemory.invoke(runtime, (Object[]) null);
+                    clientMemory = (int) (memoryLong / 1048576L) + 1;
+                } catch (Throwable var4) {
+                }
+            } catch (Throwable var4) {
+            }
+
+        } catch (RuntimeException var6) {
+            throw ClientErrorException.clientError(var6, "sd.A(" + 0 + ')');
+        }
+    }
+
+    abstract void method25();
+
     public final AppletContext getAppletContext() {
         try {
+            System.out.println("Trying this applet 3");
             return null != frame ? null : (Class38.aClass87_665 != null && this != Class38.aClass87_665.applet ? Class38.aClass87_665.applet.getAppletContext() : super.getAppletContext());
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "rc.getAppletContext()");
         }
     }
 
-    public final void focusGained(FocusEvent var1) {
-        try {
-            hasWindowFocus = true;
-            Class3_Sub13_Sub10.aBoolean3116 = true;
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "rc.focusGained(" + (var1 != null ? "{...}" : "null") + ')');
-        }
-    }
 
-    public final void windowClosed(WindowEvent var1) {
-    }
-
-    final synchronized void method30(byte var1) {
+    final synchronized void method30() {
         try {
             if (canvas != null) {
                 canvas.removeFocusListener(this);
                 canvas.getParent().remove(canvas);
             }
 
-            Object var2;
-            if (Class3_Sub13_Sub10.aFrame3121 != null) {
-                var2 = Class3_Sub13_Sub10.aFrame3121;
+            Container var2;
+            if (aFrame3121 != null) {
+                var2 = aFrame3121;
             } else if (null == frame) {
                 var2 = Class38.aClass87_665.applet;
             } else {
                 var2 = frame;
             }
-
-            ((Container) var2).setLayout(null);
+            var2.setLayout(null);
             canvas = new ComponentWrappedCanvas(this);
-            if (var1 >= 30) {
-                ((Container) var2).add(canvas);
-                canvas.setSize(Class23.anInt454, Class140_Sub7.anInt2934);
-                canvas.setVisible(true);
-                if (var2 == frame) {
-                    Insets var3 = frame.getInsets();
-                    canvas.setLocation(Class84.anInt1164 + var3.left, var3.top + Class106.anInt1442);
-                } else {
-                    canvas.setLocation(Class84.anInt1164, Class106.anInt1442);
-                }
-
-                canvas.addFocusListener(this);
-                canvas.requestFocus();
-                hasWindowFocus = true;
-                Class3_Sub13_Sub10.aBoolean3116 = true;
-                Class3_Sub13_Sub6.aBoolean3078 = true;
-                Class3_Sub28_Sub5.forceReplaceCanvasEnable = false;
-                SequenceDefinition.aLong1847 = TimeUtils.time();
-                ClientCommands.tweeningEnabled = true;
+            var2.add(canvas);
+            canvas.setSize(gameShellAWTWidth, gameShellAWTHeight);
+            canvas.setVisible(true);
+            if (var2 == frame) {
+                Insets var3 = frame.getInsets();
+                canvas.setLocation(Class84.anInt1164 + var3.left, var3.top + Class106.anInt1442);
+            } else {
+                canvas.setLocation(Class84.anInt1164, Class106.anInt1442);
             }
+            canvas.addFocusListener(this);
+            canvas.requestFocus();
+            hasWindowFocus = true;
+            aBoolean3116 = true;
+            Class3_Sub13_Sub6.aBoolean3078 = true;
+            Class3_Sub28_Sub5.forceReplaceCanvasEnable = false;
+            aLong1847 = TimeUtils.time();
+            ClientCommands.tweeningEnabled = true;
         } catch (RuntimeException var4) {
-            throw ClientErrorException.clientError(var4, "rc.BA(" + var1 + ')');
+            throw ClientErrorException.clientError(var4, "rc.BA(" + ')');
         }
     }
 
     public final void destroy() {
         try {
-            if (this == LinkableRSString.anApplet_Sub1_2588 && !Class29.aBoolean554) {
+            if (this == LinkableRSString.anApplet_Sub1_2588 && !aBoolean554) {
                 aLong2313 = TimeUtils.time();
                 TimeUtils.sleep(5000L);
                 Class3_Sub13_Sub10.aClass87_3125 = null;
@@ -138,13 +213,14 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
         this.paint(g);
     }
 
-    final void method31(String var1) {
+    final void displayGameErrorPopupMessage(String var1) {
         try {
-            if (!this.aBoolean1) {
-                this.aBoolean1 = true;
+            if (!this.displayErrorPopupMessage) {
+                this.displayErrorPopupMessage = true;
                 System.out.println("error_game_" + var1);
                 JOptionPane.showMessageDialog(frame, "Error: " + var1 + (var1.contains("js5connect") ? ". The game is likely down." : "") + "\nCheck Discord (Red Bracket#8151) or Github (https://github.com/dginovker/RS-2009/releases) for a potential solution.");
                 try {
+                    System.out.println("Trying this applet 4");
                     Objects.requireNonNull(this.getAppletContext()).showDocument(new URL(this.getCodeBase(), "error_game_" + var1 + ".ws"), "_top");
                 } catch (Exception var4) {
                 }
@@ -168,10 +244,10 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
     }
 
     public final synchronized void paint(Graphics g) {
-        if (LinkableRSString.anApplet_Sub1_2588 == this && !Class29.aBoolean554) {
-            Class3_Sub13_Sub10.aBoolean3116 = true;
+        if (LinkableRSString.anApplet_Sub1_2588 == this && !aBoolean554) {
+            aBoolean3116 = true;
 
-            if (aBoolean1784 && !HDToolKit.highDetail && -SequenceDefinition.aLong1847 + TimeUtils.time() > 1000) {
+            if (aBoolean1784 && !HDToolKit.highDetail && -aLong1847 + TimeUtils.time() > 1000) {
                 Rectangle var2 = g.getClipBounds();
 
                 if (var2 == null || Unsorted.anInt2334 <= var2.width && var2.height >= Class70.anInt1047) {
@@ -181,17 +257,16 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
         }
     }
 
-    public final void windowDeiconified(WindowEvent var1) {
-    }
+
 
     private void method35(int var1, boolean var2) {
         try {
             synchronized (this) {
-                if (Class29.aBoolean554) {
+                if (aBoolean554) {
                     return;
                 }
 
-                Class29.aBoolean554 = true;
+                aBoolean554 = true;
             }
 
             if (Class38.aClass87_665.applet != null) {
@@ -236,8 +311,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
         }
     }
 
-    public final void windowActivated(WindowEvent var1) {
-    }
+
 
     private void method36() {
         try {
@@ -259,23 +333,23 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
     private void method37() {
         try {
             long var2 = TimeUtils.time();
-            long var4 = Class163_Sub1.aLongArray2986[anInt950];
+            long var4 = aLongArray2986[anInt950];
 
-            Class163_Sub1.aLongArray2986[anInt950] = var2;
+            aLongArray2986[anInt950] = var2;
             anInt950 = 31 & anInt950 + 1;
             if (var4 != 0 && var2 > var4) {
                 int var6 = (int) (var2 + -var4);
-                SequenceDefinition.anInt1862 = (32000 + (var6 >> 1)) / var6;
+                fpsCounter = (32000 + (var6 >> 1)) / var6;
             }
 
-            if (50 < Class3_Sub13_Sub25.anInt3313++) {
-                Class3_Sub13_Sub10.aBoolean3116 = true;
-                Class3_Sub13_Sub25.anInt3313 -= 50;
-                canvas.setSize(Class23.anInt454, Class140_Sub7.anInt2934);
+            if (50 < anInt3313++) {
+                aBoolean3116 = true;
+                anInt3313 -= 50;
+                canvas.setSize(gameShellAWTWidth, gameShellAWTHeight);
                 canvas.setVisible(true);
-                if (frame != null && null == Class3_Sub13_Sub10.aFrame3121) {
-                    Insets var8 = frame.getInsets();
-                    canvas.setLocation(var8.left + Class84.anInt1164, Class106.anInt1442 + var8.top);
+                if (frame != null && null == aFrame3121) {
+                    Insets frameInsets = frame.getInsets();
+                    canvas.setLocation(frameInsets.left + Class84.anInt1164, Class106.anInt1442 + frameInsets.top);
                 } else {
                     canvas.setLocation(Class84.anInt1164, Class106.anInt1442);
                 }
@@ -297,16 +371,16 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
         try {
             try {
                 if (null != Signlink.javaVendor) {
-                    String var1 = Signlink.javaVendor.toLowerCase();
-                    if (!var1.contains("sun") && !var1.contains("apple")) {
-                        if (var1.contains("ibm") && Signlink.javaVendor.equals("1.4.2")) {
-                            this.method31("wrongjava");
+                    String javaVendor = Signlink.javaVendor.toLowerCase();
+                    if (!javaVendor.contains("sun") && !javaVendor.contains("apple")) {
+                        if (javaVendor.contains("ibm") && Signlink.javaVendor.equals("1.4.2")) {
+                            this.displayGameErrorPopupMessage("wrongjava");
                             return;
                         }
                     } else {
-                        String var2 = Signlink.javaVendor;
-                        if (var2.equals("1.1") || var2.startsWith("1.1.") || var2.equals("1.2") || var2.startsWith("1.2.")) {
-                            this.method31("wrongjava");
+                        String javaVersion = Signlink.javaVersion;
+                        if (javaVersion.equals("1.1") || javaVersion.startsWith("1.1.") || javaVersion.equals("1.2") || javaVersion.startsWith("1.2.")) {
+                            this.displayGameErrorPopupMessage("wrongjava");
                             return;
                         }
 
@@ -343,9 +417,9 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
                     }
                 }
 
-                Class3_Sub28_Sub18.method713();
-                this.method30((byte) 120);
-                Class164_Sub1.aClass158_3009 = Class3_Sub13_Sub23_Sub1.method285(Class140_Sub7.anInt2934, Class23.anInt454, canvas);
+                checkMaxMemory();
+                this.method30();
+                Class164_Sub1.aClass158_3009 = Class3_Sub13_Sub23_Sub1.method285(gameShellAWTHeight, gameShellAWTWidth, canvas);
                 this.method39();
                 Class3_Sub25.aClass129_2552 = Class36.method1012();
 
@@ -361,7 +435,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
                 }
             } catch (Exception var5) {
                 ClientErrorException.method1125(null, var5);
-                this.method31("crash");
+                this.displayGameErrorPopupMessage("crash");
             }
 
             this.method35(107, true);
@@ -383,7 +457,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
     public final void stop() {
         try {
-            if (LinkableRSString.anApplet_Sub1_2588 == this && !Class29.aBoolean554) {
+            if (LinkableRSString.anApplet_Sub1_2588 == this && !aBoolean554) {
                 aLong2313 = 4000L + TimeUtils.time();
             }
         } catch (RuntimeException var2) {
@@ -395,13 +469,12 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
 
     final void launch() {
         try {
-
             try {
-                Class140_Sub7.anInt2934 = 768;
+                gameShellAWTHeight = 768;
                 Class70.anInt1047 = 768;
                 Class84.anInt1164 = 0;
                 anInt4033 = 530;
-                Class23.anInt454 = 1024;
+                gameShellAWTWidth = 1024;
                 Unsorted.anInt2334 = 1024;
                 Class106.anInt1442 = 0;
                 LinkableRSString.anApplet_Sub1_2588 = this;
@@ -431,39 +504,27 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
         }
     }
 
-    public final void windowOpened(WindowEvent var1) {
-    }
-
-    public final void start() {
-        try {
-            if (LinkableRSString.anApplet_Sub1_2588 == this && !Class29.aBoolean554) {
-                aLong2313 = 0L;
-            }
-        } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "rc.start()");
-        }
-    }
-
     final void method41(int var3) {
         try {
             try {
                 if (LinkableRSString.anApplet_Sub1_2588 != null) {
                     ++Class36.anInt639;
                     if (Class36.anInt639 >= 3) {
-                        this.method31("alreadyloaded");
+                        this.displayGameErrorPopupMessage("alreadyloaded");
                         return;
                     }
 
+                    System.out.println("Trying to get this applet 5");
                     Objects.requireNonNull(this.getAppletContext()).showDocument(this.getDocumentBase(), "_self");
                     return;
                 }
                 LinkableRSString.anApplet_Sub1_2588 = this;
                 Class106.anInt1442 = 0;
                 anInt4033 = 1530;
-                Class23.anInt454 = 765;
+                gameShellAWTWidth = 765;
                 Unsorted.anInt2334 = 765;
                 Class84.anInt1164 = 0;
-                Class140_Sub7.anInt2934 = 503;
+                gameShellAWTHeight = 503;
                 Class70.anInt1047 = 503;
                 String var6 = this.getParameter("openwinjs");
                 Class3_Sub28_Sub6.aBoolean3594 = var6 != null && var6.equals("1");
@@ -481,7 +542,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
                 Class17.aThread409 = (Thread) var7.anObject974;
             } catch (Exception var8) {
                 ClientErrorException.method1125(null, var8);
-                this.method31("crash");
+                this.displayGameErrorPopupMessage("crash");
             }
 
         } catch (RuntimeException var9) {

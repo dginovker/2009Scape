@@ -86,8 +86,8 @@ class Class38 {
 
     static void method1029(int var0) {
         try {
-            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(177);
-            Class3_Sub13_Sub1.outgoingBuffer.writeShort(Class113.interfacePacketCounter);
+            Network.outgoingBuffer.putOpcode(177);
+            Network.outgoingBuffer.writeShort(Class113.interfacePacketCounter);
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "fk.D(" + var0 + ')');
         }

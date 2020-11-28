@@ -46,6 +46,7 @@ public final class Client extends GameShell {
     static int[] anIntArray3780 = new int[32];
     static boolean aBoolean3779 = false;
     static int anInt3773;
+    static int modeWhereValue = 0;
 
     static void method631(CacheIndex var1) {
         try {
@@ -71,8 +72,8 @@ public final class Client extends GameShell {
     static void method375(CacheIndex var1, CacheIndex var2) {
         try {
             Class10.aClass153_152 = var1;
-            LoginHandler.aClass153_1680 = var2;
-            Class25.anInt497 = LoginHandler.aClass153_1680.getFileAmount(3);
+            CacheIndex.aClass153_1680 = var2;
+            Class25.anInt497 = CacheIndex.aClass153_1680.getFileAmount(3);
         } catch (RuntimeException var4) {
             throw ClientErrorException.clientError(var4, "jl.D(" + 3 + ',' + (var1 != null ? "{...}" : "null") + ',' + (var2 != null ? "{...}" : "null") + ')');
         }
@@ -99,41 +100,44 @@ public final class Client extends GameShell {
         return var1 != null ? var1 : var0.aClass3_Sub1_257;
     }
 
-    public static void main(String[] var0) {
+    public static void main(String[] params) {
         try {
             try {
-                if (4 != var0.length) {
-                    Class3_Sub13_Sub23_Sub1.method283("argument count");
+                if (4 != params.length) {
+                    ClientErrorException.wrongParamaterValuesSet("argument count");
                 }
-
                 int var1 = -1;
-                ObjectDefinition.worldId = Integer.parseInt(var0[0]);
-                Class44.anInt718 = 2;
-                if (var0[1].equals("live")) {
-                    Class3_Sub13_Sub13.anInt3148 = 0;
-                } else if (var0[1].equals("rc")) {
-                    Class3_Sub13_Sub13.anInt3148 = 1;
-                } else if (var0[1].equals("wip")) {
-                    Class3_Sub13_Sub13.anInt3148 = 2;
-                } else {
-                    Class3_Sub13_Sub23_Sub1.method283("modewhat");
+                ObjectDefinition.worldId = Integer.parseInt(params[0]);
+                modeWhereValue = 2;
+                switch (params[1]) {
+                    case "live":
+                        Class3_Sub13_Sub13.anInt3148 = 0;
+                        break;
+                    case "rc":
+                        Class3_Sub13_Sub13.anInt3148 = 1;
+                        break;
+                    case "wip":
+                        Class3_Sub13_Sub13.anInt3148 = 2;
+                        break;
+                    default:
+                        ClientErrorException.wrongParamaterValuesSet("modewhat");
+                        break;
                 }
-
                 aBoolean3779 = false;
 
                 try {
-                    byte[] var2 = var0[2].getBytes(StandardCharsets.ISO_8859_1);
+                    byte[] var2 = params[2].getBytes(StandardCharsets.ISO_8859_1);
                     var1 = Class3_Sub13_Sub16.method243(Class3_Sub13_Sub3.method178(var2, var2.length, 0));
                 } catch (Exception var3) {
                 }
 
                 if (-1 == var1) {
-                    if (var0[2].equals("english")) {
+                    if (params[2].equals("english")) {
                         Class3_Sub20.language = 0;
-                    } else if (var0[2].equals("german")) {
+                    } else if (params[2].equals("german")) {
                         Class3_Sub20.language = 1;
                     } else {
-                        Class3_Sub13_Sub23_Sub1.method283("language");
+                        ClientErrorException.wrongParamaterValuesSet("language");
                     }
                 } else {
                     Class3_Sub20.language = var1;
@@ -142,12 +146,12 @@ public final class Client extends GameShell {
                 Unsorted.method87(-78, Class3_Sub20.language);
                 Class163_Sub2_Sub1.aBoolean4018 = false;
                 Unsorted.aBoolean3641 = false;
-                if (var0[3].equals("game0")) {
+                if (params[3].equals("game0")) {
                     Class158.anInt2014 = 0;
-                } else if (var0[3].equals("game1")) {
+                } else if (params[3].equals("game1")) {
                     Class158.anInt2014 = 1;
                 } else {
-                    Class3_Sub13_Sub23_Sub1.method283("game");
+                    ClientErrorException.wrongParamaterValuesSet("game");
                 }
 
                 Class3_Sub31.countryId = 0;
@@ -163,7 +167,7 @@ public final class Client extends GameShell {
             }
 
         } catch (RuntimeException var5) {
-            throw ClientErrorException.clientError(var5, "client.main(" + (var0 != null ? "{...}" : "null") + ')');
+            throw ClientErrorException.clientError(var5, "client.main(" + (params != null ? "{...}" : "null") + ')');
         }
     }
 
@@ -705,16 +709,16 @@ public final class Client extends GameShell {
 
                 int var4;
                 int var5;
-                if (null == Class3_Sub13_Sub10.aFrame3121) {
-                    Object var3;
+                if (null == GameShell.aFrame3121) {
+                    Container var3;
                     if (GameShell.frame == null) {
                         var3 = Class38.aClass87_665.applet;
                     } else {
                         var3 = GameShell.frame;
                     }
 
-                    var4 = ((Container) var3).getSize().width;
-                    var5 = ((Container) var3).getSize().height;
+                    var4 = var3.getSize().width;
+                    var5 = var3.getSize().height;
                     if (var3 == GameShell.frame) {
                         Insets var6 = GameShell.frame.getInsets();
                         var4 -= var6.right + var6.left;
@@ -733,14 +737,14 @@ public final class Client extends GameShell {
                     }
                 }
 
-                if (Class3_Sub13_Sub10.aFrame3121 != null && !Class3_Sub13_Sub6.aBoolean3078 && (30 == Class143.loadingStage || 10 == Class143.loadingStage)) {
+                if (GameShell.aFrame3121 != null && !Class3_Sub13_Sub6.aBoolean3078 && (30 == Class143.loadingStage || 10 == Class143.loadingStage)) {
                     GameObject.graphicsSettings(false, Unsorted.anInt2577, -1, -1);
                 }
 
                 boolean var10 = false;
-                if (Class3_Sub13_Sub10.aBoolean3116) {
+                if (GameShell.aBoolean3116) {
                     var10 = true;
-                    Class3_Sub13_Sub10.aBoolean3116 = false;
+                    GameShell.aBoolean3116 = false;
                 }
 
                 if (var10) {
@@ -850,9 +854,9 @@ public final class Client extends GameShell {
                 HDToolKit.method1842();
             }
 
-            if (null != Class3_Sub13_Sub10.aFrame3121) {
-                Unsorted.method593(Class3_Sub13_Sub10.aFrame3121, Class38.aClass87_665);
-                Class3_Sub13_Sub10.aFrame3121 = null;
+            if (null != GameShell.aFrame3121) {
+                Unsorted.method593(GameShell.aFrame3121, Class38.aClass87_665);
+                GameShell.aFrame3121 = null;
             }
 
             if (null != Class38.aClass87_665) {
@@ -864,9 +868,9 @@ public final class Client extends GameShell {
             }
 
             Class3_Sub13_Sub13.aClass67_1443 = null;
-            if (Class3_Sub15.activeConnection != null) {
-                Class3_Sub15.activeConnection.close();
-                Class3_Sub15.activeConnection = null;
+            if (Network.activeConnection != null) {
+                Network.activeConnection.close();
+                Network.activeConnection = null;
             }
 
             KeyboardListener.removeKeyboardListener(GameShell.canvas);
@@ -919,33 +923,40 @@ public final class Client extends GameShell {
     public final void init() {
         try {
             GameConfig.WORLD = ObjectDefinition.worldId;
-            Class44.anInt718 = Integer.parseInt(Objects.requireNonNull(this.getParameter("modewhere")));
-            if (0 > Class44.anInt718 || 1 < Class44.anInt718) {
-                Class44.anInt718 = 0;
+            modeWhereValue = Integer.parseInt(Objects.requireNonNull(this.getParameter("modewhere")));
+            System.out.println("Mode where...");
+            if (0 > modeWhereValue || 1 < modeWhereValue) {
+                modeWhereValue = 0;
             }
 
             Class3_Sub13_Sub13.anInt3148 = Integer.parseInt(Objects.requireNonNull(this.getParameter("modewhat")));
+            System.out.println("Mode what...");
             if (Class3_Sub13_Sub13.anInt3148 < 0 || Class3_Sub13_Sub13.anInt3148 > 2) {
                 Class3_Sub13_Sub13.anInt3148 = 0;
             }
 
             String var1 = this.getParameter("advertsuppressed");
+            System.out.println("Advert suppress...");
             aBoolean3779 = var1 != null && var1.equals("1");
 
             try {
                 Class3_Sub20.language = Integer.parseInt(Objects.requireNonNull(this.getParameter("lang")));
+                System.out.println("Language...");
             } catch (Exception var10) {
                 Class3_Sub20.language = 0;
             }
             Unsorted.method87(-31, Class3_Sub20.language);
 
             String var2 = this.getParameter("objecttag");
+            System.out.println("objtag where...");
             Class163_Sub2_Sub1.aBoolean4018 = var2 != null && var2.equals("1");
 
             String var3 = this.getParameter("js");
+            System.out.println("enable js...");
             Unsorted.aBoolean3641 = null != var3 && var3.equals("1");
 
             String var4 = this.getParameter("game");
+            System.out.println("game mode...");
             if (var4 != null && var4.equals("1")) {
                 Class158.anInt2014 = 1;
             } else {
@@ -995,16 +1006,19 @@ public final class Client extends GameShell {
             Unsorted.method564(Class38.aClass87_665);
             System.out.println("port = " + Class53.anInt867);
             System.out.println("Here: Config.MSIP = " + GameConfig.IP_MANAGEMENT);
-            if (Class44.anInt718 == 0) {
+            if (modeWhereValue == 0) {
+                System.out.println("Mode where is 0...");
                 ClientErrorException.worldListHost = Objects.requireNonNull(this.getCodeBase()).getHost();
                 Class53.anInt867 = GameConfig.SERVER_PORT + ObjectDefinition.worldId; //443 is secure port
                 anInt3773 = '\uaa4a';
-            } else if (Class44.anInt718 == 1) {
+            } else if (modeWhereValue == 1) {
+                System.out.println("Mode where is 1...");
                 ClientErrorException.worldListHost = Objects.requireNonNull(this.getCodeBase()).getHost();
                 //System.out.println("port = " + Class53.anInt867);
                 Class53.anInt867 = ObjectDefinition.worldId + 50000;
                 anInt3773 = 40000 + ObjectDefinition.worldId;
-            } else if (Class44.anInt718 == 2) {
+            } else if (modeWhereValue == 2) {
+                System.out.println("Mode where is 2...");
                 ClientErrorException.worldListHost = "127.0.0.1";
                 System.out.println("Setting worldListHost to 127.0.0.1, port = " + Class53.anInt867);
                 Class53.anInt867 = ObjectDefinition.worldId + '\uc350';
@@ -1032,7 +1046,7 @@ public final class Client extends GameShell {
             Class3_Sub13_Sub38.aShortArray3455 = Class3_Sub13_Sub9.aShortArray3110 = Class136.aShortArray1779 = Class3_Sub13_Sub38.aShortArray3453 = new short[256];
 
             Class140_Sub6.accRegistryPort = Class123.anInt1658;
-            if (Signlink.anInt1214 == 3 && 2 != Class44.anInt718) {
+            if (Signlink.anInt1214 == 3 && 2 != modeWhereValue) {
                 CS2Script.anInt2451 = ObjectDefinition.worldId;
             }
 
@@ -1068,7 +1082,7 @@ public final class Client extends GameShell {
             }
 
             Class167.aClass94_2083 = TextCore.RSLoadingPleaseWait;
-            if (Class44.anInt718 != 0) {
+            if (modeWhereValue != 0) {
                 ClientCommands.fpsOverlayEnabled = true;
             }
             //Class3_Sub26.tweeningEnabled  = true;
@@ -1103,7 +1117,7 @@ public final class Client extends GameShell {
 
             ++Class106.anInt1446;
             if (-1 != Class3_Sub28_Sub12.anInt3655) {
-                GraphicDefinition.method967(0, 0, 0, Class23.anInt454, Class3_Sub28_Sub12.anInt3655, 0, Class140_Sub7.anInt2934);
+                GraphicDefinition.method967(0, 0, 0, GameShell.gameShellAWTWidth, Class3_Sub28_Sub12.anInt3655, 0, GameShell.gameShellAWTHeight);
             }
 
             ++PacketParser.anInt3213;
@@ -1259,24 +1273,24 @@ public final class Client extends GameShell {
             }
 
             if (Class58.aJs5Worker_917.errors >= 2 && Class58.aJs5Worker_917.status == 6) {
-                this.method31("js5connect_outofdate");
+                this.displayGameErrorPopupMessage("js5connect_outofdate");
                 Class143.loadingStage = 1000;
                 return;
             }
 
             if (Class58.aJs5Worker_917.errors >= 4 && Class58.aJs5Worker_917.status == -1) {
-                this.method31("js5crc");
+                this.displayGameErrorPopupMessage("js5crc");
                 Class143.loadingStage = 1000;
                 return;
             }
 
             if (Class58.aJs5Worker_917.errors >= 4 && (Class143.loadingStage == 0 || Class143.loadingStage == 5)) {
                 if (Class58.aJs5Worker_917.status == 7 || Class58.aJs5Worker_917.status == 9) {
-                    this.method31("js5connect_full");
+                    this.displayGameErrorPopupMessage("js5connect_full");
                 } else if (Class58.aJs5Worker_917.status > 0) {
-                    this.method31("js5connect");
+                    this.displayGameErrorPopupMessage("js5connect");
                 } else {
-                    this.method31("js5io");
+                    this.displayGameErrorPopupMessage("js5io");
                 }
 
                 Class143.loadingStage = 1000;
@@ -1290,11 +1304,13 @@ public final class Client extends GameShell {
         } else {
             try {
                 if (PacketParser.anInt80 == 0) {
+                    System.out.println("Client packet parser 0");
                     Class17.aClass64_413 = Class38.aClass87_665.method1441((byte) 8, Class38_Sub1.accRegistryIp, Class140_Sub6.accRegistryPort);
                     ++PacketParser.anInt80;
                 }
 
                 if (PacketParser.anInt80 == 1) {
+                    System.out.println("Client packet parser 1");
                     if (2 == Objects.requireNonNull(Class17.aClass64_413).anInt978) {
                         this.method46(1000);
                         return;
@@ -1306,6 +1322,7 @@ public final class Client extends GameShell {
                 }
 
                 if (2 == PacketParser.anInt80) {
+                    System.out.println("Client packet parser 2");
                     Unsorted.js5Connection = new Connection((Socket) Objects.requireNonNull(Class17.aClass64_413).anObject974, Class38.aClass87_665);
                     DataBuffer var2 = new DataBuffer(9);
                     var2.writeByte(15); //JS5 handshake
@@ -1317,6 +1334,7 @@ public final class Client extends GameShell {
                 }
 
                 if (3 == PacketParser.anInt80) {
+                    System.out.println("Client packet parser 3");
                     if (Class143.loadingStage != 0 && Class143.loadingStage != 5 && 0 >= Unsorted.js5Connection.availableBytes()) {
                         if (TimeUtils.time() + -Class3_Sub13_Sub30.aLong3366 > 30000) {
                             this.method46(1001);
@@ -1334,13 +1352,19 @@ public final class Client extends GameShell {
                 }
 
                 if (PacketParser.anInt80 == 4) {
+                    System.out.println("Client packet parser 4");
                     boolean var6 = Class143.loadingStage == 5 || Class143.loadingStage == 10 || Class143.loadingStage == 28;
+                    System.out.println("Client packet parser 5");
                     Class58.aJs5Worker_917.connect(!var6, Unsorted.js5Connection);
+                    System.out.println("Client packet parser 6");
                     Unsorted.js5Connection = null;
+                    System.out.println("Client packet parser 7");
                     Class17.aClass64_413 = null;
+                    System.out.println("Client packet parser 8");
                     PacketParser.anInt80 = 0;
                 }
             } catch (IOException var3) {
+                System.out.println("Client packet parser 9");
                 this.method46(1002);
             }
 
@@ -1452,7 +1476,7 @@ public final class Client extends GameShell {
                             Class3_Sub17.aClass94_2464 = TextCore.LoadedUpdateList;
                             Sprites.getSpriteFromArchive(CacheIndex.spritesIndex);
                             Class97.method1593(111, CacheIndex.spritesIndex);
-                            Class3_Sub13_Sub13.method233(28280, CacheIndex.spritesIndex);
+                            Class3_Sub13_Sub13.method233(CacheIndex.spritesIndex);
                             anInt1354 = 45;
                         }
                     } else if (anInt1354 == 45) {
@@ -1608,14 +1632,14 @@ public final class Client extends GameShell {
                                     LoadingStageNumber = 95;
                                     Class3_Sub17.aClass94_2464 = TextCore.LoadingWLD;
                                 } else if (var2 == 7 || var2 == 9) {
-                                    this.method31("worldlistfull");
+                                    this.displayGameErrorPopupMessage("worldlistfull");
                                     Class117.method1719(1000);
                                 } else if (Class30.loadedWorldList) {
                                     Class3_Sub17.aClass94_2464 = TextCore.LoadedWLD;
                                     anInt1354 = 140;
                                     LoadingStageNumber = 96;
                                 } else {
-                                    this.method31("worldlistio_" + var2);
+                                    this.displayGameErrorPopupMessage("worldlistio_" + var2);
                                     Class117.method1719(1000);
                                 }
                             } else if (anInt1354 == 140) {

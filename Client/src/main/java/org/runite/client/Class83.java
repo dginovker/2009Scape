@@ -324,7 +324,7 @@ final class Class83 {
 
     static int method1411(int var0) {
         try {
-            if (Class3_Sub13_Sub10.aFrame3121 == null) {
+            if (GameShell.aFrame3121 == null) {
                 if (HDToolKit.highDetail && Class3_Sub15.aBoolean2427) {
                     return 2;
                 } else {

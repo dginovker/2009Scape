@@ -30,11 +30,11 @@ final class Class3_Sub13_Sub14 extends Class3_Sub13 {
             Unsorted.maskUpdateCount = 0;
             Class139.anInt1829 = 0;
             Class24.renderLocalNPCs();
-            NPC_RENDER_LOG[0] = GraphicDefinition.incomingBuffer.index;
+            NPC_RENDER_LOG[0] = Network.incomingBuffer.index;
             Class167.addLocalNPCs();
-            NPC_RENDER_LOG[1] = GraphicDefinition.incomingBuffer.index;
+            NPC_RENDER_LOG[1] = Network.incomingBuffer.index;
             NPC.renderNPCMasks(var0 ^ 8106);
-            NPC_RENDER_LOG[2] = GraphicDefinition.incomingBuffer.index;
+            NPC_RENDER_LOG[2] = Network.incomingBuffer.index;
 
             int var1;
             for (var1 = 0; Class139.anInt1829 > var1; ++var1) {
@@ -53,7 +53,7 @@ final class Class3_Sub13_Sub14 extends Class3_Sub13 {
                 renderNPCs(96);
             }
 
-            if (Unsorted.incomingPacketLength == GraphicDefinition.incomingBuffer.index) {
+            if (Network.incomingPacketLength == Network.incomingBuffer.index) {
                 for (var1 = 0; var1 < Class163.localNPCCount; ++var1) {
                     if (null == NPC.npcs[Class15.localNPCIndexes[var1]]) {
 //            	   System.err.println("gnp2 pos:" + var1 + " size:" + Class163.anInt2046);

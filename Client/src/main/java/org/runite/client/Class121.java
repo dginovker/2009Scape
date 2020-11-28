@@ -122,17 +122,17 @@ final class Class121 {
                         return -1;
                     }
 
-                    Class3_Sub15.activeConnection = new Connection((Socket) Class3_Sub9.aClass64_2318.anObject974, Class38.aClass87_665);
-                    Class3_Sub13_Sub1.outgoingBuffer.index = 0;
+                    Network.activeConnection = new Connection((Socket) Class3_Sub9.aClass64_2318.anObject974, Class38.aClass87_665);
+                    Network.outgoingBuffer.index = 0;
                     Class3_Sub9.aClass64_2318 = null;
                     wlUpdateStamp = 0;
                     if (Class30.loadedWorldList) {
                         wlUpdateStamp = Unsorted.updateStamp;
                     }
 
-                    Class3_Sub13_Sub1.outgoingBuffer.writeByte(255);
-                    Class3_Sub13_Sub1.outgoingBuffer.writeInt(wlUpdateStamp);
-                    Class3_Sub15.activeConnection.sendBytes(Class3_Sub13_Sub1.outgoingBuffer.buffer, Class3_Sub13_Sub1.outgoingBuffer.index);
+                    Network.outgoingBuffer.writeByte(255);
+                    Network.outgoingBuffer.writeInt(wlUpdateStamp);
+                    Network.activeConnection.sendBytes(Network.outgoingBuffer.buffer, Network.outgoingBuffer.index);
                     if (null != WorldListEntry.aClass155_2627) {
                         WorldListEntry.aClass155_2627.method2159(67);
                     }
@@ -141,7 +141,7 @@ final class Class121 {
                         Class3_Sub21.aClass155_2491.method2159(101);
                     }
 
-                    var2 = Class3_Sub15.activeConnection.readByte();
+                    var2 = Network.activeConnection.readByte();
                     //System.out.println(var2); //Not sure what this was debugging
                     if (WorldListEntry.aClass155_2627 != null) {
                         WorldListEntry.aClass155_2627.method2159(55);
@@ -159,20 +159,20 @@ final class Class121 {
                 }
 
                 if (Class43.anInt692 == 2) {
-                    if (2 > Class3_Sub15.activeConnection.availableBytes()) {
+                    if (2 > Network.activeConnection.availableBytes()) {
                         return -1;
                     }
 
-                    Unsorted.wlPacketSize = Class3_Sub15.activeConnection.readByte();
+                    Unsorted.wlPacketSize = Network.activeConnection.readByte();
                     Unsorted.wlPacketSize <<= 8;
-                    Unsorted.wlPacketSize += Class3_Sub15.activeConnection.readByte();
+                    Unsorted.wlPacketSize += Network.activeConnection.readByte();
                     Class43.anInt692 = 3;
                     Class3_Sub20.wlPacketIndex = 0;
                     Class3_Sub13_Sub33.aByteArray3396 = new byte[Unsorted.wlPacketSize];
                 }
 
                 if (Class43.anInt692 == 3) {
-                    wlUpdateStamp = Class3_Sub15.activeConnection.availableBytes();
+                    wlUpdateStamp = Network.activeConnection.availableBytes();
                     if (1 > wlUpdateStamp) {
                         return -1;
                     }
@@ -181,10 +181,10 @@ final class Class121 {
                         wlUpdateStamp = Unsorted.wlPacketSize + -Class3_Sub20.wlPacketIndex;
                     }
 
-                    Class3_Sub15.activeConnection.readBytes(Class3_Sub13_Sub33.aByteArray3396, Class3_Sub20.wlPacketIndex, wlUpdateStamp);
+                    Network.activeConnection.readBytes(Class3_Sub13_Sub33.aByteArray3396, Class3_Sub20.wlPacketIndex, wlUpdateStamp);
                     Class3_Sub20.wlPacketIndex += wlUpdateStamp;
                     if (Class3_Sub20.wlPacketIndex >= Unsorted.wlPacketSize) {
-                        if (Class3_Sub13_Sub23.handleWorldListUpdate(Class3_Sub13_Sub33.aByteArray3396)) {
+                        if (WorldListEntry.handleWorldListUpdate(Class3_Sub13_Sub33.aByteArray3396)) {
                             Unsorted.aClass44_Sub1Array3201 = new WorldListEntry[Class57.activeWorldListSize];
                             var2 = 0;
 
@@ -196,8 +196,8 @@ final class Class121 {
                                 //System.out.println("world = " +var4.worldId);
                             }
 
-                            Class3_Sub15.activeConnection.close();
-                            Class3_Sub15.activeConnection = null;
+                            Network.activeConnection.close();
+                            Network.activeConnection = null;
                             Unsorted.anInt1088 = 0;
                             Class43.anInt692 = 0;
                             Class3_Sub13_Sub33.aByteArray3396 = null;

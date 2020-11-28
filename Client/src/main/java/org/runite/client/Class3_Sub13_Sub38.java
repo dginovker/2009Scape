@@ -22,7 +22,7 @@ final class Class3_Sub13_Sub38 extends Class3_Sub13 {
 
     final void method158(int var1) {
         try {
-            Class8.method844((byte) -9);
+            Class8.method844();
             if (var1 != 16251) {
                 this.anInt3454 = 107;
             }

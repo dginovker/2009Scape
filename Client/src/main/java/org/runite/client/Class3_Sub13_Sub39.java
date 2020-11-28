@@ -185,7 +185,7 @@ final class Class3_Sub13_Sub39 extends Class3_Sub13 {
                     anInt3463 = 22;
                 }
 
-                Class8.method844((byte) -9);
+                Class8.method844();
                 this.method352();
             }
         } catch (RuntimeException var3) {

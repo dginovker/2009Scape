@@ -5,7 +5,6 @@ import org.rs09.client.config.GameConfig;
 
 public final class Class3_Sub13_Sub1 extends Class3_Sub13 {
 
-    public static Class3_Sub30_Sub1 outgoingBuffer = new Class3_Sub30_Sub1();
     static RSString aClass2323;
     static String aString2324;
     static RSString aClass2325;
@@ -36,8 +35,8 @@ public final class Class3_Sub13_Sub1 extends Class3_Sub13 {
         }
     }
 
-    static void method229() {
-        DataBuffer buffer = outgoingBuffer;
+    static void sendComputerUsernameAndOS() {
+        DataBuffer buffer = Network.outgoingBuffer;
         buffer.writeString(aClass2323);
         for (char c : aString2324.toCharArray()) {
             if (c == '-') {
@@ -142,7 +141,7 @@ public final class Class3_Sub13_Sub1 extends Class3_Sub13 {
 
     final void method158(int var1) {
         try {
-            Class8.method844((byte) -9);
+            Class8.method844();
             if (var1 != 16251) {
                 method171(106, -38, 106, 7, -28, -61, 30, -77, -47);
             }

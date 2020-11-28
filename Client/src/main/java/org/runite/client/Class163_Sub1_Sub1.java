@@ -2,7 +2,6 @@ package org.runite.client;
 
 import org.rs09.client.net.Connection;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Objects;
@@ -41,9 +40,9 @@ final class Class163_Sub1_Sub1 extends Class163_Sub1 {
             if (anInt3375 != 0) {
                 try {
                     if (1500 < ++anInt2246) {
-                        if (null != Class3_Sub15.activeConnection) {
-                            Class3_Sub15.activeConnection.close();
-                            Class3_Sub15.activeConnection = null;
+                        if (null != Network.activeConnection) {
+                            Network.activeConnection.close();
+                            Network.activeConnection = null;
                         }
 
                         if (1 <= anInt1616) {
@@ -77,9 +76,9 @@ final class Class163_Sub1_Sub1 extends Class163_Sub1 {
                             return;
                         }
 
-                        Class3_Sub15.activeConnection = new Connection((Socket) Class3_Sub9.aClass64_2318.anObject974, Class38.aClass87_665);
+                        Network.activeConnection = new Connection((Socket) Class3_Sub9.aClass64_2318.anObject974, Class38.aClass87_665);
                         Class3_Sub9.aClass64_2318 = null;
-                        Class3_Sub15.activeConnection.sendBytes(Class3_Sub13_Sub1.outgoingBuffer.buffer, Class3_Sub13_Sub1.outgoingBuffer.index);
+                        Network.activeConnection.sendBytes(Network.outgoingBuffer.buffer, Network.outgoingBuffer.index);
                         if (WorldListEntry.aClass155_2627 != null) {
                             WorldListEntry.aClass155_2627.method2159(83);
                         }
@@ -87,7 +86,7 @@ final class Class163_Sub1_Sub1 extends Class163_Sub1 {
                             Class3_Sub21.aClass155_2491.method2159(120);
                         }
 
-                        var1 = Class3_Sub15.activeConnection.readByte();
+                        var1 = Network.activeConnection.readByte();
                         if (WorldListEntry.aClass155_2627 != null) {
                             WorldListEntry.aClass155_2627.method2159(59);
                         }
@@ -99,8 +98,8 @@ final class Class163_Sub1_Sub1 extends Class163_Sub1 {
                         if (var1 != 101) {
                             Class158.anInt2005 = var1;
                             anInt3375 = 0;
-                            Class3_Sub15.activeConnection.close();
-                            Class3_Sub15.activeConnection = null;
+                            Network.activeConnection.close();
+                            Network.activeConnection = null;
                             return;
                         }
 
@@ -108,30 +107,30 @@ final class Class163_Sub1_Sub1 extends Class163_Sub1 {
                     }
 
                     if (anInt3375 == 3) {
-                        if (Class3_Sub15.activeConnection.availableBytes() < 2) {
+                        if (Network.activeConnection.availableBytes() < 2) {
                             return;
                         }
 
-                        var1 = Class3_Sub15.activeConnection.readByte() << 8 | Class3_Sub15.activeConnection.readByte();
+                        var1 = Network.activeConnection.readByte() << 8 | Network.activeConnection.readByte();
                         WaterfallShader.method1627(var1, (byte) -16);
                         if (CS2Script.anInt2451 == -1) {
                             anInt3375 = 0;
                             Class158.anInt2005 = 6;
-                            Class3_Sub15.activeConnection.close();
-                            Class3_Sub15.activeConnection = null;
+                            Network.activeConnection.close();
+                            Network.activeConnection = null;
                             return;
                         }
 
                         anInt3375 = 0;
-                        Class3_Sub15.activeConnection.close();
-                        Class3_Sub15.activeConnection = null;
+                        Network.activeConnection.close();
+                        Network.activeConnection = null;
                         Class24.method951();
                         return;
                     }
                 } catch (IOException var2) {
-                    if (null != Class3_Sub15.activeConnection) {
-                        Class3_Sub15.activeConnection.close();
-                        Class3_Sub15.activeConnection = null;
+                    if (null != Network.activeConnection) {
+                        Network.activeConnection.close();
+                        Network.activeConnection = null;
                     }
 
                     if (anInt1616 < 1) {

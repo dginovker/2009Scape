@@ -29,7 +29,7 @@ final class Class113 {
         try {
             if (var1 == !Sprites.aBoolean337) {
                 Sprites.aBoolean337 = var1;
-                ClearReferenceCache.method139(76);
+                ClearReferenceCache.method139();
             }
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "pe.B(" + (byte) -124 + ',' + var1 + ')');

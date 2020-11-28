@@ -6,7 +6,6 @@ final class Class3_Sub24_Sub3 extends Class3_Sub24 {
 
     static CacheIndex aClass153_3490;
     static int[] anIntArray3491 = new int[]{0, -1, 0, 1};
-    static int anInt3492 = 64;
     static int[] anIntArray3494;
     private final Class3_Sub24_Sub4 aClass3_Sub24_Sub4_3493;
     Class61 aClass61_3489 = new Class61();

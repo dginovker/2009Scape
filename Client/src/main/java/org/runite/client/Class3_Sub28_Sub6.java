@@ -169,10 +169,10 @@ final class Class3_Sub28_Sub6 extends Node {
             var8.writeShort(var2);
             var8.writeInt((int) (9.9999999E7D * Math.random()));
             var8.rsaEncrypt(Class3_Sub13_Sub14.aBigInteger3162, Class3_Sub13_Sub37.aBigInteger3441);
-            Class3_Sub13_Sub1.outgoingBuffer.index = 0;
-            Class3_Sub13_Sub1.outgoingBuffer.writeByte(36);
-            Class3_Sub13_Sub1.outgoingBuffer.writeByte(var8.index);
-            Class3_Sub13_Sub1.outgoingBuffer.putBytes(var8.buffer, var8.index);
+            Network.outgoingBuffer.index = 0;
+            Network.outgoingBuffer.writeByte(36);
+            Network.outgoingBuffer.writeByte(var8.index);
+            Network.outgoingBuffer.putBytes(var8.buffer, var8.index);
             Unsorted.anInt1711 = -3;
             Unsorted.registryStage = 1;
             Class132.anInt1734 = 0;

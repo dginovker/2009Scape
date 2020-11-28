@@ -12,18 +12,18 @@ final class Class106 {
 
     static void method1642(RSString var1) {
         try {
-            if (null != PacketParser.aClass3_Sub19Array3694) {
+            if (null != PacketParser.clanChatInformationArray) {
 
                 long var3 = var1.toLong();
                 int var2 = 0;
                 if (var3 != 0L) {
-                    while (PacketParser.aClass3_Sub19Array3694.length > var2 && var3 != PacketParser.aClass3_Sub19Array3694[var2].linkableKey) {
+                    while (PacketParser.clanChatInformationArray.length > var2 && var3 != PacketParser.clanChatInformationArray[var2].linkableKey) {
                         ++var2;
                     }
 
-                    if (var2 < PacketParser.aClass3_Sub19Array3694.length && null != PacketParser.aClass3_Sub19Array3694[var2]) {
-                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(162);
-                        Class3_Sub13_Sub1.outgoingBuffer.writeLong(PacketParser.aClass3_Sub19Array3694[var2].linkableKey);
+                    if (var2 < PacketParser.clanChatInformationArray.length && null != PacketParser.clanChatInformationArray[var2]) {
+                        Network.outgoingBuffer.putOpcode(162);
+                        Network.outgoingBuffer.writeLong(PacketParser.clanChatInformationArray[var2].linkableKey);
                     }
                 }
             }

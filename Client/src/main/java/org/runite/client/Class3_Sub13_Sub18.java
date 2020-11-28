@@ -285,7 +285,7 @@ final class Class3_Sub13_Sub18 extends Class3_Sub13 {
                 method255(33, 78, 124);
             }
 
-            Class8.method844((byte) -9);
+            Class8.method844();
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "ke.P(" + var1 + ')');
         }

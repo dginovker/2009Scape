@@ -5,11 +5,13 @@ import org.rs09.client.Linkable;
 import org.rs09.client.LinkableInt;
 import org.rs09.client.config.GameConfig;
 import org.rs09.client.data.HashTable;
+import org.rs09.client.data.ReferenceCache;
 
 import java.util.Objects;
 
 public final class NPCDefinition {
 
+    public static ReferenceCache aReferenceCache_4043 = new ReferenceCache(64);
     static SequenceDefinition[] aClass142Array1168 = new SequenceDefinition[14];
     static Class3_Sub28_Sub5[] aClass3_Sub28_Sub5Array3041 = new Class3_Sub28_Sub5[14];
     static CacheIndex aClass153_3173;
@@ -102,27 +104,6 @@ public final class NPCDefinition {
         this.anInt1298 = -1;
     }
 
-    static void method1479(int var0) {
-        try {
-            Class3_Sub13_Sub30.anInt3362 = -1;
-
-            if (var0 == 37) {
-                NPC.aFloat3979 = 3.0F;
-            } else if (50 == var0) {
-                NPC.aFloat3979 = 4.0F;
-            } else if (var0 == 75) {
-                NPC.aFloat3979 = 6.0F;
-            } else if (var0 == 100) {
-                NPC.aFloat3979 = 8.0F;
-            } else if (var0 == 200) {
-                NPC.aFloat3979 = 16.0F;
-            }
-
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "me.C(" + var0 + ',' + (byte) 56 + ')');
-        }
-    }
-
     static void method1480(boolean var0, RSString var1) {
         try {
             short[] var3 = new short[16];
@@ -179,6 +160,25 @@ public final class NPCDefinition {
         }
     }
 
+    static NPCDefinition method522(int var0) {
+        try {
+            NPCDefinition def = (NPCDefinition) aReferenceCache_4043.get(var0);
+            if (null == def) {
+                byte[] var3 = Class29.aClass153_557.getFile(var0 >>> 7, var0 & 127);
+                def = new NPCDefinition();
+
+                def.npcId = var0;
+                if (null != var3) {
+                    def.method1478(new DataBuffer(var3));
+                }
+                aReferenceCache_4043.put(def, var0);
+            }
+            return def;
+        } catch (RuntimeException var4) {
+            throw ClientErrorException.clientError(var4, "rg.PA(" + var0 + ',' + 27112 + ')');
+        }
+    }
+
     final NPCDefinition method1471(byte var1) {
         try {
             int var2 = -1;
@@ -192,10 +192,10 @@ public final class NPCDefinition {
 
             int var3;
             if (0 <= var2 && -1 + this.childNPCs.length > var2 && this.childNPCs[var2] != -1) {
-                return Unsorted.method522(this.childNPCs[var2]);
+                return method522(this.childNPCs[var2]);
             } else {
                 var3 = this.childNPCs[-1 + this.childNPCs.length];
-                return var3 == -1 ? null : Unsorted.method522(var3);
+                return var3 == -1 ? null : method522(var3);
             }
         } catch (RuntimeException var4) {
             throw ClientErrorException.clientError(var4, "me.G(" + var1 + ')');
@@ -236,7 +236,7 @@ public final class NPCDefinition {
             } else {
                 for (int var2 = 0; var2 < this.childNPCs.length; ++var2) {
                     if (this.childNPCs[var2] != -1) {
-                        NPCDefinition var3 = Unsorted.method522(this.childNPCs[var2]);
+                        NPCDefinition var3 = method522(this.childNPCs[var2]);
                         if (var3.anInt1262 != -1 || var3.anInt1293 != -1 || var3.anInt1276 != -1) {
                             return true;
                         }
@@ -305,7 +305,7 @@ public final class NPCDefinition {
 
                     RenderAnimationDefinition render = null;
                     if (-1 != this.renderAnimationId) {
-                        render = Class3_Sub10.getRenderAnimationDefinition(this.renderAnimationId);
+                        render = Class140_Sub4.getRenderAnimationDefinition(this.renderAnimationId);
                     }
 
                     if (render != null && null != render.anIntArrayArray359) {

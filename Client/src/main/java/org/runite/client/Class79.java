@@ -21,23 +21,6 @@ final class Class79 {
         }
     }
 
-    static int method1386(KeyEvent var1) {
-        try {
-            int var2 = var1.getKeyChar();
-            if (8364 == var2) {
-                return 128;
-            } else {
-                if (var2 <= 0 || 256 <= var2) {
-                    var2 = -1;
-                }
-
-                return var2;
-            }
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "kk.C(" + true + ',' + (var1 != null ? "{...}" : "null") + ')');
-        }
-    }
-
     static void method1390(DataBuffer var0) {
         try {
             if (-var0.index + var0.buffer.length >= 1) {
@@ -131,7 +114,7 @@ final class Class79 {
 
                         if (var2 >= 4) {
                             int var4 = var0.readUnsignedByte();
-                            if (Class3_Sub24_Sub3.anInt3492 < 96) {
+                            if (GameShell.clientMemory < 96) {
                                 var4 = 0;
                             }
 

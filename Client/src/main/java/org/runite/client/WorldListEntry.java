@@ -210,6 +210,27 @@ final class WorldListEntry extends Class44 {
         }
     }
 
+    static boolean handleWorldListUpdate(byte[] buf) {
+        try {
+            DataBuffer buffer = new DataBuffer(buf);
+            int opcode = buffer.readUnsignedByte();
+            //System.out.println(opcode);
+            if (1 == opcode) {
+                boolean updated = buffer.readUnsignedByte() == 1;
+                if (updated) {
+                    parseWorldList(buffer);
+                }
+
+                Class3_Sub13_Sub10.method216(buffer);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (RuntimeException var5) {
+            throw ClientErrorException.clientError(var5, "nh.AA(" + 4 + ',' + (buf != null ? "{...}" : "null") + ')');
+        }
+    }
+
     final WorldListCountry method1078(int var1) {
         try {
             return countries[this.countryIndex];

@@ -8,7 +8,6 @@ import java.util.Objects;
 public class Class163_Sub1 extends Class163 {
 
     public static ReferenceCache aReferenceCache_2984 = new ReferenceCache(2);
-    static long[] aLongArray2986 = new long[32];
     static byte[][] aByteArrayArray2987;
     static int anInt2989 = 0;
     static Class61 aClass61_2990 = new Class61();
@@ -22,11 +21,11 @@ public class Class163_Sub1 extends Class163 {
                 ++Class3_Sub13_Sub23_Sub1.anInt4032;
                 if (Class3_Sub13_Sub23_Sub1.anInt4032 >= 50 || var1) {
                     Class3_Sub13_Sub23_Sub1.anInt4032 = 0;
-                    if (!Class3_Sub28_Sub18.aBoolean3769 && Class3_Sub15.activeConnection != null) {
-                        Class3_Sub13_Sub1.outgoingBuffer.putOpcode(93);
+                    if (!Class3_Sub28_Sub18.aBoolean3769 && Network.activeConnection != null) {
+                        Network.outgoingBuffer.putOpcode(93);
                         try {
-                            Class3_Sub15.activeConnection.sendBytes(Class3_Sub13_Sub1.outgoingBuffer.buffer, Class3_Sub13_Sub1.outgoingBuffer.index);
-                            Class3_Sub13_Sub1.outgoingBuffer.index = 0;
+                            Network.activeConnection.sendBytes(Network.outgoingBuffer.buffer, Network.outgoingBuffer.index);
+                            Network.outgoingBuffer.index = 0;
                         } catch (IOException var3) {
                             Class3_Sub28_Sub18.aBoolean3769 = true;
                         }
@@ -81,7 +80,7 @@ public class Class163_Sub1 extends Class163 {
                                 }
 
                                 if (var7 != -1) {
-                                    Class3_Sub30_Sub1.method806(var7);
+                                    Class3_Sub13_Sub8.method806(var7);
                                 }
 
                                 Class38_Sub1.aBoolean2615 = false;

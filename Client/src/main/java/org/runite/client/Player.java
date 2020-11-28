@@ -91,7 +91,7 @@ final class Player extends Class140_Sub4 {
 
                 return super.getSize();
             } else {
-                return Unsorted.method522(this.class52.pnpcId).size;
+                return NPCDefinition.method522(this.class52.pnpcId).size;
             }
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "e.H(" + (byte) 114 + ')');
@@ -227,7 +227,7 @@ final class Player extends Class140_Sub4 {
                 SequenceDefinition var14 = this.anInt2764 != -1 && !this.aBoolean3968 && (this.method1965().anInt368 != this.anInt2764 || var13 == null) ? SequenceDefinition.getAnimationDefinition(this.anInt2764) : null;
                 Model var15 = this.class52.method1165(this.aClass145Array2809, this.anInt2776, var14, var13, this.anInt2802, this.anInt2793, -120, this.anInt2760, this.anInt2832, this.anInt2813);
                 int var16 = Unsorted.method1727((byte) 123);
-                if (HDToolKit.highDetail && Class3_Sub24_Sub3.anInt3492 < 96 && var16 > 50) {
+                if (HDToolKit.highDetail && GameShell.clientMemory < 96 && var16 > 50) {
                     Class3_Sub1.method90(1);
                 }
 
@@ -246,7 +246,7 @@ final class Player extends Class140_Sub4 {
                 if (var15 != null) {
                     this.anInt2820 = var15.method1871();
                     Model var23;
-                    if (Class140_Sub6.aBoolean2910 && (-1 == this.class52.pnpcId || Unsorted.method522(this.class52.pnpcId).aBoolean1249)) {
+                    if (Class140_Sub6.aBoolean2910 && (-1 == this.class52.pnpcId || NPCDefinition.method522(this.class52.pnpcId).aBoolean1249)) {
                         var23 = Class140_Sub3.method1957(160, this.aBoolean2810, var14 == null ? var13 : var14, this.anInt2819, 0, this.anInt2829, 0, 1, var15, var1, null != var14 ? this.anInt2813 : this.anInt2832, this.anInt2831, 240);
                         if (HDToolKit.highDetail) {
                             float var18 = HDToolKit.method1852();
@@ -420,8 +420,8 @@ final class Player extends Class140_Sub4 {
         try {
             RSString var2 = this.displayName;
 
-            if (Class3_Sub30_Sub1.aClass94Array3802 != null) {
-                var2 = RSString.stringCombiner(new RSString[]{Class3_Sub30_Sub1.aClass94Array3802[this.anInt3958], var2});
+            if (Network.aClass94Array3802 != null) {
+                var2 = RSString.stringCombiner(new RSString[]{Network.aClass94Array3802[this.anInt3958], var2});
             }
 
             if (null != Unsorted.aClass94Array45) {

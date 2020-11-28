@@ -11,7 +11,7 @@ final class Class3_Sub13_Sub19 extends Class3_Sub13 {
     static CacheIndex aClass153_3227;
     private static RSString aClass94_3232 = RSString.parse("pt");
     private static RSString aClass94_3239 = RSString.parse("fr");
-    static RSString[] aClass94Array3238 = new RSString[]{aClass94_3237, aClass94_3243, aClass94_3239, aClass94_3232};
+    static RSString[] languageArray = new RSString[]{aClass94_3237, aClass94_3243, aClass94_3239, aClass94_3232};
     private int anInt3219 = 204;
     private int anInt3223;
     private int anInt3224 = 81;
@@ -73,7 +73,7 @@ final class Class3_Sub13_Sub19 extends Class3_Sub13 {
 
     static void method264(byte var0) {
         try {
-            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(184);
+            Network.outgoingBuffer.putOpcode(184);
 
             for (Class3_Sub31 var1 = Class3_Sub13_Sub17.aHashTable_3208.first(); null != var1; var1 = Class3_Sub13_Sub17.aHashTable_3208.next()) {
                 if (var1.anInt2603 == 0) {

@@ -85,8 +85,8 @@ public final class Class24 {
 
     static void renderLocalNPCs() {
         try {
-            GraphicDefinition.incomingBuffer.setBitAccess((byte) -98);
-            int var1 = GraphicDefinition.incomingBuffer.getBits(8);
+            Network.incomingBuffer.setBitAccess((byte) -98);
+            int var1 = Network.incomingBuffer.getBits(8);
             int var2;
             if (var1 < Class163.localNPCCount) {
                 for (var2 = var1; var2 < Class163.localNPCCount; ++var2) {
@@ -102,12 +102,12 @@ public final class Class24 {
                 for (var2 = 0; var1 > var2; ++var2) {
                     int var3 = Class15.localNPCIndexes[var2];
                     NPC var4 = NPC.npcs[var3];
-                    int var5 = GraphicDefinition.incomingBuffer.getBits(1);
+                    int var5 = Network.incomingBuffer.getBits(1);
                     if (0 == var5) {
                         Class15.localNPCIndexes[Class163.localNPCCount++] = var3;
                         var4.anInt2838 = Class44.anInt719;
                     } else {
-                        int var6 = GraphicDefinition.incomingBuffer.getBits(2);
+                        int var6 = Network.incomingBuffer.getBits(2);
                         if (var6 == 0) {
                             Class15.localNPCIndexes[Class163.localNPCCount++] = var3;
                             var4.anInt2838 = Class44.anInt719;
@@ -118,26 +118,26 @@ public final class Class24 {
                             if (1 == var6) {
                                 Class15.localNPCIndexes[Class163.localNPCCount++] = var3;
                                 var4.anInt2838 = Class44.anInt719;
-                                var7 = GraphicDefinition.incomingBuffer.getBits(3);
+                                var7 = Network.incomingBuffer.getBits(3);
                                 var4.walkStep(1, (byte) 32, var7);
-                                var8 = GraphicDefinition.incomingBuffer.getBits(1);
+                                var8 = Network.incomingBuffer.getBits(1);
                                 if (1 == var8) {
                                     Class21.maskUpdateIndexes[Unsorted.maskUpdateCount++] = var3;
                                 }
                             } else if (var6 == 2) {
                                 Class15.localNPCIndexes[Class163.localNPCCount++] = var3;
                                 var4.anInt2838 = Class44.anInt719;
-                                if (GraphicDefinition.incomingBuffer.getBits(1) == 1) {
-                                    var7 = GraphicDefinition.incomingBuffer.getBits(3);
+                                if (Network.incomingBuffer.getBits(1) == 1) {
+                                    var7 = Network.incomingBuffer.getBits(3);
                                     var4.walkStep(2, (byte) -122, var7);
-                                    var8 = GraphicDefinition.incomingBuffer.getBits(3);
+                                    var8 = Network.incomingBuffer.getBits(3);
                                     var4.walkStep(2, (byte) 85, var8);
                                 } else {
-                                    var7 = GraphicDefinition.incomingBuffer.getBits(3);
+                                    var7 = Network.incomingBuffer.getBits(3);
                                     var4.walkStep(0, (byte) -80, var7);
                                 }
 
-                                var7 = GraphicDefinition.incomingBuffer.getBits(1);
+                                var7 = Network.incomingBuffer.getBits(1);
                                 if (var7 == 1) {
                                     Class21.maskUpdateIndexes[Unsorted.maskUpdateCount++] = var3;
                                 }
@@ -218,9 +218,9 @@ public final class Class24 {
             Class3_Sub28_Sub18.aBoolean3769 = false;
             Class3_Sub13_Sub34.anInt3413 = 0;
             Class158.anInt2005 = -3;
-            Class50.anInt820 = 0;
+            LoginHandler.anInt820 = 0;
             LoginHandler.loginStage = 1;
-            Class166.anInt2079 = 0;
+            LoginHandler.anInt2079 = 0;
             Class3_Sub26.anInt2561 = -1;
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "dm.G(" + 0 + ')');

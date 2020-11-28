@@ -22,8 +22,8 @@ final class Class3_Sub13_Sub16 extends Class3_Sub13 {
     static int method243(RSString var0) {
         try {
 
-            for (int var2 = 0; Class3_Sub13_Sub19.aClass94Array3238.length > var2; ++var2) {
-                if (Class3_Sub13_Sub19.aClass94Array3238[var2].equalsStringIgnoreCase(var0)) {
+            for (int var2 = 0; Class3_Sub13_Sub19.languageArray.length > var2; ++var2) {
+                if (Class3_Sub13_Sub19.languageArray[var2].equalsStringIgnoreCase(var0)) {
                     return var2;
                 }
             }

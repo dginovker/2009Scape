@@ -22,4 +22,25 @@ public class CS2Methods {
             throw ClientErrorException.clientError(var2, "rc.DA(" + -32589 + ')');
         }
     }
+
+    static void method1479(int var0) {
+        try {
+            Class3_Sub13_Sub30.anInt3362 = -1;
+
+            if (var0 == 37) {
+                NPC.aFloat3979 = 3.0F;
+            } else if (50 == var0) {
+                NPC.aFloat3979 = 4.0F;
+            } else if (var0 == 75) {
+                NPC.aFloat3979 = 6.0F;
+            } else if (var0 == 100) {
+                NPC.aFloat3979 = 8.0F;
+            } else if (var0 == 200) {
+                NPC.aFloat3979 = 16.0F;
+            }
+
+        } catch (RuntimeException var3) {
+            throw ClientErrorException.clientError(var3, "me.C(" + var0 + ',' + (byte) 56 + ')');
+        }
+    }
 }

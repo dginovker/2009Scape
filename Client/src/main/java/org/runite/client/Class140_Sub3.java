@@ -272,7 +272,7 @@ final class Class140_Sub3 extends GameObject {
 
     static void renderLocalPlayers() {
         try {
-            int localPlayerAmount = GraphicDefinition.incomingBuffer.getBits(8);
+            int localPlayerAmount = Network.incomingBuffer.getBits(8);
             int var2;
             if (localPlayerAmount < Class159.localPlayerCount) {
                 for (var2 = localPlayerAmount; Class159.localPlayerCount > var2; ++var2) {
@@ -287,12 +287,12 @@ final class Class140_Sub3 extends GameObject {
                 for (; localPlayerAmount > var2; ++var2) {
                     int var3 = Class56.localPlayerIndexes[var2];
                     Player var4 = Class3_Sub13_Sub22.players[var3];
-                    int update = GraphicDefinition.incomingBuffer.getBits(1);
+                    int update = Network.incomingBuffer.getBits(1);
                     if (update == 0) {
                         Class56.localPlayerIndexes[Class159.localPlayerCount++] = var3;
                         var4.anInt2838 = Class44.anInt719;
                     } else {
-                        int type = GraphicDefinition.incomingBuffer.getBits(2);
+                        int type = Network.incomingBuffer.getBits(2);
                         if (type == 0) {
                             Class56.localPlayerIndexes[Class159.localPlayerCount++] = var3;
                             var4.anInt2838 = Class44.anInt719;
@@ -303,26 +303,26 @@ final class Class140_Sub3 extends GameObject {
                             if (type == 1) {
                                 Class56.localPlayerIndexes[Class159.localPlayerCount++] = var3;
                                 var4.anInt2838 = Class44.anInt719;
-                                var7 = GraphicDefinition.incomingBuffer.getBits(3);
+                                var7 = Network.incomingBuffer.getBits(3);
                                 var4.walkStep(1, (byte) 46, var7);
-                                var8 = GraphicDefinition.incomingBuffer.getBits(1);
+                                var8 = Network.incomingBuffer.getBits(1);
                                 if (var8 == 1) {
                                     Class21.maskUpdateIndexes[Unsorted.maskUpdateCount++] = var3;
                                 }
                             } else if (type == 2) {
                                 Class56.localPlayerIndexes[Class159.localPlayerCount++] = var3;
                                 var4.anInt2838 = Class44.anInt719;
-                                if (GraphicDefinition.incomingBuffer.getBits(1) == 1) {
-                                    var7 = GraphicDefinition.incomingBuffer.getBits(3);
+                                if (Network.incomingBuffer.getBits(1) == 1) {
+                                    var7 = Network.incomingBuffer.getBits(3);
                                     var4.walkStep(2, (byte) -92, var7);
-                                    var8 = GraphicDefinition.incomingBuffer.getBits(3);
+                                    var8 = Network.incomingBuffer.getBits(3);
                                     var4.walkStep(2, (byte) 88, var8);
                                 } else {
-                                    var7 = GraphicDefinition.incomingBuffer.getBits(3);
+                                    var7 = Network.incomingBuffer.getBits(3);
                                     var4.walkStep(0, (byte) 113, var7);
                                 }
 
-                                var7 = GraphicDefinition.incomingBuffer.getBits(1);
+                                var7 = Network.incomingBuffer.getBits(1);
                                 if (1 == var7) {
                                     Class21.maskUpdateIndexes[Unsorted.maskUpdateCount++] = var3;
                                 }

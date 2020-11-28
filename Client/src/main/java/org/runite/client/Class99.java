@@ -27,11 +27,13 @@ final class Class99 {
                 }
 
                 try {
+                    System.out.println("Trying this applet");
                     Objects.requireNonNull(LinkableRSString.anApplet_Sub1_2588.getAppletContext()).showDocument(var0.method1547(LinkableRSString.anApplet_Sub1_2588.getCodeBase()), "_blank");
                 } catch (Exception var4) {
                 }
             } else {
                 try {
+                    System.out.println("Trying this applet 2 99");
                     Objects.requireNonNull(LinkableRSString.anApplet_Sub1_2588.getAppletContext()).showDocument(var0.method1547(LinkableRSString.anApplet_Sub1_2588.getCodeBase()), "_top");
                 } catch (Exception var5) {
                 }

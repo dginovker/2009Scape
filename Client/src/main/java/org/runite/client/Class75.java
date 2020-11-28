@@ -1,11 +1,11 @@
 package org.runite.client;
 
-abstract class Class75 {
+public abstract class Class75 {
 
     static long aLong1102 = 0L;
     static Class3_Sub28_Sub5[] aClass3_Sub28_Sub5Array1103 = new Class3_Sub28_Sub5[14];
     static int anInt1105;
-    static int[] anIntArray1107 = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3};
+    public static int[] anIntArray1107 = new int[]{0, 0, 0, 0, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3};
     static int anInt1108 = 0;
     static int anInt1109 = 0;
     int anInt1101;

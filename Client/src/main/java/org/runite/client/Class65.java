@@ -8,7 +8,6 @@ final class Class65 {
     static Class61 aClass61_983 = new Class61();
     static DataBuffer[] aClass3_Sub30Array986 = new DataBuffer[2048];
     static int anInt987 = 0;
-    static int currentChunkX;
     static int anInt991 = -1;
     static AbstractSprite[] aAbstractSpriteArray1825;
 

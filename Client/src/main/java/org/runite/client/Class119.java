@@ -11,19 +11,19 @@ final class Class119 {
 
     static void method1729() {
         try {
-            Object var1;
-            if (null == Class3_Sub13_Sub10.aFrame3121) {
+            Container var1;
+            if (null == GameShell.aFrame3121) {
                 if (GameShell.frame == null) {
                     var1 = Class38.aClass87_665.applet;
                 } else {
                     var1 = GameShell.frame;
                 }
             } else {
-                var1 = Class3_Sub13_Sub10.aFrame3121;
+                var1 = GameShell.aFrame3121;
             }
 
-            Unsorted.anInt2334 = ((Container) var1).getSize().width;
-            Class70.anInt1047 = ((Container) var1).getSize().height;
+            Unsorted.anInt2334 = var1.getSize().width;
+            Class70.anInt1047 = var1.getSize().height;
             Insets var2;
             if (var1 == GameShell.frame) {
                 var2 = GameShell.frame.getInsets();
@@ -32,22 +32,22 @@ final class Class119 {
             }
 
             if (Class83.method1411(0) >= 2) {
-                Class23.anInt454 = Unsorted.anInt2334;
+                GameShell.gameShellAWTWidth = Unsorted.anInt2334;
                 Class84.anInt1164 = 0;
                 Class106.anInt1442 = 0;
-                Class140_Sub7.anInt2934 = Class70.anInt1047;
+                GameShell.gameShellAWTHeight = Class70.anInt1047;
             } else {
                 Class106.anInt1442 = 0;
                 Class84.anInt1164 = (-765 + Unsorted.anInt2334) / 2;
-                Class140_Sub7.anInt2934 = 503;
-                Class23.anInt454 = 765;
+                GameShell.gameShellAWTHeight = 503;
+                GameShell.gameShellAWTWidth = 765;
             }
 
             if (HDToolKit.highDetail) {
-                HDToolKit.method1854(Class23.anInt454, Class140_Sub7.anInt2934);
+                HDToolKit.setHDWindowSize(GameShell.gameShellAWTWidth, GameShell.gameShellAWTHeight);
             }
 
-            GameShell.canvas.setSize(Class23.anInt454, Class140_Sub7.anInt2934);
+            GameShell.canvas.setSize(GameShell.gameShellAWTWidth, GameShell.gameShellAWTHeight);
             if (var1 == GameShell.frame) {
                 var2 = GameShell.frame.getInsets();
                 GameShell.canvas.setLocation(var2.left + Class84.anInt1164, Class106.anInt1442 + var2.top);

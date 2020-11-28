@@ -37,33 +37,33 @@ final class NPC extends Class140_Sub4 {
             for (i = 0; Unsorted.maskUpdateCount > i; ++i) {
                 int mask = Class21.maskUpdateIndexes[i];
                 NPC npc = npcs[mask];
-                int var4 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                int var4 = Network.incomingBuffer.readUnsignedByte();
                 if ((var4 & 8) != 0) {
-                    var4 += GraphicDefinition.incomingBuffer.readUnsignedByte() << 8;
+                    var4 += Network.incomingBuffer.readUnsignedByte() << 8;
                 }
 
                 int var5;
                 int var6;
                 //Ordinal: 0 Hit
                 if ((64 & var4) != 0) {
-                    var5 = GraphicDefinition.incomingBuffer.readUnsignedByte();
-                    var6 = GraphicDefinition.incomingBuffer.readUnsignedNegativeByte();
+                    var5 = Network.incomingBuffer.readUnsignedByte();
+                    var6 = Network.incomingBuffer.readUnsignedNegativeByte();
                     npc.method1970(var6, Class44.anInt719, var5);
                     npc.anInt2781 = 300 + Class44.anInt719;
-                    npc.anInt2775 = GraphicDefinition.incomingBuffer.readUnsigned128Byte();
+                    npc.anInt2775 = Network.incomingBuffer.readUnsigned128Byte();
                 }
 
                 //Ordinal: 1 Hit 2
                 if ((var4 & 2) != 0) {
-                    var5 = GraphicDefinition.incomingBuffer.readUnsignedNegativeByte();
-                    var6 = GraphicDefinition.incomingBuffer.readUnsigned128Byte();
+                    var5 = Network.incomingBuffer.readUnsignedNegativeByte();
+                    var6 = Network.incomingBuffer.readUnsigned128Byte();
                     npc.method1970(var6, Class44.anInt719, var5);
                 }
 
                 //Ordinal: 2 Animation
                 if ((var4 & 16) != 0) {
-                    var5 = GraphicDefinition.incomingBuffer.readUnsignedShort();
-                    var6 = GraphicDefinition.incomingBuffer.readUnsignedByte();
+                    var5 = Network.incomingBuffer.readUnsignedShort();
+                    var6 = Network.incomingBuffer.readUnsignedByte();
                     if ('\uffff' == var5) {
                         var5 = -1;
                     }
@@ -73,7 +73,7 @@ final class NPC extends Class140_Sub4 {
 
                 //Ordinal: 3 Face entity
                 if ((var4 & 4) != 0) {
-                    npc.anInt2772 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
+                    npc.anInt2772 = Network.incomingBuffer.readUnsignedShort128();
                     if (npc.anInt2772 == 65535) {
                         npc.anInt2772 = -1;
                     }
@@ -81,12 +81,12 @@ final class NPC extends Class140_Sub4 {
 
                 //Ordinal: 4 Graphic
                 if (0 != (var4 & 128)) {
-                    var5 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
+                    var5 = Network.incomingBuffer.readUnsignedShort128();
                     if (var5 == '\uffff') {
                         var5 = -1;
                     }
 
-                    var6 = GraphicDefinition.incomingBuffer.readIntLE();
+                    var6 = Network.incomingBuffer.readIntLE();
                     boolean var7 = true;
                     if (var5 != -1 && npc.anInt2842 != -1 && SequenceDefinition.getAnimationDefinition(GraphicDefinition.getGraphicDefinition((byte) 42, var5).anInt542).forcedPriority < SequenceDefinition.getAnimationDefinition(GraphicDefinition.getGraphicDefinition((byte) 42, npc.anInt2842).anInt542).forcedPriority) {
                         var7 = false;
@@ -121,7 +121,7 @@ final class NPC extends Class140_Sub4 {
                         Class3_Sub28_Sub8.method574(npc);
                     }
 
-                    npc.setDefinitions(Unsorted.method522(GraphicDefinition.incomingBuffer.readUnsignedShortLE()));
+                    npc.setDefinitions(NPCDefinition.method522(Network.incomingBuffer.readUnsignedShortLE()));
                     npc.setSize(npc.definition.size, 2);
                     npc.renderAnimationId = npc.definition.renderAnimationId;
                     if (npc.definition.method1474()) {
@@ -131,26 +131,26 @@ final class NPC extends Class140_Sub4 {
 
                 //Ordinal: 6 Force chat
                 if ((var4 & 32) != 0) {
-                    npc.textSpoken = GraphicDefinition.incomingBuffer.readString();
+                    npc.textSpoken = Network.incomingBuffer.readString();
                     npc.textCycle = 100;
                 }
 
                 //Ordinal: 7
                 if ((256 & var4) != 0) {
-                    var5 = GraphicDefinition.incomingBuffer.readUnsignedNegativeByte();
+                    var5 = Network.incomingBuffer.readUnsignedNegativeByte();
                     int[] var12 = new int[var5];
                     int[] var13 = new int[var5];
                     int[] var14 = new int[var5];
 
                     for (int var15 = 0; var5 > var15; ++var15) {
-                        int var10 = GraphicDefinition.incomingBuffer.readUnsignedShortLE();
+                        int var10 = Network.incomingBuffer.readUnsignedShortLE();
                         if (var10 == '\uffff') {
                             var10 = -1;
                         }
 
                         var12[var15] = var10;
-                        var13[var15] = GraphicDefinition.incomingBuffer.readUnsigned128Byte();
-                        var14[var15] = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                        var13[var15] = Network.incomingBuffer.readUnsigned128Byte();
+                        var14[var15] = Network.incomingBuffer.readUnsignedShort();
                     }
 
                     Class3_Sub13_Sub22.method273(var14, npc, var13, var12);
@@ -158,8 +158,8 @@ final class NPC extends Class140_Sub4 {
 
                 //Ordinal: 8 Face location
                 if ((var4 & 512) != 0) {
-                    npc.anInt2786 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-                    npc.anInt2762 = GraphicDefinition.incomingBuffer.readUnsignedShort();
+                    npc.anInt2786 = Network.incomingBuffer.readUnsignedShort128();
+                    npc.anInt2762 = Network.incomingBuffer.readUnsignedShort();
                 }
             }
 

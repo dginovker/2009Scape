@@ -344,4 +344,6 @@ public class TextCore {
     static RSString aClass94_2331 = RSString.parse("");
     static RSString RIGHT_PARENTHESES = RSString.parse("(Y");
 
+    static RSString aClass94_9 = RSString.parse(")3)3)3");
+    static RSString aClass94_8 = RSString.parse("");
 }

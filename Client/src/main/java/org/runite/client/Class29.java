@@ -2,7 +2,6 @@ package org.runite.client;
 
 final class Class29 {
 
-    static boolean aBoolean554 = false;
     static CacheIndex aClass153_557;
     static int[][][] anIntArrayArrayArray558;
     static int anInt561 = 0;
