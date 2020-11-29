@@ -110,10 +110,9 @@ public final class Class39 {
 				sceneX = GraphicDefinition.incomingBuffer.readUnsignedShort128();
 				var3 = (Unsorted.incomingPacketLength - GraphicDefinition.incomingBuffer.index) / 16;
 				regionXteaKeys = new int[var3][4];
-				System.out.println("Region Debug: sceneX = " + sceneX + " region = " + var3);
+
 				for(plane = 0; var3 > plane; ++plane) {
 					for(var5 = 0; var5 < 4; ++var5) {
-
 						regionXteaKeys[plane][var5] = GraphicDefinition.incomingBuffer.readIntV2();
 					}
 				}
@@ -122,7 +121,6 @@ public final class Class39 {
 				var5 = GraphicDefinition.incomingBuffer.readUnsignedShort();
 				var6 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
 				var7 = GraphicDefinition.incomingBuffer.readUnsignedShort128();
-				System.out.println("Region Debug: plane = " + plane + " var5 = " + var5 + " var6 = " + var6 + " var7 = " + var7);
 				Class3_Sub24_Sub3.anIntArray3494 = new int[var3];
 				Class164_Sub2.aByteArrayArray3027 = new byte[var3][];
 				Class3_Sub13_Sub26.aByteArrayArray3335 = (byte[][])null;

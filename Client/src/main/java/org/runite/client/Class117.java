@@ -46,8 +46,6 @@ final class Class117 {
             if(var3 == !var2) {
                if(var2) {
                   Class129.anInt1691 = KeyboardListener.loginThemeSongArchiveID;
-                  System.out.println("Looking up song archive# " + KeyboardListener.loginThemeSongArchiveID);
-                  System.out.println("anInt120 == " + Unsorted.anInt120);
                   if(Unsorted.anInt120 == 0) {
                      Unsorted.method882();
                   } else {

@@ -37,7 +37,6 @@ public final class ThessaliaDialogue extends DialoguePlugin {
 
 	@Override
 	public boolean open(Object... args) {
-		npc = (NPC) args[0];
 
 		//The trade argument is handled elsewhere
 		if (args.length == 3) { //Right-Click 'Change-Clothes' Option
@@ -52,14 +51,14 @@ public final class ThessaliaDialogue extends DialoguePlugin {
 				}
 			}
 			else{ //Has some armour equipped
-				interpreter.sendDialogues(npc, FacialExpression.WORRIED, "You can't try them on while wearing armour. Take","it off and speak to me again.");
+				interpreter.sendDialogues(548, FacialExpression.WORRIED, "You can't try them on while wearing armour. Take","it off and speak to me again.");
 				stage = 52;
 			}
 			return true;
 		}
 
 		//Default Talk
-
+		npc = (NPC) args[0];
 		interpreter.sendDialogues(npc, FacialExpression.ASKING, "Would you like to buy any fine clothes?");
 		stage = 0;
 		return true;
