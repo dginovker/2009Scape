@@ -1,7 +1,7 @@
 package core.game.content.global.action;
 
 import core.game.container.impl.EquipmentContainer;
-import core.game.content.ItemNames;
+import core.tools.Items;
 import core.game.interaction.OptionHandler;
 import core.game.node.Node;
 import core.game.node.entity.combat.equipment.WeaponInterface;
@@ -74,7 +74,7 @@ public class EquipHandler extends OptionHandler {
 				player.getBrawlingGlovesManager().registerGlove(item.getId());
 			}
 
-			if (item.getId() == ItemNames.BLACK_CHAINBODY
+			if (item.getId() == Items.BLACK_CHAINBODY_1107
 					&& player.getAttribute("diary:falador:black-chain-bought", false)
 					&& new ZoneBorders(2969, 3310, 2975, 3314, 0).insideBorder(player)) {
 				player.getAchievementDiaryManager().finishTask(player,DiaryType.FALADOR, 0, 2);

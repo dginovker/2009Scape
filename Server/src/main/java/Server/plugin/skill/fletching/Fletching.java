@@ -2,7 +2,7 @@ package plugin.skill.fletching;
 
 import core.game.node.item.Item;
 import core.game.world.update.flag.context.Animation;
-import core.tools.ItemNames;
+import core.tools.Items;
 
 import java.util.HashMap;
 public class Fletching {
@@ -164,17 +164,17 @@ public class Fletching {
             }
         }
     public enum GemBolts {
-        OPAL(877, ItemNames.OPAL_1609, 45, 879, 11, 1.5),
-        PEARL(9140, ItemNames.OYSTER_PEARL, 46, 880, 41, 3.2),
-        PEARLS(9140, ItemNames.OYSTER_PEARLS, 46, 880, 41, 3.2),
-        JADE(9139, ItemNames.JADE_1611, 9187, 9335, 26, 2.4),
-        RED_TOPAZ(9141, ItemNames.RED_TOPAZ_1613, 9188, 9336, 48, 3.9),
-        SAPPHIRE(9142, ItemNames.SAPPHIRE, 9189, 9337, 56, 4),
-        EMERALD(9142, ItemNames.EMERALD, 9190, 9338, 58, 5.5),
-        RUBY(9143, ItemNames.RUBY, 9191, 9339, 63, 6.3),
-        DIAMOND(9143, ItemNames.DIAMOND_1601, 9192, 9340, 65, 7),
-        DRAGONSTONE(9144, ItemNames.DRAGONSTONE_1615, 9193, 9341, 71, 8.2),
-        ONYX(9144, ItemNames.ONYX_6573, 9194, 9342, 73, 9.4);
+        OPAL(877, Items.OPAL_1609, 45, 879, 11, 1.5),
+        PEARL(9140, Items.OYSTER_PEARL, 46, 880, 41, 3.2),
+        PEARLS(9140, Items.OYSTER_PEARLS, 46, 880, 41, 3.2),
+        JADE(9139, Items.JADE_1611, 9187, 9335, 26, 2.4),
+        RED_TOPAZ(9141, Items.RED_TOPAZ_1613, 9188, 9336, 48, 3.9),
+        SAPPHIRE(9142, Items.SAPPHIRE, 9189, 9337, 56, 4),
+        EMERALD(9142, Items.EMERALD, 9190, 9338, 58, 5.5),
+        RUBY(9143, Items.RUBY, 9191, 9339, 63, 6.3),
+        DIAMOND(9143, Items.DIAMOND_1601, 9192, 9340, 65, 7),
+        DRAGONSTONE(9144, Items.DRAGONSTONE_1615, 9193, 9341, 71, 8.2),
+        ONYX(9144, Items.ONYX_6573, 9194, 9342, 73, 9.4);
 
         public int gem,tip,base,product,level;
         public double experience;

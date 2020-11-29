@@ -13,7 +13,7 @@ import core.game.world.map.path.Pathfinder
 import core.game.world.map.zone.ZoneBorders
 import core.game.world.update.flag.context.Animation
 import core.game.world.update.flag.context.Graphics
-import core.tools.ItemNames
+import core.tools.Items
 import core.tools.RandomFunction
 import kotlinx.coroutines.delay
 import plugin.ai.AIPlayer
@@ -48,7 +48,7 @@ if (offer.itemId == 383 && offer.amount >= 1000) {
  */
 class SharkCatcher : Script() {
     private val ANIMATION = Animation(714)
-    //val shark = ItemNames.RAW_SHARK
+    //val shark = Items.RAW_SHARK
     val pause = (1000..3000)
     val limit = 2000
     var myCounter = 0
@@ -71,8 +71,8 @@ class SharkCatcher : Script() {
         when(state){
 
             State.BANKING -> {
-                scriptAPI.bankItem(ItemNames.RAW_SHARK)
-                state = if(bot.bank.getAmount(ItemNames.RAW_SHARK) > 500){
+                scriptAPI.bankItem(Items.RAW_SHARK)
+                state = if(bot.bank.getAmount(Items.RAW_SHARK) > 500){
                     State.TELEPORT_GE
                 } else {
                     State.FIND_SPOT
@@ -164,7 +164,7 @@ class SharkCatcher : Script() {
                         state = State.STOP
                     } else{
                         scriptAPI.walkTo(Location.create(3164, 3487, 0))
-                        scriptAPI.sellOnGE(ItemNames.RAW_SHARK)
+                        scriptAPI.sellOnGE(Items.RAW_SHARK)
                         state = State.TELE_FISH
                     }
 
