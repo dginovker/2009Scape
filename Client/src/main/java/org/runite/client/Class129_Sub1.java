@@ -2,32 +2,16 @@ package org.runite.client;
 
 final class Class129_Sub1 extends Class129 {
 
-    static AbstractSprite[] aAbstractSpriteArray2690;
-    static int anInt2693 = 0;
-    static int[] anIntArray2696 = new int[2];
-    private final long[] aLongArray2694 = new long[10];
     private long aLong2683;
     private int anInt2685;
     private int anInt2688;
+    static AbstractSprite[] aAbstractSpriteArray2690;
     private int anInt2691;
     private int anInt2692;
+    static int anInt2693 = 0;
+    private final long[] aLongArray2694 = new long[10];
+    static int[] anIntArray2696 = new int[2];
 
-
-    Class129_Sub1() {
-        try {
-            this.anInt2688 = 256;
-            this.anInt2691 = 1;
-            this.anInt2692 = 0;
-            this.aLong2683 = TimeUtils.time();
-
-            for (int var1 = 0; var1 < 10; ++var1) {
-                this.aLongArray2694[var1] = this.aLong2683;
-            }
-
-        } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "lj.<init>()");
-        }
-    }
 
     final void method1770() {
         try {
@@ -78,7 +62,7 @@ final class Class129_Sub1 extends Class129 {
             if (this.anInt2691 > 1) {
                 for (var6 = 0; var6 < 10; ++var6) {
                     if (this.aLongArray2694[var6] != 0L) {
-                        this.aLongArray2694[var6] += this.anInt2691;
+                        this.aLongArray2694[var6] += (long) this.anInt2691;
                     }
                 }
             }
@@ -87,7 +71,7 @@ final class Class129_Sub1 extends Class129 {
                 this.anInt2691 = var2;
             }
 
-            TimeUtils.sleep(this.anInt2691);
+            TimeUtils.sleep((long) this.anInt2691);
 
             for (var6 = 0; 256 > this.anInt2692; ++var6) {
                 this.anInt2692 += this.anInt2688;
@@ -97,6 +81,22 @@ final class Class129_Sub1 extends Class129 {
             return var6;
         } catch (RuntimeException var7) {
             throw ClientErrorException.clientError(var7, "lj.B(" + var1 + ',' + var2 + ',' + var3 + ')');
+        }
+    }
+
+    Class129_Sub1() {
+        try {
+            this.anInt2688 = 256;
+            this.anInt2691 = 1;
+            this.anInt2692 = 0;
+            this.aLong2683 = TimeUtils.time();
+
+            for (int var1 = 0; var1 < 10; ++var1) {
+                this.aLongArray2694[var1] = this.aLong2683;
+            }
+
+        } catch (RuntimeException var2) {
+            throw ClientErrorException.clientError(var2, "lj.<init>()");
         }
     }
 

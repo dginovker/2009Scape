@@ -139,7 +139,7 @@ class JavaToolkit : Toolkit() {
             for (var8 in -width..-1) {
                 buffer[var6++] = rgb
             }
-            var6 += var5
+            var6 += var5;
         }
     }
 

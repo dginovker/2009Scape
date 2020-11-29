@@ -9,12 +9,14 @@ import java.util.TimerTask;
 
 public class Discord {
 
-    public static final String APPLICATION_ID = "750136793814401134";
     public static DiscordEventHandlers discord;
+
+    public static final String APPLICATION_ID = "750136793814401134";
+
     public static boolean startedDiscord = false;
 
     public static void InitalizeDiscord() {
-        if (!startedDiscord) {
+        if (!startedDiscord){
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 System.out.println("Closing Discord hook.");
                 DiscordRPC.discordShutdown();

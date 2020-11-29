@@ -1,11 +1,13 @@
 package org.runite.client;
 
 import org.rs09.client.config.GameConfig;
-import org.rs09.client.data.HashTable;
+
 import org.rs09.client.util.ArrayUtils;
+import org.rs09.client.data.HashTable;
 
 import java.applet.Applet;
-import java.awt.*;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -14,10 +16,9 @@ import java.util.Objects;
 public final class RSString implements Interface3 {
 
     static HashTable<LinkableRSString> interned;
-    static int[] anIntArray2004 = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 73, 74, 76, 78, 83, 84, 85, 86, 91, 92, 93, 94, 95, 97, 103, 104, 105, 106, 107, 108, 113, 114, 115, 116, 118, 119, 120, 121, 122, 123, 124, 125, 133, 134, 136, 138, 143, 144, 145, 146, 151, 152, 153, 154, 155, 157, 163, 164, 165, 166, 168, 169, 174, 175, 176, 177, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 97, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 157, 215, 216, 117, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 66, 66, 66, 66, 66, 66, 65, 75, 79, 79, 79, 79, 87, 87, 87, 87, 77, 96, 98, 98, 98, 98, 98, 250, 251, 109, 109, 109, 109, 117, 252, 167, 126, 126, 126, 126, 126, 126, 125, 135, 139, 139, 139, 139, 147, 147, 147, 147, 137, 156, 158, 158, 158, 158, 158, 253, 254, 170, 170, 170, 170, 178, 255, 178};
+    private boolean mutable = true;
     byte[] buffer;
     int length;
-    private boolean mutable = true;
 
     /**
      * @return A RSString consisting of the actual bytes in the provided string.
@@ -75,11 +76,11 @@ public final class RSString implements Interface3 {
     }
 
     static RSString stringAnimator(int var1) {
-        try {
-            return Unsorted.method1723((byte) -117, false, var1);
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "jj.C(" + var1 + ')');
-        }
+       try {
+          return Unsorted.method1723((byte)-117, false, var1);
+       } catch (RuntimeException var3) {
+          throw ClientErrorException.clientError(var3, "jj.C(" + var1 + ')');
+       }
     }
 
     public final URL toURL() throws MalformedURLException {
@@ -241,7 +242,7 @@ public final class RSString implements Interface3 {
      * are changed to uppercase based on the following rules:
      * - The character is the first character in the string
      * - The character is the first non-whitespace character after a '.', '!' or '?' character
-     * <p>
+     *
      * Characters may be either lowercase or uppercase if the previous character is a whitespace character.
      *
      * @return A copy of this string with capitalization based on the rules above.
@@ -339,7 +340,7 @@ public final class RSString implements Interface3 {
 
                 return var2;
             } else {
-                return null;
+                return (RSString) null;
             }
         } catch (RuntimeException var4) {
             throw ClientErrorException.clientError(var4, "na.FB(" + var1 + ')');
@@ -419,11 +420,11 @@ public final class RSString implements Interface3 {
                 --var6;
             }
 
-            if (anIntArray2004[var4] > anIntArray2004[var3]) {
+            if (Class158.anIntArray2004[var4] > Class158.anIntArray2004[var3]) {
                 return -1;
             }
 
-            if (anIntArray2004[var3] > anIntArray2004[var4]) {
+            if (Class158.anIntArray2004[var3] > Class158.anIntArray2004[var4]) {
                 return 1;
             }
         }
@@ -767,7 +768,7 @@ public final class RSString implements Interface3 {
     final RSString trim(int var1) {
         try {
             if (var1 != 1) {
-                Unsorted.method1535(null, null, 23, 68, 126, false, false);
+                Unsorted.method1535((WorldListEntry) null, (WorldListEntry) null, 23, 68, 126, false, false);
             }
 
             int var2;
