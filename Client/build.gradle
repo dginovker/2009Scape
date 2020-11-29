@@ -8,16 +8,8 @@ dependencies {
     implementation 'com.github.Vatuu:discord-rpc:1.6.2'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 
-    implementation files('libs/lwjgl.jar')
-    implementation files('libs/lwjgl-glfw.jar')
-    implementation files('libs/lwjgl-opengl.jar')
-
-    runtimeOnly files('libs/lwjgl-natives-linux.jar')
-    runtimeOnly files('libs/lwjgl-opengl-natives-linux.jar')
-    runtimeOnly files('libs/lwjgl-glfw-natives-linux.jar')
-
-//    implementation files('libs/gluegen-rt.jar')
-//    implementation files('libs/jogl-all.jar')
+    implementation files('libs/gluegen-rt.jar')
+    implementation files('libs/jogl-all.jar')
 }
 
 jar {

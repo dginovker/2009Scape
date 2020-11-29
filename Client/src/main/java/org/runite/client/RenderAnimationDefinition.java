@@ -6,16 +6,10 @@ final class RenderAnimationDefinition {
 
     static int[] anIntArray356 = new int[]{1, 0, -1, 0};
     static ReferenceCache aReferenceCache_1955 = new ReferenceCache(64);
-    static volatile int anInt362 = 0;
-    static int anInt377 = 0;
-    static RSString aClass94_378 = null;
-    static byte[][][] aByteArrayArrayArray383;
-    static int anInt384 = 0;
-    static int anInt396;
-    static boolean aBoolean402 = false;
     int anInt357 = 0;
     int[][] anIntArrayArray359;
     int anInt360 = -1;
+    static volatile int anInt362 = 0;
     int anInt364 = -1;
     int anInt367 = -1;
     int anInt368 = -1;
@@ -25,18 +19,24 @@ final class RenderAnimationDefinition {
     int anInt372 = -1;
     int anInt373 = -1;
     int anInt375 = -1;
+    static int anInt377 = 0;
+    static RSString aClass94_378 = null;
     int anInt379 = -1;
     int anInt381 = 0;
     int anInt382 = -1;
+    static byte[][][] aByteArrayArrayArray383;
+    static int anInt384 = 0;
     int anInt386 = -1;
     int anInt387 = 0;
     int anInt389 = -1;
     int anInt390 = -1;
     int anInt393 = -1;
     int anInt395 = 0;
+    static int anInt396;
     int anInt398 = -1;
     int anInt399 = 0;
     int anInt400 = 0;
+    static boolean aBoolean402 = false;
     int anInt403 = 0;
     int anInt406 = -1;
     int anInt407 = -1;
@@ -49,6 +49,14 @@ final class RenderAnimationDefinition {
             Class101.aClass3_Sub24_Sub4_1421 = var1;
         } catch (RuntimeException var6) {
             throw ClientErrorException.clientError(var6, "ck.C(" + (var1 != null ? "{...}" : "null") + ',' + (var2 != null ? "{...}" : "null") + ',' + (var3 != null ? "{...}" : "null") + ',' + (var4 != null ? "{...}" : "null") + ')');
+        }
+    }
+
+    final void method899() {
+        try {
+
+        } catch (RuntimeException var3) {
+            throw ClientErrorException.clientError(var3, "ck.B(" + 96 + ')');
         }
     }
 
@@ -66,13 +74,13 @@ final class RenderAnimationDefinition {
                         var0.anInt2802 = 1;
                         ++var0.anInt2813;
                         ++var0.anInt2793;
-                        Unsorted.method1470(var0.anInt2829, var2, 183921384, var0.anInt2819, var0 == Player.player, var0.anInt2813);
+                        Unsorted.method1470(var0.anInt2829, var2, 183921384, var0.anInt2819, var0 == Class102.player, var0.anInt2813);
                     }
 
                     if (var2.frames.length <= var0.anInt2813) {
                         var0.anInt2813 = 0;
                         var0.anInt2802 = 0;
-                        Unsorted.method1470(var0.anInt2829, var2, 183921384, var0.anInt2819, Player.player == var0, var0.anInt2813);
+                        Unsorted.method1470(var0.anInt2829, var2, 183921384, var0.anInt2819, Class102.player == var0, var0.anInt2813);
                     }
 
                     var0.anInt2793 = var0.anInt2813 - -1;
@@ -94,14 +102,14 @@ final class RenderAnimationDefinition {
                     } else {
                         if (0 > var0.anInt2805) {
                             var0.anInt2805 = 0;
-                            Unsorted.method1470(var0.anInt2829, var3, 183921384, var0.anInt2819, Player.player == var0, 0);
+                            Unsorted.method1470(var0.anInt2829, var3, 183921384, var0.anInt2819, Class102.player == var0, 0);
                         }
 
                         ++var0.anInt2761;
                         if (var0.anInt2805 < var3.frames.length && var0.anInt2761 > var3.duration[var0.anInt2805]) {
                             ++var0.anInt2805;
                             var0.anInt2761 = 1;
-                            Unsorted.method1470(var0.anInt2829, var3, var1 ^ -183911469, var0.anInt2819, Player.player == var0, var0.anInt2805);
+                            Unsorted.method1470(var0.anInt2829, var3, var1 ^ -183911469, var0.anInt2819, Class102.player == var0, var0.anInt2805);
                         }
 
                         if (var0.anInt2805 >= var3.frames.length) {
@@ -134,7 +142,7 @@ final class RenderAnimationDefinition {
                         if (var2.frames.length > var0.anInt2832 && var0.anInt2760 > var2.duration[var0.anInt2832]) {
                             var0.anInt2760 = 1;
                             ++var0.anInt2832;
-                            Unsorted.method1470(var0.anInt2829, var2, 183921384, var0.anInt2819, var0 == Player.player, var0.anInt2832);
+                            Unsorted.method1470(var0.anInt2829, var2, 183921384, var0.anInt2819, var0 == Class102.player, var0.anInt2832);
                         }
 
                         if (var2.frames.length <= var0.anInt2832) {
@@ -142,7 +150,7 @@ final class RenderAnimationDefinition {
                             ++var0.anInt2773;
                             if (var2.maxLoops > var0.anInt2773) {
                                 if (var0.anInt2832 >= 0 && var0.anInt2832 < var2.frames.length) {
-                                    Unsorted.method1470(var0.anInt2829, var2, var1 ^ -183911469, var0.anInt2819, Player.player == var0, var0.anInt2832);
+                                    Unsorted.method1470(var0.anInt2829, var2, var1 ^ -183911469, var0.anInt2819, Class102.player == var0, var0.anInt2832);
                                 } else {
                                     var0.anInt2771 = -1;
                                 }
@@ -183,7 +191,7 @@ final class RenderAnimationDefinition {
                                 if (var7.anInt1893 < var4.frames.length && var7.anInt1897 > var4.duration[var7.anInt1893]) {
                                     ++var7.anInt1893;
                                     var7.anInt1897 = 1;
-                                    Unsorted.method1470(var0.anInt2829, var4, 183921384, var0.anInt2819, var0 == Player.player, var7.anInt1893);
+                                    Unsorted.method1470(var0.anInt2829, var4, 183921384, var0.anInt2819, var0 == Class102.player, var7.anInt1893);
                                 }
 
                                 if (var7.anInt1893 >= var4.frames.length) {
@@ -191,7 +199,7 @@ final class RenderAnimationDefinition {
                                     var7.anInt1893 -= var4.anInt1865;
                                     if (var4.maxLoops > var7.anInt1894) {
                                         if (var7.anInt1893 >= 0 && var4.frames.length > var7.anInt1893) {
-                                            Unsorted.method1470(var0.anInt2829, var4, 183921384, var0.anInt2819, Player.player == var0, var7.anInt1893);
+                                            Unsorted.method1470(var0.anInt2829, var4, 183921384, var0.anInt2819, Class102.player == var0, var7.anInt1893);
                                         } else {
                                             var0.aClass145Array2809[var6] = null;
                                         }
@@ -221,14 +229,6 @@ final class RenderAnimationDefinition {
             }
         } catch (RuntimeException var5) {
             throw ClientErrorException.clientError(var5, "ck.F(" + (var0 != null ? "{...}" : "null") + ',' + var1 + ')');
-        }
-    }
-
-    final void method899() {
-        try {
-
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "ck.B(" + 96 + ')');
         }
     }
 

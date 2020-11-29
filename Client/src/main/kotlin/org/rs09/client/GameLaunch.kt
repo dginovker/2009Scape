@@ -22,15 +22,12 @@ object GameLaunch {
             }
         }
         try {
-            println("Trying to parse config at " + GameConfig.configLocation)
+            System.out.println("Trying to parse config at " + GameConfig.configLocation)
             GameConfig.parse(GameConfig.configLocation)
             GameConfig.implementHoliday()
-        } catch (e: Exception) {
+        } catch (e: Exception){
             GameConfig.IP_ADDRESS = "play.2009scape.org"
             GameConfig.IP_MANAGEMENT = "play.2009scape.org"
-            GameConfig.IP_ACCOUNT_REGISTRATION = "play.2009scape.org"
-            GameConfig.SERVER_PORT = 43594
-            GameConfig.WL_PORT = 5555
             GameConfig.RCM_STYLE_PRESET = "classic"
             GameConfig.RCM_TITLE = "<col=5d5447>Choose Option</col>"
             GameConfig.RENDER_DISTANCE_INCREASE = true

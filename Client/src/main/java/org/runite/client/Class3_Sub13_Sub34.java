@@ -6,22 +6,18 @@ import java.util.Objects;
 
 public final class Class3_Sub13_Sub34 extends Class3_Sub13 {
 
+    private final int[] anIntArray3403 = new int[3];
+    private int anInt3404 = 409;
+    private int anInt3405 = 4096;
+    private int anInt3406 = 4096;
+    private int anInt3410 = 4096;
     static long aLong3411 = 0L;
     static ReferenceCache aReferenceCache_3412 = new ReferenceCache(64);
     static int anInt3413 = 0;
     static int anInt3414;
     static boolean aBoolean3416 = false;
     static int anInt3417;
-    private final int[] anIntArray3403 = new int[3];
-    private int anInt3404 = 409;
-    private int anInt3405 = 4096;
-    private int anInt3406 = 4096;
-    private int anInt3410 = 4096;
 
-
-    public Class3_Sub13_Sub34() {
-        super(1, false);
-    }
 
     static void method328(DataBuffer var1) {
         try {
@@ -215,6 +211,30 @@ public final class Class3_Sub13_Sub34 extends Class3_Sub13 {
         }
     }
 
+    final void method157(int var1, DataBuffer var2, boolean var3) {
+        try {
+            if (var3) {
+                if (var1 == 0) {
+                    this.anInt3404 = var2.readUnsignedShort();
+                } else if (1 == var1) {
+                    this.anInt3405 = var2.readUnsignedShort();
+                } else if (var1 == 2) {
+                    this.anInt3406 = var2.readUnsignedShort();
+                } else if (var1 == 3) {
+                    this.anInt3410 = var2.readUnsignedShort();
+                } else if (4 == var1) {
+                    int var4 = var2.readMedium();
+                    this.anIntArray3403[2] = Unsorted.bitwiseAnd(var4, 255) >> 12;
+                    this.anIntArray3403[1] = Unsorted.bitwiseAnd(var4 >> 4, 4080);
+                    this.anIntArray3403[0] = Unsorted.bitwiseAnd(16711680, var4) << 4;
+                }
+
+            }
+        } catch (RuntimeException var6) {
+            throw ClientErrorException.clientError(var6, "sk.A(" + var1 + ',' + (var2 != null ? "{...}" : "null") + ',' + ')');
+        }
+    }
+
     static void method330(int var0, int var1, int var2, int var3, int var4, int var5) {
         try {
             if (var1 > -83) {
@@ -286,6 +306,10 @@ public final class Class3_Sub13_Sub34 extends Class3_Sub13 {
         }
     }
 
+    public Class3_Sub13_Sub34() {
+        super(1, false);
+    }
+
     static int method332(int var0, int var1) {
         try {
             if (var0 != 2) {
@@ -307,30 +331,6 @@ public final class Class3_Sub13_Sub34 extends Class3_Sub13 {
             return var0.retrieveSpriteFile(NPC.anInt4001);
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "sk.R(" + (var0 != null ? "{...}" : "null") + ',' + 0 + ')');
-        }
-    }
-
-    final void method157(int var1, DataBuffer var2, boolean var3) {
-        try {
-            if (var3) {
-                if (var1 == 0) {
-                    this.anInt3404 = var2.readUnsignedShort();
-                } else if (1 == var1) {
-                    this.anInt3405 = var2.readUnsignedShort();
-                } else if (var1 == 2) {
-                    this.anInt3406 = var2.readUnsignedShort();
-                } else if (var1 == 3) {
-                    this.anInt3410 = var2.readUnsignedShort();
-                } else if (4 == var1) {
-                    int var4 = var2.readMedium();
-                    this.anIntArray3403[2] = Unsorted.bitwiseAnd(var4, 255) >> 12;
-                    this.anIntArray3403[1] = Unsorted.bitwiseAnd(var4 >> 4, 4080);
-                    this.anIntArray3403[0] = Unsorted.bitwiseAnd(16711680, var4) << 4;
-                }
-
-            }
-        } catch (RuntimeException var6) {
-            throw ClientErrorException.clientError(var6, "sk.A(" + var1 + ',' + (var2 != null ? "{...}" : "null") + ',' + ')');
         }
     }
 

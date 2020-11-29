@@ -1,60 +1,34 @@
 package org.runite.client;
 
 import org.rs09.client.Linkable;
-import org.rs09.client.data.HashTable;
 import org.rs09.client.filestore.ReferenceTable;
 import org.rs09.client.filestore.ResourceProvider;
+import org.rs09.client.data.HashTable;
 
 import java.util.Objects;
 
 final class Class151_Sub1 extends ResourceProvider {
 
     private final Class41 aClass41_2943;
+    private ReferenceTable table;
     private final HashTable<ResourceRequest> aHashTable_2946 = new HashTable<>(16);
     private final int anInt2947;
-    private final Js5Worker aJs5Worker_2953;
-    private final int anInt2955;
-    private final CacheResourceWorker cacheResourceWorker;
-    private final int anInt2957;
-    private final Class61 aClass61_2963 = new Class61();
-    private final boolean aBoolean2968;
-    Class41 aClass41_2954;
-    private ReferenceTable table;
     private int anInt2948 = 0;
     private byte[] aByteArray2949;
     private ResourceRequest aResourceRequest_2950;
+    private final Js5Worker aJs5Worker_2953;
+    Class41 aClass41_2954;
+    private final int anInt2955;
+    private final CacheResourceWorker cacheResourceWorker;
+    private final int anInt2957;
     private boolean aBoolean2962;
+    private final Class61 aClass61_2963 = new Class61();
     private int anInt2964 = 0;
     private boolean aBoolean2965;
     private Class61 aClass61_2966;
     private long aLong2967 = 0L;
+    private final boolean aBoolean2968;
 
-
-    Class151_Sub1(int var1, Class41 var2, Class41 var3, Js5Worker var4, CacheResourceWorker var5, int var6, int var7) {
-        try {
-            this.anInt2957 = var1;
-            this.aClass41_2954 = var2;
-            if (this.aClass41_2954 == null) {
-                this.aBoolean2962 = false;
-            } else {
-                this.aBoolean2962 = true;
-                this.aClass61_2966 = new Class61();
-            }
-
-            this.cacheResourceWorker = var5;
-            this.anInt2955 = var6;
-            this.aBoolean2968 = true;
-            this.aClass41_2943 = var3;
-            this.aJs5Worker_2953 = var4;
-            this.anInt2947 = var7;
-            if (null != this.aClass41_2943) {
-                this.aResourceRequest_2950 = this.cacheResourceWorker.priorityRead(this.aClass41_2943, this.anInt2957);
-            }
-
-        } catch (RuntimeException var10) {
-            throw ClientErrorException.clientError(var10, "bg.<init>(" + var1 + ',' + (var2 != null ? "{...}" : "null") + ',' + (var3 != null ? "{...}" : "null") + ',' + (var4 != null ? "{...}" : "null") + ',' + (var5 != null ? "{...}" : "null") + ',' + var6 + ',' + var7 + ',' + true + ')');
-        }
-    }
 
     public final void request(int var1) {
         try {
@@ -543,6 +517,32 @@ final class Class151_Sub1 extends ResourceProvider {
             }
         } catch (RuntimeException var5) {
             throw ClientErrorException.clientError(var5, "bg.K(" + var1 + ',' + 0 + ')');
+        }
+    }
+
+    Class151_Sub1(int var1, Class41 var2, Class41 var3, Js5Worker var4, CacheResourceWorker var5, int var6, int var7) {
+        try {
+            this.anInt2957 = var1;
+            this.aClass41_2954 = var2;
+            if (this.aClass41_2954 == null) {
+                this.aBoolean2962 = false;
+            } else {
+                this.aBoolean2962 = true;
+                this.aClass61_2966 = new Class61();
+            }
+
+            this.cacheResourceWorker = var5;
+            this.anInt2955 = var6;
+            this.aBoolean2968 = true;
+            this.aClass41_2943 = var3;
+            this.aJs5Worker_2953 = var4;
+            this.anInt2947 = var7;
+            if (null != this.aClass41_2943) {
+                this.aResourceRequest_2950 = this.cacheResourceWorker.priorityRead(this.aClass41_2943, this.anInt2957);
+            }
+
+        } catch (RuntimeException var10) {
+            throw ClientErrorException.clientError(var10, "bg.<init>(" + var1 + ',' + (var2 != null ? "{...}" : "null") + ',' + (var3 != null ? "{...}" : "null") + ',' + (var4 != null ? "{...}" : "null") + ',' + (var5 != null ? "{...}" : "null") + ',' + var6 + ',' + var7 + ',' + true + ')');
         }
     }
 

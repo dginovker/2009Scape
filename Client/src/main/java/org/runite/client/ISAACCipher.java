@@ -1,30 +1,18 @@
 package org.runite.client;
 
 import org.rs09.client.config.GameConfig;
+import org.rs09.client.rendering.Toolkit;
 
 
 final class ISAACCipher {
 
-    private final int[] anIntArray970;
-    private final int[] anIntArray971;
     private int anInt966;
     private int anInt967;
     private int anInt968;
+    private int[] anIntArray970;
+    private int[] anIntArray971;
     private int anInt972;
 
-
-    ISAACCipher(int[] var1) {
-        try {
-            this.anIntArray970 = new int[256];
-            this.anIntArray971 = new int[256];
-
-            System.arraycopy(var1, 0, this.anIntArray970, 0, var1.length);
-
-            this.method1227();
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "ij.<init>(" + (var1 != null ? "{...}" : "null") + ')');
-        }
-    }
 
     private void method1227() {
         try {
@@ -198,6 +186,19 @@ final class ISAACCipher {
 
         } catch (RuntimeException var5) {
             throw ClientErrorException.clientError(var5, "ij.A(" + ')');
+        }
+    }
+
+    ISAACCipher(int[] var1) {
+        try {
+            this.anIntArray970 = new int[256];
+            this.anIntArray971 = new int[256];
+
+            System.arraycopy(var1, 0, this.anIntArray970, 0, var1.length);
+
+            this.method1227();
+        } catch (RuntimeException var3) {
+            throw ClientErrorException.clientError(var3, "ij.<init>(" + (var1 != null ? "{...}" : "null") + ')');
         }
     }
 

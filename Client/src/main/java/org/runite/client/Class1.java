@@ -13,15 +13,6 @@ final class Class1 {
     static RSString aClass94_58;
     static int[] anIntArray2642 = new int[]{1, 1, 1, 1, 4, 1, 1, 5, 6, 1, 5, 0, 7, 0, 4, 1, 7, 2, 1, 1, 6, 1, 1, 3, 6, 1, 7, 0, 0, 6, 7, 0, 1, 7, 6, 1, 1, 1, 5, 4, 3, 2, 1, 1, 0, 4, 1, 5};
 
-    static {
-        for (int var0 = 0; var0 < 4096; ++var0) {
-            anIntArray52[var0] = Class164_Sub2.method2246(var0);
-        }
-
-        aBooleanArray54 = new boolean[8];
-        anInt57 = 0;
-        aClass94_58 = RSString.parse("<col=ffffff> )4 ");
-    }
 
     static void method69(Class36 var0) {
         try {
@@ -544,37 +535,37 @@ final class Class1 {
                             var85 += -2 + var75.length;
                             var85 += var81.length - 2;
                             var85 += -2 + var84.length;
-                            int var50 = Class121.method1734(var43, 0.0F, var40, var41, null, var2, var13, var4, var42, (byte) -127, 0, true, var39, var1, var14, 64, var0, 64);
+                            int var50 = Class121.method1734(var43, 0.0F, var40, var41, (int[][]) null, var2, var13, var4, var42, (byte) -127, 0, true, var39, var1, var14, 64, var0, 64);
                             int[] var45 = new int[var85];
                             var44 = 0;
-                            int var51 = Class121.method1734(var43, 0.0F, var40, var41, null, var2, var13, var4, var42, (byte) -112, 0, var46, var39, var1, var14, 0, var0, 128);
-                            int var52 = Class121.method1734(var43, 0.0F, var40, var41, null, var2, var13, var4, var42, (byte) -119, 0, var47, var39, var1, var14, 128, var0, 128);
-                            int var53 = Class121.method1734(var43, 0.0F, var40, var41, null, var2, var13, var4, var42, (byte) -127, 0, var48, var39, var1, var14, 0, var0, 0);
-                            int var54 = Class121.method1734(var43, 0.0F, var40, var41, null, var2, var13, var4, var42, (byte) -114, 0, var49, var39, var1, var14, 128, var0, 0);
+                            int var51 = Class121.method1734(var43, 0.0F, var40, var41, (int[][]) null, var2, var13, var4, var42, (byte) -112, 0, var46, var39, var1, var14, 0, var0, 128);
+                            int var52 = Class121.method1734(var43, 0.0F, var40, var41, (int[][]) null, var2, var13, var4, var42, (byte) -119, 0, var47, var39, var1, var14, 128, var0, 128);
+                            int var53 = Class121.method1734(var43, 0.0F, var40, var41, (int[][]) null, var2, var13, var4, var42, (byte) -127, 0, var48, var39, var1, var14, 0, var0, 0);
+                            int var54 = Class121.method1734(var43, 0.0F, var40, var41, (int[][]) null, var2, var13, var4, var42, (byte) -114, 0, var49, var39, var1, var14, 128, var0, 0);
                             var85 = var44 + 1;
                             var45[var44] = var50;
                             var45[var85++] = var52;
                             if (var79.length > 2) {
-                                var45[var85++] = Class121.method1734(var43, 0.0F, var40, var41, null, var2, var13, var4, var42, (byte) -117, 0, var79[2], var39, var1, var14, 64, var0, 128);
+                                var45[var85++] = Class121.method1734(var43, 0.0F, var40, var41, (int[][]) null, var2, var13, var4, var42, (byte) -117, 0, var79[2], var39, var1, var14, 64, var0, 128);
                             }
 
                             var45[var85++] = var51;
                             if (var75.length > 2) {
-                                var45[var85++] = Class121.method1734(var43, 0.0F, var40, var41, null, var2, var13, var4, var42, (byte) -128, 0, var75[2], var39, var1, var14, 0, var0, 64);
+                                var45[var85++] = Class121.method1734(var43, 0.0F, var40, var41, (int[][]) null, var2, var13, var4, var42, (byte) -128, 0, var75[2], var39, var1, var14, 0, var0, 64);
                             }
 
                             var45[var85++] = var53;
                             if (var81.length > 2) {
-                                var45[var85++] = Class121.method1734(var43, 0.0F, var40, var41, null, var2, var13, var4, var42, (byte) -112, 0, var81[2], var39, var1, var14, 64, var0, 0);
+                                var45[var85++] = Class121.method1734(var43, 0.0F, var40, var41, (int[][]) null, var2, var13, var4, var42, (byte) -112, 0, var81[2], var39, var1, var14, 64, var0, 0);
                             }
 
                             var45[var85++] = var54;
                             if (var84.length > 2) {
-                                var45[var85++] = Class121.method1734(var43, 0.0F, var40, var41, null, var2, var13, var4, var42, (byte) -127, 0, var84[2], var39, var1, var14, 128, var0, 64);
+                                var45[var85++] = Class121.method1734(var43, 0.0F, var40, var41, (int[][]) null, var2, var13, var4, var42, (byte) -127, 0, var84[2], var39, var1, var14, 128, var0, 64);
                             }
 
                             var45[var85++] = var52;
-                            var39.method150(var15, var13, var14, var45, null, true);
+                            var39.method150(var15, var13, var14, var45, (int[]) null, true);
                         }
                     }
                 }
@@ -666,18 +657,28 @@ final class Class1 {
         }
     }
 
+    static {
+        for (int var0 = 0; var0 < 4096; ++var0) {
+            anIntArray52[var0] = Class164_Sub2.method2246(var0);
+        }
+
+        aBooleanArray54 = new boolean[8];
+        anInt57 = 0;
+        aClass94_58 = RSString.parse("<col=ffffff> )4 ");
+    }
+
     static Class3_Sub11 method2052(HashTable var0, Class168 var2) {
         try {
-            long var3 = (long) ((var2.anInt2095 - -1 << 16) + var2.anInt2090) + (((long) var2.anInt2100 << 56) - -((long) var2.anInt2094 << 32));
-            Class3_Sub11 var5 = (Class3_Sub11) var0.get(var3);
-            if (null == var5) {
-                var5 = new Class3_Sub11(var2.anInt2095, (float) var2.anInt2090, true, false, var2.anInt2094);
+            long var3 = (long)((var2.anInt2095 - -1 << 16) + var2.anInt2090) + (((long)var2.anInt2100 << 56) - -((long)var2.anInt2094 << 32));
+            Class3_Sub11 var5 = (Class3_Sub11)var0.get(var3);
+            if(null == var5) {
+                var5 = new Class3_Sub11(var2.anInt2095, (float)var2.anInt2090, true, false, var2.anInt2094);
                 var0.put(var3, var5);
             }
 
             return var5;
         } catch (RuntimeException var6) {
-            throw ClientErrorException.clientError(var6, "tk.J(" + (var0 != null ? "{...}" : "null") + ',' + false + ',' + (var2 != null ? "{...}" : "null") + ')');
+            throw ClientErrorException.clientError(var6, "tk.J(" + (var0 != null?"{...}":"null") + ',' + false + ',' + (var2 != null?"{...}":"null") + ')');
         }
     }
 }

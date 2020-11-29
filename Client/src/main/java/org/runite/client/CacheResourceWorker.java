@@ -7,23 +7,9 @@ import java.util.Objects;
 final class CacheResourceWorker implements Runnable {
 
     private final Queue<CacheResourceRequest> requests = new Queue<>();
-    public int remaining = 0;
     private boolean stopped = false;
     private Thread thread;
-
-    public CacheResourceWorker() {
-        Class64 var1 = Class38.aClass87_665.method1451(5, this);
-
-        while (Objects.requireNonNull(var1).anInt978 == 0) {
-            TimeUtils.sleep(10L);
-        }
-
-        if (var1.anInt978 == 2) {
-            throw new RuntimeException();
-        } else {
-            this.thread = (Thread) var1.anObject974;
-        }
-    }
+    public int remaining = 0;
 
     private void addRequest(CacheResourceRequest request) {
         synchronized (this.requests) {
@@ -114,10 +100,24 @@ final class CacheResourceWorker implements Runnable {
                     request.data = request.cache.read((int) request.nodeKey);
                 }
             } catch (Exception var5) {
-                ClientErrorException.method1125(null, var5);
+                Class49.method1125(null, var5, (byte) 111);
             }
 
             request.waiting = false;
+        }
+    }
+
+    public CacheResourceWorker() {
+        Class64 var1 = Class38.aClass87_665.method1451(5, this);
+
+        while (Objects.requireNonNull(var1).anInt978 == 0) {
+            TimeUtils.sleep(10L);
+        }
+
+        if (var1.anInt978 == 2) {
+            throw new RuntimeException();
+        } else {
+            this.thread = (Thread) var1.anObject974;
         }
     }
 

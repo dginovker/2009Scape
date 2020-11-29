@@ -1,71 +1,77 @@
 package org.runite.client;
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GL4bc;
 
 import java.nio.ByteBuffer;
-
-import static org.lwjgl.opengl.GL15.*;
 
 
 final class Class156 {
 
-    private final int anInt1992;
-    private final boolean aBoolean1994;
-    private int anInt1991;
-    private int anInt1993;
+   private int anInt1991;
+   private final int anInt1992;
+   private int anInt1993;
+   private final boolean aBoolean1994;
 
 
-    public Class156() {
-        this(false);
-    }
+   final void method2168(ByteBuffer var1) {
+      if(var1.limit() <= this.anInt1993) {
+         GL2 var2 = HDToolKit.gl;
+         var2.glBindBuffer('\u8892', this.anInt1991);
+         var2.glBufferSubData('\u8892', 0, var1.limit(), var1);
+      } else {
+         this.method2172(var1);
+      }
 
-    Class156(boolean var1) {
-        this.anInt1991 = -1;
-        this.anInt1993 = 0;
-        int[] var3 = new int[1];
-        glGenBuffers(var3);//1, buffer, 0 OLD
-        this.aBoolean1994 = var1;
-        this.anInt1991 = var3[0];
-        this.anInt1992 = Class31.anInt582;
-    }
+   }
 
-    final void method2168(ByteBuffer var1) {
-        if (var1.limit() <= this.anInt1993) {
-            glBindBuffer(GL_ARRAY_BUFFER, this.anInt1991);
-            glBufferSubData(GL_ARRAY_BUFFER,0, var1);//34962, 0, var1.limit(), var1
-        } else {
-            this.method2172(var1);
-        }
+   protected final void finalize() throws Throwable {
+      if(this.anInt1991 != -1) {
+         Class31.method989(this.anInt1991, this.anInt1993, this.anInt1992);
+         this.anInt1991 = -1;
+         this.anInt1993 = 0;
+      }
 
-    }
+      super.finalize();
+   }
 
-    protected final void finalize() throws Throwable {
-        if (this.anInt1991 != -1) {
-            Class31.method989(this.anInt1991, this.anInt1993, this.anInt1992);
-            this.anInt1991 = -1;
-            this.anInt1993 = 0;
-        }
+   final void method2169() {
+      GL2 var1 = HDToolKit.gl;
+      var1.glBindBuffer('\u8892', this.anInt1991);
+   }
 
-        super.finalize();
-    }
+   public Class156() {
+      this(false);
+   }
 
-    final void method2169() {
-        glBindBuffer(GL_ARRAY_BUFFER, this.anInt1991);
-    }
+   final void method2170(ByteBuffer var1) {
+      GL2 var2 = HDToolKit.gl;
+      var2.glBindBuffer('\u8893', this.anInt1991);
+      var2.glBufferData('\u8893', var1.limit(), var1, this.aBoolean1994?'\u88e0':'\u88e4');
+      Class31.anInt585 += var1.limit() - this.anInt1993;
+      this.anInt1993 = var1.limit();
+   }
 
-    final void method2170(ByteBuffer var1) {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this.anInt1991);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, var1, this.aBoolean1994 ? GL_STREAM_DRAW : GL_STATIC_DRAW);//34963, var1.limit(), buffer, '\u88e0' : '\u88e4'
-        Class31.anInt585 += var1.limit() - this.anInt1993;
-        this.anInt1993 = var1.limit();
-    }
+   final void method2171() {
+      GL2 var1 = HDToolKit.gl;
+      var1.glBindBuffer('\u8893', this.anInt1991);
+   }
 
-    final void method2171() {
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this.anInt1991);
-    }
+   final void method2172(ByteBuffer var1) {
+      GL2 var2 = HDToolKit.gl;
+      var2.glBindBuffer('\u8892', this.anInt1991);
+      var2.glBufferData('\u8892', var1.limit(), var1, this.aBoolean1994?'\u88e0':'\u88e4');
+      Class31.anInt585 += var1.limit() - this.anInt1993;
+      this.anInt1993 = var1.limit();
+   }
 
-    final void method2172(ByteBuffer var1) {
-        glBindBuffer(GL_ARRAY_BUFFER, this.anInt1991);
-        glBufferData(GL_ARRAY_BUFFER, var1, this.aBoolean1994 ? GL_STREAM_DRAW : GL_STATIC_DRAW);//34962, var1.limit(), buffer, '\u88e0' : '\u88e4'
-        Class31.anInt585 += var1.limit() - this.anInt1993;
-        this.anInt1993 = var1.limit();
-    }
+   Class156(boolean var1) {
+      this.anInt1991 = -1;
+      this.anInt1993 = 0;
+      GL2 var2 = HDToolKit.gl;
+      int[] var3 = new int[1];
+      var2.glGenBuffers(1, var3, 0);
+      this.aBoolean1994 = var1;
+      this.anInt1991 = var3[0];
+      this.anInt1992 = Class31.anInt582;
+   }
 }

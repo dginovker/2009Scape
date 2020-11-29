@@ -1,15 +1,13 @@
 package org.runite.client;
 
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL15.glDeleteBuffers;
-
-import org.lwjgl.Version;
+import com.jogamp.opengl.*;
 import org.rs09.client.config.GameConfig;
 import org.rs09.client.data.HashTable;
-import org.rs09.client.data.ReferenceCache;
-import org.rs09.client.net.Connection;
 import org.rs09.client.rendering.Toolkit;
 import org.rs09.client.util.ArrayUtils;
+
+import org.rs09.client.net.Connection;
+import org.rs09.client.data.ReferenceCache;
 
 import java.awt.*;
 import java.io.IOException;
@@ -18,15 +16,31 @@ import java.util.Objects;
 
 public class Unsorted {
     public static boolean aBoolean2146 = false;
+    public static int incomingOpcode = 0;
     public static int anInt2148 = 0;
     public static boolean aBoolean2150;
     public static boolean aBoolean2154;
     public static int[] anIntArray2157 = new int[50];
     public static int[] anIntArray882 = new int[200];
+    static int anInt942;
+    static int anInt944 = 0;
+    static int anInt952;
+    static int anInt963;
     public static int anInt144;
     public static int anInt136 = 0;
     public static int anInt120 = 255;
     public static byte[][][] aByteArrayArrayArray113 = new byte[4][104][104];
+    static int anInt1037;
+    static int anInt1038;
+    static Class30 aClass30_1039;
+    static int anInt3695;
+    static int anInt1042;
+    static CacheIndex aClass153_1043;
+    static AbstractSprite[] aAbstractSpriteArray996;
+    static int maskUpdateCount = 0;
+    static int anInt998 = 0;
+    static int anInt999 = -1;
+    static int wlPacketSize = 0;
     public static int[] anIntArray39;
     public static int anInt40 = 0;
     public static Connection js5Connection;
@@ -41,14 +55,16 @@ public class Unsorted {
     public static Class61 aClass61_1242 = new Class61();
     public static int anInt1244 = -1;
     public static RSInterface aClass11_1933;
+    public static float[] aFloatArray1934 = new float[]{0.073F, 0.169F, 0.24F, 1.0F};
     public static Class8 aClass8_1936;
-    public static Network aNetwork_2942 = new Network();
+    public static Class3_Sub30_Sub1 aClass3_Sub30_Sub1_2942 = new Class3_Sub30_Sub1();
     public static int[] anIntArray2952 = new int[128];
     public static int anInt2958 = 0;
     public static Class61 aClass61_78 = new Class61();
     public static int anInt72 = 0;
     public static boolean[] aBooleanArray73 = new boolean[200];
     public static boolean[] aBooleanArray1703;
+    public static int incomingPacketLength = 0;
     public static int anInt1705 = 0;
     public static int anInt1709 = 0;
     public static int anInt1711 = -2;
@@ -66,7 +82,16 @@ public class Unsorted {
     public static boolean aBoolean4068 = true;
     public static Class3_Sub2[][][] aClass3_Sub2ArrayArrayArray4070;
     public static int anInt4073;
+    static ReferenceCache aReferenceCache_684 = new ReferenceCache(64);
+    static int[] anIntArray686 = new int[2];
+    static int anInt688 = 0;
+    static int anInt689;
     public static CacheIndex aClass153_332;
+    static RSString[] aClass94Array2566 = new RSString[200];
+    static int anInt2567 = -1;
+    static int clanSize;
+    static int[] anIntArray2574 = new int[14];
+    static int anInt2577 = 0;
     public static int[] anIntArray2591;
     public static RSString[] aClass94Array2596 = null;
     public static Class3_Sub28_Sub3 aClass3_Sub28_Sub3_2600;
@@ -82,6 +107,9 @@ public class Unsorted {
     public static int anInt1953;
     public static int anInt1881 = 0;
     public static int anInt1887;
+    static boolean aBoolean29 = false;
+    static int anInt30;
+    static int anInt31 = 0;
     public static int anInt14 = 0;
     public static int anInt15 = 0;
     public static ReferenceCache aReferenceCache_21 = new ReferenceCache(64);
@@ -97,7 +125,7 @@ public class Unsorted {
     public static int anInt3642 = 0;
     public static int anInt3644 = 0;
     public static int anInt59 = 0;
-    public static short[] aShortArray63 = new short[]{(short) 960, (short) 957, (short) -21568, (short) -21571, (short) 22464};
+    public static short[] aShortArray63 = new short[]{(short)960, (short)957, (short)-21568, (short)-21571, (short)22464};
     public static int anInt65;
     public static boolean isMember = false;
     public static int anInt67;
@@ -113,40 +141,14 @@ public class Unsorted {
     public static int anInt3606;
     public static int[] anIntArray3607 = new int[]{0, 2, 2, 2, 1, 1, 2, 2, 1, 3, 1, 1};
     public static int updateStamp;
+    public static ReferenceCache aReferenceCache_4043 = new ReferenceCache(64);
     public static volatile int anInt4045 = 0;
     public static HashTable aHashTable_4046 = new HashTable(16);
     public static MouseListeningClass aClass149_4047 = new MouseListeningClass();
     public static CacheIndex aClass153_4048;
     public static int[] anIntArray4050 = new int[1000];
     public static ReferenceCache aReferenceCache_4051 = new ReferenceCache(30);
-    public static short[][] aShortArrayArray1619 = new short[][]{{(short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898}, {(short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10347, (short) 10582, (short) 10429, (short) 10407, (short) 10359, (short) 8414, (short) 9540, (short) 10456, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0}, {(short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898}, {(short) 4300, (short) 3294, (short) 3303, (short) 3264, (short) 4506, (short) 4382, (short) 4387, (short) 5293, (short) 7622, (short) 7384, (short) 8412, (short) 7496, (short) 86, (short) 123, (short) 111, (short) 99, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 13766, (short) 13745, (short) 13726, (short) 13890, (short) 13743, (short) 13852, (short) 17602, (short) 18605, (short) 21660, (short) 24000, (short) 24997, (short) 24088, (short) 27972, (short) 25903, (short) 26904, (short) 27193, (short) 27175, (short) 27156, (short) 30020, (short) 28975, (short) 29976, (short) 12482, (short) 13485, (short) 10392, (short) 10692, (short) 10669, (short) 10776, (short) 6717, (short) 6695, (short) 7830, (short) 6971, (short) 6951, (short) 5910, (short) 3389, (short) 3369, (short) 3356, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0, (short) 0}, {(short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898, (short) 10, (short) 30, (short) 50, (short) 70, (short) 90, (short) 110, (short) 310, (short) 684, (short) 704, (short) 556, (short) 940, (short) 960, (short) 6454, (short) 6952, (short) 6972, (short) 2358, (short) 2732, (short) 2752, (short) 10550, (short) 10924, (short) 10944, (short) 10310, (short) 10556, (short) 10576, (short) 14646, (short) 15020, (short) 15040, (short) 19766, (short) 20140, (short) 20160, (short) -29386, (short) -29012, (short) -28992, (short) 31030, (short) 31276, (short) 31296, (short) -24266, (short) -23892, (short) -23872, (short) -19146, (short) -18772, (short) -18752, (short) -14026, (short) -13652, (short) -13632, (short) -6858, (short) -6484, (short) -6464, (short) 522, (short) 542, (short) 6794, (short) 6814, (short) 11018, (short) 11038, (short) 14986, (short) 15006, (short) 21130, (short) 21150, (short) -28918, (short) -28898, (short) -22006, (short) -21986, (short) -12918, (short) -12898}};
-    static int anInt942;
-    static int anInt944 = 0;
-    static int anInt952;
-    static int anInt963;
-    static int anInt1037;
-    static int anInt1038;
-    static Class30 aClass30_1039;
-    static int anInt3695;
-    static int anInt1042;
-    static CacheIndex aClass153_1043;
-    static AbstractSprite[] aAbstractSpriteArray996;
-    static int maskUpdateCount = 0;
-    static int anInt998 = 0;
-    static int anInt999 = -1;
-    static int wlPacketSize = 0;
-    static ReferenceCache aReferenceCache_684 = new ReferenceCache(64);
-    static int[] anIntArray686 = new int[2];
-    static int anInt688 = 0;
-    static int anInt689;
-    static RSString[] aClass94Array2566 = new RSString[200];
-    static int anInt2567 = -1;
-    static int clanSize;
-    static int[] anIntArray2574 = new int[14];
-    static int anInt2577 = 0;
-    static boolean aBoolean29 = false;
-    static int anInt30;
-    static int anInt31 = 0;
+    public static short[][] aShortArrayArray1619 = new short[][]{{(short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898}, {(short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10347, (short)10582, (short)10429, (short)10407, (short)10359, (short)8414, (short)9540, (short)10456, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0}, {(short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898}, {(short)4300, (short)3294, (short)3303, (short)3264, (short)4506, (short)4382, (short)4387, (short)5293, (short)7622, (short)7384, (short)8412, (short)7496, (short)86, (short)123, (short)111, (short)99, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)13766, (short)13745, (short)13726, (short)13890, (short)13743, (short)13852, (short)17602, (short)18605, (short)21660, (short)24000, (short)24997, (short)24088, (short)27972, (short)25903, (short)26904, (short)27193, (short)27175, (short)27156, (short)30020, (short)28975, (short)29976, (short)12482, (short)13485, (short)10392, (short)10692, (short)10669, (short)10776, (short)6717, (short)6695, (short)7830, (short)6971, (short)6951, (short)5910, (short)3389, (short)3369, (short)3356, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0, (short)0}, {(short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898, (short)10, (short)30, (short)50, (short)70, (short)90, (short)110, (short)310, (short)684, (short)704, (short)556, (short)940, (short)960, (short)6454, (short)6952, (short)6972, (short)2358, (short)2732, (short)2752, (short)10550, (short)10924, (short)10944, (short)10310, (short)10556, (short)10576, (short)14646, (short)15020, (short)15040, (short)19766, (short)20140, (short)20160, (short)-29386, (short)-29012, (short)-28992, (short)31030, (short)31276, (short)31296, (short)-24266, (short)-23892, (short)-23872, (short)-19146, (short)-18772, (short)-18752, (short)-14026, (short)-13652, (short)-13632, (short)-6858, (short)-6484, (short)-6464, (short)522, (short)542, (short)6794, (short)6814, (short)11018, (short)11038, (short)14986, (short)15006, (short)21130, (short)21150, (short)-28918, (short)-28898, (short)-22006, (short)-21986, (short)-12918, (short)-12898}};
     static int anInt3671 = 0;
     static boolean[] aBooleanArray3674 = new boolean[100];
     static int anInt2281 = 0;
@@ -168,8 +170,8 @@ public class Unsorted {
 
     static void method2086() {
         try {
-            int var1 = Player.player.anInt2819 + Class3_Sub13_Sub13.anInt3216;
-            int var2 = Player.player.anInt2829 - -anInt42;
+            int var1 = Class102.player.anInt2819 + Class3_Sub13_Sub13.anInt3216;
+            int var2 = Class102.player.anInt2829 - -anInt42;
             if (-var1 + anInt3155 < -500 || -var1 + anInt3155 > 500 || anInt942 + -var2 < -500 || -var2 + anInt942 > 500) {
                 anInt3155 = var1;
                 anInt942 = var2;
@@ -307,7 +309,7 @@ public class Unsorted {
                             var15[var16 + 1539] = var14;
                         }
                     }
-                } else if (method888(var1, var13, var0, 0, var3, var10)) {
+                } else if (Class15.method888(var1, var13, var0, 0, var3, var10)) {
                     return false;
                 }
             }
@@ -319,7 +321,7 @@ public class Unsorted {
                 var12 = (int) (var8 >>> 32) & Integer.MAX_VALUE;
                 var13 = ObjectDefinition.getObjectDefinition(var12);
                 if (var13.anInt1516 != -1) {
-                    if (method888(var1, var13, var0, 0, var3, var10)) {
+                    if (Class15.method888(var1, var13, var0, 0, var3, var10)) {
                         return false;
                     }
                 } else if (var11 == 9) {
@@ -349,7 +351,7 @@ public class Unsorted {
                 var10 = (int) var8 >> 20 & 3;
                 var11 = (int) (var8 >>> 32) & Integer.MAX_VALUE;
                 ObjectDefinition var18 = ObjectDefinition.getObjectDefinition(var11);
-                return var18.anInt1516 == -1 || !method888(var1, var18, var0, 0, var3, var10);
+                return var18.anInt1516 == -1 || !Class15.method888(var1, var18, var0, 0, var3, var10);
             }
 
             return true;
@@ -485,7 +487,7 @@ public class Unsorted {
                 Class74.setClipping(var14);
                 Class51.method1134();
                 Class51.aBoolean843 = true;
-                return HDToolKit.highDetail && !var2 ? new HDSprite(var15) : var15;
+                return (AbstractSprite) (HDToolKit.highDetail && !var2 ? new HDSprite(var15) : var15);
             }
         } catch (RuntimeException var20) {
             throw ClientErrorException.clientError(var20, "na.WA(" + var0 + ',' + var1 + ',' + var2 + ',' + var3 + ',' + var4 + ',' + var5 + ',' + var6 + ',' + var7 + ')');
@@ -505,7 +507,7 @@ public class Unsorted {
         try {
             ItemDefinition.stringsStack = null;
             if (var0 != 30) {
-                method84(null, 89);
+                method84((RSString) null, 89);
             }
 
             aClass61_78 = null;
@@ -671,26 +673,26 @@ public class Unsorted {
 
     static void method1250(int var0, boolean var1) {
         try {
-            Class3_Sub10.aByteArrayArrayArray2339 = null;
-            Class44.anIntArrayArrayArray720 = null;
+            Class3_Sub10.aByteArrayArrayArray2339 = (byte[][][]) null;
+            Class44.anIntArrayArrayArray720 = (int[][][]) null;
             if (var0 < 14) {
                 method1250(10, true);
             }
 
             Class3_Sub28_Sub3.aClass11_3551 = null;
-            RenderAnimationDefinition.aByteArrayArrayArray383 = null;
+            RenderAnimationDefinition.aByteArrayArrayArray383 = (byte[][][]) null;
             Class83.anIntArray1161 = null;
-            CS2Script.aByteArrayArrayArray2452 = null;
+            CS2Script.aByteArrayArrayArray2452 = (byte[][][]) null;
             if (var1 && null != aClass3_Sub28_Sub3_2600) {
                 Class3_Sub20.aClass94_3220 = aClass3_Sub28_Sub3_2600.aClass94_3561;
             } else {
                 Class3_Sub20.aClass94_3220 = null;
             }
 
-            Class36.aByteArrayArrayArray640 = null;
-            Class3_Sub13_Sub33.aByteArrayArrayArray3390 = null;
-            Class29.anIntArrayArrayArray558 = null;
-            Class146.anIntArrayArrayArray1903 = null;
+            Class36.aByteArrayArrayArray640 = (byte[][][]) null;
+            Class3_Sub13_Sub33.aByteArrayArrayArray3390 = (byte[][][]) null;
+            Class29.anIntArrayArrayArray558 = (int[][][]) null;
+            Class146.anIntArrayArrayArray1903 = (int[][][]) null;
             WorldMap.anInt2737 = 0;
             aClass3_Sub28_Sub3_2600 = null;
             Class84.aClass61_1162.method1211(-108);
@@ -788,70 +790,70 @@ public class Unsorted {
 
                 boolean var8 = true;
                 if (0 < var5.anInt189) {
-                    var8 = Network.method715(var5);
+                    var8 = Class3_Sub30_Sub1.method715(var5);
                 }
 
                 if (var8) {
                     if (Client.method44(var5).method92(var2 - 1, (byte) -108)) {
                         if (1 == var2) {
-                            Network.outgoingBuffer.putOpcode(155);
-                            Network.outgoingBuffer.writeInt(var4);
-                            Network.outgoingBuffer.writeShort(var1);
+                            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(155);
+                            Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
+                            Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
                         }
 
                         if (var3 < -7) {
                             if (var2 == 2) {
-                                Network.outgoingBuffer.putOpcode(196);
-                                Network.outgoingBuffer.writeInt(var4);
-                                Network.outgoingBuffer.writeShort(var1);
+                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(196);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 3) {
-                                Network.outgoingBuffer.putOpcode(124);
-                                Network.outgoingBuffer.writeInt(var4);
-                                Network.outgoingBuffer.writeShort(var1);
+                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(124);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 4) {
-                                Network.outgoingBuffer.putOpcode(199);
-                                Network.outgoingBuffer.writeInt(var4);
-                                Network.outgoingBuffer.writeShort(var1);
+                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(199);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 5) {
-                                Network.outgoingBuffer.putOpcode(234);
-                                Network.outgoingBuffer.writeInt(var4);
-                                Network.outgoingBuffer.writeShort(var1);
+                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(234);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
                             }
 
                             if (6 == var2) {
-                                Network.outgoingBuffer.putOpcode(168);
-                                Network.outgoingBuffer.writeInt(var4);
-                                Network.outgoingBuffer.writeShort(var1);
+                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(168);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 7) {
-                                Network.outgoingBuffer.putOpcode(166);
-                                Network.outgoingBuffer.writeInt(var4);
-                                Network.outgoingBuffer.writeShort(var1);
+                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(166);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 8) {
-                                Network.outgoingBuffer.putOpcode(64);
-                                Network.outgoingBuffer.writeInt(var4);
-                                Network.outgoingBuffer.writeShort(var1);
+                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(64);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 9) {
-                                Network.outgoingBuffer.putOpcode(53);
-                                Network.outgoingBuffer.writeInt(var4);
-                                Network.outgoingBuffer.writeShort(var1);
+                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(53);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
                             }
 
                             if (var2 == 10) {
-                                Network.outgoingBuffer.putOpcode(9);
-                                Network.outgoingBuffer.writeInt(var4);
-                                Network.outgoingBuffer.writeShort(var1);
+                                Class3_Sub13_Sub1.outgoingBuffer.putOpcode(9);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeInt(var4);
+                                Class3_Sub13_Sub1.outgoingBuffer.writeShort(var1);
                             }
 
                         }
@@ -885,7 +887,7 @@ public class Unsorted {
                 var2.method1973(2279 + -2395);
             }
 
-            if (var2 == Player.player && (var2.anInt2819 < 1536 || var2.anInt2829 < 1536 || var2.anInt2819 >= 11776 || var2.anInt2829 >= 11776)) {
+            if (var2 == Class102.player && (var2.anInt2819 < 1536 || var2.anInt2829 < 1536 || var2.anInt2819 >= 11776 || var2.anInt2829 >= 11776)) {
                 var2.anInt2842 = -1;
                 var2.anInt2800 = 0;
                 var2.anInt2790 = 0;
@@ -932,7 +934,7 @@ public class Unsorted {
                         Class102.aClass135Array2131[Class113.anInt1552] = null;
                         Class3_Sub8.anIntArray3083[Class113.anInt1552] = var9 + (var10 << 16) + (var11 << 8);
                         if (var2 != 183921384) {
-                            aClass33_1238 = null;
+                            aClass33_1238 = (Class33) null;
                         }
 
                         ++Class113.anInt1552;
@@ -1058,50 +1060,50 @@ public class Unsorted {
 
     public static void updateLocalPosition() {
         try {
-            Network.incomingBuffer.setBitAccess((byte) 118);
-            int opcode = Network.incomingBuffer.getBits(1);
+            GraphicDefinition.incomingBuffer.setBitAccess((byte) 118);
+            int opcode = GraphicDefinition.incomingBuffer.getBits(1);
             if (opcode != 0) {
-                int type = Network.incomingBuffer.getBits(2);
+                int type = GraphicDefinition.incomingBuffer.getBits(2);
                 if (0 == type) {
                     Class21.maskUpdateIndexes[maskUpdateCount++] = 2047;
                 } else {
                     int var4;
                     int var5;
                     if (type == 1) { //Walk
-                        var4 = Network.incomingBuffer.getBits(3);
-                        Player.player.walkStep(1, (byte) -128, var4);
-                        var5 = Network.incomingBuffer.getBits(1);
+                        var4 = GraphicDefinition.incomingBuffer.getBits(3);
+                        Class102.player.walkStep(1, (byte) -128, var4);
+                        var5 = GraphicDefinition.incomingBuffer.getBits(1);
                         if (var5 == 1) {
                             Class21.maskUpdateIndexes[maskUpdateCount++] = 2047;
                         }
 
                     } else if (2 == type) {
-                        if (Network.incomingBuffer.getBits(1) == 1) {
-                            var4 = Network.incomingBuffer.getBits(3);
-                            Player.player.walkStep(2, (byte) -104, var4);
-                            var5 = Network.incomingBuffer.getBits(3);
-                            Player.player.walkStep(2, (byte) -126, var5);
+                        if (GraphicDefinition.incomingBuffer.getBits(1) == 1) {
+                            var4 = GraphicDefinition.incomingBuffer.getBits(3);
+                            Class102.player.walkStep(2, (byte) -104, var4);
+                            var5 = GraphicDefinition.incomingBuffer.getBits(3);
+                            Class102.player.walkStep(2, (byte) -126, var5);
                         } else {
-                            var4 = Network.incomingBuffer.getBits(3);
-                            Player.player.walkStep(0, (byte) -109, var4);
+                            var4 = GraphicDefinition.incomingBuffer.getBits(3);
+                            Class102.player.walkStep(0, (byte) -109, var4);
                         }
 
-                        var4 = Network.incomingBuffer.getBits(1);
+                        var4 = GraphicDefinition.incomingBuffer.getBits(1);
                         if (var4 == 1) {
                             Class21.maskUpdateIndexes[maskUpdateCount++] = 2047;
                         }
 
                     } else if (type == 3) {
-                        var4 = Network.incomingBuffer.getBits(7);
-                        var5 = Network.incomingBuffer.getBits(1);
-                        WorldListCountry.localPlane = Network.incomingBuffer.getBits(2);
-                        int var6 = Network.incomingBuffer.getBits(1);
+                        var4 = GraphicDefinition.incomingBuffer.getBits(7);
+                        var5 = GraphicDefinition.incomingBuffer.getBits(1);
+                        WorldListCountry.localPlane = GraphicDefinition.incomingBuffer.getBits(2);
+                        int var6 = GraphicDefinition.incomingBuffer.getBits(1);
                         if (var6 == 1) {
                             Class21.maskUpdateIndexes[maskUpdateCount++] = 2047;
                         }
 
-                        int var7 = Network.incomingBuffer.getBits(7);
-                        Player.player.method1981(var7, var5 == 1, var4);
+                        int var7 = GraphicDefinition.incomingBuffer.getBits(7);
+                        Class102.player.method1981(var7, var5 == 1, var4);
                     }
                 }
             }
@@ -1127,7 +1129,7 @@ public class Unsorted {
                 Class158.method2183(var0.componentHash, var1, var4, var5, var0.aClass11Array262);
             }
 
-            Class3_Sub31 var6 = Class3_Sub13_Sub17.aHashTable_3208.get(var0.componentHash);
+            Class3_Sub31 var6 = (Class3_Sub31) Class3_Sub13_Sub17.aHashTable_3208.get((long) var0.componentHash);
             if (var6 != null) {
                 Class75_Sub4.method1352(var5, var1, var6.anInt2602, var4);
             }
@@ -1370,6 +1372,17 @@ public class Unsorted {
         }
     }
 
+    public static void method1783(Component var1) {
+        try {
+            var1.removeMouseListener(aClass149_4047);
+            var1.removeMouseMotionListener(aClass149_4047);
+            var1.removeFocusListener(aClass149_4047);
+            GraphicDefinition.anInt549 = 0;
+        } catch (RuntimeException var3) {
+            throw ClientErrorException.clientError(var3, "sc.M(" + (var1 != null ? "{...}" : "null") + ')');
+        }
+    }
+
     public static long method1395(int var0, int var1, int var2) {
         Class3_Sub2 var3 = Class75_Sub2.aClass3_Sub2ArrayArrayArray2638[var0][var1][var2];
         return var3 != null && var3.aClass19_2233 != null ? var3.aClass19_2233.aLong428 : 0L;
@@ -1379,13 +1392,13 @@ public class Unsorted {
         try {
             int var2 = Class106.anInt1442;
             int var1 = Class84.anInt1164;
-            int var4 = -GameShell.gameShellAWTHeight + (Class70.anInt1047 - var2);
-            int var3 = -var1 + anInt2334 - GameShell.gameShellAWTWidth;
+            int var4 = -Class140_Sub7.anInt2934 + (Class70.anInt1047 - var2);
+            int var3 = -var1 + anInt2334 - Class23.anInt454;
             if (~var1 < var0 || var3 > 0 || var2 > 0 || var4 > 0) {
                 try {
-                    Container var5;
-                    if (null != GameShell.aFrame3121) {
-                        var5 = GameShell.aFrame3121;
+                    Object var5;
+                    if (null != Class3_Sub13_Sub10.aFrame3121) {
+                        var5 = Class3_Sub13_Sub10.aFrame3121;
                     } else if (GameShell.frame == null) {
                         var5 = Class38.aClass87_665.applet;
                     } else {
@@ -1400,7 +1413,7 @@ public class Unsorted {
                         var7 = var8.top;
                     }
 
-                    Graphics var11 = var5.getGraphics();
+                    Graphics var11 = ((Container) var5).getGraphics();
                     var11.setColor(Color.black);
                     if (var1 > 0) {
                         var11.fillRect(var6, var7, var1, Class70.anInt1047);
@@ -1454,7 +1467,7 @@ public class Unsorted {
 
     public static boolean method591(int var0) {
         try {
-            KeyboardListener var1 = KeyboardListener.aClass148_3049;
+            KeyboardListener var1 = Class3_Sub13_Sub3.aClass148_3049;
             synchronized (var1) {
                 if (Class3_Sub28_Sub9.anInt3620 == Class134.anInt1762) {
                     return false;
@@ -1539,7 +1552,7 @@ public class Unsorted {
                 if (2 == var2.anInt978) {
                     return new Class106[0];
                 } else {
-                    int[] var3 = (int[]) var2.anObject974;
+                    int[] var3 = (int[]) ((int[]) var2.anObject974);
                     Class106[] var4 = new Class106[var3.length >> 2];
 
                     for (int var5 = 0; var5 < var4.length; ++var5) {
@@ -1566,32 +1579,32 @@ public class Unsorted {
                 HDToolKit.method1842();
             }
 
-            if (null != GameShell.aFrame3121 && (3 != var1 || Class3_Sub13.anInt2378 != var5 || anInt3071 != var6)) {
-                method593(GameShell.aFrame3121, Class38.aClass87_665);
-                GameShell.aFrame3121 = null;
+            if (null != Class3_Sub13_Sub10.aFrame3121 && (3 != var1 || Class3_Sub13.anInt2378 != var5 || anInt3071 != var6)) {
+                method593(Class3_Sub13_Sub10.aFrame3121, Class38.aClass87_665);
+                Class3_Sub13_Sub10.aFrame3121 = null;
             }
 
-            if (3 == var1 && null == GameShell.aFrame3121) {
-                GameShell.aFrame3121 = Class99.method1597(0, var6, var5, Class38.aClass87_665);
-                if (null != GameShell.aFrame3121) {
+            if (3 == var1 && null == Class3_Sub13_Sub10.aFrame3121) {
+                Class3_Sub13_Sub10.aFrame3121 = Class99.method1597(0, var6, var5, Class38.aClass87_665);
+                if (null != Class3_Sub13_Sub10.aFrame3121) {
                     anInt3071 = var6;
                     Class3_Sub13.anInt2378 = var5;
                     Class119.method1730(Class38.aClass87_665);
                 }
             }
 
-            if (var1 == 3 && GameShell.aFrame3121 == null) {
+            if (var1 == 3 && Class3_Sub13_Sub10.aFrame3121 == null) {
                 method598(true, anInt2577, true, var3, var4, -1, -1);
             } else {
                 Object var7;
-                if (null == GameShell.aFrame3121) {
+                if (null == Class3_Sub13_Sub10.aFrame3121) {
                     if (null == GameShell.frame) {
                         var7 = Class38.aClass87_665.applet;
                     } else {
                         var7 = GameShell.frame;
                     }
                 } else {
-                    var7 = GameShell.aFrame3121;
+                    var7 = Class3_Sub13_Sub10.aFrame3121;
                 }
 
                 anInt2334 = ((Container) var7).getSize().width;
@@ -1604,25 +1617,25 @@ public class Unsorted {
                 }
 
                 if (var1 >= 2) {
-                    GameShell.gameShellAWTWidth = anInt2334;
-                    GameShell.gameShellAWTHeight = Class70.anInt1047;
+                    Class23.anInt454 = anInt2334;
+                    Class140_Sub7.anInt2934 = Class70.anInt1047;
                     Class84.anInt1164 = 0;
                     Class106.anInt1442 = 0;
                 } else {
                     Class106.anInt1442 = 0;
                     Class84.anInt1164 = (anInt2334 + -765) / 2;
-                    GameShell.gameShellAWTWidth = 765;
-                    GameShell.gameShellAWTHeight = 503;
+                    Class23.anInt454 = 765;
+                    Class140_Sub7.anInt2934 = 503;
                 }
 
                 if (var0) {
-                    KeyboardListener.removeKeyboardListener(GameShell.canvas);
-                    MouseListeningClass.removeMouseListener(GameShell.canvas);
+                    Class163_Sub1_Sub1.method2215(GameShell.canvas);
+                    method1783(GameShell.canvas);
                     if (null != Class38.aClass146_668) {
                         Class38.aClass146_668.method2082(GameShell.canvas);
                     }
 
-                    Class126.aClient1671.method30();
+                    Class126.aClient1671.method30((byte) 97);
                     Class3_Sub13_Sub4.method193((byte) 97, GameShell.canvas);
                     ItemDefinition.method1119(GameShell.canvas, var4);
                     if (Class38.aClass146_668 != null) {
@@ -1630,10 +1643,10 @@ public class Unsorted {
                     }
                 } else {
                     if (HDToolKit.highDetail) {
-                        HDToolKit.setHDWindowSize(GameShell.gameShellAWTWidth, GameShell.gameShellAWTHeight);
+                        HDToolKit.method1854(Class23.anInt454, Class140_Sub7.anInt2934);
                     }
 
-                    GameShell.canvas.setSize(GameShell.gameShellAWTWidth, GameShell.gameShellAWTHeight);
+                    GameShell.canvas.setSize(Class23.anInt454, Class140_Sub7.anInt2934);
                     if (GameShell.frame == var7) {
                         var8 = GameShell.frame.getInsets();
                         GameShell.canvas.setLocation(var8.left - -Class84.anInt1164, var8.top + Class106.anInt1442);
@@ -1652,7 +1665,7 @@ public class Unsorted {
                     if (!GameShell.aBoolean11) {
                         Class32.method995();
                         Class164_Sub1.aClass158_3009 = null;
-                        Class164_Sub1.aClass158_3009 = Class3_Sub13_Sub23_Sub1.method285(GameShell.gameShellAWTHeight, GameShell.gameShellAWTWidth, GameShell.canvas);
+                        Class164_Sub1.aClass158_3009 = Class3_Sub13_Sub23_Sub1.method285(Class140_Sub7.anInt2934, Class23.anInt454, GameShell.canvas);
                         Class74.method1320();
                         if (5 == Class143.loadingStage) {
                             Class3_Sub23.method406((byte) 122, true, Class168.aClass3_Sub28_Sub17_2096);
@@ -1740,7 +1753,7 @@ public class Unsorted {
                         Class124.method1746(true, (byte) -107);
                     }
 
-                    if (null != Network.activeConnection && (Class143.loadingStage == 30 || Class143.loadingStage == 25)) {
+                    if (null != Class3_Sub15.activeConnection && (Class143.loadingStage == 30 || Class143.loadingStage == 25)) {
                         Class3_Sub13_Sub8.method204(-3);
                     }
 
@@ -1748,7 +1761,7 @@ public class Unsorted {
                         aBooleanArray3674[var12] = true;
                     }
 
-                    GameShell.aBoolean3116 = true;
+                    Class3_Sub13_Sub10.aBoolean3116 = true;
                 }
             }
         } catch (RuntimeException var10) {
@@ -1952,7 +1965,7 @@ public class Unsorted {
             Class3_Sub9 var2 = (Class3_Sub9) aHashTable_4046.get(var0.displayName.toLong());
 
             if (var2 == null) {
-                Class70.method1286(var0.anIntArray2755[0], null, 0, null, var0.anIntArray2767[0], WorldListCountry.localPlane, var0);
+                Class70.method1286(var0.anIntArray2755[0], (ObjectDefinition) null, 0, (NPC) null, var0.anIntArray2767[0], WorldListCountry.localPlane, var0);
             } else {
                 var2.method134();
             }
@@ -1977,6 +1990,25 @@ public class Unsorted {
             return aClass3_Sub28_Sub3_2600;
         } catch (RuntimeException var2) {
             throw ClientErrorException.clientError(var2, "rg.OA(" + var0 + ')');
+        }
+    }
+
+    static NPCDefinition method522(int var0) {
+        try {
+            NPCDefinition def = (NPCDefinition) aReferenceCache_4043.get((long) var0);
+            if (null == def) {
+                byte[] var3 = Class29.aClass153_557.getFile(Class38_Sub1.method1031(var0), method54(var0));
+                def = new NPCDefinition();
+
+                def.npcId = var0;
+                if (null != var3) {
+                    def.method1478(new DataBuffer(var3));
+                }
+                aReferenceCache_4043.put(def, (long) var0);
+            }
+            return def;
+        } catch (RuntimeException var4) {
+            throw ClientErrorException.clientError(var4, "rg.PA(" + var0 + ',' + 27112 + ')');
         }
     }
 
@@ -2239,7 +2271,7 @@ public class Unsorted {
         try {
             int var1 = Class137.method1817();
             if (0 == var1) {
-                Class158.aByteArrayArrayArray2008 = null;
+                Class158.aByteArrayArrayArray2008 = (byte[][][]) null;
                 Class136.method1816(0, -7);
             } else if (var1 == 1) {
                 Class3_Sub5.method112((byte) 0);
@@ -2313,7 +2345,7 @@ public class Unsorted {
 
                                 Class15.localNPCIndexes[Class163.localNPCCount++] = var11;
                             } else {
-                                NPC.npcs[var11].setDefinitions(null);
+                                NPC.npcs[var11].setDefinitions((NPCDefinition) null);
                                 NPC.npcs[var11] = null;
                             }
                         }
@@ -2347,7 +2379,7 @@ public class Unsorted {
                 }
 
                 WorldListCountry.localPlane = plane;
-                Player.player.method1981(sceneX, false, sceneY);
+                Class102.player.method1981(sceneX, false, sceneY);
                 byte var25 = 104;
                 byte var24 = 0;
                 byte var14 = 0;
@@ -2574,15 +2606,15 @@ public class Unsorted {
                         RSString var5 = var0.NPCName;
                         if (0 != var0.anInt1260) {
                             RSString var6 = Class158.anInt2014 != 1 ? TextCore.HasLevel : TextCore.HasRating;
-                            var5 = RSString.stringCombiner(new RSString[]{var5, Player.combatLevelColor(var0.anInt1260, (byte) -122, Player.player.COMBAT_LEVEL), TextCore.LEFT_PARENTHESES, var6, RSString.stringAnimator(var0.anInt1260), TextCore.RIGHT_PARENTHESES});
+                            var5 = RSString.stringCombiner(new RSString[]{var5, Player.combatLevelColor(var0.anInt1260, (byte) -122, Class102.player.COMBAT_LEVEL), TextCore.LEFT_PARENTHESES, var6, RSString.stringAnimator(var0.anInt1260), TextCore.RIGHT_PARENTHESES});
                         }
 
                         if (Class164_Sub1.anInt3012 == 1) {
-                            Class3_Sub24_Sub4.method1177(Class99.anInt1403, var3, (byte) -125, RSString.stringCombiner(new RSString[]{RenderAnimationDefinition.aClass94_378, ColorCore.TextColor, var5}), var1, (short) 26, TextCore.HasUse, var4);
+                            Class3_Sub24_Sub4.method1177(Class99.anInt1403, (long) var3, (byte) -125, RSString.stringCombiner(new RSString[]{RenderAnimationDefinition.aClass94_378, ColorCore.TextColor, var5}), var1, (short) 26, TextCore.HasUse, var4);
                         } else if (GameObject.aBoolean1837) {
                             Class3_Sub28_Sub9 var12 = -1 == anInt1038 ? null : Class61.method1210(anInt1038);
                             if ((2 & Class164.anInt2051) != 0 && (var12 == null || var0.method1475(anInt1038, var12.anInt3614) != var12.anInt3614)) {
-                                Class3_Sub24_Sub4.method1177(anInt1887, var3, (byte) -93, RSString.stringCombiner(new RSString[]{TextCore.aClass94_676, ColorCore.TextColor, var5}), var1, (short) 45, Class3_Sub28_Sub9.aClass94_3621, var4);
+                                Class3_Sub24_Sub4.method1177(anInt1887, (long) var3, (byte) -93, RSString.stringCombiner(new RSString[]{TextCore.aClass94_676, ColorCore.TextColor, var5}), var1, (short) 45, Class3_Sub28_Sub9.aClass94_3621, var4);
                             }
                         } else {
                             RSString[] var11 = var0.options;
@@ -2624,7 +2656,7 @@ public class Unsorted {
                                             var8 = 2;
                                         }
 
-                                        Class3_Sub24_Sub4.method1177(var9, var3, (byte) -103, RSString.stringCombiner(new RSString[]{ColorCore.NPCRightClickColor, var5}), var1, var8, var11[var7], var4);
+                                        Class3_Sub24_Sub4.method1177(var9, (long) var3, (byte) -103, RSString.stringCombiner(new RSString[]{ColorCore.NPCRightClickColor, var5}), var1, var8, var11[var7], var4);
                                     }
                                 }
                             }
@@ -2633,7 +2665,7 @@ public class Unsorted {
                                 for (var7 = 4; var7 >= 0; --var7) {
                                     if (null != var11[var7] && var11[var7].equalsStringIgnoreCase(TextCore.HasAttack)) {
                                         short var14 = 0;
-                                        if (var0.anInt1260 > Player.player.COMBAT_LEVEL) {
+                                        if (var0.anInt1260 > Class102.player.COMBAT_LEVEL) {
                                             var14 = 2000;
                                             //This var sets "attack" as a right click attack option for higher level npcs, let's make it a single click!
                                         }
@@ -2663,15 +2695,15 @@ public class Unsorted {
                                             var13 += var14;
                                         }
 
-                                        Class3_Sub24_Sub4.method1177(var0.anInt1298, var3, (byte) -128, RSString.stringCombiner(new RSString[]{ColorCore.NPCRightClickColor, var5}), var1, var13, var11[var7], var4);
+                                        Class3_Sub24_Sub4.method1177(var0.anInt1298, (long) var3, (byte) -128, RSString.stringCombiner(new RSString[]{ColorCore.NPCRightClickColor, var5}), var1, var13, var11[var7], var4);
                                     }
                                 }
                             }
 
                             if (GameConfig.NPC_DEBUG_ENABLED) {
-                                Class3_Sub24_Sub4.method1177(Class131.anInt1719, var3, (byte) -73, RSString.stringCombiner(new RSString[]{ColorCore.NPCRightClickColor, var5}), var1, (short) 1007, RSString.parse("Examine" + "<br>" + " ID: (X" + var0.npcId + "(Y"), var4);
+                                Class3_Sub24_Sub4.method1177(Class131.anInt1719, (long) var3, (byte) -73, RSString.stringCombiner(new RSString[]{ColorCore.NPCRightClickColor, var5}), var1, (short) 1007, RSString.parse("Examine" + "<br>" + " ID: (X" + var0.npcId + "(Y"), var4);
                             } else {
-                                Class3_Sub24_Sub4.method1177(Class131.anInt1719, var3, (byte) -73, RSString.stringCombiner(new RSString[]{ColorCore.NPCRightClickColor, var5}), var1, (short) 1007, TextCore.HasExamine, var4);
+                                Class3_Sub24_Sub4.method1177(Class131.anInt1719, (long) var3, (byte) -73, RSString.stringCombiner(new RSString[]{ColorCore.NPCRightClickColor, var5}), var1, (short) 1007, TextCore.HasExamine, var4);
                             }
                         }
 
@@ -2746,9 +2778,9 @@ public class Unsorted {
         while (var1 < maskUpdateCount) {
             int var2 = Class21.maskUpdateIndexes[var1];
             Player var3 = Class3_Sub13_Sub22.players[var2];
-            int var4 = Network.incomingBuffer.readUnsignedByte();
+            int var4 = GraphicDefinition.incomingBuffer.readUnsignedByte();
             if ((16 & var4) != 0) {
-                var4 += Network.incomingBuffer.readUnsignedByte() << 8;
+                var4 += GraphicDefinition.incomingBuffer.readUnsignedByte() << 8;
             }
 
             Class45.parsePlayerMask(var4, var2, var3);
@@ -2950,7 +2982,7 @@ public class Unsorted {
 
     public static LDIndexedSprite[] method619(byte var0, int var1, CacheIndex var2) {
         try {
-            return Class140_Sub7.method2029((byte) -119, var2, var1) ? (var0 <= 52 ? null : method1281()) : null;
+            return Class140_Sub7.method2029((byte) -119, var2, var1) ? (var0 <= 52 ? (LDIndexedSprite[]) null : method1281()) : null;
         } catch (RuntimeException var4) {
             throw ClientErrorException.clientError(var4, "ml.A(" + var0 + ',' + var1 + ',' + (var2 != null ? "{...}" : "null") + ')');
         }
@@ -3155,7 +3187,7 @@ public class Unsorted {
             RenderAnimationDefinition var2 = var1.method1965();
             var1.anInt2764 = var2.anInt368;
             if (var0 >= -5) {
-                anIntArray882 = null;
+                anIntArray882 = (int[]) null;
             }
 
             if (var1.anInt2816 == 0) {
@@ -3418,8 +3450,8 @@ public class Unsorted {
 
     public static boolean method73(short var0) {
         try {
-            if (var0 != 47 && var0 != 5 && var0 != 43 && var0 != 35 && var0 != 58 && var0 != 22 && var0 != 40 && var0 != 3) {
-                if (var0 != 9 && var0 != 12 && var0 != 1006 && var0 != 1003) {
+            if(var0 != 47 && var0 != 5 && var0 != 43 && var0 != 35 && var0 != 58 && var0 != 22 && var0 != 40 && var0 != 3) {
+                if(var0 != 9 && var0 != 12 && var0 != 1006 && var0 != 1003) {
 
                     return var0 == 25 || var0 == 23 || 48 == var0 || var0 == 7 || var0 == 13 || (var0 == 8 || var0 == 32 || var0 == 28 || var0 == 59 || var0 == 51 || var0 == 41);
                 } else {
@@ -3435,32 +3467,32 @@ public class Unsorted {
 
     public static void method75(RSInterface[] var0, int var2) {
         try {
-            for (int var3 = 0; var0.length > var3; ++var3) {
+            for(int var3 = 0; var0.length > var3; ++var3) {
                 RSInterface var4 = var0[var3];
-                if (null != var4) {
-                    if (var4.type == 0) {
-                        if (null != var4.aClass11Array262) {
+                if(null != var4) {
+                    if(var4.type == 0) {
+                        if(null != var4.aClass11Array262) {
                             method75(var4.aClass11Array262, var2);
                         }
 
-                        Class3_Sub31 var5 = Class3_Sub13_Sub17.aHashTable_3208.get(var4.componentHash);
-                        if (null != var5) {
+                        Class3_Sub31 var5 = (Class3_Sub31)Class3_Sub13_Sub17.aHashTable_3208.get((long)var4.componentHash);
+                        if(null != var5) {
                             Class3_Sub8.method124(49, var2, var5.anInt2602);
                         }
                     }
 
                     CS2Script var7;
-                    if (var2 == 0 && null != var4.anObjectArray206) {
+                    if(var2 == 0 && null != var4.anObjectArray206) {
                         var7 = new CS2Script();
                         var7.arguments = var4.anObjectArray206;
                         var7.aClass11_2449 = var4;
                         Class43.method1065(var7);
                     }
 
-                    if (var2 == 1 && var4.anObjectArray176 != null) {
-                        if (var4.anInt191 >= 0) {
+                    if(var2 == 1 && var4.anObjectArray176 != null) {
+                        if(var4.anInt191 >= 0) {
                             RSInterface var8 = Class7.getRSInterface(var4.componentHash);
-                            if (null == var8 || null == var8.aClass11Array262 || var8.aClass11Array262.length <= var4.anInt191 || var8.aClass11Array262[var4.anInt191] != var4) {
+                            if(null == var8 || null == var8.aClass11Array262 || var8.aClass11Array262.length <= var4.anInt191 || var8.aClass11Array262[var4.anInt191] != var4) {
                                 continue;
                             }
                         }
@@ -3474,7 +3506,7 @@ public class Unsorted {
             }
 
         } catch (RuntimeException var6) {
-            throw ClientErrorException.clientError(var6, "aa.I(" + (var0 != null ? "{...}" : "null") + ',' + true + ',' + var2 + ')');
+            throw ClientErrorException.clientError(var6, "aa.I(" + (var0 != null?"{...}":"null") + ',' + true + ',' + var2 + ')');
         }
     }
 
@@ -3482,8 +3514,8 @@ public class Unsorted {
         try {
             int var12;
             int var13;
-            for (var12 = 0; 104 > var12; ++var12) {
-                for (var13 = 0; var13 < 104; ++var13) {
+            for(var12 = 0; 104 > var12; ++var12) {
+                for(var13 = 0; var13 < 104; ++var13) {
                     Class84.anIntArrayArray1160[var12][var13] = 0;
                     Class97.anIntArrayArray1373[var12][var13] = 99999999;
                 }
@@ -3502,34 +3534,34 @@ public class Unsorted {
             int[][] var17 = AtmosphereParser.aClass91Array1182[WorldListCountry.localPlane].anIntArrayArray1304;
 
             int var18;
-            while (var15 != var27) {
+            while(var15 != var27) {
                 var12 = Class3_Sub13_Sub38.anIntArray3456[var15];
                 var13 = Class45.anIntArray729[var15];
                 var15 = 4095 & var15 - -1;
-                if (var8 == var12 && var13 == var4) {
+                if(var8 == var12 && var13 == var4) {
                     var16 = true;
                     break;
                 }
 
-                if (var1 != 0) {
-                    if ((5 > var1 || var1 == 10) && AtmosphereParser.aClass91Array1182[WorldListCountry.localPlane].method1488(var4, var12, var13, var8, -1 + var1, 2, var7)) {
+                if(var1 != 0) {
+                    if((5 > var1 || var1 == 10) && AtmosphereParser.aClass91Array1182[WorldListCountry.localPlane].method1488(var4, var12, var13, var8, -1 + var1, 2, var7)) {
                         var16 = true;
                         break;
                     }
 
-                    if (var1 < 10 && AtmosphereParser.aClass91Array1182[WorldListCountry.localPlane].method1492(var4, var1 + -1, var8, var13, 2, var7, var12, 88)) {
+                    if(var1 < 10 && AtmosphereParser.aClass91Array1182[WorldListCountry.localPlane].method1492(var4, var1 + -1, var8, var13, 2, var7, var12, 88)) {
                         var16 = true;
                         break;
                     }
                 }
 
-                if (0 != var0 && var6 != 0 && AtmosphereParser.aClass91Array1182[WorldListCountry.localPlane].method1498(var8, var13, var12, 2, var0, var2, var4, var6)) {
+                if(0 != var0 && var6 != 0 && AtmosphereParser.aClass91Array1182[WorldListCountry.localPlane].method1498(var8, var13, var12, 2, var0, var2, var4, var6)) {
                     var16 = true;
                     break;
                 }
 
                 var18 = Class97.anIntArrayArray1373[var12][var13] - -1;
-                if (var12 > 0 && Class84.anIntArrayArray1160[var12 + -1][var13] == 0 && 0 == (var17[-1 + var12][var13] & 19661070) && (var17[-1 + var12][var13 + 1] & 19661112) == 0) {
+                if(var12 > 0 && Class84.anIntArrayArray1160[var12 + -1][var13] == 0 && 0 == (var17[-1 + var12][var13] & 19661070) && (var17[-1 + var12][var13 + 1] & 19661112) == 0) {
                     Class3_Sub13_Sub38.anIntArray3456[var27] = var12 + -1;
                     Class45.anIntArray729[var27] = var13;
                     var27 = 1 + var27 & 4095;
@@ -3537,7 +3569,7 @@ public class Unsorted {
                     Class97.anIntArrayArray1373[-1 + var12][var13] = var18;
                 }
 
-                if (102 > var12 && Class84.anIntArrayArray1160[1 + var12][var13] == 0 && 0 == (var17[2 + var12][var13] & 19661187) && 0 == (var17[var12 + 2][1 + var13] & 19661280)) {
+                if(102 > var12 && Class84.anIntArrayArray1160[1 + var12][var13] == 0 && 0 == (var17[2 + var12][var13] & 19661187) && 0 == (var17[var12 + 2][1 + var13] & 19661280)) {
                     Class3_Sub13_Sub38.anIntArray3456[var27] = 1 + var12;
                     Class45.anIntArray729[var27] = var13;
                     var27 = 4095 & var27 + 1;
@@ -3545,7 +3577,7 @@ public class Unsorted {
                     Class97.anIntArrayArray1373[var12 - -1][var13] = var18;
                 }
 
-                if (var13 > 0 && Class84.anIntArrayArray1160[var12][var13 + -1] == 0 && (19661070 & var17[var12][-1 + var13]) == 0 && (var17[var12 + 1][var13 - 1] & 19661187) == 0) {
+                if(var13 > 0 && Class84.anIntArrayArray1160[var12][var13 + -1] == 0 && (19661070 & var17[var12][-1 + var13]) == 0 && (var17[var12 + 1][var13 - 1] & 19661187) == 0) {
                     Class3_Sub13_Sub38.anIntArray3456[var27] = var12;
                     Class45.anIntArray729[var27] = -1 + var13;
                     Class84.anIntArrayArray1160[var12][-1 + var13] = 1;
@@ -3553,7 +3585,7 @@ public class Unsorted {
                     var27 = 4095 & 1 + var27;
                 }
 
-                if (var13 < 102 && Class84.anIntArrayArray1160[var12][var13 + 1] == 0 && (var17[var12][2 + var13] & 19661112) == 0 && (var17[1 + var12][var13 + 2] & 19661280) == 0) {
+                if(var13 < 102 && Class84.anIntArrayArray1160[var12][var13 + 1] == 0 && (var17[var12][2 + var13] & 19661112) == 0 && (var17[1 + var12][var13 + 2] & 19661280) == 0) {
                     Class3_Sub13_Sub38.anIntArray3456[var27] = var12;
                     Class45.anIntArray729[var27] = var13 + 1;
                     Class84.anIntArrayArray1160[var12][1 + var13] = 4;
@@ -3561,7 +3593,7 @@ public class Unsorted {
                     Class97.anIntArrayArray1373[var12][var13 - -1] = var18;
                 }
 
-                if (var12 > 0 && var13 > 0 && Class84.anIntArrayArray1160[-1 + var12][-1 + var13] == 0 && (19661112 & var17[-1 + var12][var13]) == 0 && 0 == (var17[-1 + var12][-1 + var13] & 19661070) && 0 == (19661187 & var17[var12][-1 + var13])) {
+                if(var12 > 0 && var13 > 0 && Class84.anIntArrayArray1160[-1 + var12][-1 + var13] == 0 && (19661112 & var17[-1 + var12][var13]) == 0 && 0 == (var17[-1 + var12][-1 + var13] & 19661070) && 0 == (19661187 & var17[var12][-1 + var13])) {
                     Class3_Sub13_Sub38.anIntArray3456[var27] = -1 + var12;
                     Class45.anIntArray729[var27] = -1 + var13;
                     Class84.anIntArrayArray1160[-1 + var12][-1 + var13] = 3;
@@ -3569,7 +3601,7 @@ public class Unsorted {
                     var27 = 4095 & var27 + 1;
                 }
 
-                if (var12 < 102 && 0 < var13 && Class84.anIntArrayArray1160[1 + var12][var13 + -1] == 0 && (var17[var12 - -1][var13 - 1] & 19661070) == 0 && (19661187 & var17[2 + var12][var13 + -1]) == 0 && (19661280 & var17[var12 + 2][var13]) == 0) {
+                if(var12 < 102 && 0 < var13 && Class84.anIntArrayArray1160[1 + var12][var13 + -1] == 0 && (var17[var12 - -1][var13 - 1] & 19661070) == 0 && (19661187 & var17[2 + var12][var13 + -1]) == 0 && (19661280 & var17[var12 + 2][var13]) == 0) {
                     Class3_Sub13_Sub38.anIntArray3456[var27] = var12 - -1;
                     Class45.anIntArray729[var27] = var13 - 1;
                     var27 = 4095 & 1 + var27;
@@ -3577,7 +3609,7 @@ public class Unsorted {
                     Class97.anIntArrayArray1373[1 + var12][var13 + -1] = var18;
                 }
 
-                if (var12 > 0 && var13 < 102 && 0 == Class84.anIntArrayArray1160[var12 - 1][var13 + 1] && (var17[-1 + var12][var13 - -1] & 19661070) == 0 && 0 == (19661112 & var17[-1 + var12][var13 - -2]) && (19661280 & var17[var12][var13 + 2]) == 0) {
+                if(var12 > 0 && var13 < 102 && 0 == Class84.anIntArrayArray1160[var12 - 1][var13 + 1] && (var17[-1 + var12][var13 - -1] & 19661070) == 0 && 0 == (19661112 & var17[-1 + var12][var13 - -2]) && (19661280 & var17[var12][var13 + 2]) == 0) {
                     Class3_Sub13_Sub38.anIntArray3456[var27] = var12 - 1;
                     Class45.anIntArray729[var27] = 1 + var13;
                     Class84.anIntArrayArray1160[var12 - 1][1 + var13] = 6;
@@ -3585,7 +3617,7 @@ public class Unsorted {
                     var27 = 1 + var27 & 4095;
                 }
 
-                if (var12 < 102 && var13 < 102 && Class84.anIntArrayArray1160[1 + var12][1 + var13] == 0 && (19661112 & var17[var12 - -1][2 + var13]) == 0 && (19661280 & var17[var12 + 2][var13 - -2]) == 0 && (19661187 & var17[var12 - -2][var13 + 1]) == 0) {
+                if(var12 < 102 && var13 < 102 && Class84.anIntArrayArray1160[1 + var12][1 + var13] == 0 && (19661112 & var17[var12 - -1][2 + var13]) == 0 && (19661280 & var17[var12 + 2][var13 - -2]) == 0 && (19661187 & var17[var12 - -2][var13 + 1]) == 0) {
                     Class3_Sub13_Sub38.anIntArray3456[var27] = 1 + var12;
                     Class45.anIntArray729[var27] = var13 + 1;
                     var27 = var27 - -1 & 4095;
@@ -3596,8 +3628,8 @@ public class Unsorted {
 
             Class129.anInt1692 = 0;
             int var19;
-            if (!var16) {
-                if (!var5) {
+            if(!var16) {
+                if(!var5) {
                     return false;
                 }
 
@@ -3605,21 +3637,21 @@ public class Unsorted {
                 var19 = 100;
                 byte var20 = 10;
 
-                for (int var21 = -var20 + var8; var20 + var8 >= var21; ++var21) {
-                    for (int var22 = var4 + -var20; var20 + var4 >= var22; ++var22) {
-                        if (var21 >= 0 && var22 >= 0 && var21 < 104 && 104 > var22 && Class97.anIntArrayArray1373[var21][var22] < 100) {
+                for(int var21 = -var20 + var8; var20 + var8 >= var21; ++var21) {
+                    for(int var22 = var4 + -var20; var20 + var4 >= var22; ++var22) {
+                        if(var21 >= 0 && var22 >= 0 && var21 < 104 && 104 > var22 && Class97.anIntArrayArray1373[var21][var22] < 100) {
                             int var23 = 0;
                             int var24 = 0;
-                            if (var8 <= var21) {
-                                if (-1 + var0 + var8 < var21) {
+                            if(var8 <= var21) {
+                                if(-1 + var0 + var8 < var21) {
                                     var23 = var21 + 1 + -var0 + -var8;
                                 }
                             } else {
                                 var23 = var8 - var21;
                             }
 
-                            if (var22 >= var4) {
-                                if (-1 + var4 + var6 < var22) {
+                            if(var22 >= var4) {
+                                if(-1 + var4 + var6 < var22) {
                                     var24 = -var4 + -var6 + 1 + var22;
                                 }
                             } else {
@@ -3627,7 +3659,7 @@ public class Unsorted {
                             }
 
                             int var25 = var23 * var23 + var24 * var24;
-                            if (var25 < var18 || var25 == var18 && Class97.anIntArrayArray1373[var21][var22] < var19) {
+                            if(var25 < var18 || var25 == var18 && Class97.anIntArrayArray1373[var21][var22] < var19) {
                                 var13 = var22;
                                 var19 = Class97.anIntArrayArray1373[var21][var22];
                                 var18 = var25;
@@ -3637,11 +3669,11 @@ public class Unsorted {
                     }
                 }
 
-                if (var18 == 1000) {
+                if(var18 == 1000) {
                     return false;
                 }
 
-                if (var11 == var12 && var3 == var13) {
+                if(var11 == var12 && var3 == var13) {
                     return false;
                 }
 
@@ -3654,21 +3686,21 @@ public class Unsorted {
             Class45.anIntArray729[var28] = var13;
             var18 = var19 = Class84.anIntArrayArray1160[var12][var13];
 
-            for (; var12 != var11 || var13 != var3; var18 = Class84.anIntArrayArray1160[var12][var13]) {
-                if (var19 != var18) {
+            for(; var12 != var11 || var13 != var3; var18 = Class84.anIntArrayArray1160[var12][var13]) {
+                if(var19 != var18) {
                     Class3_Sub13_Sub38.anIntArray3456[var15] = var12;
                     Class45.anIntArray729[var15++] = var13;
                     var19 = var18;
                 }
 
-                if ((var18 & 2) != 0) {
+                if((var18 & 2) != 0) {
                     ++var12;
-                } else if ((8 & var18) != 0) {
+                } else if((8 & var18) != 0) {
                     --var12;
                 }
 
-                if ((var18 & 1) == 0) {
-                    if ((var18 & 4) != 0) {
+                if((var18 & 1) == 0) {
+                    if((var18 & 4) != 0) {
                         --var13;
                     }
                 } else {
@@ -3676,7 +3708,7 @@ public class Unsorted {
                 }
             }
 
-            if (var15 <= 0) {
+            if(var15 <= 0) {
                 return 1 != var9;
             } else {
                 Class3_Sub13_Sub27.method299(113, var15, var9);
@@ -3689,9 +3721,9 @@ public class Unsorted {
 
     public static void method78(int var0, int var2) {
         try {
-            Network.outgoingBuffer.putOpcode(132);
-            Network.outgoingBuffer.writeIntV1(var2);
-            Network.outgoingBuffer.writeShortLE(var0);
+            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(132);
+            Class3_Sub13_Sub1.outgoingBuffer.writeIntV1(var2);
+            Class3_Sub13_Sub1.outgoingBuffer.writeShortLE(var0);
         } catch (RuntimeException var4) {
             throw ClientErrorException.clientError(var4, "aa.E(" + var0 + ',' + false + ',' + var2 + ')');
         }
@@ -3701,13 +3733,13 @@ public class Unsorted {
         try {
 
             int var2 = var1.anInt189;
-            if (324 == var2) {
-                if (-1 == Class3_Sub13_Sub21.anInt3260) {
+            if(324 == var2) {
+                if(-1 == Class3_Sub13_Sub21.anInt3260) {
                     Class3_Sub13_Sub21.anInt3260 = var1.spriteArchiveId;
                     anInt1165 = var1.anInt296;
                 }
 
-                if (aClass52_1112.aBoolean864) {
+                if(aClass52_1112.aBoolean864) {
                     var1.spriteArchiveId = Class3_Sub13_Sub21.anInt3260;
                 } else {
                     var1.spriteArchiveId = anInt1165;
@@ -3731,21 +3763,21 @@ public class Unsorted {
                 var1.modelType = 5;
                 var1.itemId = -1;
             } else if (var2 == 328) {
-                if (null == Player.player.displayName) {
+                if (null == Class102.player.displayName) {
                     var1.itemId = 0;
                 } else {
                     var1.anInt182 = 150;
                     var1.anInt308 = 2047 & (int) (256.0D * Math.sin((double) Class44.anInt719 / 40.0D));
                     var1.modelType = 5;
-                    var1.itemId = 2047 + ((int) Player.player.displayName.toLong() << 11);
-                    var1.anInt260 = Player.player.anInt2793;
+                    var1.itemId = 2047 + ((int) Class102.player.displayName.toLong() << 11);
+                    var1.anInt260 = Class102.player.anInt2793;
                     var1.anInt267 = 0;
-                    var1.animationId = Player.player.anInt2764;
-                    var1.anInt283 = Player.player.anInt2813;
+                    var1.animationId = Class102.player.anInt2764;
+                    var1.anInt283 = Class102.player.anInt2813;
                 }
             }
         } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "aa.H(" + (byte) -128 + ',' + (var1 != null ? "{...}" : "null") + ')');
+            throw ClientErrorException.clientError(var3, "aa.H(" + (byte) -128 + ',' + (var1 != null?"{...}":"null") + ')');
         }
     }
 
@@ -3760,7 +3792,7 @@ public class Unsorted {
             }
 
             if (var0) {
-                aReferenceCache_743 = null;
+                aReferenceCache_743 = (ReferenceCache) null;
             }
 
             return false;
@@ -4031,10 +4063,10 @@ public class Unsorted {
                                     var25 = (Class164_Sub2.anInt3020 - -256) * var25 >> 8;
                                     var47 = -(var24 * var20) + var25 * var21 >> 11;
                                     var26 = var21 * var24 - -(var20 * var25) >> 11;
-                                    var28 = Player.player.anInt2819 + var26 >> 7;
-                                    var29 = -var47 + Player.player.anInt2829 >> 7;
+                                    var28 = Class102.player.anInt2819 + var26 >> 7;
+                                    var29 = -var47 + Class102.player.anInt2829 >> 7;
                                     if (GameObject.aBoolean1837 && 0 != (Class164.anInt2051 & 64)) {
-                                        RSInterface var53 = AbstractSprite.method638(Network.anInt872, RSInterface.anInt278);
+                                        RSInterface var53 = AbstractSprite.method638(Class3_Sub30_Sub1.anInt872, RSInterface.anInt278);
                                         if (null == var53) {
                                             Class25.method958((byte) -91);
                                         } else {
@@ -4100,7 +4132,7 @@ public class Unsorted {
                                     if (ClientCommands.fpsOverlayEnabled) {
                                         var20 = var11.width + var13;
                                         var21 = 15 + var14;
-                                        Class126.aClass3_Sub28_Sub17_1669.method688(RSString.stringCombiner(new RSString[]{TextCore.aClass94_3196, RSString.stringAnimator(GameShell.fpsCounter)}), var20, var21, 16776960, -1);//Class72.stringAnimator(SequenceDefinition.fpsCounter)}), var20, var21, 16776960, -1);
+                                        Class126.aClass3_Sub28_Sub17_1669.method688(RSString.stringCombiner(new RSString[]{TextCore.aClass94_3196, RSString.stringAnimator(SequenceDefinition.anInt1862)}), var20, var21, 16776960, -1);//Class72.stringAnimator(SequenceDefinition.anInt1862)}), var20, var21, 16776960, -1);
                                         var21 += 15;
                                         Runtime var57 = Runtime.getRuntime();
                                         var23 = (int) ((var57.totalMemory() + -var57.freeMemory()) / 1024L);
@@ -4135,7 +4167,7 @@ public class Unsorted {
 
                                         var29 = 10000 * var26 / var25;
                                         var28 = var47 * 100 / var25;
-                                        RSString var55 = RSString.stringCombiner(new RSString[]{TextCore.aClass94_436, Class3_Sub23.method407(0, true, 2, var29), TextCore.aClass94_2498, RSString.stringAnimator(var28), TextCore.aClass94_148});
+                                        RSString var55 = RSString.stringCombiner(new RSString[]{TextCore.aClass94_436, Class3_Sub23.method407(0, true, 2, (long) var29), TextCore.aClass94_2498, RSString.stringAnimator(var28), TextCore.aClass94_148});
                                         Class3_Sub13.aClass3_Sub28_Sub17_2379.method688(var55, var20, var21, var24, -1);
                                         aBooleanArray3674[var12] = true;
                                         Class163_Sub1_Sub1.aBooleanArray4008[var12] = true;
@@ -4144,7 +4176,7 @@ public class Unsorted {
                                     if (ClientCommands.renderInfoOverlayEnabled) {
                                         if (HDToolKit.highDetail) {
                                             int vendorColor;
-                                            String vendor = glGetString((GL_VENDOR));
+                                            String vendor = HDToolKit.gl.glGetString(GL.GL_VENDOR);
                                             if (vendor.contains("NVIDIA")) {
                                                 vendorColor = 7780608;
                                             } else if (vendor.contains("AMD")) {
@@ -4156,13 +4188,13 @@ public class Unsorted {
                                             }
                                             var20 = var11.width + var13;
                                             var21 = 15 + var14;
-                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse("LWJGL " + Version.getVersion()), var20, var21, 16776960, 7);
+                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(JoglVersion.getInstance().getImplementationVendor()), var20, var21, 16776960, 7);
                                             var21 += 15;
-                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(glGetString(GL_VENDOR)), var20, var21, 16776960, 7);
+                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(HDToolKit.gl.glGetString(GL.GL_VERSION)), var20, var21, 16776960, 7);
                                             var21 += 15;
                                             Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(vendor), var20, var21, vendorColor, 4);
                                             var21 += 15;
-                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(glGetString(GL_RENDERER)), var20, var21, 16776960, 7);
+                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(HDToolKit.gl.glGetString(GL.GL_RENDERER)), var20, var21, 16776960, 7);
                                             var21 += 15;
                                             Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse("Oncard Geometry: " + Class31.anInt585), var20, var21, 16776960, 7);
                                             var21 += 15;
@@ -4225,7 +4257,7 @@ public class Unsorted {
                                     method1095(var16, -var11.anInt208 + var14, -var11.anInt247 + var13, var11.aClass11Array262, var18, var11.componentHash, var17, var19, (byte) 52, var12);
                                 }
 
-                                Class3_Sub31 var36 = Class3_Sub13_Sub17.aHashTable_3208.get(var11.componentHash);
+                                Class3_Sub31 var36 = (Class3_Sub31) Class3_Sub13_Sub17.aHashTable_3208.get((long) var11.componentHash);
                                 if (var36 != null) {
                                     if (var36.anInt2603 == 0 && !Class38_Sub1.aBoolean2615 && NPCDefinition.anInt1297 >= var16 && Class38_Sub1.anInt2612 >= var17 && NPCDefinition.anInt1297 < var18 && Class38_Sub1.anInt2612 < var19 && !ClientCommands.commandQaOpEnabled) {
                                         Class140_Sub7.aClass94Array2935[0] = TextCore.HasCancel;
@@ -4270,7 +4302,7 @@ public class Unsorted {
                                                     if (null != var11.anIntArray197 && var20 < 20) {
                                                         AbstractSprite var58 = var11.method859(var20);
                                                         if (null == var58) {
-                                                            if (RSInterface.aBoolean6) {
+                                                            if (GameShell.aBoolean6) {
                                                                 Class20.method909(var11);
                                                             }
                                                         } else {
@@ -4281,7 +4313,7 @@ public class Unsorted {
                                                     var47 = var11.itemAmounts[var20] + -1;
                                                     if (var0 < 32 + var23 && var4 > var23 && var24 - -32 > var6 && var7 > var24 || var11 == Class67.aClass11_1017 && var20 == PacketParser.anInt86) {
                                                         AbstractSprite var54;
-                                                        if (Class164_Sub1.anInt3012 == 1 && Network.anInt1473 == var20 && Class3_Sub28_Sub18.anInt3764 == var11.componentHash) {
+                                                        if (Class164_Sub1.anInt3012 == 1 && Class3_Sub30_Sub1.anInt1473 == var20 && Class3_Sub28_Sub18.anInt3764 == var11.componentHash) {
                                                             var54 = Class114.method1707(2, var47, var11.aBoolean227, var11.itemIds[var20], 0);
                                                         } else {
                                                             var54 = Class114.method1707(1, var47, var11.aBoolean227, var11.itemIds[var20], 3153952);
@@ -4437,7 +4469,7 @@ public class Unsorted {
                                                 }
 
                                                 var34.method676(var45, var13, var14, var11.width, var11.height, var21, !var11.aBoolean215 ? -1 : 0, var11.anInt194, var11.anInt225, var11.anInt205);
-                                            } else if (RSInterface.aBoolean6) {
+                                            } else if (GameShell.aBoolean6) {
                                                 Class20.method909(var11);
                                             }
                                         } else if (5 == var11.type) {
@@ -4450,7 +4482,7 @@ public class Unsorted {
                                                 }
 
                                                 if (var37 == null) {
-                                                    if (RSInterface.aBoolean6) {
+                                                    if (GameShell.aBoolean6) {
                                                         Class20.method909(var11);
                                                     }
                                                 } else {
@@ -4537,7 +4569,7 @@ public class Unsorted {
                                                 var37 = var11.method866(Class3_Sub28_Sub12.method609(var11, 69));
                                                 if (null != var37) {
                                                     var37.method643(var13, var14);
-                                                } else if (RSInterface.aBoolean6) {
+                                                } else if (GameShell.aBoolean6) {
                                                     Class20.method909(var11);
                                                 }
                                             }
@@ -4565,19 +4597,19 @@ public class Unsorted {
                                                     }
                                                 } else if (5 != var11.modelType) {
                                                     if (var21 == -1) {
-                                                        var38 = var11.method865(-1, null, -1, 126, 0, var41, Player.player.class52);
-                                                        if (null == var38 && RSInterface.aBoolean6) {
+                                                        var38 = var11.method865(-1, (SequenceDefinition) null, -1, 126, 0, var41, Class102.player.class52);
+                                                        if (null == var38 && GameShell.aBoolean6) {
                                                             Class20.method909(var11);
                                                         }
                                                     } else {
                                                         SequenceDefinition var48 = SequenceDefinition.getAnimationDefinition(var21);
-                                                        var38 = var11.method865(var11.anInt260, var48, var11.anInt283, 127, var11.anInt267, var41, Player.player.class52);
-                                                        if (null == var38 && RSInterface.aBoolean6) {
+                                                        var38 = var11.method865(var11.anInt260, var48, var11.anInt283, 127, var11.anInt267, var41, Class102.player.class52);
+                                                        if (null == var38 && GameShell.aBoolean6) {
                                                             Class20.method909(var11);
                                                         }
                                                     }
                                                 } else if (-1 == var11.itemId) {
-                                                    var38 = aClass52_1112.method1165(null, -1, null, null, 0, -1, 100, 0, -1, -1);
+                                                    var38 = aClass52_1112.method1165((Class145[]) null, -1, (SequenceDefinition) null, (SequenceDefinition) null, 0, -1, 100, 0, -1, -1);
                                                 } else {
                                                     var24 = 2047 & var11.itemId;
                                                     if (Class3_Sub1.localIndex == var24) {
@@ -4587,7 +4619,7 @@ public class Unsorted {
                                                     Player var49 = Class3_Sub13_Sub22.players[var24];
                                                     SequenceDefinition var56 = var21 == -1 ? null : SequenceDefinition.getAnimationDefinition(var21);
                                                     if (null != var49 && (-2048 & var11.itemId) == (int) var49.displayName.toLong() << 11) {
-                                                        var38 = var49.class52.method1165(null, -1, null, var56, 0, -1, -126, 0, var11.anInt283, 0);
+                                                        var38 = var49.class52.method1165((Class145[]) null, -1, (SequenceDefinition) null, var56, 0, -1, -126, 0, var11.anInt283, 0);
                                                     }
                                                 }
 
@@ -4615,12 +4647,12 @@ public class Unsorted {
                                                         }
 
                                                         HDToolKit.method1846();
-                                                        HDToolKit.enableDepthTest(true);
-                                                        HDToolKit.enableFog(false);
+                                                        HDToolKit.method1831(true);
+                                                        HDToolKit.method1827(false);
                                                         Class3_Sub13_Sub33.method324(anInt3625);
                                                         if (aBoolean47) {
                                                             Class22.resetClipping();
-                                                            HDToolKit.clearAccumulationBuffer();
+                                                            HDToolKit.method1841();
                                                             Class22.setClipping(var0, var6, var4, var7);
                                                             aBoolean47 = false;
                                                         }
@@ -4638,7 +4670,7 @@ public class Unsorted {
                                                         }
 
                                                         if (var11.aBoolean309) {
-                                                            HDToolKit.enableDepthMask();
+                                                            HDToolKit.method1830();
                                                         }
                                                     } else {
                                                         Class51.method1145(var26, var47);
@@ -4659,7 +4691,7 @@ public class Unsorted {
                                                 if (var11.type == 7) {
                                                     var34 = var11.method868(Class3_Sub13_Sub22.aClass109Array3270);
                                                     if (var34 == null) {
-                                                        if (RSInterface.aBoolean6) {
+                                                        if (GameShell.aBoolean6) {
                                                             Class20.method909(var11);
                                                         }
                                                         continue;
@@ -4795,7 +4827,7 @@ public class Unsorted {
             }
 
             if (var8 <= 31) {
-                quickChatMessages = null;
+                quickChatMessages = (CacheIndex) null;
             }
 
         } catch (RuntimeException var33) {
@@ -4815,7 +4847,7 @@ public class Unsorted {
 
             GraphicDefinition.CAMERA_DIRECTION &= 2047;
             if (var0 >= -31) {
-                quickChatMessages = null;
+                quickChatMessages = (CacheIndex) null;
             }
 
             int var1 = anInt3155 >> 7;
@@ -4888,7 +4920,7 @@ public class Unsorted {
             Class3_Sub28_Sub6 var2 = Class3_Sub24_Sub3.method466(3, var0);
             var2.a();
             if (var1 < 87) {
-                TextCore.aClass94_1326 = null;
+                TextCore.aClass94_1326 = (RSString) null;
             }
 
         } catch (RuntimeException var3) {
@@ -4948,244 +4980,244 @@ public class Unsorted {
     }
 
     public static Class3_Sub28_Sub16_Sub2 method562(CacheIndex var0, int var2) {
-        try {
-            //  System.out.println("Class 3_Sub28_Sub16_Sub2 " + var2);
-            return Class75_Sub4.method1351(var0, 0, var2, -30901) ? Class3_Sub28_Sub9.method578() : null;
-        } catch (RuntimeException var5) {
-            throw ClientErrorException.clientError(var5, "gf.O(" + (var0 != null ? "{...}" : "null") + ',' + 0 + ',' + var2 + ',' + (byte) 39 + ')');
-        }
+       try {
+         //  System.out.println("Class 3_Sub28_Sub16_Sub2 " + var2);
+          return Class75_Sub4.method1351(var0, 0, var2, -30901)? Class3_Sub28_Sub9.method578() :null;
+       } catch (RuntimeException var5) {
+          throw ClientErrorException.clientError(var5, "gf.O(" + (var0 != null?"{...}":"null") + ',' + 0 + ',' + var2 + ',' + (byte) 39 + ')');
+       }
     }
 
     public static void method564(Signlink var0) {
-        try {
-            anInt3625 = 3;
-            Class25.method957(true);
-            aBoolean3604 = true;
-            Class3_Sub13_Sub15.aBoolean3184 = true;
-            Class128.aBoolean1685 = true;
-            Class3_Sub28_Sub9.anInt3622 = 0;
-            anInt3071 = 0;
-            KeyboardListener.aBoolean1905 = true;
-            WorldListEntry.aBoolean2623 = true;
-            RSInterface.aBoolean236 = true;
-            Sprites.anInt340 = 127;
-            Class38.aBoolean661 = true;
-            Class140_Sub6.aBoolean2910 = true;
-            Class3_Sub13.anInt2378 = 0;
-            anInt1137 = 2;
-            Class3_Sub13_Sub22.aBoolean3275 = true;
-            Class106.aBoolean1441 = true;
-            anInt120 = 255;
-            Class25.aBoolean488 = true;
-            anInt3671 = 0;
-            RandomAccessFileWrapper var2 = null;
-            CS2Script.anInt2453 = 127;
-            if (GameShell.clientMemory >= 96) {
-                Class127_Sub1.method1758(2);
-            } else {
-                Class127_Sub1.method1758(0);
-            }
+       try {
+          anInt3625 = 3;
+          Class25.method957(true);
+          aBoolean3604 = true;
+          Class3_Sub13_Sub15.aBoolean3184 = true;
+          Class128.aBoolean1685 = true;
+          Class3_Sub28_Sub9.anInt3622 = 0;
+          anInt3071 = 0;
+          KeyboardListener.aBoolean1905 = true;
+          WorldListEntry.aBoolean2623 = true;
+          RSInterface.aBoolean236 = true;
+          Sprites.anInt340 = 127;
+          Class38.aBoolean661 = true;
+          Class140_Sub6.aBoolean2910 = true;
+          Class3_Sub13.anInt2378 = 0;
+          anInt1137 = 2;
+          Class3_Sub13_Sub22.aBoolean3275 = true;
+          Class106.aBoolean1441 = true;
+          anInt120 = 255;
+          Class25.aBoolean488 = true;
+          anInt3671 = 0;
+          RandomAccessFileWrapper var2 = null;
+          CS2Script.anInt2453 = 127;
+          if(Class3_Sub24_Sub3.anInt3492 >= 96) {
+             Class127_Sub1.method1758(2);
+          } else {
+             Class127_Sub1.method1758(0);
+          }
 
-            anInt2148 = 0;
-            Class3_Sub20.anInt2488 = 0;
-            Class15.aBoolean346 = false;
-            Class163_Sub3.aBoolean3004 = true;
-            aBoolean2146 = false;
-            aBoolean1080 = false;
-            anInt2577 = 0;
+          anInt2148 = 0;
+          Class3_Sub20.anInt2488 = 0;
+          Class15.aBoolean346 = false;
+          Class163_Sub3.aBoolean3004 = true;
+          aBoolean2146 = false;
+          aBoolean1080 = false;
+          anInt2577 = 0;
 
-            try {
-                Class64 var3 = var0.method1433("runescape", 12);
+          try {
+             Class64 var3 = var0.method1433("runescape", 12);
 
-                while (0 == var3.anInt978) {
-                    TimeUtils.sleep(1L);
+             while(0 == var3.anInt978) {
+                TimeUtils.sleep(1L);
+             }
+
+             if(var3.anInt978 == 1) {
+                var2 = (RandomAccessFileWrapper)var3.anObject974;
+                byte[] var4 = new byte[(int)var2.getLength()];
+
+                int var6;
+                for(int var5 = 0; var4.length > var5; var5 += var6) {
+                   var6 = var2.read(var4, var5, var4.length - var5, 0);
+                   if(var6 == -1) {
+                      throw new IOException("EOF");
+                   }
                 }
 
-                if (var3.anInt978 == 1) {
-                    var2 = (RandomAccessFileWrapper) var3.anObject974;
-                    byte[] var4 = new byte[(int) var2.getLength()];
+                Class79.method1390(new DataBuffer(var4));
+             }
+          } catch (Exception var8) {
+          }
 
-                    int var6;
-                    for (int var5 = 0; var4.length > var5; var5 += var6) {
-                        var6 = var2.read(var4, var5, var4.length - var5, 0);
-                        if (var6 == -1) {
-                            throw new IOException("EOF");
-                        }
-                    }
+          try {
+             if(var2 != null) {
+                var2.close();
+             }
+          } catch (Exception var7) {
+          }
 
-                    Class79.method1390(new DataBuffer(var4));
-                }
-            } catch (Exception var8) {
-            }
-
-            try {
-                if (var2 != null) {
-                    var2.close();
-                }
-            } catch (Exception var7) {
-            }
-
-        } catch (RuntimeException var9) {
-            throw ClientErrorException.clientError(var9, "gf.F(" + (var0 != null ? "{...}" : "null") + ',' + 0 + ')');
-        }
+       } catch (RuntimeException var9) {
+          throw ClientErrorException.clientError(var9, "gf.F(" + (var0 != null?"{...}":"null") + ',' + 0 + ')');
+       }
     }
 
     public static void method565(int var1, int var2) {
-        try {
-            Class82.anInt1150 = -Class3_Sub13_Sub21.anInt3256 + var1;
+       try {
+          Class82.anInt1150 = -Class3_Sub13_Sub21.anInt3256 + var1;
 
-            int var3 = -((int) ((float) Class3_Sub28_Sub3.aClass11_3551.width / Class44.aFloat727)) + Class82.anInt1150;
-            int var4 = Class82.anInt1150 + (int) ((float) Class3_Sub28_Sub3.aClass11_3551.width / Class44.aFloat727);
-            if (var3 < 0) {
-                Class82.anInt1150 = (int) ((float) Class3_Sub28_Sub3.aClass11_3551.width / Class44.aFloat727);
-            }
+          int var3 = -((int)((float)Class3_Sub28_Sub3.aClass11_3551.width / Class44.aFloat727)) + Class82.anInt1150;
+          int var4 = Class82.anInt1150 + (int)((float)Class3_Sub28_Sub3.aClass11_3551.width / Class44.aFloat727);
+          if(var3 < 0) {
+             Class82.anInt1150 = (int)((float)Class3_Sub28_Sub3.aClass11_3551.width / Class44.aFloat727);
+          }
 
-            Class3_Sub13_Sub30.anInt3362 = Class108.anInt1460 + -1 + anInt65 + -var2;
-            int var6 = (int) ((float) Class3_Sub28_Sub3.aClass11_3551.height / Class44.aFloat727) + Class3_Sub13_Sub30.anInt3362;
-            int var5 = Class3_Sub13_Sub30.anInt3362 - (int) ((float) Class3_Sub28_Sub3.aClass11_3551.height / Class44.aFloat727);
-            if (Class23.anInt455 < var4) {
-                Class82.anInt1150 = Class23.anInt455 + -((int) ((float) Class3_Sub28_Sub3.aClass11_3551.width / Class44.aFloat727));
-            }
+          Class3_Sub13_Sub30.anInt3362 = Class108.anInt1460 + -1 + anInt65 + -var2;
+          int var6 = (int)((float)Class3_Sub28_Sub3.aClass11_3551.height / Class44.aFloat727) + Class3_Sub13_Sub30.anInt3362;
+          int var5 = Class3_Sub13_Sub30.anInt3362 - (int)((float)Class3_Sub28_Sub3.aClass11_3551.height / Class44.aFloat727);
+          if(Class23.anInt455 < var4) {
+             Class82.anInt1150 = Class23.anInt455 + -((int)((float)Class3_Sub28_Sub3.aClass11_3551.width / Class44.aFloat727));
+          }
 
-            if (var5 < 0) {
-                Class3_Sub13_Sub30.anInt3362 = (int) ((float) Class3_Sub28_Sub3.aClass11_3551.height / Class44.aFloat727);
-            }
+          if(var5 < 0) {
+             Class3_Sub13_Sub30.anInt3362 = (int)((float)Class3_Sub28_Sub3.aClass11_3551.height / Class44.aFloat727);
+          }
 
-            if (var6 > Class108.anInt1460) {
-                Class3_Sub13_Sub30.anInt3362 = -((int) ((float) Class3_Sub28_Sub3.aClass11_3551.height / Class44.aFloat727)) + Class108.anInt1460;
-            }
+          if(var6 > Class108.anInt1460) {
+             Class3_Sub13_Sub30.anInt3362 = -((int)((float)Class3_Sub28_Sub3.aClass11_3551.height / Class44.aFloat727)) + Class108.anInt1460;
+          }
 
-        } catch (RuntimeException var7) {
-            throw ClientErrorException.clientError(var7, "gf.E(" + (byte) 86 + ',' + var1 + ',' + var2 + ')');
-        }
+       } catch (RuntimeException var7) {
+          throw ClientErrorException.clientError(var7, "gf.E(" + (byte) 86 + ',' + var1 + ',' + var2 + ')');
+       }
     }
 
     public static void method566(RSString var0, int var2) {
-        try {
-            Class3_Sub28_Sub6 var3 = Class3_Sub24_Sub3.method466(3, var2);
-            var3.g();
+       try {
+          Class3_Sub28_Sub6 var3 = Class3_Sub24_Sub3.method466(3, var2);
+          var3.g();
 
-            var3.aClass94_3599 = var0;
-        } catch (RuntimeException var4) {
-            throw ClientErrorException.clientError(var4, "gf.P(" + (var0 != null ? "{...}" : "null") + ',' + 0 + ',' + var2 + ')');
-        }
+          var3.aClass94_3599 = var0;
+       } catch (RuntimeException var4) {
+          throw ClientErrorException.clientError(var4, "gf.P(" + (var0 != null?"{...}":"null") + ',' + 0 + ',' + var2 + ')');
+       }
     }
 
     public static void method569(int var1) {
-        try {
-            Class3_Sub28_Sub6 var2 = Class3_Sub24_Sub3.method466(7, var1);
-            var2.a();
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "he.C(" + -82 + ',' + var1 + ')');
-        }
+       try {
+          Class3_Sub28_Sub6 var2 = Class3_Sub24_Sub3.method466(7, var1);
+          var2.a();
+       } catch (RuntimeException var3) {
+          throw ClientErrorException.clientError(var3, "he.C(" + -82 + ',' + var1 + ')');
+       }
     }
 
     public static RSString method1723(byte var0, boolean var1, int var3) {
-        try {
-            int var4 = 1;
+       try {
+          int var4 = 1;
 
-            for (int var5 = var3 / 10; 0 != var5; ++var4) {
-                var5 /= 10;
-            }
+          for(int var5 = var3 / 10; 0 != var5; ++var4) {
+             var5 /= 10;
+          }
 
-            int var6 = var4;
-            if (var3 < 0 || var1) {
-                var6 = var4 + 1;
-            }
+          int var6 = var4;
+          if(var3 < 0 || var1) {
+             var6 = var4 + 1;
+          }
 
-            byte[] var7 = new byte[var6];
-            if (var3 >= 0) {
-                if (var1) {
-                    var7[0] = 43;
-                }
-            } else {
-                var7[0] = 45;
-            }
+          byte[] var7 = new byte[var6];
+          if(var3 >= 0) {
+             if(var1) {
+                var7[0] = 43;
+             }
+          } else {
+             var7[0] = 45;
+          }
 
-            for (int var8 = 0; var4 > var8; ++var8) {
-                int var9 = var3 % 10;
-                if (var9 < 0) {
-                    var9 = -var9;
-                }
+          for(int var8 = 0; var4 > var8; ++var8) {
+             int var9 = var3 % 10;
+             if(var9 < 0) {
+                var9 = -var9;
+             }
 
-                var7[var6 + -var8 + -1] = (byte) (48 + var9);
-                var3 /= 10;
-            }
+             var7[var6 + -var8 + -1] = (byte)(48 + var9);
+             var3 /= 10;
+          }
 
-            if (var0 >= -111) {
-                method1727((byte) 53);
-            }
+          if(var0 >= -111) {
+             method1727((byte)53);
+          }
 
-            RSString var11 = new RSString();
-            var11.buffer = var7;
-            var11.length = var6;
-            return var11;
-        } catch (RuntimeException var10) {
-            throw ClientErrorException.clientError(var10, "q.A(" + var0 + ',' + var1 + ',' + 10 + ',' + var3 + ')');
-        }
+          RSString var11 = new RSString();
+          var11.buffer = var7;
+          var11.length = var6;
+          return var11;
+       } catch (RuntimeException var10) {
+          throw ClientErrorException.clientError(var10, "q.A(" + var0 + ',' + var1 + ',' + 10 + ',' + var3 + ')');
+       }
     }
 
     public static void method1724(int var0, int var1, int var2, int var3, int var4, int var5, byte var6, int var7) {
-        try {
-            if (var5 >= 128 && var2 >= 128 && var5 <= 13056 && var2 <= 13056) {
-                int var8 = Class121.method1736(WorldListCountry.localPlane, 1, var5, var2) + -var3;
-                var2 -= Class77.anInt1111;
-                var8 -= Class7.anInt2162;
-                var5 -= NPC.anInt3995;
-                int var9 = Class51.anIntArray840[Class139.anInt1823];
-                int var10 = Class51.anIntArray851[Class139.anInt1823];
-                int var11 = Class51.anIntArray840[Class3_Sub13_Sub25.anInt3315];
-                int var12 = Class51.anIntArray851[Class3_Sub13_Sub25.anInt3315];
-                int var13 = var5 * var12 + var11 * var2 >> 16;
-                var2 = var2 * var12 + -(var11 * var5) >> 16;
-                var5 = var13;
-                var13 = var10 * var8 - var2 * var9 >> 16;
-                if (var6 <= -47) {
-                    var2 = var2 * var10 + var8 * var9 >> 16;
-                    if (50 > var2) {
-                        Class82.anInt2208 = -1;
-                        Class32.anInt590 = -1;
-                    } else if (HDToolKit.highDetail) {
-                        int var14 = var1 * 512 >> 8;
-                        Class32.anInt590 = var14 * var5 / var2 + var0;
-                        int var15 = 512 * var7 >> 8;
-                        Class82.anInt2208 = var15 * var13 / var2 + var4;
-                    } else {
-                        Class32.anInt590 = (var5 << 9) / var2 + var0;
-                        Class82.anInt2208 = (var13 << 9) / var2 + var4;
-                    }
-
+       try {
+          if(var5 >= 128 && var2 >= 128 && var5 <= 13056 && var2 <= 13056) {
+             int var8 = Class121.method1736(WorldListCountry.localPlane, 1, var5, var2) + -var3;
+             var2 -= Class77.anInt1111;
+             var8 -= Class7.anInt2162;
+             var5 -= NPC.anInt3995;
+             int var9 = Class51.anIntArray840[Class139.anInt1823];
+             int var10 = Class51.anIntArray851[Class139.anInt1823];
+             int var11 = Class51.anIntArray840[Class3_Sub13_Sub25.anInt3315];
+             int var12 = Class51.anIntArray851[Class3_Sub13_Sub25.anInt3315];
+             int var13 = var5 * var12 + var11 * var2 >> 16;
+             var2 = var2 * var12 + -(var11 * var5) >> 16;
+             var5 = var13;
+             var13 = var10 * var8 - var2 * var9 >> 16;
+             if(var6 <= -47) {
+                var2 = var2 * var10 + var8 * var9 >> 16;
+                if(50 > var2) {
+                   Class82.anInt2208 = -1;
+                   Class32.anInt590 = -1;
+                } else if(HDToolKit.highDetail) {
+                   int var14 = var1 * 512 >> 8;
+                   Class32.anInt590 = var14 * var5 / var2 + var0;
+                   int var15 = 512 * var7 >> 8;
+                   Class82.anInt2208 = var15 * var13 / var2 + var4;
+                } else {
+                   Class32.anInt590 = (var5 << 9) / var2 + var0;
+                   Class82.anInt2208 = (var13 << 9) / var2 + var4;
                 }
-            } else {
-                Class82.anInt2208 = -1;
-                Class32.anInt590 = -1;
-            }
-        } catch (RuntimeException var16) {
-            throw ClientErrorException.clientError(var16, "q.C(" + var0 + ',' + var1 + ',' + var2 + ',' + var3 + ',' + var4 + ',' + var5 + ',' + var6 + ',' + var7 + ')');
-        }
+
+             }
+          } else {
+             Class82.anInt2208 = -1;
+             Class32.anInt590 = -1;
+          }
+       } catch (RuntimeException var16) {
+          throw ClientErrorException.clientError(var16, "q.C(" + var0 + ',' + var1 + ',' + var2 + ',' + var3 + ',' + var4 + ',' + var5 + ',' + var6 + ',' + var7 + ')');
+       }
     }
 
     public static void method1726(int var0) {
-        try {
-            TextCore.aClass94_1622 = null;
-            aShortArrayArray1619 = null;
-            TextCore.aClass94_1617 = null;
+       try {
+          TextCore.aClass94_1622 = null;
+          aShortArrayArray1619 = (short[][])null;
+          TextCore.aClass94_1617 = null;
 
-        } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "q.B(" + var0 + ')');
-        }
+       } catch (RuntimeException var2) {
+          throw ClientErrorException.clientError(var2, "q.B(" + var0 + ')');
+       }
     }
 
     public static int method1727(byte var0) {
-        try {
-            if (var0 != 123) {
-                method1726(-123);
-            }
+       try {
+          if(var0 != 123) {
+             method1726(-123);
+          }
 
-            return KeyboardListener.aReferenceCache_1911.hardCount();
-        } catch (RuntimeException var2) {
-            throw ClientErrorException.clientError(var2, "q.D(" + var0 + ')');
-        }
+          return KeyboardListener.aReferenceCache_1911.hardCount();
+       } catch (RuntimeException var2) {
+          throw ClientErrorException.clientError(var2, "q.D(" + var0 + ')');
+       }
     }
 
     static int method1602(RSString var1) {
@@ -5203,61 +5235,6 @@ public class Unsorted {
             }
         } catch (RuntimeException var3) {
             throw ClientErrorException.clientError(var3, "ni.G(" + 0 + ',' + (var1 != null ? "{...}" : "null") + ')');
-        }
-    }
-
-    static RSString method27(RSString var0) {
-        try {
-
-            int var2 = method1602(var0);
-            return var2 != -1 ? Class119.aClass131_1624.aClass94Array1721[var2].method1560(TextCore.aClass94_3192, TextCore.aClass94_4066) : TextCore.aClass94_4049;
-        } catch (RuntimeException var3) {
-            throw ClientErrorException.clientError(var3, "rc.V(" + (var0 != null ? "{...}" : "null") + ',' + true + ')');
-        }
-    }
-
-    static boolean method888(int var0, ObjectDefinition var1, int var3, int var4, int var5, int var6) {
-        try {
-            Class2 var7 = Class3_Sub28_Sub6.c(var1.anInt1516);
-            if (var7.sprite == -1) {
-                return false;
-            } else {
-                if (var1.aBoolean1537) {
-                    var6 += var1.anInt1478;
-                    var6 &= 3;
-                } else {
-                    var6 = 0;
-                }
-
-                LDIndexedSprite var8 = var7.getSprite(var6);
-                if (var8 == null) {
-                    return true;
-                } else {
-                    int var9 = var1.SizeX;
-                    int var10 = var1.SizeY;
-                    if (1 == (1 & var6)) {
-                        var9 = var1.SizeY;
-                        var10 = var1.SizeX;
-                    }
-
-                    int var11 = var8.anInt1469;
-                    int var12 = var8.anInt1467;
-                    if (var7.aBoolean69) {
-                        var12 = 4 * var10;
-                        var11 = 4 * var9;
-                    }
-
-                    if (var7.color == 0) {
-                        var8.method1677(var0 * 4 + 48, 48 + 4 * (-var10 + -var5 + 104), var11, var12);
-                    } else {
-                        var8.method1669(48 + 4 * var0, 4 * (-var10 + -var5 + 104) + 48, var11, var12, var7.color);
-                    }
-
-                    return false;
-                }
-            }
-        } catch (RuntimeException var13) {
-            throw ClientErrorException.clientError(var13, "cj.D(" + var0 + ',' + (var1 != null ? "{...}" : "null") + ',' + false + ',' + var3 + ',' + var4 + ',' + var5 + ',' + var6 + ')');
         }
     }
 }

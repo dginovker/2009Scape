@@ -132,11 +132,11 @@ object DeveloperConsole {
 //        println("<col=8888cc>[$h:$m:$s]</col> <col=ff3333>TODO!</col> Handle '$str'")
 
         if (ENABLE_PACKETS) {
-            Network.outgoingBuffer.putOpcode(51)
-            Network.outgoingBuffer.writeShort(0)
-            val index = Network.outgoingBuffer.index
-            Network.outgoingBuffer.writeString(DeveloperConsole.str)
-            Network.outgoingBuffer.finishVarshortPacket(Network.outgoingBuffer.index - index)
+            Class3_Sub13_Sub1.outgoingBuffer.putOpcode(51)
+            Class3_Sub13_Sub1.outgoingBuffer.writeShort(0)
+            val index = Class3_Sub13_Sub1.outgoingBuffer.index
+            Class3_Sub13_Sub1.outgoingBuffer.writeString(DeveloperConsole.str)
+            Class3_Sub13_Sub1.outgoingBuffer.finishVarshortPacket(Class3_Sub13_Sub1.outgoingBuffer.index - index)
         }
 
         if (str.toLowerCase() == "enableconsolepackets") {
@@ -212,11 +212,11 @@ object DeveloperConsole {
                 if (str.isEmpty()) return
 
                 if (ENABLE_PACKETS) {
-                    Network.outgoingBuffer.putOpcode(52)
-                    Network.outgoingBuffer.writeShort(0)
-                    val index = Network.outgoingBuffer.index
-                    Network.outgoingBuffer.writeString(str)
-                    Network.outgoingBuffer.finishVarshortPacket(Network.outgoingBuffer.index - index)
+                    Class3_Sub13_Sub1.outgoingBuffer.putOpcode(52)
+                    Class3_Sub13_Sub1.outgoingBuffer.writeShort(0)
+                    val index = Class3_Sub13_Sub1.outgoingBuffer.index
+                    Class3_Sub13_Sub1.outgoingBuffer.writeString(str)
+                    Class3_Sub13_Sub1.outgoingBuffer.finishVarshortPacket(Class3_Sub13_Sub1.outgoingBuffer.index - index)
                 } else if ("enableconsolepackets".startsWith(str, true)) {
                     autocompletions = AutocompletionHints(str, listOf("enableconsolepackets"), 1)
                 }
