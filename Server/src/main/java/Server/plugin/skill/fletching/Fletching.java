@@ -263,7 +263,7 @@ public class Fletching {
             return new Item(unfinished);
         }
     }
-    public enum Items{
+    private enum Items{
         STANDARD(1511,FletchingItems.ARROW_SHAFT, FletchingItems.SHORT_BOW, FletchingItems.LONG_BOW, FletchingItems.WOODEN_STOCK),
         OAK(1521, FletchingItems.OAK_SHORTBOW, FletchingItems.OAK_LONGBOW, FletchingItems.OAK_STOCK),
         WILLOW(1519, FletchingItems.WILLOW_SHORTBOW, FletchingItems.WILLOW_LONGBOW, FletchingItems.WILLOW_STOCK),
