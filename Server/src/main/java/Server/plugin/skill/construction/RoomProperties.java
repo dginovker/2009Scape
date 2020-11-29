@@ -145,7 +145,7 @@ public enum RoomProperties {
 	BEDROOM(10000, 20, 0, 6, 7, Room.CHAMBER, new Hotspot(BuildHotspot.BED, 3, 7,4,6),
 			new Hotspot(BuildHotspot.FIREPLACE2, 7,4,7, 3),
 			new Hotspot(BuildHotspot.CLOCK, 7, 0),
-			new Hotspot(BuildHotspot.DRESSER, 0, 7),
+			new Hotspot(BuildHotspot.DRESSER, 0, 7,1,7),
 			new Hotspot(BuildHotspot.DRAWERS, 6, 7),
 			new Hotspot(BuildHotspot.WINDOW, 0, 2),
 			new Hotspot(BuildHotspot.WINDOW, 0, 5),
