@@ -2,7 +2,7 @@ package plugin.skill.gather.woodcutting;
 
 import core.cache.def.impl.ItemDefinition;
 import core.game.container.impl.EquipmentContainer;
-import core.tools.ItemNames;
+import core.tools.Items;
 import plugin.dialogue.FacialExpression;
 import core.game.content.global.BirdNest;
 import core.game.content.global.SkillcapePerks;
@@ -252,11 +252,11 @@ public class WoodcuttingSkillPulse extends Pulse {
      */
     private void applyAchievementTask(int reward) {
         // Cut a log from a teak tree
-        if (reward == ItemNames.TEAK_LOGS_6333) {
+        if (reward == Items.TEAK_LOGS_6333) {
             player.getAchievementDiaryManager().finishTask(player, DiaryType.KARAMJA, 1, 7);
         }
         // Cut a log from a mahogany tree
-        if (reward == ItemNames.MAHOGANY_LOGS_6332) {
+        if (reward == Items.MAHOGANY_LOGS_6332) {
             player.getAchievementDiaryManager().finishTask(player, DiaryType.KARAMJA, 1, 8);
         }
 

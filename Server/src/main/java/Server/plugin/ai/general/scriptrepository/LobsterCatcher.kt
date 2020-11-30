@@ -9,7 +9,7 @@ import core.game.world.map.Location
 import core.game.world.map.path.Pathfinder
 import core.game.world.update.flag.context.Animation
 import core.game.world.update.flag.context.Graphics
-import core.tools.ItemNames
+import core.tools.Items
 import core.tools.RandomFunction
 import plugin.ai.AIPlayer
 import plugin.ge.GEOfferDispatch
@@ -44,8 +44,8 @@ class LobsterCatcher : Script() {
 
 
             State.BANKING -> {
-                scriptAPI.bankItem(ItemNames.RAW_LOBSTER)
-                state = if(bot.bank.getAmount(ItemNames.RAW_LOBSTER) > 100){
+                scriptAPI.bankItem(Items.RAW_LOBSTER_377)
+                state = if(bot.bank.getAmount(Items.RAW_LOBSTER_377) > 100){
                     State.TELEPORT_GE
                 } else {
                     State.FIND_SPOT
@@ -127,7 +127,7 @@ class LobsterCatcher : Script() {
                 if(amount + botAmount >= limit){
                         state = State.STOP
                     } else {
-                        scriptAPI.sellOnGE(ItemNames.RAW_LOBSTER)
+                        scriptAPI.sellOnGE(Items.RAW_LOBSTER_377)
                         state = State.TELE_CATH
                     }
 

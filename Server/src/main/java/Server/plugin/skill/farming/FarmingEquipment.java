@@ -5,7 +5,7 @@ import core.game.component.Component;
 import core.game.component.InterfaceType;
 import core.game.container.Container;
 import core.game.container.ContainerType;
-import core.game.content.ItemNames;
+import core.tools.Items;
 import core.game.node.entity.player.Player;
 import core.game.node.entity.player.info.login.SavingModule;
 import core.game.node.item.Item;
@@ -22,15 +22,15 @@ public final class FarmingEquipment implements SavingModule {
 	 * Represents the items to use in the store.
 	 */
 	private static final Item[] ITEMS = new Item[] {
-			new Item(ItemNames.RAKE_5341),
-			new Item(ItemNames.SEED_DIBBER_5343),
-			new Item(ItemNames.SPADE_952),
-			new Item(ItemNames.SECATEURS_5329),
-			new Item(ItemNames.WATERING_CAN_5331),
-			new Item(ItemNames.GARDENING_TROWEL),
-			new Item(ItemNames.BUCKET_1925),
-			new Item(ItemNames.COMPOST_6032),
-			new Item(ItemNames.SUPERCOMPOST_6034)
+			new Item(Items.RAKE_5341),
+			new Item(Items.SEED_DIBBER_5343),
+			new Item(Items.SPADE_952),
+			new Item(Items.SECATEURS_5329),
+			new Item(Items.WATERING_CAN_5331),
+			new Item(Items.GARDENING_TROWEL_5325),
+			new Item(Items.BUCKET_1925),
+			new Item(Items.COMPOST_6032),
+			new Item(Items.SUPERCOMPOST_6034)
 	};
 
 	/**
@@ -41,7 +41,7 @@ public final class FarmingEquipment implements SavingModule {
 	/**
 	 * Types of storable secateurs
 	 */
-	private static final Item[] SECATEURS = new Item[] { new Item(ItemNames.MAGIC_SECATEURS_7409), new Item(ItemNames.SECATEURS_5329) };
+	private static final Item[] SECATEURS = new Item[] { new Item(Items.MAGIC_SECATEURS_7409), new Item(Items.SECATEURS_5329) };
 
 	/**
 	 * Represents the equipment store component.
@@ -259,7 +259,7 @@ public final class FarmingEquipment implements SavingModule {
 	 * Gets whether stored secateurs are magic or not
 	 */
 	private boolean getSecateursMagic() {
-		return container.get(3) != null && (container.get(3).getId() == ItemNames.MAGIC_SECATEURS_7409);
+		return container.get(3) != null && (container.get(3).getId() == Items.MAGIC_SECATEURS_7409);
 	}
 
 	/**

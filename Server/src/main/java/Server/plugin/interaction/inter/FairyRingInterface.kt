@@ -155,7 +155,7 @@ enum class FairyRing(val tile: Location?, val tip: String = "", val childId: Int
     BIS(Location.create(2635, 3266, 0), "Kandarin: Ardougne Zoo unicorns", 33),
     BJR(null, "Other Realms: Realm of the Fisher King", 36),
     BKP(Location.create(2385, 3035, 0), "Feldip Hills: South of Castle Wars", 38),
-    BKQ(null, "Other realms: Enchanted Valley", 39),//Location.create(3041, 4532, 0) MISSING XTEAS
+    BKQ(Location.create(3041, 4532, 0), "Other realms: Enchanted Valley", 39),
     BKR(Location.create(3469, 3431, 0), "Morytania: Mort Myre, south of Canifis", 40),
     BLR(Location.create(2740, 3351, 0), "Kandarin: Legends' Guild", 44),
     CIP(Location.create(2513, 3884, 0), "Islands: Miscellania", 46),
