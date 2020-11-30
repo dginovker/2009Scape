@@ -71,8 +71,8 @@ class SharkCatcher : Script() {
         when(state){
 
             State.BANKING -> {
-                scriptAPI.bankItem(Items.RAW_SHARK)
-                state = if(bot.bank.getAmount(Items.RAW_SHARK) > 500){
+                scriptAPI.bankItem(Items.RAW_SHARK_383)
+                state = if(bot.bank.getAmount(Items.RAW_SHARK_383) > 500){
                     State.TELEPORT_GE
                 } else {
                     State.FIND_SPOT
@@ -164,7 +164,7 @@ class SharkCatcher : Script() {
                         state = State.STOP
                     } else{
                         scriptAPI.walkTo(Location.create(3164, 3487, 0))
-                        scriptAPI.sellOnGE(Items.RAW_SHARK)
+                        scriptAPI.sellOnGE(Items.RAW_SHARK_383)
                         state = State.TELE_FISH
                     }
 

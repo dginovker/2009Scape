@@ -365,9 +365,13 @@ class ScriptAPI(private val bot: Player) {
     fun sellOnGE(id: Int){
         class toCounterPulse : MovementPulse(bot, Location.create(3165, 3487, 0)){
             override fun pulse(): Boolean {
+                var actualId = id
                 val itemAmt = bot.bank.getAmount(id)
                 val offeredValue = checkPriceOverrides(id) ?: ItemDefinition.forId(id).value
-                BotGrandExchange.sellOnGE(id, offeredValue, itemAmt)
+                if(ItemDefinition.forId(id).noteId == id){
+                    actualId = Item(id).noteChange
+                }
+                BotGrandExchange.sellOnGE(actualId, offeredValue, itemAmt)
                 SystemLogger.log("Offered $itemAmt")
                 bot.bank.remove(Item(id, itemAmt))
                 bot.bank.refresh()

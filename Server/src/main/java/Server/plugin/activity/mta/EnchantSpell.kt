@@ -121,7 +121,7 @@ class EnchantSpell : MagicSpell {
                         Items.PENTAMID_6901 to Item(Items.ORB_6902),
                         Items.DRAGONSTONE_6903 to Item(Items.ORB_6902)
                 ),
-                arrayOf(Item(Items.COSMIC_RUNE,1), Item(Items.WATER_RUNE,1))))
+                arrayOf(Item(Items.COSMIC_RUNE_564,1), Item(Items.WATER_RUNE_555,1))))
 
         /**
          * Enchant Emerald Jewelry (Lvl-2 Enchant)
@@ -129,10 +129,10 @@ class EnchantSpell : MagicSpell {
         SpellBook.MODERN.register(16, EnchantSpell(27, 37.0,
                 hashMapOf(
                         //Begin Jewelry Enchantments
-                        Items.EMERALD_RING_1639 to Item(Items.RING_OF_DUELING8_2552),
+                        Items.EMERALD_RING_1639 to Item(Items.RING_OF_DUELLING8_2552),
                         Items.EMERALD_NECKLACE_1658 to Item(Items.BINDING_NECKLACE_5521),
                         Items.EMERALD_AMULET_1696 to Item(Items.AMULET_OF_DEFENCE_1729),
-                        Items.EMERALD_BRACELET_11076 to Item(Items.CASTLE_WARS_BRACELET3_11079),
+                        Items.EMERALD_BRACELET_11076 to Item(Items.CASTLEWAR_BRACE3_11080),
                         //Begin MTA-Specific Enchantments
                         Items.CUBE_6899 to Item(Items.ORB_6902),
                         Items.CYLINDER_6898 to Item(Items.ORB_6902),
@@ -151,7 +151,7 @@ class EnchantSpell : MagicSpell {
                         Items.RUBY_RING_1641 to Item(Items.RING_OF_FORGING_2568),
                         Items.RUBY_NECKLACE_1660 to Item(Items.DIGSITE_PENDANT_5_11194),
                         Items.RUBY_AMULET_1698 to Item(Items.AMULET_OF_STRENGTH_1725),
-                        Items.RUBY_BRACELET_11085 to Item(Items.INOCULATION_BRACELET_11088),
+                        Items.RUBY_BRACELET_11085 to Item(Items.INOCULATION_BRACE_11088),
                         //Begin MTA-Specific Enchantments
                         Items.CUBE_6899 to Item(Items.ORB_6902),
                         Items.CYLINDER_6898 to Item(Items.ORB_6902),
@@ -166,10 +166,10 @@ class EnchantSpell : MagicSpell {
          */
         SpellBook.MODERN.register(36, EnchantSpell(57, 67.0,
                 hashMapOf(
-                        Items.DIAMOND_RING_1643 to Item(Items.RING_OF_LIFE),
+                        Items.DIAMOND_RING_1643 to Item(Items.RING_OF_LIFE_2570),
                         Items.DIAMOND_NECKLACE_1662 to Item(Items.PHOENIX_NECKLACE_11090),
-                        Items.DIAMOND_AMULET_1700 to Item(Items.AMULET_OF_POWER),
-                        Items.DIAMOND_BRACELET_11092 to Item(Items.ABYSSAL_BRACELET1_11103),
+                        Items.DIAMOND_AMULET_1700 to Item(Items.AMULET_OF_POWER_1731),
+                        Items.DIAMOND_BRACELET_11092 to Item(Items.FORINTHRY_BRACE5_11096),
                         //Begin MTA-Specific Enchantments
                         Items.CUBE_6899 to Item(Items.ORB_6902),
                         Items.CYLINDER_6898 to Item(Items.ORB_6902),
@@ -186,9 +186,9 @@ class EnchantSpell : MagicSpell {
                 hashMapOf(
                         //Begin Jewelry Enchantment
                         Items.DRAGONSTONE_RING_1645 to Item(14646),
-                        Items.DRAGONSTONE_NECKLACE_1664 to Item(Items.SKILLS_NECKLACE4_11105),
-                        Items.DRAGONSTONE_AMULET_1702 to Item(Items.AMULET_OF_GLORY4_1712),
-                        Items.DRAGONSTONE_BRACELET_11115 to Item(Items.COMBAT_BRACELET4_11118),
+                        Items.DRAGON_NECKLACE_1664 to Item(Items.SKILLS_NECKLACE4_11105),
+                        Items.DRAGONSTONE_AMMY_1702 to Item(Items.AMULET_OF_GLORY4_1712),
+                        Items.DRAGON_BRACELET_11115 to Item(Items.COMBAT_BRACELET4_11118),
                         //Begin MTA-Specific Enchantments
                         Items.CUBE_6899 to Item(Items.ORB_6902),
                         Items.CYLINDER_6898 to Item(Items.ORB_6902),

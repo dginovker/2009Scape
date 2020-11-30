@@ -1,3 +1,4 @@
+/*
 package plugin.shops;
 
 import core.tools.Items;
@@ -7,39 +8,41 @@ import core.game.node.item.Item;
 import java.util.Arrays;
 import java.util.HashMap;
 
+*/
 /**
  * @author ceik
- */
+ *//*
+
 //if no items are listed, it uses the default GENERAL_STORE item list in Shop.java
 public enum Shops{
-    EDGEVILLE_GENERAL(new Shop("Edgeville General Store",true,Items.COINS,false),new int[]{528,529}),
-    ALKHARID_GENERAL(new Shop("Al-Kharid General Store",true,Items.COINS,false),new int[]{525,524}),
-    VOID_GENERAL(new Shop("Void Knight General Store",true,Items.COINS,false),new int[]{3799}),
-    IFABA_GENERAL(new Shop("Ifaba's General Store",true,Items.COINS,false),new int[]{1436}),
-    KORTAN_GENERAL(new Shop("Kortan General Store",true,Items.COINS,false),new int[]{591}),
-    WEST_ARD_GENERAL(new Shop("West Ardougne General Store",true,Items.COINS,true),new int[]{971}),
-    BURTH_SUPPLIES(new Shop("Burthorpe Supplies",true,Items.COINS,false),new int[]{1083}),
-    DWARVEN(new Shop("Dwarven shopping store",true,Items.COINS,false),new int[]{582}),
-    ARHEIN(new Shop("Arhein Store",true,Items.COINS,false),new int[]{563}),
-    FALADOR(new Shop("Falador General Store",true,Items.COINS,false),new int[]{526,527}),
-    DAL_GEN(new Shop("Dal's General Ogre Supplies",true,Items.COINS,false),new int[]{873}),
-    KARAMJA(new Shop("Karamja General Store",true,Items.COINS,false),new int[]{532,533}),
-    LUMBRIDGE_GENERAL(new Shop("Lumbridge General Store",true,Items.COINS,false),new int[]{520,521}),
-    GUNSLIK(new Shop("Gunslik's Assorted Items",true,Items.COINS,false),new int[]{2154}),
-    LIGHTHOUSE_STORE(new Shop("The Lighthouse Store",true,Items.COINS,false),new int[]{1334}),
-    LLETYA(new Shop("Lletya General Store",true,Items.COINS,false),new int[]{2352}),
-    MOON_CLAN(new Shop("Moon Clan General Store",true,Items.COINS,false),new int[]{4516}),
-    MISCELL(new Shop("Miscellanian General Store",true,Items.COINS,false),new int[]{3922}),
-    RAZMIRE(new Shop("Razmire General Store",true,Items.COINS,false),new int[]{1254}),
-    NARDAH(new Shop("Nardah General Store",true,Items.COINS,false),new int[]{2086}),
-    POLLNIV(new Shop("Pollnivneach General Store",true,Items.COINS,false),new int[]{1866}),
-    KHAZ(new Shop("Khazard General Store",true,Items.COINS,false),new int[]{-1}),
-    PHAS(new Shop("Port Phasmatys General Store",true,Items.COINS,false),new int[]{1699}),
-    RIMM(new Shop("Rimmington General Store",true,Items.COINS,false),new int[]{530,531}),
-    OBLI(new Shop("Obli's General Store",true,Items.COINS,false),new int[]{516}),
-    BOLKOY(new Shop("Bolkoy's Village Shop",true,Items.COINS,false),new int[]{471}),
-    VARROCK(new Shop("Varrock General Store",true,Items.COINS,false),new int[]{522,523}),
-    ZANARIS(new Shop("Zanaris General Store",true,Items.COINS,false),new int[]{534}),
+    EDGEVILLE_GENERAL(new Shop("Edgeville General Store",true,Items.COINS_995,false),new int[]{528,529}),
+    ALKHARID_GENERAL(new Shop("Al-Kharid General Store",true,Items.COINS_995,false),new int[]{525,524}),
+    VOID_GENERAL(new Shop("Void Knight General Store",true,Items.COINS_995,false),new int[]{3799}),
+    IFABA_GENERAL(new Shop("Ifaba's General Store",true,Items.COINS_995,false),new int[]{1436}),
+    KORTAN_GENERAL(new Shop("Kortan General Store",true,Items.COINS_995,false),new int[]{591}),
+    WEST_ARD_GENERAL(new Shop("West Ardougne General Store",true,Items.COINS_995,true),new int[]{971}),
+    BURTH_SUPPLIES(new Shop("Burthorpe Supplies",true,Items.COINS_995,false),new int[]{1083}),
+    DWARVEN(new Shop("Dwarven shopping store",true,Items.COINS_995,false),new int[]{582}),
+    ARHEIN(new Shop("Arhein Store",true,Items.COINS_995,false),new int[]{563}),
+    FALADOR(new Shop("Falador General Store",true,Items.COINS_995,false),new int[]{526,527}),
+    DAL_GEN(new Shop("Dal's General Ogre Supplies",true,Items.COINS_995,false),new int[]{873}),
+    KARAMJA(new Shop("Karamja General Store",true,Items.COINS_995,false),new int[]{532,533}),
+    LUMBRIDGE_GENERAL(new Shop("Lumbridge General Store",true,Items.COINS_995,false),new int[]{520,521}),
+    GUNSLIK(new Shop("Gunslik's Assorted Items",true,Items.COINS_995,false),new int[]{2154}),
+    LIGHTHOUSE_STORE(new Shop("The Lighthouse Store",true,Items.COINS_995,false),new int[]{1334}),
+    LLETYA(new Shop("Lletya General Store",true,Items.COINS_995,false),new int[]{2352}),
+    MOON_CLAN(new Shop("Moon Clan General Store",true,Items.COINS_995,false),new int[]{4516}),
+    MISCELL(new Shop("Miscellanian General Store",true,Items.COINS_995,false),new int[]{3922}),
+    RAZMIRE(new Shop("Razmire General Store",true,Items.COINS_995,false),new int[]{1254}),
+    NARDAH(new Shop("Nardah General Store",true,Items.COINS_995,false),new int[]{2086}),
+    POLLNIV(new Shop("Pollnivneach General Store",true,Items.COINS_995,false),new int[]{1866}),
+    KHAZ(new Shop("Khazard General Store",true,Items.COINS_995,false),new int[]{-1}),
+    PHAS(new Shop("Port Phasmatys General Store",true,Items.COINS_995,false),new int[]{1699}),
+    RIMM(new Shop("Rimmington General Store",true,Items.COINS_995,false),new int[]{530,531}),
+    OBLI(new Shop("Obli's General Store",true,Items.COINS_995,false),new int[]{516}),
+    BOLKOY(new Shop("Bolkoy's Village Shop",true,Items.COINS_995,false),new int[]{471}),
+    VARROCK(new Shop("Varrock General Store",true,Items.COINS_995,false),new int[]{522,523}),
+    ZANARIS(new Shop("Zanaris General Store",true,Items.COINS_995,false),new int[]{534}),
     JAMILA(new Shop("Jamila's Craft Stall",new Item[]{
             new Item(Items.CHISEL_1755,10),
             new Item(Items.RING_MOULD_1592,10),
@@ -52,7 +55,7 @@ public enum Shops{
             new Item(Items.TIARA_MOULD_5523,10),
             new Item(Items.BOLT_MOULD_9434,10),
             new Item(Items.BRACELET_MOULD_11065,10)
-    },false,Items.COINS,false),new int[]{5268}),
+    },false,Items.COINS_995,false),new int[]{5268}),
     ROMMIK(new Shop("Rommik's Crafty Supplies",new Item[]{
             new Item(Items.CHISEL_1755,10),
             new Item(Items.RING_MOULD_1592,10),
@@ -65,7 +68,7 @@ public enum Shops{
             new Item(Items.TIARA_MOULD_5523,10),
             new Item(Items.BOLT_MOULD_9434,10),
             new Item(Items.BRACELET_MOULD_11065,10)
-    },false,Items.COINS,false),new int[]{585}),
+    },false,Items.COINS_995,false),new int[]{585}),
     DOMMIK(new Shop("Dommik's Crafting Store",new Item[]{
             new Item(Items.CHISEL_1755,10),
             new Item(Items.RING_MOULD_1592,10),
@@ -78,7 +81,7 @@ public enum Shops{
             new Item(Items.TIARA_MOULD_5523,10),
             new Item(Items.BOLT_MOULD_9434,10),
             new Item(Items.BRACELET_MOULD_11065,10)
-    },false,Items.COINS,false),new int[]{545}),
+    },false,Items.COINS_995,false),new int[]{545}),
     FRENITA(new Shop("Frenita's Cookery Shop",new Item[]{
             new Item(Items.PIE_DISH_2313,10),
             new Item(Items.COOKING_APPLE_1955,0),
@@ -91,7 +94,7 @@ public enum Shops{
             new Item(Items.CHOCOLATE_BAR_1973,10),
             new Item(Items.POT_OF_FLOUR,500),
             new Item(Items.EMPTY_CUP_1980,10),
-    },false,Items.COINS,false),new int[]{593}),
+    },false,Items.COINS_995,false),new int[]{593}),
     HUDO(new Shop("Grand Tree Groceries",new Item[]{
             new Item(Items.GIANNE_DOUGH_2171,10),
             new Item(Items.EQUA_LEAVES_2128,10),
@@ -119,7 +122,7 @@ public enum Shops{
             new Item(Items.BATTA_TIN_2164,10),
             new Item(Items.CRUNCHY_TRAY_2165,10),
             new Item(Items.GNOMEBOWL_MOULD_2166,10)
-    },false,Items.COINS,false),new int[]{600}),
+    },false,Items.COINS_995,false),new int[]{600}),
     VERMUNDI(new Shop("Vermundis Clothes Stall",new Item[]{
             new Item(Items.SKIRT_5048,10),
             new Item(Items.TROUSERS_5036,10),
@@ -127,7 +130,7 @@ public enum Shops{
             new Item(Items.WOVEN_TOP_5024,10),
             new Item(Items.SHIRT_5030,10),
             new Item(Items.SILK_950,10),
-    },false,Items.COINS,false),new int[]{2162}),
+    },false,Items.COINS_995,false),new int[]{2162}),
     AGMUNDI(new Shop("Agmundi Quality Clothes",new Item[]{
             new Item(Items.SKIRT_5050,10),
             new Item(Items.SKIRT_5052,10),
@@ -139,7 +142,7 @@ public enum Shops{
             new Item(Items.WOVEN_TOP_5028,10),
             new Item(Items.SHIRT_5032,10),
             new Item(Items.SHIRT_5034,10)
-    },false,Items.COINS,false),new int[]{2161}),
+    },false,Items.COINS_995,false),new int[]{2161}),
     DODGY_MIKE(new Shop("Dodgy Mike's Second Hand Clothing",new Item[]{
             new Item(Items.PIRATE_BOOTS_7114,15),
             new Item(Items.STRIPY_PIRATE_SHIRT_7110,10),
@@ -154,7 +157,7 @@ public enum Shops{
             new Item(Items.STRIPY_PIRATE_SHIRT_7134,10),
             new Item(Items.PIRATE_BANDANA_7136,20),
             new Item(Items.PIRATE_LEGGINGS_7138,10)
-    },false,Items.COINS,false),new int[]{3166}),
+    },false,Items.COINS_995,false),new int[]{3166}),
     LLETYA_SEAMSTRESS(new Shop("Lletya Seamstress",new Item[]{
             new Item(Items.THREAD,8),
             new Item(Items.NEEDLE_1733,3),
@@ -165,7 +168,7 @@ public enum Shops{
             new Item(Items.ORANGE_DYE_1769,10),
             new Item(Items.GREEN_DYE_1771,10),
             new Item(Items.PURPLE_DYE_1773,10)
-    },false,Items.COINS,false),new int[]{2353}),
+    },false,Items.COINS_995,false),new int[]{2353}),
     BARKER_HABER(new Shop("Barker's Haberdashery",new Item[]{
             new Item(Items.GREY_BOOTS_2894,5),
             new Item(Items.GREY_ROBE_TOP_2896,5),
@@ -197,7 +200,7 @@ public enum Shops{
             new Item(Items.BLUE_CAPE,5),
             new Item(Items.YELLOW_CAPE,5),
             new Item(Items.GREEN_CAPE_1027,5)
-    },false,Items.COINS,false),new int[]{1039}),
+    },false,Items.COINS_995,false),new int[]{1039}),
     ACCOUTREMENTS(new Shop("Yrsa's Accoutrements",new Item[]{
             new Item(Items.FREMENNIK_BLUE_SHIRT_3775,5),
             new Item(Items.FREMENNIK_RED_SHIRT_3773,5),
@@ -220,7 +223,7 @@ public enum Shops{
             new Item(Items.FREMENNIK_PURPLE_CLOAK_3785,5),
             new Item(Items.FREMENNIK_PINK_CLOAK_3787),
             new Item(Items.FREMENNIK_BLACK_CLOAK_3789,5)
-    },false,Items.COINS,false),new int[]{1301}),
+    },false,Items.COINS_995,false),new int[]{1301}),
     FINE_FASHIONS(new Shop("Fine Fashions",new Item[]{
             new Item(Items.PINK_HAT_656,5),
             new Item(Items.GREEN_HAT_658,5),
@@ -242,7 +245,7 @@ public enum Shops{
             new Item(Items.BLUE_BOOTS_630,5),
             new Item(Items.CREAM_BOOTS_632,5),
             new Item(Items.TURQUOISE_BOOTS_634,5)
-    },false,Items.COINS,false),new int[]{601}),
+    },false,Items.COINS_995,false),new int[]{601}),
     THESSALIA(new Shop("Thessalia's Fine Clothes",new Item[]{
             new Item(Items.WHITE_APRON,3),
             new Item(Items.LEATHER_BODY,12),
@@ -256,7 +259,7 @@ public enum Shops{
             new Item(Items.SILK_950,5),
             new Item(Items.PRIEST_GOWN_428,3),
             new Item(Items.PRIEST_GOWN_426,3)
-    },false,Items.COINS,false),new int[]{548}),
+    },false,Items.COINS_995,false),new int[]{548}),
     FANCY_CLOTHES(new Shop("Fancy Clothes Store",new Item[]{
             new Item(Items.CHEFS_HAT,0),
             new Item(Items.BLUE_WIZARD_HAT,3),
@@ -279,7 +282,7 @@ public enum Shops{
             new Item(Items.YELLOW_FEATHER_10090,0),
             new Item(Items.BLUE_FEATHER_10089,0),
             new Item(Items.STRIPY_FEATHER_10087,0)
-    },false,Items.COINS,false),new int[]{554}),
+    },false,Items.COINS_995,false),new int[]{554}),
     CHAIN(new Shop("Chainmail Shop",new Item[]{
             new Item(Items.BRONZE_CHAINBODY,3),
             new Item(Items.IRON_CHAINBODY,2),
@@ -287,10 +290,10 @@ public enum Shops{
             new Item(Items.BLACK_CHAINBODY,1),
             new Item(Items.MITHRIL_CHAINBODY,1),
             new Item(Items.ADAMANT_CHAINBODY,1)
-    },false,Items.COINS,false),new int[]{}),
+    },false,Items.COINS_995,false),new int[]{}),
     CANDLE(new Shop("Candle Shop",new Item[]{
             new Item(Items.CANDLE_36,10)
-    },false,Items.COINS,false),new int[]{562}),
+    },false,Items.COINS_995,false),new int[]{562}),
     BRIAN(new Shop("Brian's Battleaxe Bazaar",new Item[]{
             new Item(Items.BRONZE_BATTLEAXE,4),
             new Item(Items.IRON_BATTLEAXE,3),
@@ -298,7 +301,7 @@ public enum Shops{
             new Item(Items.BLACK_BATTLEAXE,1),
             new Item(Items.MITHRIL_BATTLEAXE,1),
             new Item(Items.ADAMANT_BATTLEAXE,1)
-    },false,Items.COINS,false),new int[]{559}),
+    },false,Items.COINS_995,false),new int[]{559}),
     BOB(new Shop("Bob's Brilliant Axes",new Item[]{
             new Item(Items.BRONZE_PICKAXE,5),
             new Item(Items.BRONZE_AXE,10),
@@ -307,7 +310,7 @@ public enum Shops{
             new Item(Items.IRON_BATTLEAXE,5),
             new Item(Items.STEEL_BATTLEAXE,2),
             new Item(Items.MITHRIL_BATTLEAXE,1)
-    },false,Items.COINS,false),new int[]{519}),
+    },false,Items.COINS_995,false),new int[]{519}),
     CROSSBOW(new Shop("Crossbow Shop",new Item[]{
             new Item(Items.WOODEN_STOCK_9440,5),
             new Item(Items.OAK_STOCK_9442,5),
@@ -328,7 +331,7 @@ public enum Shops{
             new Item(Items.MITH_CROSSBOW_9181,0),
             new Item(Items.ADAMANT_CROSSBOW_9183,0),
             new Item(Items.RUNE_CROSSBOW_9185,0)
-    },false,Items.COINS,false),new int[]{4563,4558,4559}),
+    },false,Items.COINS_995,false),new int[]{4563,4558,4559}),
     AARON(new Shop("Aaron's Archery Apppendages",new Item[]{
             new Item(Items.LEATHER_BODY,10),
             new Item(Items.HARDLEATHER_BODY,10),
@@ -338,7 +341,7 @@ public enum Shops{
             new Item(Items.COIF_1169,10),
             new Item(Items.LEATHER_COWL_1167,10),
             new Item(Items.LEATHER_VAMBRACES,10)
-    },false,Items.COINS,false),new int[]{682}),
+    },false,Items.COINS_995,false),new int[]{682}),
     DARGAUDS(new Shop("Dargaud's Bows and Arrows",new Item[]{
             new Item(Items.ARROW_SHAFT_52,1000),
             new Item(Items.BRONZE_ARROWTIPS_39,500),
@@ -360,7 +363,7 @@ public enum Shops{
             new Item(Items.OAK_LONGBOW_845,20),
             new Item(Items.COMP_OGRE_BOW_4827,0),
             new Item(Items.WILLOW_LONGBOW_847,10)
-    },false,Items.COINS,false),new int[]{683}),
+    },false,Items.COINS_995,false),new int[]{683}),
     HICKTON_ARCHERY(new Shop("Hickton's Archery Emporium",new Item[]{
             new Item(Items.BRONZE_BOLTS,200),
             new Item(Items.BRONZE_ARROW,1000),
@@ -383,7 +386,7 @@ public enum Shops{
             new Item(Items.COMP_OGRE_BOW_4827,0),
             new Item(Items.STUDDED_BODY,2),
             new Item(Items.STUDDED_CHAPS,2)
-    },true,Items.COINS,false),new int[]{575}),
+    },true,Items.COINS_995,false),new int[]{575}),
     LOWE_ARCHERY(new Shop("Lowe's Archery Emporium",new Item[]{
             new Item(Items.BRONZE_ARROW,2000),
             new Item(Items.IRON_ARROW,1500),
@@ -400,7 +403,7 @@ public enum Shops{
             new Item(Items.MAPLE_SHORTBOW_853,1),
             new Item(Items.MAPLE_LONGBOW_851,1),
             new Item(Items.CROSSBOW_837,1)
-    },false,Items.COINS,false),new int[]{550}),
+    },false,Items.COINS_995,false),new int[]{550}),
     BRIAN_ARCHERY(new Shop("Brian's Archery Supplies",new Item[]{
             new Item(Items.STEEL_ARROW,1500),
             new Item(Items.MITHRIL_ARROW,1000),
@@ -411,7 +414,7 @@ public enum Shops{
             new Item(Items.WILLOW_LONGBOW_847,3),
             new Item(Items.MAPLE_SHORTBOW_853,2),
             new Item(Items.MAPLE_LONGBOW_851,2)
-    },false,Items.COINS,false),new int[]{1860}),
+    },false,Items.COINS_995,false),new int[]{1860}),
     VOID_ARCHERY(new Shop("Void Knight Archery Store",new Item[]{
             new Item(Items.BRONZE_JAVELIN,10),
             new Item(Items.IRON_JAVELIN,10),
@@ -425,7 +428,7 @@ public enum Shops{
             new Item(Items.MITHRIL_ARROWTIPS_42,5),
             new Item(Items.ADAMANT_ARROWTIPS_43,5),
             new Item(Items.RUNE_ARROWTIPS_44,5)
-    },false,Items.COINS,false),new int[]{3796}),
+    },false,Items.COINS_995,false),new int[]{3796}),
     LLETYA_ARCHERY(new Shop("Lletya Archery Shop",new Item[]{
             new Item(Items.IRON_ARROW,2000),
             new Item(Items.STEEL_ARROW,500),
@@ -438,14 +441,14 @@ public enum Shops{
             new Item(Items.CROSSBOW_837,5),
             new Item(Items.WILLOW_SHORTBOW_849,5),
             new Item(Items.WILLOW_LONGBOW_847,5)
-    },false,Items.COINS,false),new int[]{2356}),
+    },false,Items.COINS_995,false),new int[]{2356}),
     DAVON(new Shop("Davon's Amulet Store",new Item[]{
             new Item(Items.HOLY_SYMBOL_1718,0),
             new Item(Items.AMULET_OF_MAGIC_1727,0),
             new Item(Items.AMULET_OF_DEFENCE_1729,0),
             new Item(Items.AMULET_OF_STRENGTH_1725,0),
             new Item(Items.AMULET_OF_POWER,0)
-    },false,Items.COINS,false),new int[]{588}),
+    },false,Items.COINS_995,false),new int[]{588}),
     STAN(new Shop("Trader Stan's Trading Post",new Item[]{
             new Item(Items.POT_1931,5),
             new Item(Items.JUG_1935,2),
@@ -474,7 +477,7 @@ public enum Shops{
             new Item(Items.TYRAS_HELM_9629,25),
             new Item(Items.RAW_RABBIT_3226,20),
             new Item(Items.RIGHT_EYE_PATCH_1025,5)
-    },false,Items.COINS,false),new int[]{4651,4652,4653,4654,4655,4656,4650}),
+    },false,Items.COINS_995,false),new int[]{4651,4652,4653,4654,4655,4656,4650}),
     QUARTERMASTER(new Shop("Quartermaster's Stores",new Item[]{
             new Item(Items.POT_1931,5),
             new Item(Items.JUG_1935,2),
@@ -489,7 +492,7 @@ public enum Shops{
             new Item(Items.ADAMANT_HALBERD_3200,7),
             new Item(Items.RUNE_HALBERD_3202,7),
             new Item(Items.DRAGON_HALBERD_3204,5)
-    },true,Items.COINS,false),new int[]{1208}),
+    },true,Items.COINS_995,false),new int[]{1208}),
     JIMINUA(new Shop("Jiminua's Jungle Store",new Item[]{
             new Item(Items.TINDERBOX,2),
             new Item(Items.CANDLE_36,10),
@@ -517,7 +520,7 @@ public enum Shops{
             new Item(Items.IRON_AXE,5),
             new Item(Items.BRONZE_BAR,10),
             new Item(Items.PURE_ESSENCE_7936,0)
-    },false,Items.COINS,false),new int[]{560}),
+    },false,Items.COINS_995,false),new int[]{560}),
     SHANTAY(new Shop("Shantay Pass Shop",new Item[]{
             new Item(Items.WATERSKIN4_1823,100),
             new Item(Items.WATERSKIN0_1831,100),
@@ -536,7 +539,7 @@ public enum Shops{
             new Item(Items.JUG_1935,0),
             new Item(Items.SHANTAY_PASS_1854,500),
             new Item(Items.ROPE_954,20)
-    },false,Items.COINS,false),new int[]{836}),
+    },false,Items.COINS_995,false),new int[]{836}),
     ARNOLD(new Shop("Arnold's Eclectic Supplies",new Item[]{
             new Item(Items.SMALL_FISHING_NET_303,2),
             new Item(Items.HARPOON_311,2),
@@ -550,7 +553,7 @@ public enum Shops{
             new Item(Items.BEER,10),
             new Item(Items.GLASSBLOWING_PIPE_1785,2),
             new Item(Items.KNIFE,1)
-    },false,Items.COINS,false),new int[]{3824}),
+    },false,Items.COINS_995,false),new int[]{3824}),
     SVENS_BLACK_MARKET(new Shop("Trader Sven's Black Market Goods",new Item[]{
             new Item(Items.CITIZEN_TOP_9640,10),
             new Item(Items.CITIZEN_TROUSERS_9642,10),
@@ -558,12 +561,12 @@ public enum Shops{
             new Item(Items.VYREWATCH_TOP_9634,10),
             new Item(Items.VYREWATCH_LEGS_9636,10),
             new Item(Items.VYREWATCH_SHOES_9638,10)
-    },false,Items.COINS,false),new int[]{4716}),
+    },false,Items.COINS_995,false),new int[]{4716}),
     KARAMJA_WINES(new Shop("Karamja Wines, Spirits, and Beers",new Item[]{
             new Item(Items.BEER,3),
             new Item(Items.KARAMJAN_RUM_431,3),
             new Item(Items.JUG_OF_WINE,1)
-    },false,Items.COINS,false),new int[]{568}),
+    },false,Items.COINS_995,false),new int[]{568}),
     DORGESH(new Shop("Dorgersh-Kaan General Supplies",new Item[]{
             new Item(Items.UNLIT_TORCH_596,5),
             new Item(Items.TINDERBOX,2),
@@ -573,7 +576,7 @@ public enum Shops{
             new Item(Items.CAKE_TIN_1887,2),
             new Item(Items.ROPE_954,3),
             new Item(Items.GLASSBLOWING_PIPE_1785,1)
-    },true,Items.COINS,false), new int[]{5798}),
+    },true,Items.COINS_995,false), new int[]{5798}),
     CANIFIS_GENERAL(new Shop("General Store",new Item[]{
             new Item(Items.NEEDLE_1733,2),
             new Item(Items.THREAD,50),
@@ -585,20 +588,20 @@ public enum Shops{
             new Item(Items.HAMMER,5),
             new Item(Items.SAMPLE_BOTTLE_3377,10),
             new Item(Items.KNIFE,2)
-            },true,Items.COINS,false),new int[]{1040}),
+            },true,Items.COINS_995,false),new int[]{1040}),
     AUREL(new Shop("Aurel's Supplies",new Item[]{
             new Item(Items.BRONZE_AXE,10),
             new Item(Items.TINDERBOX,10),
             new Item(Items.THIN_SNAIL_3363,10),
             new Item(Items.RAW_MACKEREL_353,10)
-    },false,Items.COINS,false),new int[]{3541,7396}),
+    },false,Items.COINS_995,false),new int[]{3541,7396}),
     AVAS(new Shop("Ava's Odds and Ends",new Item[]{
             new Item(Items.FEATHER,1000),
             new Item(Items.IRON_ARROW,40),
             new Item(Items.STEEL_ARROW,10),
             new Item(Items.IRON_ARROWTIPS_40,30),
             new Item(Items.STEEL_ARROWTIPS_41,20)
-    },false,Items.COINS,false), new int[]{5198,5199}),
+    },false,Items.COINS_995,false), new int[]{5198,5199}),
    BANDIT_BARGAINS(new Shop("Bandit Bargains",new Item[]{
             new Item(Items.WATERSKIN4_1823,5),
             new Item(Items.WATERSKIN0_1831,5),
@@ -612,7 +615,7 @@ public enum Shops{
             new Item(Items.DESERT_SHIRT_1833,5),
             new Item(Items.DESERT_ROBE_1835,5),
             new Item(Items.KNIFE,5)
-    },false,Items.COINS,false),new int[]{1917}),
+    },false,Items.COINS_995,false),new int[]{1917}),
     BANDIT_DUTY_FREE(new Shop("Bandit Duty Free",new Item[]{
             new Item(Items.POT_1931,5),
             new Item(Items.JUG_1935,2),
@@ -621,7 +624,7 @@ public enum Shops{
             new Item(Items.HAMMER,5),
             new Item(Items.BRONZE_PICKAXE,5),
             new Item(Items.BRONZE_AXE,10)
-    },true,Items.COINS,true),new int[]{597}),
+    },true,Items.COINS_995,true),new int[]{597}),
     AEMAD(new Shop("Aemad's Adventuring Supplies Store",new Item[]{
             new Item(Items.VIAL_OF_WATER,500),
             new Item(Items.BRONZE_PICKAXE,2),
@@ -633,7 +636,7 @@ public enum Shops{
             new Item(Items.ROPE_954,20),
             new Item(Items.PAPYRUS_970,50),
             new Item(Items.KNIFE,2)
-    },true,Items.COINS,false),new int[]{590});
+    },true,Items.COINS_995,false),new int[]{590});
 
 
     public static HashMap<Integer,Shop> shopMap = new HashMap<>();
@@ -653,3 +656,4 @@ public enum Shops{
         return shopMap.get(id);
     }
 }
+*/

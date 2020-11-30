@@ -26,15 +26,15 @@ public class Shop {
      * Represents the general store items.
      */
     public final static Item[] GENERAL_STORE_ITEMS = new Item[]{
-            new Item(Items.POT_1931,5),
+            new Item(Items.EMPTY_POT_1931,5),
             new Item(Items.JUG_1935,5),
             new Item(Items.SHEARS_1735,2),
             new Item(Items.BUCKET_1925,3),
             new Item(Items.BOWL_1923,2),
             new Item(Items.CAKE_TIN_1887,2),
-            new Item(Items.TINDERBOX,2),
+            new Item(Items.TINDERBOX_590,2),
             new Item(Items.CHISEL_1755,2),
-            new Item(Items.HAMMER,5),
+            new Item(Items.HAMMER_2347,5),
             new Item(Items.NEWCOMER_MAP_550,5),
             new Item(Items.SECURITY_BOOK_9003,5)
     };
@@ -333,7 +333,7 @@ public class Shop {
             }
 
             // Achievement Diary Handlers
-            if (add.getId() == Items.BLACK_CHAINBODY && getTitle().equalsIgnoreCase("Wayne's Chains") && !player.getAttribute("diary:falador:black-chain-bought", false)) {
+            if (add.getId() == Items.BLACK_CHAINBODY_1107 && getTitle().equalsIgnoreCase("Wayne's Chains") && !player.getAttribute("diary:falador:black-chain-bought", false)) {
                 player.setAttribute("/save:diary:falador:black-chain-bought", true);
             }
             if (add.getId() == 12622 && getTitle().equalsIgnoreCase("Sarah's Farming Shop")) {
