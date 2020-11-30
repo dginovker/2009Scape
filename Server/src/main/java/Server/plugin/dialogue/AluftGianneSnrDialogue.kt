@@ -18,6 +18,8 @@ val gnomeItems = arrayOf(Items.FRUIT_BATTA_2277,Items.TOAD_BATTA_2255,Items.CHEE
 Items.CHOCOLATE_BOMB_2185,Items.VEG_BALL_2195,Items.TANGLED_TOADS_LEGS_2187,Items.WORM_HOLE_2191,Items.TOAD_CRUNCHIES_2217,Items.WORM_CRUNCHIES_2205,Items.CHOCCHIP_CRUNCHIES_2209,Items.SPICY_CRUNCHIES_2213,Items.FRUIT_BLAST_9514,Items.DRUNK_DRAGON_2092,Items.CHOC_SATURDAY_2074,
 Items.SHORT_GREEN_GUY_9510,Items.BLURBERRY_SPECIAL_9520,Items.PINEAPPLE_PUNCH_9512,Items.WIZARD_BLIZZARD_9508)
 
+val ALUFT_ALOFT_BOX = Item(Items.ALUFT_ALOFT_BOX_9477)
+
 @InitializablePlugin
 class AluftGianneSnrDialogue(player: Player? = null) : DialoguePlugin(player) {
     var tutorialProgress = -1
@@ -141,6 +143,9 @@ class AluftGianneSnrDialogue(player: Player? = null) : DialoguePlugin(player) {
     }
 
     private fun getJob(level: GnomeTipper.LEVEL){
+        if(!player.inventory.containsItem(ALUFT_ALOFT_BOX) && !player.bank.containsItem(ALUFT_ALOFT_BOX)){
+            player.inventory.add(ALUFT_ALOFT_BOX)
+        }
         if(player.getAttribute("$GC_BASE_ATTRIBUTE:$GC_JOB_ORDINAL",-1) != -1){
             player.dialogueInterpreter.sendDialogue("You already have a job.")
         } else {
