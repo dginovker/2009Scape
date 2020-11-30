@@ -3,7 +3,7 @@ package core.game.node.entity.player.link.emote;
 import core.game.container.impl.EquipmentContainer;
 import core.game.world.map.Direction;
 import core.game.world.map.Location;
-import core.tools.ItemNames;
+import core.tools.Items;
 import plugin.quest.tutorials.tutorialisland.TutorialSession;
 import plugin.quest.tutorials.tutorialisland.TutorialStage;
 import core.game.node.entity.player.Player;
@@ -87,9 +87,9 @@ public enum Emotes {
     SALUTE(23, Animation.create(2112)) {
         @Override
         public void play(Player player) {
-            boolean hat = player.getEquipment().get(EquipmentContainer.SLOT_HAT).getId() == ItemNames.INITIATE_SALLET_5574;
-            boolean chest = player.getEquipment().get(EquipmentContainer.SLOT_CHEST).getId() == ItemNames.INITIATE_HAUBERK_5575;
-            boolean legs = player.getEquipment().get(EquipmentContainer.SLOT_LEGS).getId() == ItemNames.INITIATE_CUISSE_5576;
+            boolean hat = player.getEquipment().get(EquipmentContainer.SLOT_HAT).getId() == Items.INITIATE_SALLET_5574;
+            boolean chest = player.getEquipment().get(EquipmentContainer.SLOT_CHEST).getId() == Items.INITIATE_HAUBERK_5575;
+            boolean legs = player.getEquipment().get(EquipmentContainer.SLOT_LEGS).getId() == Items.INITIATE_CUISSE_5576;
             super.play(player);
             if (hat && chest && legs
                     && player.getLocation().equals(new Location(2997, 3374, 0))

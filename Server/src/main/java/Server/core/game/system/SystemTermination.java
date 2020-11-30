@@ -1,6 +1,7 @@
 package core.game.system;
 
 import core.ServerConstants;
+import core.cache.def.impl.ItemDefinition;
 import plugin.ge.GEOfferDispatch;
 import plugin.ge.GrandExchangeDatabase;
 import core.game.node.entity.player.Player;
@@ -30,6 +31,7 @@ public final class SystemTermination {
 	 * Terminates the system safely.
 	 */
 	public void terminate() {
+
 		SystemLogger.log("[SystemTerminator] Initializing termination sequence - do not shutdown!");
 		try {
 			save(ServerConstants.DATA_PATH);
