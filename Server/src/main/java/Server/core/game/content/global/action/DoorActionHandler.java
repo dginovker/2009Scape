@@ -1,5 +1,6 @@
 package core.game.content.global.action;
 
+import core.game.interaction.DestinationFlag;
 import core.game.node.entity.Entity;
 import core.game.node.entity.player.Player;
 import core.game.node.entity.player.link.audio.Audio;
@@ -15,6 +16,7 @@ import core.game.world.GameWorld;
 import core.game.world.map.Direction;
 import core.game.world.map.Location;
 import core.game.world.map.RegionManager;
+import core.game.world.map.path.Pathfinder;
 
 import java.awt.*;
 
@@ -162,6 +164,7 @@ public final class DoorActionHandler {
      */
     public static Location getEndLocation(Entity entity, GameObject object) {
         Location l = object.getLocation();
+        Location end = DestinationFlag.OBJECT.getDestination(entity,object);
         switch (object.getRotation()) {
             case 0:
                 if (entity.getLocation().getX() >= l.getX()) {
@@ -184,7 +187,7 @@ public final class DoorActionHandler {
                 }
                 break;
         }
-        return l;
+        return end;
     }
 
     /**
@@ -222,21 +225,33 @@ public final class DoorActionHandler {
         switch (rotation) {
             case 0:
                 if (entity.getLocation().getX() < l.getX()) {
+                    if(Pathfinder.find(entity,l.transform(-1,0,0)).isMoveNear()){
+                        return l.transform(0,0,0);
+                    }
                     return l.transform(-1, 0, 0);
                 }
                 break;
             case 1:
                 if (entity.getLocation().getY() > l.getY()) {
+                    if(Pathfinder.find(entity,l.transform(0,1,0)).isMoveNear()){
+                        return l.transform(0,0,0);
+                    }
                     return l.transform(0, 1, 0);
                 }
                 break;
             case 2:
                 if (entity.getLocation().getX() > l.getX()) {
+                    if(Pathfinder.find(entity,l.transform(1,0,0)).isMoveNear()){
+                        return l.transform(0,0,0);
+                    }
                     return l.transform(1, 0, 0);
                 }
                 break;
             case 3:
                 if (entity.getLocation().getY() < l.getY()) {
+                    if(Pathfinder.find(entity,l.transform(0,-1,0)).isMoveNear()){
+                        return l.transform(0,0,0);
+                    }
                     return l.transform(0, -1, 0);
                 }
                 break;
