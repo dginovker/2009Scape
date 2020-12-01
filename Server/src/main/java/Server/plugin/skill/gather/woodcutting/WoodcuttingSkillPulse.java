@@ -227,6 +227,10 @@ public class WoodcuttingSkillPulse extends Pulse {
     private double calculateExperience(int reward, int amount) {
         double experience = resource.getExperience();
 
+        if(player.getLocation().getRegionId() == 10300){
+            return 1.0;
+        }
+
         // Bark
         if (reward == 3239) {
             // If we receive the item, give the full experience points otherwise give the base amount
