@@ -4397,32 +4397,64 @@ public class Unsorted {
                                             }
                                         }
                                     } else if (3 == var11.type) {
-                                        // TODO DRAWRECT
-                                        if (Class3_Sub28_Sub12.method609(var11, 26)) {
-                                            var20 = var11.anInt253;
-                                            if (Class107.aClass11_1453 == var11 && 0 != var11.anInt222) {
-                                                var20 = var11.anInt222;
+                                        if(!Class3_Sub28_Sub12.method609(var11,26)) {
+                                            var20 = var11.anInt218;
+                                            if(var11 == Class107.aClass11_1453 && 0 != var11.anInt228) {
+                                                var20 = var11.anInt228;
                                             }
                                         } else {
-                                            var20 = var11.anInt218;
-                                            if (var11 == Class107.aClass11_1453 && 0 != var11.anInt228) {
-                                                var20 = var11.anInt228;
+                                            var20 = var11.anInt253;
+                                            if(Class107.aClass11_1453 == var11 && 0 != var11.anInt222) {
+                                                var20 = var11.anInt222;
                                             }
                                         }
 
-                                        if (var15 != 0) {
-                                            if (var11.aBoolean226) {
-                                                Toolkit.getActiveToolkit().fillRect(var13, var14, var11.width, var11.height, var20, 256 - (var15 & 255));//Background for mage book
-                                            } else if (HDToolKit.highDetail) {
+                                        if (-1 != ~var15) {
+                                            if(var11.aBoolean226) {
+                                                if(!HDToolKit.highDetail) {
+                                                    Toolkit.getActiveToolkit().fillRect(var13, var14, var11.width, var11.height, var20, 256 + -(255 & var15));//Background for mage book
+                                                }
+                                            } else if(HDToolKit.highDetail) {
                                                 Class22.method928(var13, var14, var11.width, var11.height, var20, 256 + -(var15 & 255));
                                             } else {
                                                 Class74.method1315(var13, var14, var11.width, var11.height, var20, -(var15 & 255) + 256);
                                             }
-                                        } else if (var11.aBoolean226) {
-                                            Toolkit.getActiveToolkit().method934(var13, var14, var11.width, var11.height, var20);//Fill Rectangle for skill hover
+                                        } else if(var11.aBoolean226) {
+                                            if (HDToolKit.highDetail) {
+                                                Toolkit.OPENGL_TOOLKIT.method934(var13, var14, var11.width, var11.height, var20);
+                                            } else {
+                                                Toolkit.JAVA_TOOLKIT.fillRect(var13, var14, var11.width, var11.height, var20, 255);
+                                            }
+                                            //Toolkit.getActiveToolkit().method934(var13, var14, var11.width, var11.height, var20);//Fill Rectangle for skill hover
                                         } else {
                                             Toolkit.getActiveToolkit().drawRect(var13, var14, var11.width, var11.height, var20, 255);//Background border for mage book
                                         }
+                                        // TODO DRAWRECT
+//                                        if (Class3_Sub28_Sub12.method609(var11, 26)) {
+//                                            var20 = var11.anInt253;
+//                                            if (Class107.aClass11_1453 == var11 && 0 != var11.anInt222) {
+//                                                var20 = var11.anInt222;
+//                                            }
+//                                        } else {
+//                                            var20 = var11.anInt218;
+//                                            if (var11 == Class107.aClass11_1453 && 0 != var11.anInt228) {
+//                                                var20 = var11.anInt228;
+//                                            }
+//                                        }
+//
+//                                        if (var15 != 0) {
+//                                            if (var11.aBoolean226) {
+//                                                Toolkit.getActiveToolkit().fillRect(var13, var14, var11.width, var11.height, var20, 256 - (var15 & 255));//Background for mage book
+//                                            } else if (HDToolKit.highDetail) {
+//                                                Class22.method928(var13, var14, var11.width, var11.height, var20, 256 + -(var15 & 255));
+//                                            } else {
+//                                                Class74.method1315(var13, var14, var11.width, var11.height, var20, -(var15 & 255) + 256);
+//                                            }
+//                                        } else if (var11.aBoolean226) {
+//                                            Toolkit.getActiveToolkit().method934(var13, var14, var11.width, var11.height, var20);//Fill Rectangle for skill hover
+//                                        } else {
+//                                            Toolkit.getActiveToolkit().drawRect(var13, var14, var11.width, var11.height, var20, 255);//Background border for mage book
+//                                        }
 
                                     } else {
                                         Class3_Sub28_Sub17 var34;
