@@ -66,6 +66,7 @@ public class Interaction {
 			if (player.getLocks().isInteractionLocked()) {
 				return;
 			}
+			player.debug("Received interaction request " + option.getName());
 			boolean hasHandler = option.getHandler() != null;
 			String pulseType = "interaction:" + option.getName() + ":" + node.hashCode();
 			boolean walk = hasHandler && option.getHandler().isWalk();
@@ -82,6 +83,7 @@ public class Interaction {
 			}
 		} catch (Exception e){
 			e.printStackTrace();
+			SystemLogger.error(this.getClass().getName() + e.getMessage());
 		}
 	}
 
@@ -113,6 +115,7 @@ public class Interaction {
 					}
 				} catch (Exception e){
 					e.printStackTrace();
+					SystemLogger.error(this.getClass().getName() + e.getMessage());
 				}
 				return true;
 			}
@@ -143,6 +146,7 @@ public class Interaction {
 						player.getPacketDispatch().sendMessage("Nothing interesting happens.");
 					} catch (Exception e){
 						e.printStackTrace();
+						SystemLogger.error(this.getClass().getName() + e.getMessage());
 					}
 					return true;
 				}
@@ -180,6 +184,7 @@ public class Interaction {
 					}
 				} catch (Exception e){
 					e.printStackTrace();
+					SystemLogger.error(this.getClass().getName() + e.getMessage());
 				}
 				return true;
 			}
