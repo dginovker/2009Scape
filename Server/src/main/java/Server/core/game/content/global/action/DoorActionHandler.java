@@ -8,6 +8,7 @@ import core.game.node.entity.player.link.diary.DiaryType;
 import core.game.node.object.Constructed;
 import core.game.node.object.GameObject;
 import core.game.node.object.ObjectBuilder;
+import core.game.system.SystemLogger;
 import core.game.system.config.DoorConfigLoader;
 import core.game.system.task.LocationLogoutTask;
 import core.game.system.task.LogoutTask;
@@ -113,9 +114,9 @@ public final class DoorActionHandler {
             public boolean pulse() {
                 if (!opened) {
                     open(object, second, object.getId(), second == null ? -1 : second.getId(), false, 2, false);
-                    Location l = endLocation;
                     entity.getWalkingQueue().reset();
-                    entity.getWalkingQueue().addPath(l.getX(), l.getY());
+                    entity.getWalkingQueue().addPath(endLocation.getX(), endLocation.getY());
+                    SystemLogger.log("Walking to " + endLocation.getX() + "," + endLocation.getY());
                     opened = true;
                     return false;
                 }
@@ -162,7 +163,10 @@ public final class DoorActionHandler {
      * @param object the object.
      * @return the end location.
      */
-    public static Location getEndLocation(Entity entity, GameObject object) {
+    public static Location getEndLocation(Entity entity, GameObject object){
+        return getEndLocation(entity,object,false);
+    }
+    public static Location getEndLocation(Entity entity, GameObject object, Boolean isAutoWalk) {
         Location l = object.getLocation();
         Location end = DestinationFlag.OBJECT.getDestination(entity,object);
         switch (object.getRotation()) {
@@ -187,7 +191,7 @@ public final class DoorActionHandler {
                 }
                 break;
         }
-        return end;
+        return l;
     }
 
     /**
