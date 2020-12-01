@@ -7,6 +7,7 @@ import plugin.ge.GrandExchangeDatabase;
 import core.game.node.entity.player.Player;
 import core.game.node.entity.player.info.login.PlayerParser;
 import core.game.world.repository.Repository;
+import plugin.interaction.object.dmc.DMCHandler;
 
 import java.io.File;
 import java.util.Iterator;
@@ -34,6 +35,12 @@ public final class SystemTermination {
 
 		SystemLogger.log("[SystemTerminator] Initializing termination sequence - do not shutdown!");
 		try {
+			for(Player player : Repository.getPlayers()){
+				DMCHandler dmc = player.getAttribute("dmc",null);
+				if(dmc != null){
+					dmc.clear(false);
+				}
+			}
 			save(ServerConstants.DATA_PATH);
 		} catch (Throwable e) {
 			e.printStackTrace();

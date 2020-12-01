@@ -187,6 +187,11 @@ public class WoodcuttingSkillPulse extends Pulse {
                     PatchWrapper tree = player.getFarmingManager().getPatchWrapper(node.getWrapper().getId());
                     tree.addConfigValue(tree.getNode().getStumpBase());
                     tree.getCycle().setGrowthTime(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(resource.getRespawnDuration() + 10));
+                    //Handling for falador achievement diary
+                    if(resource.getId() == 8513 && player.getLocation().getRegionId() == 11828){
+                        //Chop down a yew tree you grew in falador park
+                        player.getAchievementDiaryManager().finishTask(player,DiaryType.FALADOR,2,3);
+                    }
                     return true;
                 }
                 if (resource.getEmptyId() > -1) {
@@ -221,6 +226,10 @@ public class WoodcuttingSkillPulse extends Pulse {
 
     private double calculateExperience(int reward, int amount) {
         double experience = resource.getExperience();
+
+        if(player.getLocation().getRegionId() == 10300){
+            return 1.0;
+        }
 
         // Bark
         if (reward == 3239) {

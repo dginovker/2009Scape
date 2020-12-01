@@ -1866,7 +1866,7 @@
     "id": "209",
     "title": "Holy Wares",
     "general_store": "0",
-    "stock": "{6746, 20}-{732, 100000}",
+    "stock": "{6746, 1}-{732, 100}",
     "npcs": "1369",
     "currency": "995",
     "high_alch": "0"
