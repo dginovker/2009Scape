@@ -15,7 +15,12 @@ public enum InterfaceType {
 	/**
 	 * Walkable interface.
 	 */
-	OVERLAY(548, 746, 4, 3),
+	OVERLAY(548, 746, 4, 5),
+
+	/**
+	 * Wilderness overlay
+	 */
+	WILDERNESS_OVERLAY(548, 746, 11, 3),
 
 	/**
 	 * A tab interface.
