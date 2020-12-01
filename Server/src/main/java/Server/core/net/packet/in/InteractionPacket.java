@@ -20,6 +20,7 @@ import core.net.packet.IoBuffer;
 import core.net.packet.PacketRepository;
 import core.net.packet.context.PlayerContext;
 import core.net.packet.out.ClearMinimapFlag;
+import plugin.interaction.player.PeltOptionPlugin;
 import plugin.quest.PluginInteractionManager;
 
 import java.util.List;
@@ -42,6 +43,7 @@ public final class InteractionPacket implements IncomingPacket {
 			return;
 		}
 		player.getInterfaceManager().closeChatbox();
+		player.debug("Received " + buffer.opcode());
 		try {
 			switch (buffer.opcode()) {
 				case 78: // NPC reward 1
@@ -283,6 +285,10 @@ public final class InteractionPacket implements IncomingPacket {
 			return;
 		}
 		final Option option = player.getInteraction().get(optionIndex);
+		//Handling for "Pelt" option
+		if(option.getName().toLowerCase().equals("pelt")){
+
+		}
 		if (option == null) {
 			PacketRepository.send(ClearMinimapFlag.class, new PlayerContext(player));
 			return;

@@ -1,6 +1,9 @@
 package core.game.content.global.action;
 
 import core.game.container.impl.EquipmentContainer;
+import core.game.interaction.Interaction;
+import core.game.interaction.Option;
+import core.net.packet.out.InteractionOption;
 import core.tools.Items;
 import core.game.interaction.OptionHandler;
 import core.game.node.Node;
@@ -15,6 +18,7 @@ import core.game.world.GameWorld;
 import core.game.world.map.Location;
 import core.game.world.map.zone.ZoneBorders;
 import core.plugin.Plugin;
+import plugin.interaction.player.PeltOptionPlugin;
 
 /**
  * Represents the equipment equipping handler plugin.
@@ -72,6 +76,12 @@ public class EquipHandler extends OptionHandler {
 			if(item.getId() >= 13845 && item.getId() <= 13857) {
 				player.debug("Registering gloves... ID: " + item.getId());
 				player.getBrawlingGlovesManager().registerGlove(item.getId());
+			}
+
+			if(item.getId() == Items.SNOWBALL_11951){
+				player.getInteraction().set(new Option("Pelt",0).setHandler(new PeltOptionPlugin()));
+			} else {
+				Interaction.sendOption(player,0,"null");
 			}
 
 			if (item.getId() == Items.BLACK_CHAINBODY_1107
