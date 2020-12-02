@@ -1,6 +1,7 @@
 package plugin.ai.general
 
 import core.cache.def.impl.ItemDefinition
+import core.game.interaction.DestinationFlag
 import core.game.interaction.MovementPulse
 import core.game.node.Node
 import core.game.node.`object`.GameObject
@@ -409,24 +410,26 @@ class ScriptAPI(private val bot: Player) {
     }
 
     /**
-     * Function to sell an item with given ID on the GE with the given price(value)
-     * @param id the ID of the item to sell on the GE, pulls from the bot's bank.
-     * @param value the price to sell the item at.
-     * @author Ceikry
+     * Function to sell all items in a bot's bank on the Grand Exchange, if they are tradable.
+     * @author Ceikry & Kermit
      */
-    fun sellOnGE(id: Int, value: Int){
-        class toCounterPulseWithPrice : MovementPulse(bot, Location.create(3165, 3487, 0)){
+    fun sellAllOnGeAdv(){
+        val ge: GameObject? = getNearestNode("Desk", true) as GameObject?
+        class toCounterPulseAll : MovementPulse(bot, ge, DestinationFlag.OBJECT) {
             override fun pulse(): Boolean {
-                val itemAmt = bot.bank.getAmount(id)
-                val offeredValue = checkPriceOverrides(id) ?: value
-                SystemLogger.log("Offered $itemAmt")
-                BotGrandExchange.sellOnGE(id, offeredValue, itemAmt)
-                bot.bank.remove(Item(id, itemAmt))
-                bot.bank.refresh()
+                for(item in bot.bank.toArray()) {
+                    item ?: continue
+                    if(!item.definition.isTradeable) {continue}
+                    val itemAmt = item.amount
+                    val offeredValue = checkPriceOverrides(item.id) ?: item.definition.value
+                    BotGrandExchange.sellOnGE(item.id, offeredValue, itemAmt)
+                    bot.bank.remove(item)
+                    bot.bank.refresh()
+                }
                 return true
             }
         }
-        bot.pulseManager.run(toCounterPulseWithPrice())
+        bot.pulseManager.run(toCounterPulseAll())
     }
 
     /**
@@ -563,10 +566,12 @@ class ScriptAPI(private val bot: Player) {
      */
     fun checkPriceOverrides(id: Int): Int?{
         return when(id){
+            Items.PURE_ESSENCE_7936 -> 50
+            Items.BOW_STRING_1777 -> 250
+            Items.MAGIC_LOGS_1513 -> 750
+            Items.COWHIDE_1739 -> 250
             Items.DRAGON_BONES_536 -> 1250
             Items.GREEN_DRAGONHIDE_1753 -> 550
-            Items.BOW_STRING_1777 -> 250
-            Items.MAGIC_LOGS_1513 -> 450
             Items.GRIMY_RANARR_207 -> 1214
             Items.GRIMY_AVANTOE_211 -> 453
             Items.GRIMY_CADANTINE_215 -> 232

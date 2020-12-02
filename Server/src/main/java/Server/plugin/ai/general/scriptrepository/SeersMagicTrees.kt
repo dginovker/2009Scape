@@ -73,7 +73,7 @@ class SeersMagicTrees : Script(){
 
             State.SELL_GE -> {
                 state = State.TELE_SEERS
-                scriptAPI.sellOnGE(Items.MAGIC_LOGS_1513,750)
+                scriptAPI.sellOnGE(Items.MAGIC_LOGS_1513)
             }
 
             State.TELE_SEERS -> {
