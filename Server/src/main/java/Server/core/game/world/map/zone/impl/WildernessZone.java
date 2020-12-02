@@ -302,7 +302,7 @@ public final class WildernessZone extends MapZone {
 		if (p.getSkullManager().isWildernessDisabled()) {
 			return;
 		}
-		p.getInterfaceManager().openOverlay(new Component(381));
+		p.getInterfaceManager().openWildernessOverlay(new Component(381));
 		p.getSkullManager().setLevel(getWilderness(p));
 		p.getPacketDispatch().sendString("Level: " + p.getSkullManager().getLevel(), 381, 1);
 		p.getInteraction().set(Option._P_ATTACK);
