@@ -75,6 +75,11 @@ public final class InterfaceManager {
 	private Component overlay;
 
 	/**
+	 * The wilderness overlay component
+	 */
+	private Component wildyOverlay;
+
+	/**
 	 * The currently opened tab's index.
 	 */
 	private int currentTabIndex = 3;
@@ -623,6 +628,23 @@ public final class InterfaceManager {
 			overlay.getDefinition().setWalkable(true);
 		}
 		overlay.open(player);
+	}
+
+	/**
+	 * Opens the wilderness overlay.
+	 * @param component The component.
+	 */
+	public void openWildernessOverlay(Component component) {
+		if (wildyOverlay != null && !wildyOverlay.close(player)) {
+			return;
+		}
+		wildyOverlay = component;
+		if (wildyOverlay.getDefinition().getType() != InterfaceType.WILDERNESS_OVERLAY) {
+			System.err.println("Set interface type to WILDERNESS_OVERLAY for component " + component.getId() + ", definition requires updating!");
+			wildyOverlay.getDefinition().setType(InterfaceType.WILDERNESS_OVERLAY);
+			wildyOverlay.getDefinition().setWalkable(true);
+		}
+		wildyOverlay.open(player);
 	}
 
 	/**
