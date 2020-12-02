@@ -25,6 +25,8 @@ import plugin.skill.gather.SkillingResource
 import core.game.node.item.ChanceItem
 import core.game.node.entity.npc.drop.DropFrequency
 import core.game.node.entity.player.Player
+import core.game.node.entity.player.info.stats.STATS_BASE
+import core.game.node.entity.player.info.stats.STATS_ROCKS
 import core.game.node.item.GroundItemManager
 import core.game.node.item.Item
 import core.game.world.map.Location
@@ -175,6 +177,8 @@ class MiningSkillPulse(private val player: Player, private val node: Node) : Pul
                 }
                 //give the reward
                 player.inventory.add(Item(reward, rewardAmount))
+                var rocksMined = player.getAttribute("$STATS_BASE:$STATS_ROCKS",0)
+                player.setAttribute("/save:$STATS_BASE:$STATS_ROCKS",++rocksMined)
 
                 //calculate bonus gem for mining
                 if (!isMiningEssence) {
