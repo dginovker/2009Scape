@@ -18,11 +18,6 @@ public enum InterfaceType {
 	OVERLAY(548, 746, 4, 5),
 
 	/**
-	 * Wilderness overlay
-	 */
-	WILDERNESS_OVERLAY(548, 746, 11, 3),
-
-	/**
 	 * A tab interface.
 	 */
 	TAB(548, 746, 83, 93),
@@ -50,7 +45,12 @@ public enum InterfaceType {
 	/**
 	 * Chatbox interface.
 	 */
-	CHATBOX(752, 752, 8, 8),;
+	CHATBOX(752, 752, 8, 8),
+
+    /**
+     * Wilderness overlay
+     */
+    WILDERNESS_OVERLAY(548, 746, 11, 3);
 
 	/**
 	 * The fixed window pane id.
