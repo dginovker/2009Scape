@@ -27,6 +27,9 @@ import core.tools.RandomFunction;
 
 import java.util.concurrent.TimeUnit;
 
+import static core.game.node.entity.player.info.stats.StatAttributeKeysKt.STATS_BASE;
+import static core.game.node.entity.player.info.stats.StatAttributeKeysKt.STATS_LOGS;
+
 /**
  * Woodcutting skill pulse
  *
@@ -160,6 +163,8 @@ public class WoodcuttingSkillPulse extends Pulse {
             }
             //give the reward
             player.getInventory().add(new Item(reward, rewardAmount));
+            int cutLogs = player.getAttribute(STATS_BASE + ":" + STATS_LOGS,0);
+            player.setAttribute("/save:" + STATS_BASE + ":" + STATS_LOGS,++cutLogs);
 
             //calculate bonus bird nest for mining
             int chance = 282;
