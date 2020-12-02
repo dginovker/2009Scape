@@ -95,7 +95,7 @@ class VarrockEssenceMiner : Script(){
             }
 
             State.SELL_GE -> {
-                scriptAPI.sellOnGE(Items.PURE_ESSENCE_7936,50)
+                scriptAPI.sellOnGE(Items.PURE_ESSENCE_7936)
                 state = State.TO_ESSENCE
             }
 

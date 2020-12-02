@@ -791,15 +791,15 @@ class Adventurer(val style: CombatStyle): Script() {
             }
 
             State.GE -> {
-                if (counter++ == 300) {
+                if (counter++ == 180) {
                     state = State.TELEPORTING
                 }
                 if (!sold) {
                     if (counter++ >= 15) {
                         sold = true
                         counter = 0
-                        scriptAPI.sellAllOnGe()
                         ticks = 0
+                        scriptAPI.sellAllOnGeAdv()
                         state = State.EXPLORE
                     }
                 }
@@ -807,7 +807,7 @@ class Adventurer(val style: CombatStyle): Script() {
             }
 
             State.FIND_GE -> {
-                if (counter++ == 300) {
+                if (counter++ == 180) {
                     state = State.TELEPORTING
                 }
                 sold = false

@@ -119,7 +119,7 @@ class SeersFlax : Script(){
             }
 
             State.SELL_GE -> {
-                scriptAPI.sellOnGE(Items.BOW_STRING_1777,250)
+                scriptAPI.sellOnGE(Items.BOW_STRING_1777)
                 state = State.TELE_CAMELOT
             }
 
