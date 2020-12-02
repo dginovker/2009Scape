@@ -4411,8 +4411,10 @@ public class Unsorted {
 
                                         if (-1 != ~var15) {
                                             if(var11.aBoolean226) {
-                                                if(!HDToolKit.highDetail) {
-                                                    Toolkit.getActiveToolkit().fillRect(var13, var14, var11.width, var11.height, var20, 256 + -(255 & var15));//Background for mage book
+                                                if(HDToolKit.highDetail) {
+                                                    Toolkit.OPENGL_TOOLKIT.fillRect(var13, var14, var11.width, var11.height, var20, 256 + -(255 & var15));//Background for mage book
+                                                } else {
+                                                    Toolkit.JAVA_TOOLKIT.fillRect(var13, var14, var11.width, var11.height, var20, 256 + -(255 & var15));
                                                 }
                                             } else if(HDToolKit.highDetail) {
                                                 Class22.method928(var13, var14, var11.width, var11.height, var20, 256 + -(var15 & 255));
@@ -4426,8 +4428,10 @@ public class Unsorted {
                                                 Toolkit.JAVA_TOOLKIT.fillRect(var13, var14, var11.width, var11.height, var20, 255);
                                             }
                                             //Toolkit.getActiveToolkit().method934(var13, var14, var11.width, var11.height, var20);//Fill Rectangle for skill hover
+                                        } else if(HDToolKit.highDetail){
+                                            Toolkit.OPENGL_TOOLKIT.drawRect(var13, var14, var11.width, var11.height, var20, 255);//Background border for mage book
                                         } else {
-                                            Toolkit.getActiveToolkit().drawRect(var13, var14, var11.width, var11.height, var20, 255);//Background border for mage book
+                                            Toolkit.JAVA_TOOLKIT.drawRect(var13, var14, var11.width, var11.height, var20, 255);
                                         }
                                         // TODO DRAWRECT
 //                                        if (Class3_Sub28_Sub12.method609(var11, 26)) {
