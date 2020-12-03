@@ -23,7 +23,8 @@ object GameLaunch {
         try {
             System.out.println("Trying to parse config at " + GameConfig.configLocation)
             GameConfig.parse(GameConfig.configLocation)
-            GameConfig.RENDER_DISTANCE_INCREASE = true
+            GameConfig.implementHoliday()
+            GameConfig.extendRenderDistance()
         } catch (e: Exception){
             GameConfig.IP_ADDRESS = "play.2009scape.org"
             GameConfig.IP_MANAGEMENT = "play.2009scape.org"
