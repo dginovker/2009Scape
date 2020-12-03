@@ -25,8 +25,8 @@ object GameLaunch {
             GameConfig.parse(GameConfig.configLocation)
             GameConfig.RENDER_DISTANCE_INCREASE = true
         } catch (e: Exception){
-            GameConfig.IP_ADDRESS = "localhost"
-            GameConfig.IP_MANAGEMENT = "localhost"
+            GameConfig.IP_ADDRESS = "play.2009scape.org"
+            GameConfig.IP_MANAGEMENT = "play.2009scape.org"
             GameConfig.RCM_STYLE_PRESET = "classic"
             GameConfig.RCM_TITLE = "<col=5d5447>Choose Option</col>"
             GameConfig.HOLIDAYS_ENABLED = true
