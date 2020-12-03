@@ -61,31 +61,31 @@ public class RockClimbShortcut extends AgilityShortcut {
 			ForceMovement.run(player, player.getLocation(), Location.create(3424, 3476, 0), ANIMATION, ANIMATION, Direction.WEST, 13).setEndAnimation(Animation.RESET);
 			break;
 		case 26327:
-			if (player.getSkills().hasLevel(Skills.AGILITY, 60)) {
+			if (player.getSkills().hasLevel(Skills.AGILITY, 64)) {
 				ForceMovement.run(player, player.getLocation(), Location.create(2942, 3768, 0), SCALE, SCALE, Direction.WEST, 13).setEndAnimation(Animation.RESET);
 			}else{
-				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 60 to do this.");
+				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 64 to do this.");
 			}
 			break;
 		case 26328:
-			if (player.getSkills().hasLevel(Skills.AGILITY, 60)) {
+			if (player.getSkills().hasLevel(Skills.AGILITY, 64)) {
 				ForceMovement.run(player, player.getLocation(), Location.create(2950, 3767, 0), ANIMATION, ANIMATION, Direction.WEST, 13).setEndAnimation(Animation.RESET);
 			}else{
-				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 60 to do this.");
+				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 64 to do this.");
 			}
 			break;
 		case 26324:
-			if (player.getSkills().hasLevel(Skills.AGILITY, 60)) {
+			if (player.getSkills().hasLevel(Skills.AGILITY, 64)) {
 				ForceMovement.run(player, player.getLocation(), Location.create(2928, 3757, 0), SCALE, SCALE, Direction.NORTH, 13).setEndAnimation(Animation.RESET);
 			}else{
-				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 60 to do this.");
+				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 64 to do this.");
 			}
 			break;
 		case 26323:
-			if (player.getSkills().hasLevel(Skills.AGILITY, 60)) {
+			if (player.getSkills().hasLevel(Skills.AGILITY, 64)) {
 				ForceMovement.run(player, player.getLocation(), Location.create(2927, 3761, 0), ANIMATION, ANIMATION, Direction.NORTH, 13).setEndAnimation(Animation.RESET);
 			}else{
-				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 60 to do this.");
+				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 64 to do this.");
 			}
 			break;
 		}
