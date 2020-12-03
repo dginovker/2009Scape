@@ -1,5 +1,7 @@
 package plugin.skill.agility.shortcuts;
 
+import core.net.packet.out.SkillLevel;
+import plugin.skill.Skills;
 import plugin.skill.agility.AgilityShortcut;
 import core.game.node.entity.impl.ForceMovement;
 import core.game.node.entity.player.Player;
@@ -31,7 +33,15 @@ public class RockClimbShortcut extends AgilityShortcut {
 	 * Constructs a new {@Code RockClimbShortcut} {@Code Object}
 	 */
 	public RockClimbShortcut() {
-		super(new int[] { 9335, 9336, 2231 }, 1, 0.0, "climb");
+		super(new int[] {
+				9335,
+				9336,
+				2231,
+				26327,
+				26328,
+				26324,
+				26323
+		}, 1, 0.0, "climb");
 	}
 
 	@Override
@@ -49,6 +59,34 @@ public class RockClimbShortcut extends AgilityShortcut {
 			break;
 		case 9336:
 			ForceMovement.run(player, player.getLocation(), Location.create(3424, 3476, 0), ANIMATION, ANIMATION, Direction.WEST, 13).setEndAnimation(Animation.RESET);
+			break;
+		case 26327:
+			if (player.getSkills().hasLevel(Skills.AGILITY, 60)) {
+				ForceMovement.run(player, player.getLocation(), Location.create(2942, 3768, 0), SCALE, SCALE, Direction.WEST, 13).setEndAnimation(Animation.RESET);
+			}else{
+				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 60 to do this.");
+			}
+			break;
+		case 26328:
+			if (player.getSkills().hasLevel(Skills.AGILITY, 60)) {
+				ForceMovement.run(player, player.getLocation(), Location.create(2950, 3767, 0), ANIMATION, ANIMATION, Direction.WEST, 13).setEndAnimation(Animation.RESET);
+			}else{
+				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 60 to do this.");
+			}
+			break;
+		case 26324:
+			if (player.getSkills().hasLevel(Skills.AGILITY, 60)) {
+				ForceMovement.run(player, player.getLocation(), Location.create(2928, 3757, 0), SCALE, SCALE, Direction.NORTH, 13).setEndAnimation(Animation.RESET);
+			}else{
+				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 60 to do this.");
+			}
+			break;
+		case 26323:
+			if (player.getSkills().hasLevel(Skills.AGILITY, 60)) {
+				ForceMovement.run(player, player.getLocation(), Location.create(2927, 3761, 0), ANIMATION, ANIMATION, Direction.NORTH, 13).setEndAnimation(Animation.RESET);
+			}else{
+				player.getDialogueInterpreter().sendDialogue("You need an Agility level of at least 60 to do this.");
+			}
 			break;
 		}
 	}
