@@ -1,6 +1,5 @@
 package org.runite.client;
 
-import com.jogamp.opengl.*;
 import org.rs09.client.config.GameConfig;
 import org.rs09.client.data.HashTable;
 import org.rs09.client.rendering.Toolkit;
@@ -9,6 +8,8 @@ import org.rs09.client.util.ArrayUtils;
 import org.rs09.client.net.Connection;
 import org.rs09.client.data.ReferenceCache;
 
+import javax.media.opengl.GL;
+import javax.media.opengl.glu.GLU;
 import java.awt.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -4176,7 +4177,7 @@ public class Unsorted {
                                     if (ClientCommands.renderInfoOverlayEnabled) {
                                         if (HDToolKit.highDetail) {
                                             int vendorColor;
-                                            String vendor = HDToolKit.gl.glGetString(GL.GL_VENDOR);
+                                            String vendor = HDToolKit.gl.glGetString(7936);
                                             if (vendor.contains("NVIDIA")) {
                                                 vendorColor = 7780608;
                                             } else if (vendor.contains("AMD")) {
@@ -4188,13 +4189,11 @@ public class Unsorted {
                                             }
                                             var20 = var11.width + var13;
                                             var21 = 15 + var14;
-                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(JoglVersion.getInstance().getImplementationVendor()), var20, var21, 16776960, 7);
-                                            var21 += 15;
-                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(HDToolKit.gl.glGetString(GL.GL_VERSION)), var20, var21, 16776960, 7);
+                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(HDToolKit.gl.glGetString(7938)), var20, var21, 16776960, 7);
                                             var21 += 15;
                                             Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(vendor), var20, var21, vendorColor, 4);
                                             var21 += 15;
-                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(HDToolKit.gl.glGetString(GL.GL_RENDERER)), var20, var21, 16776960, 7);
+                                            Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse(HDToolKit.gl.glGetString(7937)), var20, var21, 16776960, 7);
                                             var21 += 15;
                                             Class126.aClass3_Sub28_Sub17_1669.method688(RSString.parse("Oncard Geometry: " + Class31.anInt585), var20, var21, 16776960, 7);
                                             var21 += 15;
