@@ -63690,5 +63690,12 @@
         "maxAmount": "1"
       }
     ]
+  },
+  {
+    "ids": "61,47",
+    "description": "Empty table for certain NPC",
+    "main": [],
+    "charm": [],
+    "default": []
   }
 ]
