@@ -147,22 +147,23 @@ public class StandardCookingPulse extends Pulse {
         }
         //handle special cooking results (spits, cake, etc) that don't justify separate plugin
         switch (initial) {
-            case 9986:
-            case 2876:
-            case 7566:
-            case 9984:
-            case 7724: // spits
+            case Items.RAW_BEAST_MEAT_9986:
+            case Items.RAW_CHOMPY_2876:
+            case Items.RAW_JUBBLY_7566:
+            case Items.SKEWERED_BIRD_MEAT_9984:
+            case Items.RAW_RABBIT_3226: // Iron spits
+            case Items.IRON_SPIT_7225:
                 if (RandomFunction.random(15) == 5) {
                     player.getPacketDispatch().sendMessage("Your iron spit seems to have broken in the proccess.");
                 } else {
-                    if (!player.getInventory().add(new Item(7725))) {
-                        GroundItemManager.create(new Item(7725), player.getLocation(), player);
+                    if (!player.getInventory().add(new Item(Items.IRON_SPIT_7225))) {
+                        GroundItemManager.create(new Item(Items.IRON_SPIT_7225), player.getLocation(), player);
                     }
                 }
                 break;
-            case 1889: //cake
-                if (!player.getInventory().add(new Item(1887))) {
-                    GroundItemManager.create(new Item(1887), player);
+            case Items.UNCOOKED_CAKE_1889: //cake
+                if (!player.getInventory().add(new Item(Items.CAKE_TIN_1887))) {
+                    GroundItemManager.create(new Item(Items.CAKE_TIN_1887), player);
                 }
                 break;
         }
@@ -219,9 +220,9 @@ public class StandardCookingPulse extends Pulse {
             return "You deliberately burn the perfectly good piece of meat.";
         }
         switch (product.getId()) {
-            case 9436:
+            case Items.SINEW_9436:
                 return "You dry the meat into sinew.";
-            case 1781:
+            case Items.SODA_ASH_1781:
                 return "You burn the seaweed into soda ash.";
         }
         if (!burned) {
