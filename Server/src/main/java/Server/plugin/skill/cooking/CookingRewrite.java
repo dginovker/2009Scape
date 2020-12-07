@@ -38,20 +38,20 @@ public class CookingRewrite extends UseWithHandler {
 
         //range checks when necessary
         switch(item){
-            case 2132: //sinew
+            case Items.RAW_BEEF_2132: //sinew
                 if(range) {
                     player.getDialogueInterpreter().open(FoodCookingDialogue.DialogueID, item, 9436, true, object);
                     return true;
                 }
                 break;
-            case 401: //soda ash
+            case Items.SEAWEED_401: //soda ash
                 if(range) {
                     player.getDialogueInterpreter().open(FoodCookingDialogue.DialogueID, item, 1781, false, object);
                     return true;
                 }
                 break;
-            case 2307:
-            case 1891: //cake, bread
+            case Items.BREAD_DOUGH_2307:
+            case Items.UNCOOKED_CAKE_1889: //cake, bread
                 if(!range){
                     player.getPacketDispatch().sendMessage("You need to cook this on a range.");
                     return false;
