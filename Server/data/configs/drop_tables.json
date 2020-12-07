@@ -63131,6 +63131,7 @@
   },
   {
     "ids": "8149,8150,8151",
+    "description": "Armoured Zombies - Has amazing herb table at the bottom",
     "main": [
       {
         "minAmount": "4",
@@ -63199,16 +63200,106 @@
         "maxAmount": "4"
       },
       {
-        "minAmount": "9",
-        "weight": "25",
+        "minAmount": "1",
+        "weight": "20",
         "id": "961",
         "maxAmount": "9"
       },
       {
-        "minAmount": "5",
-        "weight": "25",
+        "minAmount": "1",
+        "weight": "10",
         "id": "8779",
         "maxAmount": "5"
+      },
+      {
+        "minAmount": "1",
+        "weight": "3",
+        "id": "1617",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "3",
+        "id": "1621",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "3",
+        "id": "1619",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "3",
+        "id": "1623",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "6",
+        "id": "8781",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "3",
+        "id": "313",
+        "maxAmount": "7"
+      },
+      {
+        "minAmount": "1",
+        "weight": "30",
+        "id": "199",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "20",
+        "id": "201",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "5",
+        "id": "207",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "20",
+        "id": "205",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "10",
+        "id": "209",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "5",
+        "id": "211",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "5",
+        "id": "213",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "5",
+        "id": "215",
+        "maxAmount": "1"
+      },
+      {
+        "minAmount": "1",
+        "weight": "5",
+        "id": "217",
+        "maxAmount": "1"
       }
     ],
     "charm": [
@@ -63690,5 +63781,12 @@
         "maxAmount": "1"
       }
     ]
+  },
+  {
+    "ids": "61,47",
+    "description": "Empty table for certain NPC",
+    "main": [],
+    "charm": [],
+    "default": []
   }
 ]
