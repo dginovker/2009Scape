@@ -768,7 +768,7 @@ class Adventurer(val style: CombatStyle): Script() {
                     }
                 }
 
-                if (counter++ >= 240 && RandomFunction.random(100) >= 3){
+                if (counter++ >= 300 && RandomFunction.random(100) >= 1){
                     city = getRandomCity()
                     counter = 0
                     ticks = 0
@@ -779,7 +779,7 @@ class Adventurer(val style: CombatStyle): Script() {
                     return
                 }
 
-                if (counter++ >= 180 && RandomFunction.random(100) >= 5) {
+                if (counter++ >= 240 && RandomFunction.random(100) >= 3) {
                     city = getRandomCity()
                     if (RandomFunction.random(100) % 2 == 0) {
                         counter = 0
