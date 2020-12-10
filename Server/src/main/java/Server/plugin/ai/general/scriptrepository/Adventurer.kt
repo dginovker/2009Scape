@@ -109,7 +109,7 @@ class Adventurer(val style: CombatStyle): Script() {
                 "apparently ${real.username} bots",
                 "${real.username} hates kermit",
                 "There are no mods on to help you",
-                "Report me faggot, you won't",
+                "Report me, you won't",
                 "Yes, I'm botting. And?",
                 "ERROR: BOTSCRIPT 404. REPORT TO BOT OWNER (Evilwaffles)",
                 "flash2:wave: FUCK",
@@ -748,7 +748,7 @@ class Adventurer(val style: CombatStyle): Script() {
                 }
 
                 if (RandomFunction.random(1000) <= 150) {
-                    var roamDistance = if (city != ge && city != ge2) 200 else 10
+                    var roamDistance = if (city != ge && city != ge2) 200 else 7
                     if ((city == ge || city == ge2) && RandomFunction.random(100) < 90) {
                         if (!bot.bank.isEmpty) {
                             state = State.FIND_GE
@@ -766,6 +766,17 @@ class Adventurer(val style: CombatStyle): Script() {
                     } else {
                         return
                     }
+                }
+
+                if (counter++ >= 240 && RandomFunction.random(100) >= 3){
+                    city = getRandomCity()
+                    counter = 0
+                    ticks = 0
+                    state = State.TELEPORTING
+                }
+
+                if (city == ge || city == ge2){
+                    return
                 }
 
                 if (counter++ >= 180 && RandomFunction.random(100) >= 5) {
@@ -870,7 +881,7 @@ class Adventurer(val style: CombatStyle): Script() {
             }
 
             State.FIND_CITY -> {
-                if (counter++ >= 600) {
+                if (counter++ >= 600 || city == ge || city == ge2) {
                     counter = 0
                     scriptAPI.teleport(getRandomCity().also { city = it })
                     state = State.EXPLORE
