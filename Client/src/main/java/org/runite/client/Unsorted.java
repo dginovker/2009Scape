@@ -8,8 +8,6 @@ import org.rs09.client.util.ArrayUtils;
 import org.rs09.client.net.Connection;
 import org.rs09.client.data.ReferenceCache;
 
-import javax.media.opengl.GL;
-import javax.media.opengl.glu.GLU;
 import java.awt.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -397,7 +395,7 @@ public class Unsorted {
     static LDIndexedSprite method1539(int var2, CacheIndex var3) {
         try {
             //  System.out.println("RSString " + var2);
-            return Class75_Sub4.method1351(var3, 0, var2, -30901) ? Class77.method1364() : null;
+            return Class75_Sub4.method1351(var3, 0, var2) ? Class77.method1364() : null;
         } catch (RuntimeException var5) {
             throw ClientErrorException.clientError(var5, "na.MA(" + 0 + ',' + true + ',' + var2 + ',' + (var3 != null ? "{...}" : "null") + ')');
         }
@@ -2299,7 +2297,7 @@ public class Unsorted {
 
     public static Class3_Sub28_Sub17 method1300(int var1, CacheIndex var3, CacheIndex var4) {
         System.out.println("Class 73 " + var1);
-        return !Class75_Sub4.method1351(var3, 0, var1, -30901) ? null : method880(var4.getFile(var1, 0));
+        return !Class75_Sub4.method1351(var3, 0, var1) ? null : method880(var4.getFile(var1, 0));
     }
 
     public static void method1301(int plane, int regionY, int regionX, int sceneY, boolean var4, int sceneX) {
@@ -3025,7 +3023,7 @@ public class Unsorted {
     public static AbstractSprite method602(int var0, CacheIndex var1) {
         try {
             //  System.out.println("Class3_sub28_Sub16 " + var1);
-            if (Class75_Sub4.method1351(var1, 0, var0, (byte) -18 ^ 30885)) {
+            if (Class75_Sub4.method1351(var1, 0, var0)) {
                 return Class43.method1062((byte) -18 + 103);
             } else {
                 return null;
@@ -4463,7 +4461,7 @@ public class Unsorted {
                                         Class3_Sub28_Sub17 var34;
                                         if (var11.type == 4) {
                                             // TODO RSInterfaceRenderText
-                                            var34 = var11.method868(Class3_Sub13_Sub22.aClass109Array3270);
+                                            var34 = var11.method868(Class3_Sub13_Sub22.nameIconsSpriteArray);
                                             if (var34 != null) {
                                                 RSString var45 = var11.text;
                                                 if (Class3_Sub28_Sub12.method609(var11, 97)) {
@@ -4724,7 +4722,7 @@ public class Unsorted {
                                                 }
                                             } else {
                                                 if (var11.type == 7) {
-                                                    var34 = var11.method868(Class3_Sub13_Sub22.aClass109Array3270);
+                                                    var34 = var11.method868(Class3_Sub13_Sub22.nameIconsSpriteArray);
                                                     if (var34 == null) {
                                                         if (GameShell.aBoolean6) {
                                                             Class20.method909(var11);
@@ -5017,7 +5015,7 @@ public class Unsorted {
     public static Class3_Sub28_Sub16_Sub2 method562(CacheIndex var0, int var2) {
        try {
          //  System.out.println("Class 3_Sub28_Sub16_Sub2 " + var2);
-          return Class75_Sub4.method1351(var0, 0, var2, -30901)? Class3_Sub28_Sub9.method578() :null;
+          return Class75_Sub4.method1351(var0, 0, var2)? Class3_Sub28_Sub9.method578() :null;
        } catch (RuntimeException var5) {
           throw ClientErrorException.clientError(var5, "gf.O(" + (var0 != null?"{...}":"null") + ',' + 0 + ',' + var2 + ',' + (byte) 39 + ')');
        }
