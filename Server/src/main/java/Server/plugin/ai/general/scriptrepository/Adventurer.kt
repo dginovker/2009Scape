@@ -571,7 +571,7 @@ class Adventurer(val style: CombatStyle): Script() {
         }
     }
 
-    var citygroupA = listOf(falador, varrock, draynor, rimmington, lumbridge, ge, ge2, edgeville)
+    var citygroupA = listOf(falador, varrock, draynor, rimmington, lumbridge, edgeville)
     var citygroupB = listOf(yanille, ardougne, seers, catherby)
 
     var bankMap = hashMapOf<Location, ZoneBorders>(
@@ -682,8 +682,8 @@ class Adventurer(val style: CombatStyle): Script() {
 
     //Adventure Bots v2.0.0 -Holidays Edition-
     override fun tick() {
-
-        if (ticks++ >= 500) {
+        ticks++
+        if (ticks++ >= 800) {
             ticks = 0
             refresh()
             return
@@ -768,10 +768,9 @@ class Adventurer(val style: CombatStyle): Script() {
                     }
                 }
 
-                if (counter++ >= 300 && RandomFunction.random(100) >= 1){
-                    city = getRandomCity()
-                    counter = 0
+                if ((city == ge || city == ge2) && RandomFunction.random(1000) >= 999){
                     ticks = 0
+                    city = getRandomCity()
                     state = State.TELEPORTING
                 }
 
@@ -779,7 +778,7 @@ class Adventurer(val style: CombatStyle): Script() {
                     return
                 }
 
-                if (counter++ >= 240 && RandomFunction.random(100) >= 3) {
+                if (counter++ >= 240 && RandomFunction.random(100) >= 10) {
                     city = getRandomCity()
                     if (RandomFunction.random(100) % 2 == 0) {
                         counter = 0
@@ -802,17 +801,23 @@ class Adventurer(val style: CombatStyle): Script() {
             }
 
             State.GE -> {
+                var ge = false
                 if (counter++ == 180) {
                     state = State.TELEPORTING
                 }
                 if (!sold) {
                     if (counter++ >= 15) {
                         sold = true
+                        ge = true
                         counter = 0
                         ticks = 0
                         scriptAPI.sellAllOnGeAdv()
-                        state = State.EXPLORE
+                        return
                     }
+                }else if (ge && sold){
+                    ge = false
+                    city = getRandomCity()
+                    state = State.TELEPORTING
                 }
                 return
             }
@@ -823,7 +828,7 @@ class Adventurer(val style: CombatStyle): Script() {
                 }
                 sold = false
                 val ge: GameObject? = scriptAPI.getNearestNode("Desk", true) as GameObject?
-                if (ge == null) state = State.EXPLORE
+                if (ge == null || bot.bank.isEmpty) state = State.EXPLORE
                 class GEPulse : MovementPulse(bot, ge, DestinationFlag.OBJECT) {
                     override fun pulse(): Boolean {
                         bot.faceLocation(ge?.location)
@@ -831,7 +836,7 @@ class Adventurer(val style: CombatStyle): Script() {
                         return true
                     }
                 }
-                if (ge != null) {
+                if (ge != null && !bot.bank.isEmpty) {
                     counter = 0
                     scriptAPI.randomWalkTo(geloc, 3)
                     GameWorld.Pulser.submit(GEPulse())
@@ -881,7 +886,7 @@ class Adventurer(val style: CombatStyle): Script() {
             }
 
             State.FIND_CITY -> {
-                if (counter++ >= 600 || city == ge || city == ge2) {
+                if (counter++ >= 600 || (city == ge || city == ge2)) {
                     counter = 0
                     scriptAPI.teleport(getRandomCity().also { city = it })
                     state = State.EXPLORE
