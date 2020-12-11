@@ -80,9 +80,9 @@ public enum RoomProperties {
 			new Hotspot(BuildHotspot.WINDOW, 7, 2),
 			new Hotspot(BuildHotspot.WINDOW, 7, 5),
 			new Hotspot(BuildHotspot.BARRELS, 0, 6),
-			new Hotspot(BuildHotspot.KITCHEN_TABLE, 3, 4,4,3),
+			new Hotspot(BuildHotspot.KITCHEN_TABLE, 3, 3,4,4),
 			new Hotspot(BuildHotspot.STOVE, 3, 7),
-			new Hotspot(BuildHotspot.LARDER, 6, 1,7,0),
+			new Hotspot(BuildHotspot.LARDER, 6, 0,7,1),
 			new Hotspot(BuildHotspot.SINK, 7, 3,7,4),
 			new Hotspot(BuildHotspot.SHELVES, 1, 7),
 			new Hotspot(BuildHotspot.SHELVES, 6, 7),
@@ -115,7 +115,7 @@ public enum RoomProperties {
 			new Hotspot(BuildHotspot.DINING_BENCH_1, 4, 2),
 			new Hotspot(BuildHotspot.DINING_BENCH_1, 5, 2),
 			new Hotspot(BuildHotspot.ROPE_BELL_PULL, 0, 0),
-			new Hotspot(BuildHotspot.DINING_TABLE, 2, 4,5,3)),
+			new Hotspot(BuildHotspot.DINING_TABLE, 2, 3,5,4)),
 
 	/**
 	 * Workshop.
@@ -254,7 +254,7 @@ public enum RoomProperties {
 			new Hotspot(BuildHotspot.ATTACK_STONE, 2, 4),
 			new Hotspot(BuildHotspot.PRIZE_CHEST, 3, 7),
 			new Hotspot(BuildHotspot.ELEMENTAL_BALANCE, 5, 4),
-			new Hotspot(BuildHotspot.GAME_SPACE, 6, 1,7,0),
+			new Hotspot(BuildHotspot.GAME_SPACE, 6, 0,7,1),
 			new Hotspot(BuildHotspot.WINDOW, 0, 2),
 			new Hotspot(BuildHotspot.WINDOW, 0, 5),
 			new Hotspot(BuildHotspot.WINDOW, 2, 0),
