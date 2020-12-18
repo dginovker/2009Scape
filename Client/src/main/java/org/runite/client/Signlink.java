@@ -510,9 +510,14 @@ public class Signlink implements Runnable {
                         String fullPath = basePath + folder + "/" + (gameName != null ? gameName + "/" : "") + filename;
                         String libraryPath = basePath + folder + "/" + (gameName != null ? gameName + "/" : "");
                         System.setProperty("java.library.path", libraryPath);
-                        Field fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
-                        fieldSysPath.setAccessible(true);
-                        fieldSysPath.set(null,null);
+                        Field fieldSysPath = null;
+                        try {
+                            fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");
+                            fieldSysPath.setAccessible(true);
+                            fieldSysPath.set(null,null);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
                         RandomAccessFile raf = null;
                         try {
                             File file = new File(fullPath);
